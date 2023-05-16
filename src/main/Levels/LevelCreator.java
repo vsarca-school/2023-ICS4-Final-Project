@@ -1,7 +1,7 @@
 
-package Levels;
+package src.main.Levels;
 
-import Level;
+import src.main.Level;
 
 public class LevelCreator extends Level {
     

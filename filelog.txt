@@ -3,4 +3,5 @@ This file will track changes in the file hierarchy
 
 May 16, 3:00
 Research on Java file hierarchy (WHY IS IT SO HARD TO DO AND WHY DOES NOTHING WORK PROPERLY)
+File hierarchy now works
 - Victor
