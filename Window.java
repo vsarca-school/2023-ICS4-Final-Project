@@ -1,6 +1,16 @@
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * An object of this class represents a window.
+ * 
+ * Constructor - receives parameters specifying window dimensions, etc.
+ * 
+ * The JComponent class has a paint method - this does NOT update in real time,
+ * only when you move the window. (I think). Create a test setup and make sure
+ * you can RUN IT AT 60 FPS. Also, the drawing class will be outsourced to the
+ * game, so this
+ */
 public class Window {
     public Window() {
         javax.swing.JFrame frame = new javax.swing.JFrame("Letter");
