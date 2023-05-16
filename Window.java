@@ -9,10 +9,6 @@ public class Window {
       frame.setVisible(true);
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
    }
-   public static void main (String[] args)
-   {
-      new Window();
-   }
 class Drawing extends javax.swing.JComponent
    {
       public void paint (Graphics g)
