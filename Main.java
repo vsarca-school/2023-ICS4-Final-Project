@@ -1,6 +1,8 @@
 
 /// THIS IS A COMMENT
 
+import Game.Window;
+
 public class Main {
     public static void main(String[] args)
     {
