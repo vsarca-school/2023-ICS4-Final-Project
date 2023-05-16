@@ -1,4 +1,4 @@
-package Game;
+package src.main;
 
 public class Tile {
     

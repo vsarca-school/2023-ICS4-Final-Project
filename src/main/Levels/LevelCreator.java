@@ -1,7 +1,7 @@
 
 package Levels;
 
-import Game.Level;
+import Level;
 
 public class LevelCreator extends Level {
     

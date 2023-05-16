@@ -1,7 +1,6 @@
-
-/// THIS IS A COMMENT
-
-import Game.Window;
+package src.main;
+import Sound;
+import Window;
 
 public class Main {
     public static void main(String[] args) {

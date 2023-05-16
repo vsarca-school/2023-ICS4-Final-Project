@@ -1,4 +1,5 @@
-package Game;
+package src.main;
+
 
 import java.io.*;
 
