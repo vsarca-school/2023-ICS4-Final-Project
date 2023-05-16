@@ -19,6 +19,7 @@ import java.awt.*;
  * Java wants us to, we want to draw it when its convenient for us. That is how
  * most renderers work, including the default one from the OS so it must be
  * possible in Java.
+ *          - Victor
  */
 public class Window {
     public Window() {
