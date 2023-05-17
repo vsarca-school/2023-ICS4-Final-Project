@@ -22,7 +22,7 @@ import javax.swing.*;
  * most renderers work, including the default one from the OS so it must be
  * possible in Java.
  *          - Victor
- */
+ */ 
 public class Window {
     Drawing draw = new Drawing();
     int x = 0;
