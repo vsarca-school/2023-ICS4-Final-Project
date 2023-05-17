@@ -10,6 +10,7 @@ public class Level implements Serializable {
 
     /**
      * Used for level creation, doesn't do anything.
+     *      - Victor
      */
     public Level() {
         ;
