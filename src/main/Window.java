@@ -1,7 +1,7 @@
 package src.main;
-
-import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 
 /**
  * An object of this class represents a window.
@@ -22,22 +22,33 @@ import java.awt.*;
  * most renderers work, including the default one from the OS so it must be
  * possible in Java.
  *          - Victor
- */
+ */ 
 public class Window {
+    Drawing draw = new Drawing();
+    int x = 0;
     public Window() {
         javax.swing.JFrame frame = new javax.swing.JFrame("Letter");
         frame.setSize(400, 200);
-        frame.add(new Drawing());
+        frame.add(draw);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        tim();
+    }
+
+    public void tim(){
+        while(true) {
+            draw.repaint ();
+            try {
+                 Thread.sleep(1000/60);
+            } catch (InterruptedException e) {
+            }
+        }
     }
 
     class Drawing extends javax.swing.JComponent {
         public void paint(Graphics g) {
-            Font newFont = new Font("Serif", Font.PLAIN, 30);
-            g.setFont(newFont);
-            g.drawString("Radin Ahari", 110, 50);
-            g.drawString("20 Tillplain Road", 80, 100);
+            g.fillRect(x, 0, 30, 30);
+            x++; 
         }
     }
 }
