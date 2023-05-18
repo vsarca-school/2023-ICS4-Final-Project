@@ -4,6 +4,13 @@ import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Changelog: creation by Felix
+ * 
+ * Bugfix in looping, removed reset()
+ *      - Victor
+ */
+
 public class Sound {
     private File soundFile;
     private AudioInputStream audioStream;
@@ -65,7 +72,7 @@ public class Sound {
                     }
     
                     // Rewind the audio stream to the beginning for the next loop
-                    audioStream.reset();
+                    //audioStream.reset();
                 }
     
                 sourceDataLine.drain();
