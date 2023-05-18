@@ -9,6 +9,9 @@ import java.io.IOException;
  * 
  * Bugfix in looping, removed reset()
  *      - Victor
+ * 
+ * Removed play method in favor of calling loop(1), added volume control
+ *      - Victor
  */
 
 public class Sound {
@@ -31,7 +34,7 @@ public class Sound {
         }
     }
 
-    public void play() {
+    /*public void play(int volume) {
         Thread soundThread = new Thread(() -> {
             try {
                 sourceDataLine.open(audioFormat);
@@ -53,12 +56,24 @@ public class Sound {
             }
         });
         soundThread.start();
+    }*/
+
+    public void play(float volume)
+    {
+        loop(1, volume);
     }
 
-    public void loop(int times) {
+    public void loop(int times, float volume) {
         Thread soundThread = new Thread(() -> {
             try {
                 sourceDataLine.open(audioFormat);
+
+                // Adjust volume on audio line
+                if (sourceDataLine.isControlSupported(FloatControl.Type.MASTER_GAIN)) {
+                    FloatControl vol = (FloatControl) sourceDataLine.getControl(FloatControl.Type.MASTER_GAIN);
+                    vol.setValue(volume);
+                }
+
                 sourceDataLine.start();
     
                 byte[] buffer = new byte[BUFFER_SIZE];

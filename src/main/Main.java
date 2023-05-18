@@ -8,8 +8,8 @@ public class Main {
         Sound test = new Sound("src/main/Sounds/boom.wav");
         Sound amogus = new Sound("src/main/Sounds/amongus.wav");
         Sound duck = new Sound("src/main/Sounds/duck.wav");
-        duck.play();
-        amogus.loop(5);
+        amogus.loop(5, -25f);
+        duck.loop(5, 0f);
         new Window();
     }
 }
