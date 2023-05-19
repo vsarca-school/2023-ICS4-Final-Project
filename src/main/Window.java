@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+
 /**
  * An object of this class represents a window.
  * 
@@ -23,19 +24,20 @@ import javax.swing.*;
  * possible in Java.
  *          - Victor
  */ 
-public class Window {
+public class Window extends KeyAdapter{
     Drawing draw = new Drawing();
     int x = 0;
+    int y = 0;
     public Window() {
         javax.swing.JFrame frame = new javax.swing.JFrame("Letter");
         frame.setSize(400, 200);
         frame.add(draw);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        tim();
+        time();
     }
 
-    public void tim(){
+    public void time(){
         while(true) {
             draw.repaint ();
             try {
@@ -45,10 +47,27 @@ public class Window {
         }
     }
 
+    public void move(KeyEvent e){
+        int key = e.getKeyChar();
+        if(key == KeyEvent.VK_W){
+            y--;
+        }
+        else if(key == KeyEvent.VK_S){
+            y++;
+        }
+        else if(key == KeyEvent.VK_A){
+            x--;
+        }
+        else if(key == KeyEvent.VK_D){
+            x++;
+        }
+
+    }
+
     class Drawing extends javax.swing.JComponent {
         public void paint(Graphics g) {
-            g.fillRect(x, 0, 30, 30);
-            x++; 
+            g.fillRect(x, y, 30, 30);
+            move();
         }
     }
 }
