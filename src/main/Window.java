@@ -77,10 +77,21 @@ public class Window extends KeyAdapter{
 
     }
 
-    class Drawing extends javax.swing.JComponent {
+    class Drawing extends JComponent {
+        private ArrayList<ScreenElement> elements = new ArrayList<>();
+
+        public void addElement(ScreenElement s) {
+            elements.add(s);
+        }
+
+        public void removeElement(ScreenElement s) {
+            elements.remove(s);
+        }
+
         public void paint(Graphics g) {
-            g.fillRect(x, y, 30, 30);
-            move();
+            for (ScreenElement s : elements) {
+                s.paint(g);
+            }
         }
     }
 }
