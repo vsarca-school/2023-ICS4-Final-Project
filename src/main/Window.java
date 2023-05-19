@@ -1,6 +1,9 @@
 package src.main;
+
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+
 import javax.swing.*;
 
 /**
@@ -21,34 +24,55 @@ import javax.swing.*;
  * Java wants us to, we want to draw it when its convenient for us. That is how
  * most renderers work, including the default one from the OS so it must be
  * possible in Java.
- *          - Victor
- */ 
+ * - Victor
+ */
 public class Window {
-    Drawing draw = new Drawing();
+    Drawing draw;
     int x = 0;
+
     public Window() {
         javax.swing.JFrame frame = new javax.swing.JFrame("Letter");
         frame.setSize(400, 200);
+        draw = new Drawing();
         frame.add(draw);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         tim();
     }
 
-    public void tim(){
-        while(true) {
-            draw.repaint ();
+    public void addElement(ScreenElement s) {
+        draw.addElement(s);
+    }
+
+    public void removeElement(ScreenElement s) {
+        draw.removeElement(s);
+    }
+
+    public void tim() {
+        while (true) {
+            draw.repaint();
             try {
-                 Thread.sleep(1000/60);
+                Thread.sleep(1000 / 60);
             } catch (InterruptedException e) {
             }
         }
     }
 
-    class Drawing extends javax.swing.JComponent {
+    class Drawing extends JComponent {
+        private ArrayList<ScreenElement> elements = new ArrayList<>();
+
+        public void addElement(ScreenElement s) {
+            elements.add(s);
+        }
+
+        public void removeElement(ScreenElement s) {
+            elements.remove(s);
+        }
+
         public void paint(Graphics g) {
-            g.fillRect(x, 0, 30, 30);
-            x++; 
+            for (ScreenElement s : elements) {
+                s.paint(g);
+            }
         }
     }
 }
