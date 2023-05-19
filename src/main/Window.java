@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
+
 /**
  * An object of this class represents a window.
  * 
@@ -26,10 +27,11 @@ import javax.swing.*;
  * possible in Java.
  * - Victor
  */
-public class Window {
+public class Window extends KeyAdapter{
     Drawing draw;
     int x = 0;
 
+    int y = 0;
     public Window() {
         javax.swing.JFrame frame = new javax.swing.JFrame("Letter");
         frame.setSize(400, 200);
@@ -37,7 +39,7 @@ public class Window {
         frame.add(draw);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        tim();
+        time();
     }
 
     public void addElement(ScreenElement s) {
@@ -48,7 +50,7 @@ public class Window {
         draw.removeElement(s);
     }
 
-    public void tim() {
+    public void time() {
         while (true) {
             draw.repaint();
             try {
@@ -58,21 +60,27 @@ public class Window {
         }
     }
 
-    class Drawing extends JComponent {
-        private ArrayList<ScreenElement> elements = new ArrayList<>();
-
-        public void addElement(ScreenElement s) {
-            elements.add(s);
+    public void move(KeyEvent e){
+        int key = e.getKeyChar();
+        if(key == KeyEvent.VK_W){
+            y--;
+        }
+        else if(key == KeyEvent.VK_S){
+            y++;
+        }
+        else if(key == KeyEvent.VK_A){
+            x--;
+        }
+        else if(key == KeyEvent.VK_D){
+            x++;
         }
 
-        public void removeElement(ScreenElement s) {
-            elements.remove(s);
-        }
+    }
 
+    class Drawing extends javax.swing.JComponent {
         public void paint(Graphics g) {
-            for (ScreenElement s : elements) {
-                s.paint(g);
-            }
+            g.fillRect(x, y, 30, 30);
+            move();
         }
     }
 }
