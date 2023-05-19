@@ -27,6 +27,12 @@ import javax.swing.*;
  * possible in Java.
  * - Victor
  */
+
+/**
+ * Class created by Radin
+ * 
+ * Drawing class created by Victor, plus methods
+ */
 public class Window extends KeyAdapter{
     Drawing draw;
     int x = 0;
