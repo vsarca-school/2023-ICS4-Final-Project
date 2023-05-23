@@ -2,10 +2,9 @@ package src.main;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.util.ArrayList;
+import java.util.*;
 
 import javax.swing.*;
-
 
 /**
  * An object of this class represents a window.
@@ -32,20 +31,23 @@ import javax.swing.*;
  * Class created by Radin
  * 
  * Drawing class created by Victor, plus methods
+ * 
+ * update method, add/remove element, keyPressed/released created by Victor
+ * changes to constructor by Victor
  */
-public class Window extends KeyAdapter{
-    Drawing draw;
-    int x = 0;
+public class Window extends KeyAdapter {
+    private Drawing draw;
+    private Map<Integer, Boolean> keys = new HashMap<>(); // Stores whether key is up or down
+    private Map<Integer, Integer> keysPressed = new HashMap<>(); // Stores keys pressed
 
-    int y = 0;
-    public Window() {
-        javax.swing.JFrame frame = new javax.swing.JFrame("Letter");
-        frame.setSize(400, 200);
+    public Window(String name, int width, int height) {
+        JFrame frame = new JFrame(name);
+        frame.setSize(width, height);
         draw = new Drawing();
         frame.add(draw);
         frame.setVisible(true);
+        frame.addKeyListener(this);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        time();
     }
 
     public void addElement(ScreenElement s) {
@@ -56,16 +58,12 @@ public class Window extends KeyAdapter{
         draw.removeElement(s);
     }
 
-    public void time() {
-        while (true) {
-            draw.repaint();
-            try {
-                Thread.sleep(1000 / 60);
-            } catch (InterruptedException e) {
-            }
-        }
+    public void update() {
+        keysPressed.clear();
+        draw.repaint();
     }
 
+<<<<<<< HEAD
     public void move(KeyEvent e){
         int key = e.getKeyChar();
         if(key == KeyEvent.VK_W){
@@ -80,6 +78,28 @@ public class Window extends KeyAdapter{
         else if(key == KeyEvent.VK_D){
             x++;
         }
+=======
+    public boolean keydown(int keyCode)
+    {
+        return keys.getOrDefault(keyCode, false);
+    }
+
+    public int keypressed(int keyCode)
+    {
+        return keysPressed.getOrDefault(keyCode, 0);
+    }
+
+    @Override
+    public void keyPressed(KeyEvent event) {
+        int key = event.getKeyCode();
+        keys.put(key, true);
+        keysPressed.put(key, keysPressed.getOrDefault(key, 0) + 1); // increment
+    }
+
+    @Override
+    public void keyReleased(KeyEvent event) {
+        keys.put(event.getKeyCode(), false);
+>>>>>>> 47098e208b22622de0223980ce3f54b868758f5d
     }
 
     class Drawing extends JComponent {
