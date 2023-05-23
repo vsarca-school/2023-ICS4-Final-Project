@@ -80,7 +80,6 @@ public class Window extends KeyAdapter{
         else if(key == KeyEvent.VK_D){
             x++;
         }
-
     }
 
     class Drawing extends JComponent {
