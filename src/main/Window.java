@@ -63,22 +63,6 @@ public class Window extends KeyAdapter {
         draw.repaint();
     }
 
-<<<<<<< HEAD
-    public void move(KeyEvent e){
-        int key = e.getKeyChar();
-        if(key == KeyEvent.VK_W){
-            y--;
-        }
-        else if(key == KeyEvent.VK_S){
-            y++;
-        }
-        else if(key == KeyEvent.VK_A){
-            x--;
-        }
-        else if(key == KeyEvent.VK_D){
-            x++;
-        }
-=======
     public boolean keydown(int keyCode)
     {
         return keys.getOrDefault(keyCode, false);
@@ -99,7 +83,6 @@ public class Window extends KeyAdapter {
     @Override
     public void keyReleased(KeyEvent event) {
         keys.put(event.getKeyCode(), false);
->>>>>>> 47098e208b22622de0223980ce3f54b868758f5d
     }
 
     class Drawing extends JComponent {
