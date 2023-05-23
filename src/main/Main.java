@@ -36,19 +36,19 @@ class Testing implements ScreenElement {
 
     public void update(Window w)
     {
-        if (w.keypressed(KeyEvent.VK_W)>0 || w.keypressed(KeyEvent.VK_UP)>0)
+        if (w.keydown(KeyEvent.VK_W) || w.keydown(KeyEvent.VK_UP))
         {
             y--;
         }
-        if (w.keypressed(KeyEvent.VK_A)>0 || w.keypressed(KeyEvent.VK_LEFT)>0)
+        if (w.keydown(KeyEvent.VK_A) || w.keydown(KeyEvent.VK_LEFT))
         {
             x--;
         }
-        if (w.keypressed(KeyEvent.VK_S)>0 || w.keypressed(KeyEvent.VK_DOWN)>0)
+        if (w.keydown(KeyEvent.VK_S) || w.keydown(KeyEvent.VK_DOWN))
         {
             y++;
         }
-        if (w.keypressed(KeyEvent.VK_D)>0 || w.keypressed(KeyEvent.VK_RIGHT)>0)
+        if (w.keydown(KeyEvent.VK_D) || w.keydown(KeyEvent.VK_RIGHT))
         {
             x++;
         }
