@@ -1,8 +1,10 @@
 package src.main;
-import src.main.Sound;
-import src.main.Window;
 import java.awt.*;
 import java.awt.event.*;
+
+import src.main.Drivers.ScreenElement;
+import src.main.Drivers.Sound;
+import src.main.Drivers.Window;
 
 public class Main {
     public static void main(String[] args) {
