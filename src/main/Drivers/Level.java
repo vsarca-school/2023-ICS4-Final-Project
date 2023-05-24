@@ -2,7 +2,6 @@ package src.main.Drivers;
 import java.io.*;
 
 /**
- * Future plans: level generation?
  * - Victor
  */
 public class Level implements Serializable {
