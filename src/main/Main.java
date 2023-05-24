@@ -8,24 +8,29 @@ import src.main.Drivers.Window;
 
 public class Main {
     public static void main(String[] args) {
+        Window w = new Window("Timber Trek", 800, 600);
+
+        MainMenu m = new MainMenu();
+        Options o = new Options();
+        // Other elements such as lessons and levels will be loaded from files
+
+        w.addElement(m);
+
+        while (true)
+        {
+            w.update();
+            w.tick(60);
+        }
+
+        /*
         System.out.println("Hello Poopoo 2 3!");
         Sound test = new Sound("src/main/Sounds/boom.wav");
         Sound amogus = new Sound("src/main/Sounds/amongus.wav");
         Sound duck = new Sound("src/main/Sounds/duck.wav");
         amogus.loop(5, -25f);
         duck.loop(5, 0f);
-        Window w = new Window("Timber Trek", 800, 600);
         Testing t = new Testing();
-        w.addElement(t);
-
-        while (true) {
-            t.update(w);
-            w.update();
-            try {
-                Thread.sleep(1000 / 60);
-            } catch (InterruptedException e) {
-            }
-        }
+        w.addElement(t);*/
     }
 
 }

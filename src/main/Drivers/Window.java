@@ -63,13 +63,18 @@ public class Window extends KeyAdapter {
         draw.repaint();
     }
 
-    public boolean keydown(int keyCode)
-    {
+    public void tick(int fps) {
+        try {
+            Thread.sleep(1000 / fps);
+        } catch (InterruptedException e) {
+        }
+    }
+
+    public boolean keydown(int keyCode) {
         return keys.getOrDefault(keyCode, false);
     }
 
-    public int keypressed(int keyCode)
-    {
+    public int keypressed(int keyCode) {
         return keysPressed.getOrDefault(keyCode, 0);
     }
 
@@ -98,7 +103,7 @@ public class Window extends KeyAdapter {
 
         public void paint(Graphics g) {
             for (ScreenElement s : elements) {
-                s.paint(g);
+                s.update(g);
             }
         }
     }

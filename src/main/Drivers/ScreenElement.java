@@ -6,5 +6,9 @@ import java.awt.*;
  *      - Victor
  */
 public interface ScreenElement {
-    public void paint(Graphics g);
+    /**
+     * Update and render the screen element
+     * @param g The java graphics interface
+     */
+    public void update(Graphics g);
 }
