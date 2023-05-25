@@ -8,13 +8,13 @@ public interface Scene {
     /**
      * Returns what to change the scene to
      * Options are:
-     *  N - Nothing (keep the same)
-     *  M - MainMenu
-     *  O - Options
-     *  L - Lesson
-     *  Z - Maze
-     *  A - ActionLevel
+     *  0 - Nothing (keep the same)
+     *  1 - MainMenu
+     *  2 - Options
+     *  X3 - Lesson X
+     *  X4 - Maze X
+     *  X5 - ActionLevel X
      * @return what to change the scene to
      */
-    public char change();
+    public int change();
 }
