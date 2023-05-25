@@ -6,8 +6,15 @@ package src.main.Drivers;
  */
 public interface Scene {
     /**
-     * 
-     * @return
+     * Returns what to change the scene to
+     * Options are:
+     *  N - Nothing (keep the same)
+     *  M - MainMenu
+     *  O - Options
+     *  L - Lesson
+     *  Z - Maze
+     *  A - ActionLevel
+     * @return what to change the scene to
      */
     public char change();
 }
