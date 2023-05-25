@@ -10,6 +10,7 @@ public class Options implements ScreenElement {
 
     public void update(Window w, Graphics g)
     {
+        // Update
         if (w.keydown(KeyEvent.VK_W) || w.keydown(KeyEvent.VK_UP))
         {
             y--;
@@ -26,9 +27,8 @@ public class Options implements ScreenElement {
         {
             x++;
         }
-    }
 
-    public void paint(Graphics g) {
+        // Paint
         g.drawRect(x, y, 20, 20);
     }
 }

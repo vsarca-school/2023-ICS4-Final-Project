@@ -5,8 +5,9 @@ import java.awt.event.KeyEvent;
 
 import src.main.Drivers.*;
 
-public class MainMenu implements ScreenElement {
+public class ActionLevel implements ScreenElement{
     private int x, y;
+    private Player p = null;
 
     public void update(Window w, Graphics g)
     {
