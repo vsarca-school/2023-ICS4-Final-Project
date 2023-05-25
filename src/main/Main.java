@@ -5,7 +5,12 @@ import java.awt.event.*;
 import src.main.Drivers.ScreenElement;
 import src.main.Drivers.Sound;
 import src.main.Drivers.Window;
+import src.main.Scenes.MainMenu;
 
+/**
+ * Implemented main function
+ *      - Victor
+ */
 public class Main {
     public static void main(String[] args) {
         Window w = new Window("Timber Trek", 800, 600);
@@ -23,7 +28,6 @@ public class Main {
         }
 
         /*
-        System.out.println("Hello Poopoo 2 3!");
         Sound test = new Sound("src/main/Sounds/boom.wav");
         Sound amogus = new Sound("src/main/Sounds/amongus.wav");
         Sound duck = new Sound("src/main/Sounds/duck.wav");
@@ -37,7 +41,7 @@ public class Main {
 
 /**
  * - Victor
- */
+ /
 class Testing implements ScreenElement {
     private int x, y;
 
@@ -64,4 +68,4 @@ class Testing implements ScreenElement {
     public void paint(Graphics g) {
         g.drawRect(x, y, 20, 20);
     }
-}
+}*/

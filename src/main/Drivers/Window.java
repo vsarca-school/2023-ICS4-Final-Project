@@ -34,33 +34,43 @@ import javax.swing.*;
  * 
  * update method, add/remove element, keyPressed/released created by Victor
  * changes to constructor by Victor
+ * 
+ * Class completely changed again by Victor
  */
 public class Window extends KeyAdapter {
-    private Drawing draw;
+    private Canvas canvas;
+    private ArrayList<ScreenElement> elements = new ArrayList<>();
     private Map<Integer, Boolean> keys = new HashMap<>(); // Stores whether key is up or down
     private Map<Integer, Integer> keysPressed = new HashMap<>(); // Stores keys pressed
 
     public Window(String name, int width, int height) {
         JFrame frame = new JFrame(name);
         frame.setSize(width, height);
-        draw = new Drawing();
-        frame.add(draw);
+        canvas = new Canvas(this);
+        frame.add(canvas);
         frame.setVisible(true);
         frame.addKeyListener(this);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     public void addElement(ScreenElement s) {
-        draw.addElement(s);
+        elements.add(s);
     }
 
     public void removeElement(ScreenElement s) {
-        draw.removeElement(s);
+        elements.remove(s);
     }
 
     public void update() {
         keysPressed.clear();
-        draw.repaint();
+        canvas.repaint();
+    }
+
+    void paint(Graphics g)
+    {
+        for (ScreenElement s : elements) {
+            s.update(this, g);
+        }
     }
 
     public void tick(int fps) {
@@ -90,21 +100,21 @@ public class Window extends KeyAdapter {
         keys.put(event.getKeyCode(), false);
     }
 
-    class Drawing extends JComponent {
-        private ArrayList<ScreenElement> elements = new ArrayList<>();
+    /**
+     * Dummy class to receive Graphics object for drawing
+     * Immediately passes it back to window class for use
+     *      - Victor
+     */
+    class Canvas extends JComponent {
+        Window parent;
 
-        public void addElement(ScreenElement s) {
-            elements.add(s);
-        }
-
-        public void removeElement(ScreenElement s) {
-            elements.remove(s);
+        public Canvas(Window w)
+        {
+            parent = w;
         }
 
         public void paint(Graphics g) {
-            for (ScreenElement s : elements) {
-                s.update(g);
-            }
+            parent.paint(g);
         }
     }
 }
