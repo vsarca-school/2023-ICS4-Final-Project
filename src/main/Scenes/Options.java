@@ -3,8 +3,7 @@ package src.main.Scenes;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
-import src.main.Drivers.ScreenElement;
-import src.main.Drivers.Window;
+import src.main.Drivers.*;
 
 public class Options implements ScreenElement {
     private int x, y;

@@ -1,6 +1,6 @@
 package src.main.Levels;
 
-import src.main.Drivers.Level;
+import src.main.Drivers.*;
 
 /**
  * This class extends the Level class in order to access all of its protected

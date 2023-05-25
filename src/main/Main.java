@@ -1,11 +1,7 @@
 package src.main;
-import java.awt.*;
-import java.awt.event.*;
 
-import src.main.Drivers.ScreenElement;
-import src.main.Drivers.Sound;
-import src.main.Drivers.Window;
-import src.main.Scenes.MainMenu;
+import src.main.Drivers.*;
+import src.main.Scenes.*;
 
 /**
  * Implemented main function
