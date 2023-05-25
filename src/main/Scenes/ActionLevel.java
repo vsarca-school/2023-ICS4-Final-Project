@@ -7,7 +7,12 @@ import src.main.Drivers.*;
 
 public class ActionLevel implements ScreenElement{
     private int x, y;
-    private Player p = null;
+    private Player p;
+
+    public ActionLevel(Player pl)
+    {
+        p = pl;
+    }
 
     public void update(Window w, Graphics g)
     {

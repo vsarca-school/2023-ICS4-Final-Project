@@ -11,8 +11,12 @@ public class Main {
     public static void main(String[] args) {
         Window w = new Window("Timber Trek", 800, 600);
 
+        Player p = new Player();
+
         MainMenu m = new MainMenu();
         Options o = new Options();
+        Maze z = new Maze(p);
+        ActionLevel a = new ActionLevel(p);
         // Other elements such as lessons and levels will be loaded from files
 
         w.addElement(m);
