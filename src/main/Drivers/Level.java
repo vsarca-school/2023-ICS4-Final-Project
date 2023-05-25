@@ -1,10 +1,11 @@
 package src.main.Drivers;
+import java.awt.Graphics;
 import java.io.*;
 
 /**
  * - Victor
  */
-public class Level implements Serializable {
+public class Level implements Serializable, ScreenElement {
     protected Tile layout[][];
 
     /**
@@ -22,6 +23,11 @@ public class Level implements Serializable {
      *                 - Victor
      */
     public Level(String fromFile) {
+        ;
+    }
+
+    public void update(Window w, Graphics g)
+    {
         ;
     }
 }

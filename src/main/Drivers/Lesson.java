@@ -1,14 +1,15 @@
 package src.main.Drivers;
 
+import java.awt.Graphics;
 import java.io.Serializable;
 
 /**
  * - Victor
  */
-public class Lesson implements Serializable {
+public class Lesson implements Serializable, ScreenElement, Scene {
     /**
      * Used for lesson creation, doesn't do anything.
-     *      - Victor
+     * - Victor
      */
     public Lesson() {
         ;
@@ -22,5 +23,13 @@ public class Lesson implements Serializable {
      */
     public Lesson(String fromFile) {
         ;
+    }
+
+    public void update(Window w, Graphics g) {
+        ;
+    }
+
+    public int change() {
+        return 0;
     }
 }
