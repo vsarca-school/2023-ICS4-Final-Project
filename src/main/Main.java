@@ -8,7 +8,15 @@ import src.main.Scenes.*;
  *      - Victor
  */
 public class Main {
+    /**
+     * Control for the entire program, however, each individual object is responsible for its own control
+     * Switching scenes only happens when the scene wants to switch
+     *      - Victor
+     * @param args cmd args
+     */
     public static void main(String[] args) {
+        Sprite.init();
+
         Window w = new Window("Timber Trek", 800, 600);
 
         Player p = new Player();
