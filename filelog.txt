@@ -12,4 +12,44 @@ Added amongus.wav, boom.wav, duck.wav
 
 May 18, 9:00
 Added textures folder
-- VIctor
+- Victor
+
+Unknown date
+Lots of files and folders added. Everything is now organised into folders Driver, Lessons, Levels, Scenes, Sounds, and Textures.
+Main class is  outside of those folders.
+The project is in folders src and main, for packaging.
+The java files have no extension below, other files have extensions provided.
+Drivers:
+    Lesson
+    Level
+    Player
+    Scenes
+    ScreenElement
+    Sound
+    Tile
+    Window
+Lessons:
+    LessonCreator
+Levels:
+    Example.lvl
+    LevelCreator
+Scenes:
+    ActionLevel
+    MainMenu
+    Maze
+    Options
+Sounds:
+    amongus.wav
+    boom.wav
+    duck.wav
+Textures:
+    logo.png
+Main.java
+filelog.txt
+
+ - Victor
+
+ May 26, 9:00 AM
+ Added Sprite.java
+ Moved aseprite to new images folder
+ - Victor
