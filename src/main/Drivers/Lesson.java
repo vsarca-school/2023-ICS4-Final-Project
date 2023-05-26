@@ -2,6 +2,8 @@ package src.main.Drivers;
 
 import java.awt.Graphics;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 /**
  * - Victor
@@ -11,6 +13,8 @@ public class Lesson implements Serializable, ScreenElement, Scene {
      * Used for lesson creation, doesn't do anything.
      * - Victor
      */
+    public ArrayList<String> text = new ArrayList<>();
+
     public Lesson() {
         ;
     }
