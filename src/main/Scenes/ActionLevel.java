@@ -8,9 +8,12 @@ import src.main.Drivers.*;
 public class ActionLevel implements ScreenElement, Scene {
     private int x, y;
     private Player p;
+    private Level l;
 
     public ActionLevel(Player pl) {
         p = pl;
+        l = new Level("src/main/Levels/Level-1.lvl");
+        p.joinLevel(l);
     }
 
     public void update(Window w, Graphics g) {

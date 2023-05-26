@@ -27,7 +27,8 @@ public class Main {
         ActionLevel a = new ActionLevel(p);
         // Other elements such as lessons and levels will be loaded from files
 
-        w.addElement(m);
+        //w.addElement(m);
+        w.addElement(a);
 
         while (true)
         {

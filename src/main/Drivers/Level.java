@@ -28,6 +28,12 @@ public class Level implements Serializable, ScreenElement {
         ;
     }
 
+    public void updatePlayerPos(int x, int y)
+    {
+        px = x;
+        py = y;
+    }
+
     public void update(Window w, Graphics g)
     {
         // Render level
