@@ -38,19 +38,28 @@ import javax.swing.*;
  * Class completely changed again by Victor
  */
 public class Window extends KeyAdapter {
+    private JFrame frame;
     private Canvas canvas;
     private ArrayList<ScreenElement> elements = new ArrayList<>();
     private Map<Integer, Boolean> keys = new HashMap<>(); // Stores whether key is up or down
     private Map<Integer, Integer> keysPressed = new HashMap<>(); // Stores keys pressed
 
     public Window(String name, int width, int height) {
-        JFrame frame = new JFrame(name);
+        frame = new JFrame(name);
         frame.setSize(width, height);
         canvas = new Canvas(this);
         frame.add(canvas);
         frame.setVisible(true);
         frame.addKeyListener(this);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    public int getWidth() {
+        return frame.getWidth();
+    }
+
+    public int getHeight() {
+        return frame.getHeight();
     }
 
     public void addElement(ScreenElement s) {
@@ -66,8 +75,7 @@ public class Window extends KeyAdapter {
         canvas.repaint();
     }
 
-    void paint(Graphics g)
-    {
+    void paint(Graphics g) {
         for (ScreenElement s : elements) {
             s.update(this, g);
         }
@@ -103,13 +111,12 @@ public class Window extends KeyAdapter {
     /**
      * Dummy class to receive Graphics object for drawing
      * Immediately passes it back to window class for use
-     *      - Victor
+     * - Victor
      */
     class Canvas extends JComponent {
         Window parent;
 
-        public Canvas(Window w)
-        {
+        public Canvas(Window w) {
             parent = w;
         }
 
