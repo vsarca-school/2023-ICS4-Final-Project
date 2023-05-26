@@ -30,6 +30,7 @@ public class Level implements Serializable, ScreenElement {
 
     public void update(Window w, Graphics g)
     {
+        // Render level
         double hww = w.getWidth()/2.0;
         double hwh = w.getHeight()/2.0;
         scale = Math.sqrt(w.getWidth()*w.getHeight());
@@ -38,6 +39,13 @@ public class Level implements Serializable, ScreenElement {
             for (int j=0; j<ground[i].length; j++)
             {
                 g.drawImage(Tile.getSprite(ground[i][j]), (int)(hww + scale*(i-px)), (int)(hwh + scale*(j-py)), null);
+            }
+        }
+        for (int i=0; i<objects.length; i++)
+        {
+            for (int j=0; j<objects[i].length; j++)
+            {
+                g.drawImage(Tile.getSprite(objects[i][j]), (int)(hww + scale*(i-px)), (int)(hwh + scale*(j-py)), null);
             }
         }
     }
