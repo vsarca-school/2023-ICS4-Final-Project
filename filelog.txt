@@ -43,7 +43,7 @@ Sounds:
     boom.wav
     duck.wav
 Textures:
-    logo.packaging
+    logo.png
 Main.java
 filelog.txt
 
@@ -51,4 +51,5 @@ filelog.txt
 
  May 26, 9:00 AM
  Added Sprite.java
+ Moved aseprite to new images folder
  - Victor
