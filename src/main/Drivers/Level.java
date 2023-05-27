@@ -1,4 +1,5 @@
 package src.main.Drivers;
+
 import java.awt.Graphics;
 import java.io.*;
 
@@ -12,7 +13,7 @@ public class Level implements Serializable, ScreenElement {
 
     /**
      * Used for level creation, doesn't do anything.
-     *      - Victor
+     * - Victor
      */
     public Level() {
         ;
@@ -24,34 +25,40 @@ public class Level implements Serializable, ScreenElement {
      * @param fromFile the file containing the level info
      *                 - Victor
      */
-    public Level(String fromFile) {
-        ;
+    public static Level fromFile(String file) {
+        Level level = null;
+        try {
+            ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
+            level = (Level) in.readObject();
+            in.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return level;
     }
 
-    public void updatePlayerPos(int x, int y)
-    {
+    public void updatePlayerPos(int x, int y) {
         px = x;
         py = y;
     }
 
-    public void update(Window w, Graphics g)
-    {
+    public void update(Window w, Graphics g) {
         // Render level
-        double hww = w.getWidth()/2.0;
-        double hwh = w.getHeight()/2.0;
-        scale = Math.sqrt(w.getWidth()*w.getHeight());
-        for (int i=0; i<ground.length; i++)
-        {
-            for (int j=0; j<ground[i].length; j++)
-            {
-                g.drawImage(Tile.getSprite(ground[i][j]), (int)(hww + scale*(i-px)), (int)(hwh + scale*(j-py)), null);
+        double hww = w.getWidth() / 2.0;
+        double hwh = w.getHeight() / 2.0;
+        scale = Math.sqrt(w.getWidth() * w.getHeight());
+        for (int i = 0; i < ground.length; i++) {
+            for (int j = 0; j < ground[i].length; j++) {
+                g.drawImage(Tile.getSprite(ground[i][j]), (int) (hww + scale * (i - px)),
+                        (int) (hwh + scale * (j - py)), null);
             }
         }
-        for (int i=0; i<objects.length; i++)
-        {
-            for (int j=0; j<objects[i].length; j++)
-            {
-                g.drawImage(Tile.getSprite(objects[i][j]), (int)(hww + scale*(i-px)), (int)(hwh + scale*(j-py)), null);
+        for (int i = 0; i < objects.length; i++) {
+            for (int j = 0; j < objects[i].length; j++) {
+                g.drawImage(Tile.getSprite(objects[i][j]), (int) (hww + scale * (i - px)),
+                        (int) (hwh + scale * (j - py)), null);
             }
         }
     }
