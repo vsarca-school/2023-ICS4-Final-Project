@@ -16,6 +16,7 @@ public class Main {
      */
     public static void main(String[] args) {
         Sprite.init();
+        Sprite.print(); // DEBUG
 
         Window w = new Window("Timber Trek", 800, 600);
 

@@ -25,11 +25,9 @@ public class Sprite {
                 int frame = 0;
                 int width = spritemap.getWidth();
                 int height = spritemap.getHeight();
-                for (int i=0; i<height; i+=16)
-                {
-                    for (int j=0; j<width; j+=16)
-                    {
-                        tiles.put(file.getName()+"-"+frame, spritemap.getSubimage(j, i, 16, 16));
+                for (int i = 0; i < height; i += 16) {
+                    for (int j = 0; j < width; j += 16) {
+                        tiles.put(file.getName() + "-" + frame, spritemap.getSubimage(j, i, 16, 16));
                         frame++;
                     }
                 }
@@ -37,18 +35,7 @@ public class Sprite {
             // Load individual images
             folder = new File("src/main/Textures/Images");
             for (File file : folder.listFiles()) {
-                spritemap = ImageIO.read(file);
-                int frame = 0;
-                int width = spritemap.getWidth();
-                int height = spritemap.getHeight();
-                for (int i=0; i<height; i+=16)
-                {
-                    for (int j=0; j<width; j+=16)
-                    {
-                        images.put(file.getName()+"-"+frame, spritemap.getSubimage(j, i, 16, 16));
-                        frame++;
-                    }
-                }
+                images.put(file.getName(), ImageIO.read(file));
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -56,7 +43,20 @@ public class Sprite {
     }
 
     /**
+     * Debug to print all loaded sprites
+     */
+    public static void print() {
+        System.out.println("Tiles:");
+        for (String s : tiles.keySet()) System.out.print(s + " ");
+        System.out.println();
+        System.out.println("Images:");
+        for (String s : images.keySet()) System.out.print(s + " ");
+        System.out.println();
+    }
+
+    /**
      * Returns the tile requested
+     * 
      * @param sprite The key of the tile requested
      * @return The tile image
      */
@@ -66,6 +66,7 @@ public class Sprite {
 
     /**
      * Returns the image requested
+     * 
      * @param sprite The key of the image requested
      * @return The image
      */
