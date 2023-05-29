@@ -15,7 +15,7 @@ public class Main {
      * @param args cmd args
      */
     public static void main(String[] args) {
-        Tile.init();
+        Sprite.init();
 
         Window w = new Window("Timber Trek", 800, 600);
 
