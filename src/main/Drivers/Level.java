@@ -45,17 +45,24 @@ public class Level implements Serializable, ScreenElement {
         py = y;
     }
 
+    public String getBlock(int x, int y)
+    {
+        return objects[x][y];
+    }
+
     public void update(Window w, Graphics g) {
         // Render level
         double hww = w.getWidth() / 2.0;
         double hwh = w.getHeight() / 2.0;
         scale = Math.sqrt(w.getWidth() * w.getHeight());
+        // Render floor
         for (int i = 0; i < ground.length; i++) {
             for (int j = 0; j < ground[i].length; j++) {
                 g.drawImage(Sprite.getTile(ground[i][j]), (int) (hww + scale * (i - px)),
                         (int) (hwh + scale * (j - py)), null);
             }
         }
+        // Render objects
         for (int i = 0; i < objects.length; i++) {
             for (int j = 0; j < objects[i].length; j++) {
                 g.drawImage(Sprite.getTile(objects[i][j]), (int) (hww + scale * (i - px)),
