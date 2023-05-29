@@ -11,6 +11,8 @@ import src.main.Drivers.*;
 
 public class LevelCreator extends Level {
     public static void main(String argv[]) {
-        ;
+        // Create level 1
+        Level l1 = new Level();
+        
     }
 }
