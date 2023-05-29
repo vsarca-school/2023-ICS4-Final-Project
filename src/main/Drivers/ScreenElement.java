@@ -10,6 +10,10 @@ public interface ScreenElement {
      * Update and render the screen element
      * @param w The parent window
      * @param g The java graphics interface
+     *      - Victor
      */
     public void update(Window w, Graphics g);
+
+    public void addToWindow(Window w);
+    public void removeFromWindow(Window w);
 }

@@ -34,6 +34,9 @@ public class ActionLevel implements ScreenElement, Scene {
         // Paint
         g.drawRect(x, y, 20, 20);
     }
+    
+    public void addToWindow(Window w);
+    public void removeFromWindow(Window w);
 
     public int change() {
         return 0;

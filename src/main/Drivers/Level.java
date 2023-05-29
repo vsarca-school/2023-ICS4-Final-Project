@@ -62,4 +62,7 @@ public class Level implements Serializable, ScreenElement {
             }
         }
     }
+
+    public void addToWindow(Window w);
+    public void removeFromWindow(Window w);
 }

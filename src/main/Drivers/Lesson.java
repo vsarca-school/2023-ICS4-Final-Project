@@ -32,6 +32,9 @@ public class Lesson implements Serializable, ScreenElement, Scene {
     public void update(Window w, Graphics g) {
         ;
     }
+    
+    public void addToWindow(Window w);
+    public void removeFromWindow(Window w);
 
     public int change() {
         return 0;

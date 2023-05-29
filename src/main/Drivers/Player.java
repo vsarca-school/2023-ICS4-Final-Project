@@ -23,4 +23,7 @@ public class Player implements ScreenElement {
     public void update(Window w, Graphics g) {
         
     }
+    
+    public void addToWindow(Window w);
+    public void removeFromWindow(Window w);
 }
