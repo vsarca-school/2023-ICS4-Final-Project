@@ -26,9 +26,14 @@ public class MainMenu implements ScreenElement, Scene {
         // Paint
         g.drawRect(x, y, 20, 20);
     }
-    
-    public void addToWindow(Window w);
-    public void removeFromWindow(Window w);
+
+    public void addToWindow(Window w) {
+        w.addElement(this);
+    }
+
+    public void removeFromWindow(Window w) {
+        w.removeElement(this);
+    }
 
     public int change() {
         return 0;

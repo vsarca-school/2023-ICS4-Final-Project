@@ -8,6 +8,7 @@ import src.main.Drivers.*;
 public class Maze implements ScreenElement, Scene {
     private int x, y;
     private Player p;
+    private Level l;
 
     public Maze(Player pl) {
         p = pl;
@@ -32,8 +33,17 @@ public class Maze implements ScreenElement, Scene {
         g.drawRect(x, y, 20, 20);
     }
 
-    public void addToWindow(Window w);
-    public void removeFromWindow(Window w);
+    public void addToWindow(Window w) {
+        p.addToWindow(w);
+        l.addToWindow(w);
+        w.addElement(this);
+    }
+
+    public void removeFromWindow(Window w) {
+        p.removeFromWindow(w);
+        l.removeFromWindow(w);
+        w.removeElement(this);
+    }
 
     public int change() {
         return 0;

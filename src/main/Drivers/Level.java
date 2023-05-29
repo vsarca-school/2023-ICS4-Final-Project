@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.io.*;
 
 /**
+ * All of this class
  * - Victor
  */
 public class Level implements Serializable, ScreenElement {
@@ -63,6 +64,12 @@ public class Level implements Serializable, ScreenElement {
         }
     }
 
-    public void addToWindow(Window w);
-    public void removeFromWindow(Window w);
+    public void addToWindow(Window w) {
+        w.addElement(this);
+    }
+
+    public void removeFromWindow(Window w)
+    {
+        w.removeElement(this);
+    }
 }

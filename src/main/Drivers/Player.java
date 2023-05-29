@@ -9,21 +9,26 @@ public class Player implements ScreenElement {
     Level l;
 
     /**
-     *      - Victor
+     * - Victor
+     * 
      * @param lv
      */
-    public void joinLevel(Level lv)
-    {
+    public void joinLevel(Level lv) {
         l = lv;
     }
 
     /**
-     *      - Victor
+     * - Victor
      */
     public void update(Window w, Graphics g) {
-        
+
     }
-    
-    public void addToWindow(Window w);
-    public void removeFromWindow(Window w);
+
+    public void addToWindow(Window w) {
+        w.addElement(this);
+    }
+
+    public void removeFromWindow(Window w) {
+        w.removeElement(this);
+    }
 }
