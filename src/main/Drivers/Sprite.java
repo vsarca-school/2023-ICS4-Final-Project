@@ -12,7 +12,8 @@ public class Sprite {
 
     /**
      * Load all images into buffers, and intializes everything
-     * For simplicity, all images are shoved into a map with names
+     * For simplicity, all images are shoved into a map with names equal to the file
+     * name, with tile numbers appended for tiles.
      * - Victor
      */
     public static void init() {
@@ -44,18 +45,22 @@ public class Sprite {
 
     /**
      * Debug to print all loaded sprites
+     * - Victor
      */
     public static void print() {
         System.out.println("Tiles:");
-        for (String s : tiles.keySet()) System.out.print(s + " ");
+        for (String s : tiles.keySet())
+            System.out.print(s + " ");
         System.out.println();
         System.out.println("Images:");
-        for (String s : images.keySet()) System.out.print(s + " ");
+        for (String s : images.keySet())
+            System.out.print(s + " ");
         System.out.println();
     }
 
     /**
      * Returns the tile requested
+     * - Victor
      * 
      * @param sprite The key of the tile requested
      * @return The tile image
@@ -66,6 +71,7 @@ public class Sprite {
 
     /**
      * Returns the image requested
+     * - Victor
      * 
      * @param sprite The key of the image requested
      * @return The image

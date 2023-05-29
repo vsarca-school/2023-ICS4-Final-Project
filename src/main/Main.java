@@ -24,15 +24,18 @@ public class Main {
 
         MainMenu m = new MainMenu();
         Options o = new Options();
+        Lesson l = new Lesson();
         Maze z = new Maze(p);
         ActionLevel a = new ActionLevel(p);
-        // Other elements such as lessons and levels will be loaded from files
 
-        //w.addElement(m);
-        a.addToWindow(w);
-
+        m.addToWindow(w);
+        int scene = MainMenu.sceneId;
         while (true)
         {
+            while (scene == MainMenu.sceneId)
+            {
+                scene = m.nextScene();
+            }
             w.update();
             w.tick(60);
         }

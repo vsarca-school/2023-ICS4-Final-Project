@@ -1,14 +1,20 @@
-package src.main.Drivers;
+package src.main.Scenes;
 
 import java.awt.Graphics;
 import java.io.*;
 import java.util.ArrayList;
+
+import src.main.Drivers.Scene;
+import src.main.Drivers.ScreenElement;
+import src.main.Drivers.Window;
 
 /**
  * All of this classs
  * - Victor
  */
 public class Lesson implements Serializable, ScreenElement, Scene {
+    public static final int sceneId = 2;
+
     public ArrayList<String> text = new ArrayList<>();
 
     /**
@@ -52,7 +58,7 @@ public class Lesson implements Serializable, ScreenElement, Scene {
         w.removeElement(this);
     }
 
-    public int change() {
-        return 0;
+    public int nextScene() {
+        return Lesson.sceneId;
     }
 }

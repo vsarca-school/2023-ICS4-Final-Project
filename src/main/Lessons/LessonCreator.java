@@ -1,5 +1,6 @@
 package src.main.Lessons;
-import src.main.Drivers.Lesson;
+
+import src.main.Scenes.Lesson;
 
 /**
  * - Victor

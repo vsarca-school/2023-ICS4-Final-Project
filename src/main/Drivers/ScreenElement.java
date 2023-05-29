@@ -14,6 +14,15 @@ public interface ScreenElement {
      */
     public void update(Window w, Graphics g);
 
+    /**
+     * Add this element and child ScreenElements to window w
+     * @param w The window to render to
+     */
     public void addToWindow(Window w);
+    
+    /**
+     * Remove this element and child ScreenElements from window w
+     * @param w The window to stop rendering to
+     */
     public void removeFromWindow(Window w);
 }
