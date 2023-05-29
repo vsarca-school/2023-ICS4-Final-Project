@@ -1,9 +1,8 @@
 package src.main.Drivers;
 
 import java.awt.Graphics;
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
-import java.util.StringTokenizer;
 
 /**
  * All of this classs
@@ -23,12 +22,23 @@ public class Lesson implements Serializable, ScreenElement, Scene {
     /**
      * Loads a lesson from file
      * 
-     * @param fromFile the file containing the level info
+     * @param fromFile the file containing the lesson info
      *                 - Victor
      */
-    public Lesson(String fromFile) {
-        ;
+    public static Lesson fromFile(String file) {
+        Lesson lesson = null;
+        try {
+            ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
+            lesson = (Lesson) in.readObject();
+            in.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return lesson;
     }
+
 
     public void update(Window w, Graphics g) {
         ;
