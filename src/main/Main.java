@@ -7,7 +7,7 @@ import src.main.Scenes.*;
  * Implemented main function
  *      - Victor
  */
-public class Main {
+public class Main implements ScreenElement {
     /**
      * Control for the entire program, however, each individual object is responsible for its own control
      * Switching scenes only happens when the scene wants to switch
@@ -30,14 +30,15 @@ public class Main {
 
         m.addToWindow(w);
         int scene = MainMenu.sceneId;
+        int newScene;
         while (true)
         {
             while (scene == MainMenu.sceneId)
             {
-                scene = m.nextScene();
+                w.update();
+                w.tick(60);
+                newScene = m.nextScene();
             }
-            w.update();
-            w.tick(60);
         }
     }
 }
