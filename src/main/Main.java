@@ -1,5 +1,7 @@
 package src.main;
 
+import java.awt.Graphics;
+
 import src.main.Drivers.*;
 import src.main.Scenes.*;
 
@@ -8,6 +10,18 @@ import src.main.Scenes.*;
  *      - Victor
  */
 public class Main implements ScreenElement {
+    Window w;
+    
+    Player p;
+    
+    MainMenu m;
+    Options o;
+    Lesson l;
+    Maze z;
+    ActionLevel a;
+    
+    ScreenElement currentScene;
+
     /**
      * Control for the entire program, however, each individual object is responsible for its own control
      * Switching scenes only happens when the scene wants to switch
@@ -15,30 +29,45 @@ public class Main implements ScreenElement {
      * @param args cmd args
      */
     public static void main(String[] args) {
+        // Loads resources
         Sprite.init();
         Sprite.print(); // DEBUG
 
-        Window w = new Window("Timber Trek", 800, 600);
+        // Create a main object to delegate rendering and control
+        Main m = new Main();
+    }
 
-        Player p = new Player();
+    public Main()
+    {
+        w = new Window("Timber Trek", 800, 600);
 
-        MainMenu m = new MainMenu();
-        Options o = new Options();
-        Lesson l = new Lesson();
-        Maze z = new Maze(p);
-        ActionLevel a = new ActionLevel(p);
+        p = new Player();
 
-        m.addToWindow(w);
-        int scene = MainMenu.sceneId;
-        int newScene;
+        m = new MainMenu();
+        o = new Options();
+        l = new Lesson();
+        z = new Maze(p);
+        a = new ActionLevel(p);
+
+        currentScene = m;
+
+        w.addElement(this);
         while (true)
         {
-            while (scene == MainMenu.sceneId)
-            {
-                w.update();
-                w.tick(60);
-                newScene = m.nextScene();
-            }
+            w.update();
+            w.tick(60);
         }
+    }
+
+    public void update(Window w, Graphics g) {
+        currentScene.update(w, g);
+    }
+
+    public void addToWindow(Window w) {
+        w.addElement(this);
+    }
+
+    public void removeFromWindow(Window w) {
+        w.removeElement(this);
     }
 }
