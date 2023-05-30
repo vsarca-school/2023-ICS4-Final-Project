@@ -5,7 +5,7 @@ import java.io.*;
 
 /**
  * All of this class
- * - Victor a
+ * - Victor
  */
 public class Level implements Serializable, ScreenElement {
     double scale;
