@@ -12,7 +12,7 @@ public class ActionLevel implements ScreenElement {
 
     public ActionLevel(Player pl) {
         p = pl;
-        //l = Level.fromFile("src/main/Levels/Level-1.lvl");
+        l = Level.fromFile("src/main/Levels/Level-1.lvl");
         p.joinLevel(l);
     }
 
