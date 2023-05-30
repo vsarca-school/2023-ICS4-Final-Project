@@ -6,6 +6,12 @@ import java.io.IOException;
 import java.util.*;
 import javax.imageio.ImageIO;
 
+/**
+ * Loads and stores all images to be easily used by other classes
+ * The code .replaceFirst("[.][^.]+$", "") is from
+ * https://stackoverflow.com/questions/924394/how-to-get-the-filename-without-the-extension-in-java
+ * - Victor
+ */
 public class Sprite {
     private static Map<String, BufferedImage> tiles = new HashMap<>();
     private static Map<String, BufferedImage> images = new HashMap<>();
@@ -28,7 +34,8 @@ public class Sprite {
                 int height = spritemap.getHeight();
                 for (int i = 0; i < height; i += 16) {
                     for (int j = 0; j < width; j += 16) {
-                        tiles.put(file.getName() + "-" + frame, spritemap.getSubimage(j, i, 16, 16));
+                        tiles.put(file.getName().replaceFirst("[.][^.]+$", "") + "-" + frame,
+                                spritemap.getSubimage(j, i, 16, 16));
                         frame++;
                     }
                 }
@@ -36,7 +43,7 @@ public class Sprite {
             // Load individual images
             folder = new File("src/main/Textures/Images");
             for (File file : folder.listFiles()) {
-                images.put(file.getName(), ImageIO.read(file));
+                images.put(file.getName().replaceFirst("[.][^.]+$", ""), ImageIO.read(file));
             }
         } catch (IOException e) {
             e.printStackTrace();

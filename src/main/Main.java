@@ -7,25 +7,27 @@ import src.main.Scenes.*;
 
 /**
  * Implemented main function
- *      - Victor
+ * - Victor
  */
 public class Main implements ScreenElement {
     Window w;
-    
+
     Player p;
-    
+
     MainMenu m;
     Options o;
     Lesson l;
     Maze z;
     ActionLevel a;
-    
+
     ScreenElement currentScene;
 
     /**
-     * Control for the entire program, however, each individual object is responsible for its own control
+     * Control for the entire program, however, each individual object is
+     * responsible for its own control
      * Switching scenes only happens when the scene wants to switch
-     *      - Victor
+     * - Victor
+     * 
      * @param args cmd args
      */
     public static void main(String[] args) {
@@ -37,8 +39,7 @@ public class Main implements ScreenElement {
         Main m = new Main();
     }
 
-    public Main()
-    {
+    public Main() {
         w = new Window("Timber Trek", 800, 600);
 
         p = new Player();
@@ -52,10 +53,24 @@ public class Main implements ScreenElement {
         currentScene = m;
 
         w.addElement(this);
-        while (true)
-        {
+        while (true) {
             w.update();
             w.tick(60);
+        }
+    }
+
+    public void changeScene(int newScene) {
+        switch (newScene) {
+            case 0:
+                currentScene = m;
+            case 1:
+                currentScene = o;
+            case 2:
+                currentScene = l;
+            case 3:
+                currentScene = z;
+            case 4:
+                currentScene = a;
         }
     }
 
