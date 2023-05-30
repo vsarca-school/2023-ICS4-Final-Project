@@ -7,6 +7,6 @@ import src.main.Scenes.Lesson;
  */
 public class LessonCreator {
     public static void main(String argv[]) {
-        ;
+        Lesson l1 = new Lesson();
     }
 }
