@@ -5,7 +5,7 @@ import java.awt.event.KeyEvent;
 
 import src.main.Drivers.*;
 
-public class ActionLevel implements ScreenElement, Scene {
+public class ActionLevel implements ScreenElement {
     public static final int sceneId = 4;
 
     private int x, y;

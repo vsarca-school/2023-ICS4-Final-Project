@@ -5,7 +5,7 @@ import java.awt.event.KeyEvent;
 
 import src.main.Drivers.*;
 
-public class Maze implements ScreenElement, Scene {
+public class Maze implements ScreenElement {
     public static final int sceneId = 3;
     
     private int x, y;

@@ -5,7 +5,7 @@ import java.awt.event.KeyEvent;
 
 import src.main.Drivers.*;
 
-public class MainMenu implements ScreenElement, Scene {
+public class MainMenu implements ScreenElement {
     public static final int sceneId = 0;
     
     private int x, y;

@@ -5,7 +5,7 @@ import java.awt.event.KeyEvent;
 
 import src.main.Drivers.*;
 
-public class Options implements ScreenElement, Scene {
+public class Options implements ScreenElement {
     public static final int sceneId = 1;
     
     private int x, y;
