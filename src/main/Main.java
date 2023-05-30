@@ -1,7 +1,5 @@
 package src.main;
 
-import java.awt.Graphics;
-
 import src.main.Drivers.*;
 import src.main.Scenes.*;
 
@@ -9,18 +7,18 @@ import src.main.Scenes.*;
  * Implemented main function
  * - Victor
  */
-public class Main implements ScreenElement {
-    Window w;
+public class Main {
+    static Window w;
 
-    Player p;
+    static Player p;
 
-    MainMenu m;
-    Options o;
-    Lesson l;
-    Maze z;
-    ActionLevel a;
+    static MainMenu m;
+    static Options o;
+    static Lesson l;
+    static Maze z;
+    static ActionLevel a;
 
-    ScreenElement currentScene;
+    static ScreenElement currentScene;
 
     /**
      * Control for the entire program, however, each individual object is
@@ -35,54 +33,49 @@ public class Main implements ScreenElement {
         Sprite.init();
         Sprite.print(); // DEBUG
 
-        // Create a main object to delegate rendering and control
-        Main m = new Main();
-    }
-
-    public Main() {
+        // Create all objects necessary
         w = new Window("Timber Trek", 800, 600);
 
         p = new Player();
 
         m = new MainMenu();
         o = new Options();
-        l = new Lesson();
+        l = Lesson.fromFile("Lesson-1.lsn");
         z = new Maze(p);
         a = new ActionLevel(p);
 
-        currentScene = m;
+        ScreenElement currentScene = m;
 
-        w.addElement(this);
+        currentScene.addToWindow(w);
+
         while (true) {
             w.update();
             w.tick(60);
         }
     }
 
-    public void changeScene(int newScene) {
+    public static void changeScene(int newScene) {
         switch (newScene) {
             case 0:
+                currentScene.removeFromWindow(w);
                 currentScene = m;
+                currentScene.addToWindow(w);
             case 1:
+                currentScene.removeFromWindow(w);
                 currentScene = o;
+                currentScene.addToWindow(w);
             case 2:
+                currentScene.removeFromWindow(w);
                 currentScene = l;
+                currentScene.addToWindow(w);
             case 3:
+                currentScene.removeFromWindow(w);
                 currentScene = z;
+                currentScene.addToWindow(w);
             case 4:
+                currentScene.removeFromWindow(w);
                 currentScene = a;
+                currentScene.addToWindow(w);
         }
-    }
-
-    public void update(Window w, Graphics g) {
-        currentScene.update(w, g);
-    }
-
-    public void addToWindow(Window w) {
-        w.addElement(this);
-    }
-
-    public void removeFromWindow(Window w) {
-        w.removeElement(this);
     }
 }
