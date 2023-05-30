@@ -60,7 +60,10 @@ public class Main implements ScreenElement {
     }
 
     public void changeScene(int newScene) {
-        ;
+        switch (newScene) {
+            case 0:
+                currentScene = m;
+        }
     }
 
     public void update(Window w, Graphics g) {
