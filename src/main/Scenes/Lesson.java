@@ -4,17 +4,13 @@ import java.awt.Graphics;
 import java.io.*;
 import java.util.ArrayList;
 
-import src.main.Drivers.Scene;
-import src.main.Drivers.ScreenElement;
-import src.main.Drivers.Window;
+import src.main.Drivers.*;
 
 /**
  * All of this classs
  * - Victor
  */
-public class Lesson implements Serializable, ScreenElement, Scene {
-    public static final int sceneId = 2;
-
+public class Lesson implements Serializable, ScreenElement {
     public ArrayList<String> text = new ArrayList<>();
 
     /**
@@ -56,9 +52,5 @@ public class Lesson implements Serializable, ScreenElement, Scene {
 
     public void removeFromWindow(Window w) {
         w.removeElement(this);
-    }
-
-    public int nextScene() {
-        return Lesson.sceneId;
     }
 }

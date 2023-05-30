@@ -5,9 +5,7 @@ import java.awt.event.KeyEvent;
 
 import src.main.Drivers.*;
 
-public class ActionLevel implements ScreenElement, Scene {
-    public static final int sceneId = 4;
-
+public class ActionLevel implements ScreenElement {
     private int x, y;
     private Player p;
     private Level l;
@@ -47,9 +45,5 @@ public class ActionLevel implements ScreenElement, Scene {
         p.removeFromWindow(w);
         l.removeFromWindow(w);
         w.removeElement(this);
-    }
-
-    public int nextScene() {
-        return ActionLevel.sceneId;
     }
 }
