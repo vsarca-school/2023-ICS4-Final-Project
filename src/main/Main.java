@@ -63,6 +63,14 @@ public class Main implements ScreenElement {
         switch (newScene) {
             case 0:
                 currentScene = m;
+            case 1:
+                currentScene = o;
+            case 2:
+                currentScene = l;
+            case 3:
+                currentScene = z;
+            case 4:
+                currentScene = a;
         }
     }
 
