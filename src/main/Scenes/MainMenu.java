@@ -6,8 +6,6 @@ import java.awt.event.KeyEvent;
 import src.main.Drivers.*;
 
 public class MainMenu implements ScreenElement {
-    public static final int sceneId = 0;
-    
     private int x, y;
 
     public void update(Window w, Graphics g) {
@@ -35,9 +33,5 @@ public class MainMenu implements ScreenElement {
 
     public void removeFromWindow(Window w) {
         w.removeElement(this);
-    }
-
-    public int nextScene() {
-        return MainMenu.sceneId;
     }
 }

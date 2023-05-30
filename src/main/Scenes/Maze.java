@@ -6,8 +6,6 @@ import java.awt.event.KeyEvent;
 import src.main.Drivers.*;
 
 public class Maze implements ScreenElement {
-    public static final int sceneId = 3;
-    
     private int x, y;
     private Player p;
     private Level l;
@@ -45,9 +43,5 @@ public class Maze implements ScreenElement {
         p.removeFromWindow(w);
         l.removeFromWindow(w);
         w.removeElement(this);
-    }
-
-    public int nextScene() {
-        return Maze.sceneId;
     }
 }

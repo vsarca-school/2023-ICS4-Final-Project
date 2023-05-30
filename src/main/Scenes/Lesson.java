@@ -11,8 +11,6 @@ import src.main.Drivers.*;
  * - Victor
  */
 public class Lesson implements Serializable, ScreenElement {
-    public static final int sceneId = 2;
-
     public ArrayList<String> text = new ArrayList<>();
 
     /**
@@ -54,9 +52,5 @@ public class Lesson implements Serializable, ScreenElement {
 
     public void removeFromWindow(Window w) {
         w.removeElement(this);
-    }
-
-    public int nextScene() {
-        return Lesson.sceneId;
     }
 }
