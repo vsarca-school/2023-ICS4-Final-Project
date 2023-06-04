@@ -13,9 +13,9 @@ public class Lesson implements Serializable, ScreenElement {
     private int currentStringIndex = 0;
 
     public Lesson(String[] strs) {
-        frame = new JFrame("Name Drawings");
+        frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 500);
+        frame.setSize(800, 600);
 
         // Create a custom DrawingPanel and add it to the frame
         DrawingPanel drawingPanel = new DrawingPanel();
@@ -79,33 +79,16 @@ public class Lesson implements Serializable, ScreenElement {
         return lesson;
     }
 
-    public void update(Window w, Graphics g) {
-        for (int i = 0; i < text.size(); i++) {
-            int index = i; // Create a local copy of the 'i' variable
-
-            Timer timer = new Timer(100, e -> {
-                if (currentIndex <= text.get(index).length()) {
-                    String currentText = text.get(index).substring(0, currentIndex);
-                    centerString(g, currentText, 200, 200, new Font("Arial", Font.PLAIN, 16));
-                    currentIndex++;
-                } else {
-                    ((Timer) e.getSource()).stop();
-                    try {
-                        Thread.sleep(5000);
-                    } catch (InterruptedException e1) {
-                        e1.printStackTrace();
-                    }
-                }
-            });
-            timer.start();
-        }
-    }
-
     public void addToWindow(Window w) {
         w.addElement(this);
     }
 
     public void removeFromWindow(Window w) {
         w.removeElement(this);
+    }
+    @Override
+    public void update(Window w, Graphics g) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'update'");
     }
 }

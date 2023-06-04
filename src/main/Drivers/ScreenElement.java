@@ -1,6 +1,8 @@
 package src.main.Drivers;
 import java.awt.*;
 
+import src.main.Scenes.Lesson;
+
 /**
  * This is an interface implemented by all class which will draw to the screen
  *      - Victor
@@ -16,7 +18,7 @@ public interface ScreenElement {
 
     /**
      * Add this element and child ScreenElements to window w
-     * @param w The window to render to
+     * @param l The window to render to
      */
     public void addToWindow(Window w);
     
