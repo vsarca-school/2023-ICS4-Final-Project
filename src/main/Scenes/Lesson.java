@@ -88,7 +88,5 @@ public class Lesson implements Serializable, ScreenElement {
     }
     @Override
     public void update(Window w, Graphics g) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
     }
 }
