@@ -35,7 +35,7 @@ public class Main {
         Sprite.print(); // DEBUG
 
         // Create all objects necessary
-        w = new Window("Timber Trek", 800, 600);
+        w = new Window("Timber Trek", 1024, 1024);
 
         p = new Player();
 
