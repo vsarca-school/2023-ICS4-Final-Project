@@ -57,9 +57,7 @@ public class Lesson implements Serializable, ScreenElement {
 
     public void addToWindow(Window w) {
         w.addElement(this);
-        frame = new JFrame();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1024, 1024);
+        frame = w.getFrame();
 
         // Create a custom DrawingPanel and add it to the frame
         DrawingPanel drawingPanel = new DrawingPanel();

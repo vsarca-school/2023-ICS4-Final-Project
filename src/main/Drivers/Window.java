@@ -62,6 +62,10 @@ public class Window extends KeyAdapter {
         return frame.getHeight();
     }
 
+    public JFrame getFrame() {
+        return frame;
+    }
+
     public void addElement(ScreenElement s) {
         elements.add(s);
     }
