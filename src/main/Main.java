@@ -41,10 +41,9 @@ public class Main {
 
         m = new MainMenu();
         o = new Options();
-        l = new Lesson(strs); // THINGS TO DO
+        l = Lesson.fromFile("src/main/Lessons/Lesson-1.lsn");
         z = new Maze(p);
         a = new ActionLevel(p);
-
         ScreenElement currentScene = l;
 
         currentScene.addToWindow(w);
