@@ -9,12 +9,13 @@ import java.awt.Image;
 public class Player implements ScreenElement {
     private double scale;
     private Level l;
-    private int countDir = 0;
-    private int countA = 0;
-    String[] walkUp = {"player-12","player-13","player-14","player-15"};
-    String[] walkDown = {"player-0","player-1","player-2","player-3"};
-    String[] walkRight = {"player-4","player-5","player-6","player-7"};
-    String[] walkLeft = {"player-8","player-9","player-10","player-11"};
+    private int direction = 0;
+    private int animation = 0;
+    private boolean walking = false;
+    String[] walkUp = { "player-12", "player-13", "player-14", "player-15" };
+    String[] walkDown = { "player-0", "player-1", "player-2", "player-3" };
+    String[] walkRight = { "player-4", "player-5", "player-6", "player-7" };
+    String[] walkLeft = { "player-8", "player-9", "player-10", "player-11" };
 
     /**
      * - Victor
@@ -33,48 +34,40 @@ public class Player implements ScreenElement {
         double hww = w.getWidth() / 2.0;
         double hwh = w.getHeight() / 2.0;
         scale = Math.sqrt(hww * hwh) / 5;
-        hww -= scale/2;
-        hwh -= scale/2;
+        hww -= scale / 2;
+        hwh -= scale / 2;
         // Render player
-        while(countDir == 0){
-            if(countA !=3){
-                g.drawImage(Sprite.getTile(walkUp[countA]).getScaledInstance((int)scale+1, (int)scale+1, Image.SCALE_SMOOTH), (int) hww,(int) hwh, null);
-            }   
-            else{
-                g.drawImage(Sprite.getTile(walkUp[countA]).getScaledInstance((int)scale+1, (int)scale+1, Image.SCALE_SMOOTH), (int) hww,(int) hwh, null);
-                countA = 0;
-            }
+        animation = (animation + 1) % 16;
+        String cur = "player-0";
+        switch (direction) {
+            case 0:
+                if (walking)
+                    cur = walkUp[animation / 4];
+                else
+                    cur = walkUp[0];
+                break;
+            case 1:
+                if (walking)
+                    cur = walkDown[animation / 4];
+                else
+                    cur = walkDown[0];
+                break;
+            case 2:
+                if (walking)
+                    cur = walkRight[animation / 4];
+                else
+                    cur = walkRight[0];
+                break;
+            case 3:
+                if (walking)
+                    cur = walkLeft[animation / 4];
+                else
+                    cur = walkLeft[0];
+                break;
         }
 
-        while(countDir == 1){
-            if(countA !=3){
-                g.drawImage(Sprite.getTile(walkDown[countA]).getScaledInstance((int)scale+1, (int)scale+1, Image.SCALE_SMOOTH), (int) hww,(int) hwh, null);
-            }   
-            else{
-                g.drawImage(Sprite.getTile(walkDown[countA]).getScaledInstance((int)scale+1, (int)scale+1, Image.SCALE_SMOOTH), (int) hww,(int) hwh, null);
-                countA = 0;
-            }
-        }
-
-        while(countDir == 2){
-            if(countA !=3){
-                g.drawImage(Sprite.getTile(walkLeft[countA]).getScaledInstance((int)scale+1, (int)scale+1, Image.SCALE_SMOOTH), (int) hww,(int) hwh, null);
-            }   
-            else{
-                g.drawImage(Sprite.getTile(walkLeft[countA]).getScaledInstance((int)scale+1, (int)scale+1, Image.SCALE_SMOOTH), (int) hww,(int) hwh, null);
-                countA = 0;
-            }
-        }
-
-        while(countDir == 3){
-            if(countA !=3){
-                g.drawImage(Sprite.getTile(walkRight[countA]).getScaledInstance((int)scale+1, (int)scale+1, Image.SCALE_SMOOTH), (int) hww,(int) hwh, null);
-            }   
-            else{
-                g.drawImage(Sprite.getTile(walkRight[countA]).getScaledInstance((int)scale+1, (int)scale+1, Image.SCALE_SMOOTH), (int) hww,(int) hwh, null);
-                countA = 0;
-            }
-        }
+        g.drawImage(Sprite.getTile(cur).getScaledInstance((int) scale + 1, (int) scale + 1,
+                Image.SCALE_SMOOTH), (int) hww, (int) hwh, null);
     }
 
     public void addToWindow(Window w) {
