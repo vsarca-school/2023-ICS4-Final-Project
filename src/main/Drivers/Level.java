@@ -11,20 +11,24 @@ public class Level implements Serializable, ScreenElement {
     private double scale;
     private String[][] ground, objects;
     private int px, py; // Player x and y position
+    private String nextLevel;
 
     /**
      * Used for level creation for initializing a level before saving
      * - Victor
      */
-    public Level(String[][] ground, String[][] objects, int px, int py) {
+    public Level(String[][] ground, String[][] objects, int px, int py, String nextLevel) {
         this.ground = ground;
         this.objects = objects;
         this.px = px;
         this.py = py;
+        this.nextLevel = nextLevel;
     }
 
     /**
      * Loads a level from file
+     * Returns null if there is an error; after the final level, a null string will
+     * be passed as a parameter and as such null will be returned
      * 
      * @param fromFile the file containing the level info
      *                 - Victor
@@ -35,12 +39,18 @@ public class Level implements Serializable, ScreenElement {
             ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
             level = (Level) in.readObject();
             in.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (NullPointerException e) {
+            // Since this is intentional do not print traceback
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return level;
+    }
+
+    public Level nextLevel() {
+        if (nextLevel != null)
+            return Level.fromFile(nextLevel);
+        return null;
     }
 
     public void updatePlayerPos(int x, int y) {
@@ -48,8 +58,7 @@ public class Level implements Serializable, ScreenElement {
         py = y;
     }
 
-    public String getBlock(int x, int y)
-    {
+    public String getBlock(int x, int y) {
         return objects[x][y];
     }
 
@@ -78,8 +87,7 @@ public class Level implements Serializable, ScreenElement {
         w.addElement(this);
     }
 
-    public void removeFromWindow(Window w)
-    {
+    public void removeFromWindow(Window w) {
         w.removeElement(this);
     }
 }

@@ -16,6 +16,7 @@ public class LevelCreator {
         ObjectOutputStream out;
         String[][] ground, objects;
         int px, py;
+        String next;
 
         // Create level 1
         ground = new String[10][10];
@@ -30,8 +31,9 @@ public class LevelCreator {
         }
         px = 5;
         py = 5;
+        next = "Level-2.lvl";
         // Save level 1
-        Level l1 = new Level(ground, objects, px, py);
+        Level l1 = new Level(ground, objects, px, py, next);
         out = new ObjectOutputStream(new FileOutputStream("src/main/Levels/Level-1.lvl"));
         out.writeObject(l1);
         out.close();
