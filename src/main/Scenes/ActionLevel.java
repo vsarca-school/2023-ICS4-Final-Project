@@ -18,22 +18,6 @@ public class ActionLevel implements ScreenElement {
     }
 
     public void update(Window w, Graphics g) {
-        // Update
-        if (w.keydown(KeyEvent.VK_W) || w.keydown(KeyEvent.VK_UP)) {
-            y--;
-        }
-        if (w.keydown(KeyEvent.VK_A) || w.keydown(KeyEvent.VK_LEFT)) {
-            x--;
-        }
-        if (w.keydown(KeyEvent.VK_S) || w.keydown(KeyEvent.VK_DOWN)) {
-            y++;
-        }
-        if (w.keydown(KeyEvent.VK_D) || w.keydown(KeyEvent.VK_RIGHT)) {
-            x++;
-        }
-
-        // Paint
-        g.drawRect(x, y, 20, 20);
     }
 
     public void addToWindow(Window w) {
