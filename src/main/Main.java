@@ -45,7 +45,7 @@ public class Main {
         z = new Maze(p);
         a = new ActionLevel(p);
         e = new EndScreen();
-        ScreenElement currentScene = l; // TODO: change back to menu when done debugging
+        ScreenElement currentScene = a; // TODO: change back to menu when done debugging
 
         currentScene.addToWindow(w);
 
