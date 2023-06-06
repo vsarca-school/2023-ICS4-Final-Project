@@ -79,6 +79,7 @@ public class Window implements KeyListener, MouseListener {
 
     public void update() {
         keysPressed.clear();
+        mousePressed.clear();
         canvas.repaint();
     }
 
