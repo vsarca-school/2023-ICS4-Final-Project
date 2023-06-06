@@ -12,8 +12,7 @@ public class ActionLevel implements ScreenElement {
 
     public ActionLevel(Player pl) {
         p = pl;
-        //l = Level.fromFile("src/main/Levels/Level-1.lvl");
-        l = Level.fromFile(null);
+        l = Level.fromFile("src/main/Levels/Level-1.lvl");
         p.joinLevel(l);
     }
 
@@ -37,7 +36,7 @@ public class ActionLevel implements ScreenElement {
     }
 
     public void addToWindow(Window w) {
-        if (l == null) 
+        if (l == null) Main.changeScene(5);
 
         p.addToWindow(w);
         l.addToWindow(w);
