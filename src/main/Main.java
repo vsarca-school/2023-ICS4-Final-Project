@@ -29,7 +29,6 @@ public class Main {
      * @param args cmd args
      */
     public static void main(String[] args) {
-        String[] strs = {"Hello, World!"};
         // Loads resources
         Sprite.init();
         Sprite.print(); // DEBUG
@@ -41,11 +40,10 @@ public class Main {
 
         m = new MainMenu();
         o = new Options();
-        l = new Lesson(strs); // THINGS TO DO
+        l = Lesson.fromFile("src/main/Lessons/Lesson-1.lsn");
         z = new Maze(p);
         a = new ActionLevel(p);
-
-        ScreenElement currentScene = l;
+        ScreenElement currentScene = a; // TODO: change back to menu when done debugging
 
         currentScene.addToWindow(w);
 

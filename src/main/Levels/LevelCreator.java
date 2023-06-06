@@ -11,23 +11,29 @@ import src.main.Drivers.*;
  *      - Victor
  */
 
-public class LevelCreator extends Level {
+public class LevelCreator {
     public static void main(String argv[]) throws IOException {
         ObjectOutputStream out;
+        String[][] ground, objects;
+        int px, py;
+        String next;
 
         // Create level 1
-        Level l1 = new Level();
-        l1.ground = new String[10][10];
-        l1.objects = new String[10][10];
+        ground = new String[10][10];
+        objects = new String[10][10];
         for (int i=0; i<10; i++)
         {
             for (int j=0; j<10; j++)
             {
                 int temp = (int)(Math.random()*4);
-                l1.ground[i][j] = "grass-"+temp;
+                ground[i][j] = "grass-"+temp;
             }
         }
+        px = 5;
+        py = 5;
+        next = "Level-2.lvl";
         // Save level 1
+        Level l1 = new Level(ground, objects, px, py, next);
         out = new ObjectOutputStream(new FileOutputStream("src/main/Levels/Level-1.lvl"));
         out.writeObject(l1);
         out.close();
