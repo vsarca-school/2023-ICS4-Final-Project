@@ -12,7 +12,7 @@ public class Lesson implements Serializable, ScreenElement {
     private String[] images;
     private int currentIndex = 0;
     private int currentStringIndex = 0;
-    private int slideIndex = 0;
+    private int posIndex = 0;
     private int timer;
     private final int DELAY = 3;
 
@@ -54,6 +54,12 @@ public class Lesson implements Serializable, ScreenElement {
     }
 
     public void update(Window w, Graphics g) {
+        if (posIndex < positions.length && positions[posIndex] > currentStringIndex) {
+            g.drawImage(Sprite.getImage(images[posIndex]), 400, 250, null);
+        }
+        else {
+            posIndex++;
+        }
         if (currentStringIndex < texts.length && timer % DELAY < DELAY) {
             centerString(g, texts[currentStringIndex].substring(0, Math.min(currentIndex, texts[currentStringIndex].length())), 400, 250, new Font("Arial", Font.PLAIN, 16));
         }
