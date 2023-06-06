@@ -13,9 +13,12 @@ public class Options implements ScreenElement {
         double hww = w.getWidth() / 2.0;
         double hwh = w.getHeight() / 2.0;
         double scale = Math.sqrt(hww * hwh) / 5;
-        centerImage(g, w, Sprite.getImage("paused").getScaledInstance((int) scale*4 + 1, (int) scale + 1, Image.SCALE_SMOOTH), w.getWidth()/2, 100);
-        centerImage(g, w, Sprite.getImage("continue").getScaledInstance((int) scale*3 + 1, (int) scale + 1, Image.SCALE_SMOOTH), w.getWidth()/2, 200);
-        centerImage(g, w, Sprite.getImage("quit").getScaledInstance((int) scale*4 + 1, (int) scale + 1, Image.SCALE_SMOOTH), w.getWidth()/2, 300);
+        centerImage(g, w, Sprite.getImage("paused").getScaledInstance((int) scale*4 + 1, (int) scale + 1, Image.SCALE_SMOOTH), w.getWidth()/2, w.getHeight()/5);
+        for (int i = 0; i < 5; i++) {
+            centerImage(g, w, Sprite.getTile("vine-0").getScaledInstance((int) scale + 1, (int) scale + 1, Image.SCALE_SMOOTH), w.getWidth()/2 - 2*(int)scale + (int)scale*i, w.getHeight()*5/16);
+        }
+        centerImage(g, w, Sprite.getImage("continue").getScaledInstance((int) scale*3 + 1, (int) scale + 1, Image.SCALE_SMOOTH), w.getWidth()/2, w.getHeight()*8/16);
+        centerImage(g, w, Sprite.getImage("quit").getScaledInstance((int) scale*4 + 1, (int) scale + 1, Image.SCALE_SMOOTH), w.getWidth()/2, w.getHeight()*11/16);
     }
 
     public void addToWindow(Window w) {
