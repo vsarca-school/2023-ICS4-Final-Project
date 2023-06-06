@@ -54,7 +54,7 @@ public class Lesson implements Serializable, ScreenElement {
     }
 
     public void update(Window w, Graphics g) {
-        if (timer % DELAY < DELAY) {
+        if (currentStringIndex < texts.length && timer % DELAY < DELAY) {
             centerString(g, texts[currentStringIndex].substring(0, Math.min(currentIndex, texts[currentStringIndex].length())), 400, 250, new Font("Arial", Font.PLAIN, 16));
         }
         timer++;
