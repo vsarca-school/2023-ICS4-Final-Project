@@ -45,7 +45,7 @@ public class Main {
         z = new Maze(p);
         a = new ActionLevel(p);
         e = new EndScreen();
-        ScreenElement currentScene = l; // TODO: change back to menu when done debugging
+        ScreenElement currentScene = a; // TODO: change back to menu when done debugging
 
         currentScene.addToWindow(w);
 
@@ -56,6 +56,7 @@ public class Main {
     }
 
     public static void changeScene(int newScene) {
+        w.clearInput();
         switch (newScene) {
             case 0:
                 currentScene.removeFromWindow(w);

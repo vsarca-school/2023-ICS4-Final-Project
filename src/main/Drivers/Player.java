@@ -10,15 +10,16 @@ import java.awt.event.KeyEvent;
 public class Player implements ScreenElement {
     private double scale;
     private Level l;
-    private int direction = 0;
+    private int direction = 2;
     private int animation = 0;
     private int x = 0;
     private int y = 0;
     private boolean walking = false;
-    String[] walkUp = { "player-12", "player-13", "player-14", "player-15" };
     String[] walkDown = { "player-0", "player-1", "player-2", "player-3" };
-    String[] walkRight = { "player-4", "player-5", "player-6", "player-7" };
-    String[] walkLeft = { "player-8", "player-9", "player-10", "player-11" };
+    String[] walkLeft = { "player-4", "player-5", "player-6", "player-7" };
+    String[] walkRight = { "player-8", "player-9", "player-10", "player-11" };
+    String[] walkUp = { "player-12", "player-13", "player-14", "player-15" };
+    private static final int[][] directions = {{0,-1}, {-1,0}, {0,1}, {1,0}};
 
     /**
      * - Victor
@@ -27,18 +28,55 @@ public class Player implements ScreenElement {
      */
     public void joinLevel(Level lv) {
         l = lv;
+        x = l.getStartX();
+        y = l.getStartY();
     }
 
     /**
      * - Victor/Radin
      */
     public void update(Window w, Graphics g) {
+        /*/ DEBUG
+        System.out.println(w.keypressed(KeyEvent.VK_W) + " " + w.keypressed(KeyEvent.VK_UP) + " "
+                + w.keypressed(KeyEvent.VK_A) + " " + w.keypressed(KeyEvent.VK_LEFT) + " "
+                + w.keypressed(KeyEvent.VK_S) + " " + w.keypressed(KeyEvent.VK_DOWN) + " "
+                + w.keypressed(KeyEvent.VK_D) + " " + w.keypressed(KeyEvent.VK_DOWN));//*/
 
-        System.out.println(w.keypressed(KeyEvent.VK_W) + " " + w.keypressed(KeyEvent.VK_UP) + " " + w.keypressed(KeyEvent.VK_A) + " " + w.keypressed(KeyEvent.VK_LEFT) + " " + w.keypressed(KeyEvent.VK_S) + " " + w.keypressed(KeyEvent.VK_DOWN) + " " + w.keypressed(KeyEvent.VK_D) + " " + w.keypressed(KeyEvent.VK_DOWN));
-        y-=w.keypressed(KeyEvent.VK_W) + w.keypressed(KeyEvent.VK_UP);
-        x-=w.keypressed(KeyEvent.VK_A) + w.keypressed(KeyEvent.VK_LEFT);
-        y+=w.keypressed(KeyEvent.VK_S) + w.keypressed(KeyEvent.VK_DOWN);
-        x+=w.keypressed(KeyEvent.VK_D) + w.keypressed(KeyEvent.VK_DOWN);
+        if (!walking) {
+            // Do keyboard input
+            int[] moves = { 0, 0, 0, 0 };
+            if (w.keypressed(KeyEvent.VK_W) + w.keypressed(KeyEvent.VK_UP) > 0)
+                moves[0] = 1;
+            if (w.keypressed(KeyEvent.VK_A) + w.keypressed(KeyEvent.VK_LEFT) > 0)
+                moves[1] = 1;
+            if (w.keypressed(KeyEvent.VK_S) + w.keypressed(KeyEvent.VK_DOWN) > 0)
+                moves[2] = 1;
+            if (w.keypressed(KeyEvent.VK_D) + w.keypressed(KeyEvent.VK_RIGHT) > 0)
+                moves[3] = 1;
+            if (moves[0] + moves[1] + moves[2] + moves[3] == 1) // Only one direction pressed
+            {
+                walking = true;
+                if (moves[0] == 1)
+                    direction = 0;
+                else if (moves[1] == 1)
+                    direction = 1;
+                else if (moves[2] == 1)
+                    direction = 2;
+                else
+                    direction = 3;
+            }
+
+            // Check for collision
+            if (l.getBlock(x+directions[direction][0], y+directions[direction][1]) != null) walking = false;
+        } else {
+            // Walk
+            x += directions[direction][0];
+            y += directions[direction][1];
+            // Check for collision
+            if (l.getBlock(x+directions[direction][0], y+directions[direction][1]) != null) walking = false;
+        }
+        // Clear input and update level
+        w.clearInput();
         l.updatePlayerPos(x, y);
 
         // Calculate scaling and centering
@@ -48,32 +86,32 @@ public class Player implements ScreenElement {
         hww -= scale / 2;
         hwh -= scale / 2;
         // Render player
-        animation = (animation + 1) % 16;
+        animation = (animation + 1) % 20;
         String cur = "player-0";
         switch (direction) {
             case 0:
                 if (walking)
-                    cur = walkUp[animation / 4];
+                    cur = walkUp[animation / 5];
                 else
                     cur = walkUp[0];
                 break;
             case 1:
                 if (walking)
-                    cur = walkDown[animation / 4];
+                    cur = walkLeft[animation / 5];
                 else
-                    cur = walkDown[0];
+                    cur = walkLeft[0];
                 break;
             case 2:
                 if (walking)
-                    cur = walkRight[animation / 4];
+                    cur = walkDown[animation / 5];
                 else
-                    cur = walkRight[0];
+                    cur = walkDown[0];
                 break;
             case 3:
                 if (walking)
-                    cur = walkLeft[animation / 4];
+                    cur = walkRight[animation / 5];
                 else
-                    cur = walkLeft[0];
+                    cur = walkRight[0];
                 break;
         }
 
