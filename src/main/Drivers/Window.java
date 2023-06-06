@@ -41,10 +41,8 @@ public class Window implements KeyListener, MouseListener {
     private JFrame frame;
     private Canvas canvas;
     private ArrayList<ScreenElement> elements = new ArrayList<>();
-    private Map<Integer, Boolean> keys = new HashMap<>(); // Stores whether key is up or down
-    private Map<Integer, Integer> keysPressed = new HashMap<>(); // Stores keys pressed
-    private Map<Integer, Boolean> mouse = new HashMap<>(); // Stores whether mouse is up or down
-    private Map<Integer, Integer> mousePressed = new HashMap<>(); // Stores mouse buttons pressed
+    private boolean[] keysdown = new boolean[4]; // Stores whether key is up or down, 0-3 are up left down right
+    private Queue<int[]> mouseclicks = new ArrayDeque<>(); // Stores the location of mouse clicks, only left click
 
     public Window(String name, int width, int height) {
         frame = new JFrame(name);
@@ -65,9 +63,11 @@ public class Window implements KeyListener, MouseListener {
         return frame.getHeight();
     }
 
-    public JFrame getFrame() {
-        return frame;
-    }
+    /*
+     * public JFrame getFrame() {
+     * return frame;
+     * }
+     */
 
     public void addElement(ScreenElement s) {
         elements.add(s);
@@ -81,10 +81,12 @@ public class Window implements KeyListener, MouseListener {
         canvas.repaint();
     }
 
-    public void clearInput() {
-        keysPressed.clear();
-        mousePressed.clear();
-    }
+    /*
+     * public void clearInput() {
+     * keysPressed.clear();
+     * mousePressed.clear();
+     * }
+     */
 
     void paint(Graphics g) {
         for (ScreenElement s : elements) {
@@ -116,55 +118,89 @@ public class Window implements KeyListener, MouseListener {
         }
     }
 
-    public boolean keydown(int keyCode) {
-        return keys.getOrDefault(keyCode, false);
+    // Accessor methods
+    public boolean keydown(int key) {
+        return keysdown[key];
     }
 
-    public int keypressed(int keyCode) {
-        return keysPressed.getOrDefault(keyCode, 0);
+    public int[] nextmouse() {
+        return mouseclicks.remove();
     }
 
+    // Only useful methods
     @Override
     public void keyPressed(KeyEvent event) {
-        int key = event.getKeyCode();
-        keys.put(key, true);
-        keysPressed.put(key, keysPressed.getOrDefault(key, 0) + 1); // increment
+        switch (event.getKeyCode()) {
+            case KeyEvent.VK_W:
+            case KeyEvent.VK_UP:
+                keysdown[0] = true;
+                break;
+            case KeyEvent.VK_A:
+            case KeyEvent.VK_LEFT:
+                keysdown[1] = true;
+                break;
+            case KeyEvent.VK_S:
+            case KeyEvent.VK_DOWN:
+                keysdown[2] = true;
+                break;
+            case KeyEvent.VK_D:
+            case KeyEvent.VK_RIGHT:
+                keysdown[3] = true;
+                break;
+        }
     }
 
     @Override
-    public void keyReleased(KeyEvent event) {
-        keys.put(event.getKeyCode(), false);
+    public void keyReleased(KeyEvent e) {
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_W:
+            case KeyEvent.VK_UP:
+                keysdown[0] = false;
+                break;
+            case KeyEvent.VK_A:
+            case KeyEvent.VK_LEFT:
+                keysdown[1] = false;
+                break;
+            case KeyEvent.VK_S:
+            case KeyEvent.VK_DOWN:
+                keysdown[2] = false;
+                break;
+            case KeyEvent.VK_D:
+            case KeyEvent.VK_RIGHT:
+                keysdown[3] = false;
+                break;
+        }
     }
 
     @Override
-    public void mouseClicked(MouseEvent event) {
-        // TODO Not necessary
+    public void mouseClicked(MouseEvent e) {
+        if (e.getButton() != MouseEvent.BUTTON1) return;
+        mouseclicks.add(new int[]{e.getX(), e.getY()});
     }
 
+    // Junk methods
     @Override
     public void mousePressed(MouseEvent event) {
-        int mousey = event.getButton();
-        mouse.put(mousey, true);
-        mousePressed.put(mousey, keysPressed.getOrDefault(mousey, 0) + 1); // increment
+        // Not necessary
     }
 
     @Override
     public void mouseReleased(MouseEvent event) {
-        mouse.put(event.getButton(), false);
+        // Not necessary
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        // TODO Not necessary
+        // Not necessary
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        // TODO Not necessary
+        // Not necessary
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
-        // TODO Not necessary
+        // Not necessary
     }
 }

@@ -2,7 +2,6 @@ package src.main.Drivers;
 
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.event.KeyEvent;
 
 /**
  * Hnadles all player movement, plus rendering
@@ -51,14 +50,10 @@ public class Player implements ScreenElement {
         if (!walking) {
             // Do keyboard input
             int[] moves = { 0, 0, 0, 0 };
-            if (w.keypressed(KeyEvent.VK_W) + w.keypressed(KeyEvent.VK_UP) > 0)
-                moves[0] = 1;
-            if (w.keypressed(KeyEvent.VK_A) + w.keypressed(KeyEvent.VK_LEFT) > 0)
-                moves[1] = 1;
-            if (w.keypressed(KeyEvent.VK_S) + w.keypressed(KeyEvent.VK_DOWN) > 0)
-                moves[2] = 1;
-            if (w.keypressed(KeyEvent.VK_D) + w.keypressed(KeyEvent.VK_RIGHT) > 0)
-                moves[3] = 1;
+            for (int i = 0; i < 4; i++)
+                if (w.keydown(i))
+                    moves[i] = 1;
+
             if (moves[0] + moves[1] + moves[2] + moves[3] == 1) // Only one direction pressed
             {
                 walking = true;
@@ -78,8 +73,8 @@ public class Player implements ScreenElement {
         } else if (interpolation < 6) {
             interpolation++;
             // Do some interpolation in walking between tiles
-            realx += directions[direction][0]/6.0;
-            realy += directions[direction][1]/6.0;
+            realx += directions[direction][0] / 6.0;
+            realy += directions[direction][1] / 6.0;
         } else {
             interpolation = 0;
             // Walk
@@ -92,7 +87,6 @@ public class Player implements ScreenElement {
                 walking = false;
         }
         // Clear input and update level
-        w.clearInput();
         l.updatePlayerPos(realx, realy);
 
         // Calculate scaling and centering
