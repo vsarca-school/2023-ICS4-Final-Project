@@ -34,7 +34,7 @@ public class Player implements ScreenElement {
         hww -= scale/2;
         hwh -= scale/2;
         // Render player
-        g.drawImage(Sprite.getTile("player-0").getScaledInstance((int)scale+1, (int)scale+1, Image.SCALE_DEFAULT), (int) hww,
+        g.drawImage(Sprite.getTile("player-0").getScaledInstance((int)scale+1, (int)scale+1, Image.SCALE_SMOOTH), (int) hww,
                         (int) hwh, null);
     }
 
