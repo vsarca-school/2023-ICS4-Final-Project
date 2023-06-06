@@ -73,7 +73,7 @@ public class Level implements Serializable, ScreenElement {
         // Render floor
         for (int i = 0; i < ground.length; i++) {
             for (int j = 0; j < ground[i].length; j++) {
-                g.drawImage(Sprite.getTile(ground[i][j]).getScaledInstance((int)scale+1, (int)scale+1, Image.SCALE_DEFAULT), (int) (hww + scale * (i - px)),
+                g.drawImage(Sprite.getTile(ground[i][j]).getScaledInstance((int)scale+1, (int)scale+1, Image.SCALE_SMOOTH), (int) (hww + scale * (i - px)),
                         (int) (hwh + scale * (j - py)), null);
             }
         }
@@ -81,7 +81,7 @@ public class Level implements Serializable, ScreenElement {
         for (int i = 0; i < objects.length; i++) {
             for (int j = 0; j < objects[i].length; j++) {
                 if (objects[i][j] == null) continue;
-                g.drawImage(Sprite.getTile(objects[i][j]).getScaledInstance((int)scale+1, (int)scale+1, Image.SCALE_DEFAULT), (int) (hww + scale * (i - px)),
+                g.drawImage(Sprite.getTile(objects[i][j]).getScaledInstance((int)scale+1, (int)scale+1, Image.SCALE_SMOOTH), (int) (hww + scale * (i - px)),
                         (int) (hwh + scale * (j - py)), null);
             }
         }
