@@ -37,12 +37,14 @@ import javax.swing.*;
  * 
  * Class completely changed again by Victor
  */
-public class Window extends KeyAdapter {
+public class Window implements KeyListener, MouseListener {
     private JFrame frame;
     private Canvas canvas;
     private ArrayList<ScreenElement> elements = new ArrayList<>();
     private Map<Integer, Boolean> keys = new HashMap<>(); // Stores whether key is up or down
     private Map<Integer, Integer> keysPressed = new HashMap<>(); // Stores keys pressed
+    private Map<Integer, Boolean> mouse = new HashMap<>(); // Stores whether mouse is up or down
+    private Map<Integer, Integer> mousePressed = new HashMap<>(); // Stores mouse buttons pressed
 
     public Window(String name, int width, int height) {
         frame = new JFrame(name);
@@ -51,6 +53,7 @@ public class Window extends KeyAdapter {
         frame.add(canvas);
         frame.setVisible(true);
         frame.addKeyListener(this);
+        frame.addMouseListener(this);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
@@ -92,6 +95,23 @@ public class Window extends KeyAdapter {
         }
     }
 
+    /**
+     * Dummy class to receive Graphics object for drawing
+     * Immediately passes it back to window class for use
+     * - Victor
+     */
+    class Canvas extends JComponent {
+        Window parent;
+
+        public Canvas(Window w) {
+            parent = w;
+        }
+
+        public void paint(Graphics g) {
+            parent.paint(g);
+        }
+    }
+
     public boolean keydown(int keyCode) {
         return keys.getOrDefault(keyCode, false);
     }
@@ -112,20 +132,37 @@ public class Window extends KeyAdapter {
         keys.put(event.getKeyCode(), false);
     }
 
-    /**
-     * Dummy class to receive Graphics object for drawing
-     * Immediately passes it back to window class for use
-     * - Victor
-     */
-    class Canvas extends JComponent {
-        Window parent;
+    @Override
+    public void mouseClicked(MouseEvent event) {
+        // TODO Not necessary
+    }
 
-        public Canvas(Window w) {
-            parent = w;
-        }
+    @Override
+    public void mousePressed(MouseEvent e) {
+        int mouse = event.getButton();
+        keysPressed.put(key, keysPressed.getOrDefault(key, 0) + 1); // increment
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'mousePressed'");
+    }
 
-        public void paint(Graphics g) {
-            parent.paint(g);
-        }
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'mouseReleased'");
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        // TODO Not necessary
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        // TODO Not necessary
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        // TODO Not necessary
     }
 }
