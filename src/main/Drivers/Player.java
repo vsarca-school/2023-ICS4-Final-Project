@@ -2,6 +2,7 @@ package src.main.Drivers;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.KeyEvent;
 
 /**
  * Hnadles all player movement, plus rendering
@@ -11,6 +12,8 @@ public class Player implements ScreenElement {
     private Level l;
     private int direction = 0;
     private int animation = 0;
+    private int x = 0;
+    private int y = 0;
     private boolean walking = false;
     String[] walkUp = { "player-12", "player-13", "player-14", "player-15" };
     String[] walkDown = { "player-0", "player-1", "player-2", "player-3" };
@@ -30,6 +33,13 @@ public class Player implements ScreenElement {
      * - Victor/Radin
      */
     public void update(Window w, Graphics g) {
+
+        y-=w.keypressed(KeyEvent.VK_W) + w.keypressed(KeyEvent.VK_UP);
+        x-=w.keypressed(KeyEvent.VK_A) + w.keypressed(KeyEvent.VK_LEFT);
+        y+=w.keypressed(KeyEvent.VK_S) + w.keypressed(KeyEvent.VK_DOWN);
+        x+=w.keypressed(KeyEvent.VK_D) + w.keypressed(KeyEvent.VK_DOWN);
+        l.updatePlayerPos(x, y);
+
         // Calculate scaling and centering
         double hww = w.getWidth() / 2.0;
         double hwh = w.getHeight() / 2.0;
