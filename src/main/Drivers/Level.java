@@ -23,7 +23,8 @@ public class Level implements Serializable, ScreenElement {
             61, 156, 180 };
 
     private String[][] ground, objects;
-    private int px, py; // Player x and y position
+    private double px, py; // Player x and y position
+    private int startx, starty;
     private String nextLevel;
 
     /**
@@ -33,8 +34,8 @@ public class Level implements Serializable, ScreenElement {
     public Level(String[][] ground, String[][] objects, int px, int py, String nextLevel) {
         this.ground = ground;
         this.objects = objects;
-        this.px = px;
-        this.py = py;
+        this.startx = px;
+        this.starty = py;
         this.nextLevel = nextLevel;
     }
 
@@ -66,7 +67,7 @@ public class Level implements Serializable, ScreenElement {
         return null;
     }
 
-    public void updatePlayerPos(int x, int y) {
+    public void updatePlayerPos(double x, double y) {
         px = x;
         py = y;
     }
@@ -85,12 +86,12 @@ public class Level implements Serializable, ScreenElement {
 
     public int getStartX()
     {
-        return px;
+        return startx;
     }
 
     public int getStartY()
     {
-        return px;
+        return starty;
     }
 
     public void update(Window w, Graphics g) {
@@ -108,8 +109,8 @@ public class Level implements Serializable, ScreenElement {
 
         max_x = (int) (px + hwwt + 1);
         max_y = (int) (py + hwht + 1);
-        start_i = (int) (px - hwwt);
-        start_j = (int) (py - hwht);
+        start_i = (int) (px - hwwt - 1);
+        start_j = (int) (py - hwht - 1);
 
         start_x = hww + (start_i - px) * scale;
         start_y = hwh + (start_j - py) * scale;

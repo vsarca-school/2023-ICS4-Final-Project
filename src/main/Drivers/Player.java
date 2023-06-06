@@ -12,14 +12,15 @@ public class Player implements ScreenElement {
     private Level l;
     private int direction = 2;
     private int animation = 0;
-    private int x = 0;
-    private int y = 0;
+    private int x, y;
+    private double realx, realy;
     private boolean walking = false;
+    private int interpolation = 0;
     String[] walkDown = { "player-0", "player-1", "player-2", "player-3" };
     String[] walkLeft = { "player-4", "player-5", "player-6", "player-7" };
     String[] walkRight = { "player-8", "player-9", "player-10", "player-11" };
     String[] walkUp = { "player-12", "player-13", "player-14", "player-15" };
-    private static final int[][] directions = {{0,-1}, {-1,0}, {0,1}, {1,0}};
+    private static final int[][] directions = { { 0, -1 }, { -1, 0 }, { 0, 1 }, { 1, 0 } };
 
     /**
      * - Victor
@@ -30,17 +31,22 @@ public class Player implements ScreenElement {
         l = lv;
         x = l.getStartX();
         y = l.getStartY();
+        realx = x;
+        realy = y;
     }
 
     /**
      * - Victor/Radin
      */
     public void update(Window w, Graphics g) {
-        /*/ DEBUG
-        System.out.println(w.keypressed(KeyEvent.VK_W) + " " + w.keypressed(KeyEvent.VK_UP) + " "
-                + w.keypressed(KeyEvent.VK_A) + " " + w.keypressed(KeyEvent.VK_LEFT) + " "
-                + w.keypressed(KeyEvent.VK_S) + " " + w.keypressed(KeyEvent.VK_DOWN) + " "
-                + w.keypressed(KeyEvent.VK_D) + " " + w.keypressed(KeyEvent.VK_DOWN));//*/
+        /*
+         * / DEBUG
+         * System.out.println(w.keypressed(KeyEvent.VK_W) + " " +
+         * w.keypressed(KeyEvent.VK_UP) + " "
+         * + w.keypressed(KeyEvent.VK_A) + " " + w.keypressed(KeyEvent.VK_LEFT) + " "
+         * + w.keypressed(KeyEvent.VK_S) + " " + w.keypressed(KeyEvent.VK_DOWN) + " "
+         * + w.keypressed(KeyEvent.VK_D) + " " + w.keypressed(KeyEvent.VK_DOWN));//
+         */
 
         if (!walking) {
             // Do keyboard input
@@ -67,17 +73,27 @@ public class Player implements ScreenElement {
             }
 
             // Check for collision
-            if (l.getBlock(x+directions[direction][0], y+directions[direction][1]) != null) walking = false;
+            if (l.getBlock(x + directions[direction][0], y + directions[direction][1]) != null)
+                walking = false;
+        } else if (interpolation < 6) {
+            interpolation++;
+            // Do some interpolation in walking between tiles
+            realx += directions[direction][0]/6.0;
+            realy += directions[direction][1]/6.0;
         } else {
+            interpolation = 0;
             // Walk
             x += directions[direction][0];
             y += directions[direction][1];
+            realx = x;
+            realy = y;
             // Check for collision
-            if (l.getBlock(x+directions[direction][0], y+directions[direction][1]) != null) walking = false;
+            if (l.getBlock(x + directions[direction][0], y + directions[direction][1]) != null)
+                walking = false;
         }
         // Clear input and update level
         w.clearInput();
-        l.updatePlayerPos(x, y);
+        l.updatePlayerPos(realx, realy);
 
         // Calculate scaling and centering
         double hww = w.getWidth() / 2.0;
