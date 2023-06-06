@@ -60,7 +60,7 @@ public class Level implements Serializable, ScreenElement {
     }
 
     public String getBlock(int x, int y) {
-        if (x < 0 || x >= objects.length || y < 0 || y >= objects.length);
+        if (x < 0 || x >= objects.length || y < 0 || y >= objects.length) return "wall-"+((x+y)%4);
         return objects[x][y];
     }
 
