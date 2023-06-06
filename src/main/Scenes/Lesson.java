@@ -3,7 +3,6 @@ import src.main.Drivers.*;
 import src.main.Drivers.Window;
 
 import java.awt.*;
-import javax.swing.*;
 import java.io.*;
 
 public class Lesson implements Serializable, ScreenElement {
