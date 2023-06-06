@@ -18,10 +18,10 @@ public class Player implements ScreenElement {
     }
 
     /**
-     * - Victor
+     * - Victor/Radin
      */
     public void update(Window w, Graphics g) {
-
+        g.drawImage(Sprite.getTile("player-0"), w.getWidth()/2, w.getHeight()/2, null);
     }
 
     public void addToWindow(Window w) {
