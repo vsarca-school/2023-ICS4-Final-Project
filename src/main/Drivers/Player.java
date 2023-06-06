@@ -15,10 +15,10 @@ public class Player implements ScreenElement {
     private double realx, realy;
     private boolean walking = false;
     private int interpolation = 0;
-    String[] walkDown = { "player-0", "player-1", "player-2", "player-3" };
-    String[] walkLeft = { "player-4", "player-5", "player-6", "player-7" };
-    String[] walkRight = { "player-8", "player-9", "player-10", "player-11" };
-    String[] walkUp = { "player-12", "player-13", "player-14", "player-15" };
+    String[][] animations = { { "player-12", "player-13", "player-14", "player-15" },
+            { "player-4", "player-5", "player-6", "player-7" },
+            { "player-0", "player-1", "player-2", "player-3" },
+            { "player-8", "player-9", "player-10", "player-11" } };
     private static final int[][] directions = { { 0, -1 }, { -1, 0 }, { 0, 1 }, { 1, 0 } };
 
     /**
@@ -51,7 +51,7 @@ public class Player implements ScreenElement {
             // Do keyboard input
             int[] moves = { 0, 0, 0, 0 };
             for (int i = 0; i < 4; i++)
-                if (w.keydown(i))
+                if (w.keyDown(i))
                     moves[i] = 1;
 
             if (moves[0] + moves[1] + moves[2] + moves[3] == 1) // Only one direction pressed
@@ -97,33 +97,10 @@ public class Player implements ScreenElement {
         hwh -= scale / 2;
         // Render player
         animation = (animation + 1) % 20;
-        String cur = "player-0";
-        switch (direction) {
-            case 0:
-                if (walking)
-                    cur = walkUp[animation / 5];
-                else
-                    cur = walkUp[0];
-                break;
-            case 1:
-                if (walking)
-                    cur = walkLeft[animation / 5];
-                else
-                    cur = walkLeft[0];
-                break;
-            case 2:
-                if (walking)
-                    cur = walkDown[animation / 5];
-                else
-                    cur = walkDown[0];
-                break;
-            case 3:
-                if (walking)
-                    cur = walkRight[animation / 5];
-                else
-                    cur = walkRight[0];
-                break;
-        }
+        
+        String cur;
+        if (walking) cur = animations[direction][animation/5];
+        else cur = animations[direction][0];
 
         g.drawImage(Sprite.getTile(cur).getScaledInstance((int) scale + 1, (int) scale + 1,
                 Image.SCALE_SMOOTH), (int) hww, (int) hwh, null);

@@ -8,6 +8,7 @@ import src.main.Drivers.*;
 import src.main.Drivers.Window;
 
 public class Options implements ScreenElement {
+    private int previousScene;
 
     public void update(Window w, Graphics g) {
         // Draw screen
@@ -21,8 +22,19 @@ public class Options implements ScreenElement {
         centerImage(g, w, Sprite.getImage("continue").getScaledInstance((int) scale*3 + 1, (int) scale + 1, Image.SCALE_SMOOTH), (int)hww, (int)hwh);
         centerImage(g, w, Sprite.getImage("quit").getScaledInstance((int) scale*4 + 1, (int) scale + 1, Image.SCALE_SMOOTH), (int)hww, (int)(hwh + scale));
 
+        // Get bounding boxes for buttons
+
         // Check for input
-        //if ()
+        int[] mouse;
+        while ((mouse = w.nextMouse()) != null)
+        {
+            if (mouse[0] > 0);
+        }
+    }
+
+    public void previousScene(int previousScene)
+    {
+        this.previousScene = previousScene;
     }
 
     public void addToWindow(Window w) {

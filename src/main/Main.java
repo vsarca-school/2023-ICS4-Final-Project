@@ -20,6 +20,7 @@ public class Main {
     static EndScreen e;
 
     static ScreenElement currentScene;
+    static int currentSceneNum;
 
     /**
      * Control for the entire program, however, each individual object is
@@ -45,7 +46,9 @@ public class Main {
         z = new Maze(p);
         a = new ActionLevel(p);
         e = new EndScreen();
-        ScreenElement currentScene = o; // TODO: change back to menu when done debugging
+
+        currentSceneNum = 2;
+        currentScene = o; // TODO: change back to menu when done debugging
 
         currentScene.addToWindow(w);
 
@@ -63,6 +66,7 @@ public class Main {
                 currentScene.addToWindow(w);
             case 1:
                 currentScene.removeFromWindow(w);
+                o.previousScene(currentSceneNum);
                 currentScene = o;
                 currentScene.addToWindow(w);
             case 2:
@@ -82,5 +86,6 @@ public class Main {
                 currentScene = e;
                 currentScene.addToWindow(w);
         }
+        currentSceneNum = newScene;
     }
 }

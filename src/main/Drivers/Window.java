@@ -119,11 +119,12 @@ public class Window implements KeyListener, MouseListener {
     }
 
     // Accessor methods
-    public boolean keydown(int key) {
+    public boolean keyDown(int key) {
         return keysdown[key];
     }
 
-    public int[] nextmouse() {
+    public int[] nextMouse() {
+        if (mouseclicks.isEmpty()) return null;
         return mouseclicks.remove();
     }
 
