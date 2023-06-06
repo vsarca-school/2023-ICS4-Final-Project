@@ -14,10 +14,10 @@ public class Lesson implements Serializable, ScreenElement {
     private int currentStringIndex = 0;
     private int slideIndex = 0;
 
-    public Lesson(String[] strs, int[] slides, String[] filePaths) {
-        texts = strs;
-        positions = slides;
-        images = filePaths;
+    public Lesson(String[] texts, int[] slides, String[] images) {
+        this.texts = texts;
+        this.positions = slides;
+        this.images = images;
     }
     
     public static Lesson fromFile(String file) {

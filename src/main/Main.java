@@ -40,16 +40,17 @@ public class Main {
 
         m = new MainMenu();
         o = new Options();
-        //l = Lesson.fromFile("src/main/Lessons/Lesson-1.lsn");
+        l = Lesson.fromFile("src/main/Lessons/Lesson-1.lsn");
         z = new Maze(p);
         a = new ActionLevel(p);
-        ScreenElement currentScene = m;
+        ScreenElement currentScene = l; // TODO: change back to menu when done debugging
 
         currentScene.addToWindow(w);
 
         while (true) {
             w.update();
             w.tick(60);
+            return;
         }
     }
 
