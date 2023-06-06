@@ -22,6 +22,7 @@ public class Player implements ScreenElement {
      */
     public void update(Window w, Graphics g) {
         g.drawImage(Sprite.getTile("player-0"), w.getWidth()/2, w.getHeight()/2, null);
+        g.drawRect(20, 20, 20, 20);
     }
 
     public void addToWindow(Window w) {
