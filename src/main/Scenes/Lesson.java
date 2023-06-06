@@ -13,6 +13,7 @@ public class Lesson implements Serializable, ScreenElement {
     private int currentIndex = 0;
     private int currentStringIndex = 0;
     private int slideIndex = 0;
+    private int timer;
 
     public Lesson(String[] texts, int[] slides, String[] images) {
         this.texts = texts;
@@ -78,6 +79,7 @@ public class Lesson implements Serializable, ScreenElement {
         if (currentStringIndex < texts.length) {
             centerString(g, texts[currentStringIndex].substring(0, Math.min(currentIndex, texts[currentStringIndex].length())), 400, 250, new Font("Arial", Font.PLAIN, 16));
         }
+        timer++;
     }
 
     /*/
