@@ -6,7 +6,8 @@ import java.awt.Graphics;
  * Hnadles all player movement, plus rendering
  */
 public class Player implements ScreenElement {
-    Level l;
+    private double scale;
+    private Level l;
     String[] walkUp = {"player-12","player-13","player-14","player-15"};
     String[] walkDown = {"player-0","player-1","player-2","player-3"};
     String[] walkRight = {"player-4","player-5","player-6","player-7"};
@@ -25,9 +26,15 @@ public class Player implements ScreenElement {
      * - Victor/Radin
      */
     public void update(Window w, Graphics g) {
-        for(int i = 0; i<4;i++){
-            g.drawImage(Sprite.getTile(walkUp[i]), w.getWidth()/2, w.getHeight()/2, null);
-        }
+        // Calculate scaling and centering
+        double hww = w.getWidth() / 2.0;
+        double hwh = w.getHeight() / 2.0;
+        scale = Math.sqrt(hww * hwh) / 5;
+        hww -= scale/2;
+        hwh -= scale/2;
+        // Render player
+        g.drawImage(Sprite.getTile("player-0").getScaledInstance((int)scale+1, (int)scale+1, Image.SCALE_DEFAULT), (int) hww,
+                        (int) hwh, null);
     }
 
     public void addToWindow(Window w) {
