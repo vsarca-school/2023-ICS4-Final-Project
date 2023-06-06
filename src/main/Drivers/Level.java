@@ -67,20 +67,22 @@ public class Level implements Serializable, ScreenElement {
         // Calculate scaling and centering
         double hww = w.getWidth() / 2.0;
         double hwh = w.getHeight() / 2.0;
-        scale = Math.sqrt(w.getWidth() * w.getHeight()) / 10;
+        scale = Math.sqrt(hww * hwh) / 5;
+        hww -= scale/2;
+        hwh -= scale/2;
         // Render floor
         for (int i = 0; i < ground.length; i++) {
             for (int j = 0; j < ground[i].length; j++) {
-                g.drawImage(Sprite.getTile(ground[i][j]).getScaledInstance((int)scale+1, (int)scale+1, Image.SCALE_DEFAULT), (int) (hww - scale/2 + scale * (i - px)),
-                        (int) (hwh - scale/2 + scale * (j - py)), null);
+                g.drawImage(Sprite.getTile(ground[i][j]).getScaledInstance((int)scale+1, (int)scale+1, Image.SCALE_DEFAULT), (int) (hww + scale * (i - px)),
+                        (int) (hwh + scale * (j - py)), null);
             }
         }
         // Render objects
         for (int i = 0; i < objects.length; i++) {
             for (int j = 0; j < objects[i].length; j++) {
                 if (objects[i][j] == null) continue;
-                g.drawImage(Sprite.getTile(objects[i][j]).getScaledInstance((int)scale+1, (int)scale+1, Image.SCALE_DEFAULT), (int) (hww - scale/2 + scale * (i - px)),
-                        (int) (hwh - scale/2 + scale * (j - py)), null);
+                g.drawImage(Sprite.getTile(objects[i][j]).getScaledInstance((int)scale+1, (int)scale+1, Image.SCALE_DEFAULT), (int) (hww + scale * (i - px)),
+                        (int) (hwh + scale * (j - py)), null);
             }
         }
     }
