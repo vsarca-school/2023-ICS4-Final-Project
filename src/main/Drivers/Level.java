@@ -74,13 +74,13 @@ public class Level implements Serializable, ScreenElement {
 
     private String getFloor(int x, int y) {
         if (x < 0 || x >= objects.length || y < 0 || y >= objects.length)
-            return "wall-" + (Math.abs(x + y) % 4);
+            return "wall-" + (Math.abs(perm[Math.abs(x)%128 + perm[Math.abs(y)%128]]) % 4);
         return ground[x][y];
     }
 
     public String getBlock(int x, int y) {
         if (x < 0 || x >= objects.length || y < 0 || y >= objects.length)
-            return "wall-" + (Math.abs(x + y) % 4);
+            return "wall-" + (Math.abs(perm[Math.abs(x)%128 + perm[Math.abs(y)%128]]) % 4);
         return objects[x][y];
     }
 
