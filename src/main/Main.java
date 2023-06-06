@@ -17,6 +17,7 @@ public class Main {
     static Lesson l;
     static Maze z;
     static ActionLevel a;
+    static EndScreen e;
 
     static ScreenElement currentScene;
 
