@@ -138,17 +138,15 @@ public class Window implements KeyListener, MouseListener {
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {
-        int mouse = event.getButton();
-        keysPressed.put(key, keysPressed.getOrDefault(key, 0) + 1); // increment
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'mousePressed'");
+    public void mousePressed(MouseEvent event) {
+        int mousey = event.getButton();
+        mouse.put(mousey, true);
+        mousePressed.put(mousey, keysPressed.getOrDefault(mousey, 0) + 1); // increment
     }
 
     @Override
-    public void mouseReleased(MouseEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'mouseReleased'");
+    public void mouseReleased(MouseEvent event) {
+        mouse.put(event.getButton(), false);
     }
 
     @Override
