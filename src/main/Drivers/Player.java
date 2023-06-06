@@ -8,6 +8,10 @@ import java.awt.Graphics;
 public class Player implements ScreenElement {
     private double scale;
     private Level l;
+    String[] walkUp = {"player-12","player-13","player-14","player-15"};
+    String[] walkDown = {"player-0","player-1","player-2","player-3"};
+    String[] walkRight = {"player-4","player-5","player-6","player-7"};
+    String[] walkLeft = {"player-8","player-9","player-10","player-11"};
 
     /**
      * - Victor
