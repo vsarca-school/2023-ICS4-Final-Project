@@ -10,15 +10,19 @@ import src.main.Drivers.Window;
 public class Options implements ScreenElement {
 
     public void update(Window w, Graphics g) {
+        // Draw screen
         double hww = w.getWidth() / 2.0;
         double hwh = w.getHeight() / 2.0;
         double scale = Math.sqrt(hww * hwh) / 5;
-        centerImage(g, w, Sprite.getImage("paused").getScaledInstance((int) scale*4 + 1, (int) scale + 1, Image.SCALE_SMOOTH), w.getWidth()/2, w.getHeight()/5);
+        centerImage(g, w, Sprite.getImage("paused").getScaledInstance((int) scale*4 + 1, (int) scale + 1, Image.SCALE_SMOOTH), (int)hww, (int)(hwh - 2*scale));
         for (int i = 0; i < 5; i++) {
-            centerImage(g, w, Sprite.getTile("vine-0").getScaledInstance((int) scale + 1, (int) scale + 1, Image.SCALE_SMOOTH), w.getWidth()/2 - 2*(int)scale + (int)scale*i, w.getHeight()*5/16);
+            centerImage(g, w, Sprite.getTile("vine-0").getScaledInstance((int) scale + 1, (int) scale + 1, Image.SCALE_SMOOTH), (int)(hww + (i-2)*scale), (int)(hwh - scale));
         }
-        centerImage(g, w, Sprite.getImage("continue").getScaledInstance((int) scale*3 + 1, (int) scale + 1, Image.SCALE_SMOOTH), w.getWidth()/2, w.getHeight()*8/16);
-        centerImage(g, w, Sprite.getImage("quit").getScaledInstance((int) scale*4 + 1, (int) scale + 1, Image.SCALE_SMOOTH), w.getWidth()/2, w.getHeight()*11/16);
+        centerImage(g, w, Sprite.getImage("continue").getScaledInstance((int) scale*3 + 1, (int) scale + 1, Image.SCALE_SMOOTH), (int)hww, (int)hwh);
+        centerImage(g, w, Sprite.getImage("quit").getScaledInstance((int) scale*4 + 1, (int) scale + 1, Image.SCALE_SMOOTH), (int)hww, (int)(hwh + scale));
+
+        // Check for input
+        //if ()
     }
 
     public void addToWindow(Window w) {
