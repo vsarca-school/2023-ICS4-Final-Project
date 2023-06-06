@@ -22,6 +22,7 @@ public class Options implements ScreenElement {
         if (w.keydown(KeyEvent.VK_D) || w.keydown(KeyEvent.VK_RIGHT)) {
             x++;
         }
+        
 
         // Paint
         g.drawRect(x, y, 20, 20);
