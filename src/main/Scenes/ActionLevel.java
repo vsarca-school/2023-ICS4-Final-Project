@@ -39,15 +39,15 @@ public class ActionLevel implements ScreenElement {
     public void addToWindow(Window w) {
         if (l == null) Main.changeScene(5);
 
-        p.addToWindow(w);
-        l.addToWindow(w);
         w.addElement(this);
+        l.addToWindow(w);
+        p.addToWindow(w);
     }
 
     public void removeFromWindow(Window w) {
-        p.removeFromWindow(w);
+        w.removeElement(this);
         l.removeFromWindow(w);
         l = l.nextLevel();
-        w.removeElement(this);
+        p.removeFromWindow(w);
     }
 }
