@@ -34,6 +34,7 @@ public class Player implements ScreenElement {
      */
     public void update(Window w, Graphics g) {
 
+        System.out.println(w.keypressed(KeyEvent.VK_W) + " " + w.keypressed(KeyEvent.VK_UP) + " " + w.keypressed(KeyEvent.VK_A) + " " + w.keypressed(KeyEvent.VK_LEFT) + " " + w.keypressed(KeyEvent.VK_S) + " " + w.keypressed(KeyEvent.VK_DOWN) + " " + w.keypressed(KeyEvent.VK_D) + " " + w.keypressed(KeyEvent.VK_DOWN));
         y-=w.keypressed(KeyEvent.VK_W) + w.keypressed(KeyEvent.VK_UP);
         x-=w.keypressed(KeyEvent.VK_A) + w.keypressed(KeyEvent.VK_LEFT);
         y+=w.keypressed(KeyEvent.VK_S) + w.keypressed(KeyEvent.VK_DOWN);
