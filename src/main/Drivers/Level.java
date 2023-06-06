@@ -8,16 +8,19 @@ import java.io.*;
  * - Victor
  */
 public class Level implements Serializable, ScreenElement {
-    double scale;
-    public String[][] ground, objects;
-    public int px, py; // Player x and y position
+    private double scale;
+    private String[][] ground, objects;
+    private int px, py; // Player x and y position
 
     /**
-     * Used for level creation, doesn't do anything.
+     * Used for level creation for initializing a level before saving
      * - Victor
      */
-    public Level() {
-        ;
+    public Level(String[][] ground, String[][] objects, int px, int py) {
+        this.ground = ground;
+        this.objects = objects;
+        this.px = px;
+        this.py = py;
     }
 
     /**

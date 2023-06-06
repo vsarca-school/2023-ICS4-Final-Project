@@ -29,22 +29,21 @@ public class Main {
      * @param args cmd args
      */
     public static void main(String[] args) {
-        String[] strs = {"Hello, World!"};
         // Loads resources
         Sprite.init();
         Sprite.print(); // DEBUG
 
         // Create all objects necessary
-        w = new Window("Timber Trek", 1024, 1024);
+        w = new Window("Timber Trek", 800, 600);
 
         p = new Player();
 
         m = new MainMenu();
         o = new Options();
-        l = Lesson.fromFile("src/main/Lessons/Lesson-1.lsn");
+        //l = Lesson.fromFile("src/main/Lessons/Lesson-1.lsn");
         z = new Maze(p);
         a = new ActionLevel(p);
-        ScreenElement currentScene = l;
+        ScreenElement currentScene = m;
 
         currentScene.addToWindow(w);
 
