@@ -46,6 +46,16 @@ public class Lesson implements Serializable, ScreenElement {
         g.drawString(text, startX, startY);
     }
 
+    public void centerImage(Graphics g, Window w, Image image) {
+        int imageWidth = image.getWidth(null);
+        int imageHeight = image.getHeight(null);
+    
+        int x = (w.getWidth() - imageWidth) / 2;
+        int y = (w.getHeight() - imageHeight) / 2;
+    
+        g.drawImage(image, x, y, null);
+    }
+
     public void addToWindow(Window w) {
         w.addElement(this);
     }
@@ -55,7 +65,7 @@ public class Lesson implements Serializable, ScreenElement {
 
     public void update(Window w, Graphics g) {
         if (posIndex < positions.length && positions[posIndex] > currentStringIndex) {
-            g.drawImage(Sprite.getImage(images[posIndex]), 400, 250, null);
+            centerImage(g, w, Sprite.getImage(images[posIndex]));
         }
         else {
             posIndex++;
