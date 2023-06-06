@@ -36,7 +36,7 @@ public class ActionLevel implements ScreenElement {
     }
 
     public void addToWindow(Window w) {
-        if (l == null) 
+        if (l == null) Main.changeScene(5);
 
         p.addToWindow(w);
         l.addToWindow(w);

@@ -43,6 +43,7 @@ public class Main {
         l = Lesson.fromFile("src/main/Lessons/Lesson-1.lsn");
         z = new Maze(p);
         a = new ActionLevel(p);
+        e = new EndScreen();
         ScreenElement currentScene = a; // TODO: change back to menu when done debugging
 
         currentScene.addToWindow(w);
@@ -74,6 +75,10 @@ public class Main {
             case 4:
                 currentScene.removeFromWindow(w);
                 currentScene = a;
+                currentScene.addToWindow(w);
+            case 5:
+                currentScene.removeFromWindow(w);
+                currentScene = e;
                 currentScene.addToWindow(w);
         }
     }
