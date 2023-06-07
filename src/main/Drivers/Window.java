@@ -176,7 +176,7 @@ public class Window implements KeyListener, MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getButton() != MouseEvent.BUTTON1) return;
-        mouseclicks.add(new int[]{e.getX(), e.getY()});
+        mouseclicks.add(new int[]{e.getX()-8, e.getY()-31});
     }
 
     // Junk methods
