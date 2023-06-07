@@ -42,14 +42,4 @@ public class MainMenu implements ScreenElement {
     {
         this.previousScene = previousScene;
     }
-
-    public void centerImage(Graphics g, Window w, Image image, int x, int y) {
-        int imageWidth = image.getWidth(null);
-        int imageHeight = image.getHeight(null);
-    
-        int a = x - imageWidth / 2;
-        int b = y - imageHeight / 2;
-
-        g.drawImage(image, a, b, null);
-    }
 }
