@@ -14,6 +14,7 @@ public class Lesson implements Serializable, ScreenElement {
     private int currentStringIndex = 0;
     private int posIndex = 0;
     private int timer;
+    private int animTimer;
     private final int DELAY = 3;
     private double scale;
     private Font font;
@@ -138,10 +139,7 @@ public class Lesson implements Serializable, ScreenElement {
             centerString(g, Color.WHITE, currentText.substring(0, Math.min(currentIndex, currentText.length())),
                     w.getWidth() / 2, w.getHeight() * 31 / 40, (int) scale * 8 + 1, size, temp);
         }
-        int[] xPoints = {w.getWidth() / 2 - (int)scale/8, w.getWidth() / 2, w.getWidth() / 2 + (int)scale/8};
-        int[] yPoints = {w.getHeight() * 33 / 40, w.getHeight() * 33 / 40 + (int)scale/8, w.getHeight() * 33 / 40};
-        g.setColor(Color.WHITE);
-        g.fillPolygon(xPoints, yPoints, 3);
+
         timer++;
 
         if (timer % DELAY == 0) {
@@ -153,5 +151,23 @@ public class Lesson implements Serializable, ScreenElement {
             }
             timer = 0;
         }
+
+        animTimer++;
+
+        int anim = 0;
+        if (animTimer <= 60) {
+            anim = w.getHeight() * 33 / 40;
+        } else {
+            anim = w.getHeight() * 133 / 160;
+        }
+        int[] xPoints = {w.getWidth() / 2 - (int)scale/8, w.getWidth() / 2, w.getWidth() / 2 + (int)scale/8};
+        int[] yPoints = {anim, anim + (int)scale/8, anim};
+        g.setColor(Color.WHITE);
+        g.fillPolygon(xPoints, yPoints, 3);
+        
+        if (animTimer % 120 == 0) {
+            animTimer = 0;
+        }
+
     }
 }
