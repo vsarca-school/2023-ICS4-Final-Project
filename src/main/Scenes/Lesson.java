@@ -138,7 +138,10 @@ public class Lesson implements Serializable, ScreenElement {
             centerString(g, Color.WHITE, currentText.substring(0, Math.min(currentIndex, currentText.length())),
                     w.getWidth() / 2, w.getHeight() * 31 / 40, (int) scale * 8 + 1, size, temp);
         }
-
+        int[] xPoints = {w.getWidth() / 2 - (int)scale/8, w.getWidth() / 2, w.getWidth() / 2 + (int)scale/8};
+        int[] yPoints = {w.getHeight() * 33 / 40, w.getHeight() * 33 / 40 + (int)scale/8, w.getHeight() * 33 / 40};
+        g.setColor(Color.WHITE);
+        g.fillPolygon(xPoints, yPoints, 3);
         timer++;
 
         if (timer % DELAY == 0) {
