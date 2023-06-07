@@ -39,7 +39,7 @@ public class Lesson implements Serializable, ScreenElement {
         return lesson;
     }
 
-    public void centerImage(Graphics g, Window w, Image image, int x, int y) {
+    public void centerImage(Graphics g, Image image, int x, int y) {
         int imageWidth = image.getWidth(null);
         int imageHeight = image.getHeight(null);
 
@@ -119,7 +119,7 @@ public class Lesson implements Serializable, ScreenElement {
             scale = Math.sqrt(hww * hwh) / 5;
 
             if (posIndex < positions.length && positions[posIndex] > currentStringIndex) {
-                centerImage(g, w, Sprite.getImage(images[posIndex]), w.getWidth() / 2, w.getHeight() / 2);
+                centerImage(g, Sprite.getImage(images[posIndex]), w.getWidth() / 2, w.getHeight() / 2);
             } else {
                 posIndex++;
             }
@@ -135,7 +135,8 @@ public class Lesson implements Serializable, ScreenElement {
             if (timer % DELAY < DELAY) {
                 // TODO fix scaling of font, not efficient but works
                 String currentText = texts[currentStringIndex];
-                int size = maxFontSize(g, currentText, (int) scale * 8 + 1 - (int) scale * 3 / 8 - 5, (int) scale * 3 / 2 + 1 - (int) scale * 3 / 8 - 5, font);
+                int size = maxFontSize(g, currentText, (int) scale * 8 + 1 - (int) scale * 3 / 8 - 5,
+                        (int) scale * 3 / 2 + 1 - (int) scale * 3 / 8 - 5, font);
                 Font temp = font.deriveFont(Font.PLAIN, size);
                 centerString(g, Color.WHITE, currentText.substring(0, Math.min(currentIndex, currentText.length())),
                         w.getWidth() / 2, w.getHeight() * 31 / 40, (int) scale * 8 + 1, size, temp);
@@ -161,11 +162,12 @@ public class Lesson implements Serializable, ScreenElement {
             } else {
                 anim = w.getHeight() * 133 / 160;
             }
-            int[] xPoints = {w.getWidth() / 2 - (int)scale/8, w.getWidth() / 2, w.getWidth() / 2 + (int)scale/8};
-            int[] yPoints = {anim, anim + (int)scale/8, anim};
+            int[] xPoints = { w.getWidth() / 2 - (int) scale / 8, w.getWidth() / 2,
+                    w.getWidth() / 2 + (int) scale / 8 };
+            int[] yPoints = { anim, anim + (int) scale / 8, anim };
             g.setColor(Color.WHITE);
             g.fillPolygon(xPoints, yPoints, 3);
-            
+
             if (animTimer % 120 == 0) {
                 animTimer = 0;
             }
@@ -176,6 +178,8 @@ public class Lesson implements Serializable, ScreenElement {
                 timer = 0;
                 animTimer = 0;
             }
+        } else {
+            centerImage(g, Sprite.getImage("next").getScaledInstance((int)scale*19 / 8, (int)scale*13 / 16, Image.SCALE_SMOOTH), w.getWidth()/2, w.getHeight()/2);
         }
     }
 }
