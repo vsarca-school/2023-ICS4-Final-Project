@@ -2,7 +2,6 @@ package src.main.Scenes;
 
 import java.awt.Graphics;
 import java.awt.*;
-import java.awt.event.KeyEvent;
 
 import src.main.Main;
 import src.main.Drivers.*;
@@ -10,7 +9,6 @@ import src.main.Drivers.Window;
 
 public class Options implements ScreenElement {
     private int previousScene;
-    private int thign = 0;
 
     public void update(Window w, Graphics g) {
         // Draw screen
