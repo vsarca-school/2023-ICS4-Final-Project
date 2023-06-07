@@ -136,11 +136,11 @@ public class Lesson implements Serializable, ScreenElement {
             int size = maxFontSize(g, currentText, (int) scale * 8 + 1 - (int) scale * 3 / 8 - 5, (int) scale * 3 / 2 + 1 - (int) scale * 3 / 8 - 5, font);
             Font temp = font.deriveFont(Font.PLAIN, size);
             centerString(g, Color.WHITE, currentText.substring(0, Math.min(currentIndex, currentText.length())),
-                    w.getWidth() / 2, w.getHeight() * 4 / 5, (int) scale * 8 + 1, size, temp);
+                    w.getWidth() / 2, w.getHeight() * 31 / 40, (int) scale * 8 + 1, size, temp);
         }
 
         timer++;
-        
+
         if (timer % DELAY == 0) {
             if (currentStringIndex < texts.length && currentIndex < texts[currentStringIndex].length() + 50) {
                 currentIndex++;
