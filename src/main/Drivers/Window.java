@@ -176,6 +176,7 @@ public class Window implements KeyListener, MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getButton() != MouseEvent.BUTTON1) return;
+        System.out.println(e);
         mouseclicks.add(new int[]{e.getX(), e.getY()});
     }
 

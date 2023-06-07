@@ -6,9 +6,8 @@ import java.awt.event.KeyEvent;
 import src.main.Drivers.*;
 
 public class MainMenu implements ScreenElement {
-    private int x, y;
-
     public void update(Window w, Graphics g) {
+        g.drawString("This is the Main Menu!", 20, 20);
     }
 
     public void addToWindow(Window w) {
