@@ -6,6 +6,9 @@ import java.awt.Image;
 import src.main.Drivers.*;
 
 public class MainMenu implements ScreenElement {
+
+    private int previousScene;
+    
     public void update(Window w, Graphics g) {
         double hww = w.getWidth() / 2.0;
         double hwh = w.getHeight() / 2.0;
