@@ -2,13 +2,10 @@ package src.main.Scenes;
 
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.event.KeyEvent;
 
 import src.main.Drivers.*;
 
 public class MainMenu implements ScreenElement {
-    private int previousScene;
-
     public void update(Window w, Graphics g) {
         double hww = w.getWidth() / 2.0;
         double hwh = w.getHeight() / 2.0;
@@ -41,15 +38,5 @@ public class MainMenu implements ScreenElement {
     public void previousScene(int previousScene)
     {
         this.previousScene = previousScene;
-    }
-
-    public void centerImage(Graphics g, Window w, Image image, int x, int y) {
-        int imageWidth = image.getWidth(null);
-        int imageHeight = image.getHeight(null);
-    
-        int a = x - imageWidth / 2;
-        int b = y - imageHeight / 2;
-
-        g.drawImage(image, a, b, null);
     }
 }
