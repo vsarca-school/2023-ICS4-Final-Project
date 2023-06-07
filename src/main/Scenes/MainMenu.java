@@ -18,7 +18,7 @@ public class MainMenu implements ScreenElement {
             g.drawImage(Sprite.getTile("vine-0").getScaledInstance((int) scale + 1, (int) scale + 1, Image.SCALE_SMOOTH), (int)(hww + (i-2.5)*scale), (int)(hwh - 1.5*scale), null);
         }
         g.drawImage(Sprite.getImage("play").getScaledInstance((int) scale*2 + 1, (int) scale + 1, Image.SCALE_SMOOTH), (int)(hww - 1*scale), (int)(hwh - 0.5*scale), null);
-        g.drawImage(Sprite.getImage("quit2").getScaledInstance((int) scale*2 + 1, (int) scale + 1, Image.SCALE_SMOOTH), (int)(hww - 2*scale), (int)(hwh + 0.5*scale), null);
+        g.drawImage(Sprite.getImage("quit").getScaledInstance((int) scale*2 + 1, (int) scale + 1, Image.SCALE_SMOOTH), (int)(hww - 2*scale), (int)(hwh + 0.5*scale), null);
 
         // Get bounding boxes for buttons
 
