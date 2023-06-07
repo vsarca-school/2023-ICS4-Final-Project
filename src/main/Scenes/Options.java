@@ -15,12 +15,12 @@ public class Options implements ScreenElement {
         double hww = w.getWidth() / 2.0;
         double hwh = w.getHeight() / 2.0;
         double scale = Math.sqrt(hww * hwh) / 5;
-        centerImage(g, w, Sprite.getImage("paused").getScaledInstance((int) scale*4 + 1, (int) scale + 1, Image.SCALE_SMOOTH), (int)hww, (int)(hwh - 2*scale));
+        g.drawImage(Sprite.getImage("paused").getScaledInstance((int) scale*4 + 1, (int) scale + 1, Image.SCALE_SMOOTH), (int)(hww - 2*scale), (int)(hwh - 2.5*scale), null);
         for (int i = 0; i < 5; i++) {
-            centerImage(g, w, Sprite.getTile("vine-0").getScaledInstance((int) scale + 1, (int) scale + 1, Image.SCALE_SMOOTH), (int)(hww + (i-2)*scale), (int)(hwh - scale));
+            g.drawImage(Sprite.getTile("vine-0").getScaledInstance((int) scale + 1, (int) scale + 1, Image.SCALE_SMOOTH), (int)(hww + (i-2.5)*scale), (int)(hwh - 1.5*scale), null);
         }
-        centerImage(g, w, Sprite.getImage("continue").getScaledInstance((int) scale*3 + 1, (int) scale + 1, Image.SCALE_SMOOTH), (int)hww, (int)hwh);
-        centerImage(g, w, Sprite.getImage("quit").getScaledInstance((int) scale*4 + 1, (int) scale + 1, Image.SCALE_SMOOTH), (int)hww, (int)(hwh + scale));
+        g.drawImage(Sprite.getImage("continue").getScaledInstance((int) scale*3 + 1, (int) scale + 1, Image.SCALE_SMOOTH), (int)(hww - 1.5*scale), (int)(hwh - 0.5*scale), null);
+        g.drawImage(Sprite.getImage("quit").getScaledInstance((int) scale*4 + 1, (int) scale + 1, Image.SCALE_SMOOTH), (int)(hww - 2*scale), (int)(hwh + 0.5*scale), null);
 
         // Get bounding boxes for buttons
 
