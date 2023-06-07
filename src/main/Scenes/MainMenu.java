@@ -7,12 +7,14 @@ import java.awt.event.KeyEvent;
 import src.main.Drivers.*;
 
 public class MainMenu implements ScreenElement {
-    private int previousScene;
 
+    private int previousScene;
+    
     public void update(Window w, Graphics g) {
         double hww = w.getWidth() / 2.0;
         double hwh = w.getHeight() / 2.0;
         double scale = Math.sqrt(hww * hwh) / 5;
+        g.drawImage(Sprite.getImage("TitleScreen").getScaledInstance((int) scale*18 + 1, (int) (scale*9 + 1), Image.SCALE_SMOOTH), (int)(hww - 9*scale), (int)(hwh - 5*scale), null);
         g.drawImage(Sprite.getImage("timbertrek").getScaledInstance((int) scale*9 + 1, (int) scale + 1, Image.SCALE_SMOOTH), (int)(hww - 4.65*scale), (int)(hwh - 2.5*scale), null);
         for (int i = 0; i < 5; i++) {
             g.drawImage(Sprite.getTile("vine-0").getScaledInstance((int) scale + 1, (int) scale + 1, Image.SCALE_SMOOTH), (int)(hww + (i-2.5)*scale), (int)(hwh - 1.5*scale), null);

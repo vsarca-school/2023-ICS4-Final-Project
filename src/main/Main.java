@@ -47,8 +47,8 @@ public class Main {
         a = new ActionLevel(p);
         e = new EndScreen();
 
-        currentSceneNum = 2;
-        currentScene = o; // TODO: change back to menu when done debugging
+        currentSceneNum = 0;
+        currentScene = m; // TODO: change back to menu when done debugging
 
         currentScene.addToWindow(w);
 
