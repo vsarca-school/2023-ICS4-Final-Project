@@ -29,18 +29,15 @@ public class Options implements ScreenElement {
         while ((mouse = w.nextMouse()) != null)
         {
             g.drawRect(mouse[0], mouse[1], 2, 2);
-            System.out.println("OIAJSODIAJSDO: "+ mouse[0] + ", " + mouse[1]);
             if (mouse[0] > hww - 1.5*scale && mouse[0] < hww + scale*23/16 && mouse[1] > hwh - scale*7/16 && mouse[1] < hwh + scale*3/8)
             {
                 // Continue clicked
-                //Main.changeScene(previousScene);
-                System.out.println("CONTINUE "+(thign++));
+                Main.changeScene(previousScene);
             }
             if (mouse[0] > hww - 2*scale && mouse[0] < hww + scale*31/16 && mouse[1] > hwh + scale*9/16 && mouse[1] < hwh + scale*11/8)
             {
                 // Quit clicked
-                //Main.changeScene(0);
-                System.out.println("QUIT "+(thign++));
+                Main.changeScene(0);
             }
         }
     }
