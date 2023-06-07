@@ -64,27 +64,33 @@ public class Main {
                 currentScene.removeFromWindow(w);
                 currentScene = m;
                 currentScene.addToWindow(w);
+                break;
             case 1:
                 currentScene.removeFromWindow(w);
                 o.previousScene(currentSceneNum);
                 currentScene = o;
                 currentScene.addToWindow(w);
+                break;
             case 2:
                 currentScene.removeFromWindow(w);
                 currentScene = l;
                 currentScene.addToWindow(w);
+                break;
             case 3:
                 currentScene.removeFromWindow(w);
                 currentScene = z;
                 currentScene.addToWindow(w);
+                break;
             case 4:
                 currentScene.removeFromWindow(w);
                 currentScene = a;
                 currentScene.addToWindow(w);
+                break;
             case 5:
                 currentScene.removeFromWindow(w);
                 currentScene = e;
                 currentScene.addToWindow(w);
+                break;
         }
         currentSceneNum = newScene;
     }
