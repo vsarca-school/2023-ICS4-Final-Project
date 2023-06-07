@@ -22,10 +22,6 @@ public class Lesson implements Serializable, ScreenElement {
         this.texts = texts;
         this.positions = slides;
         this.images = images;
-        try {
-            font = Font.createFont(Font.TRUETYPE_FONT, new File("src/main/Fonts/VCR_OSD_MONO_1.001.ttf"));
-        } catch (Exception e) {
-        }
     }
 
     public static Lesson fromFile(String file) {
@@ -119,6 +115,7 @@ public class Lesson implements Serializable, ScreenElement {
         double hww = w.getWidth() / 2.0;
         double hwh = w.getHeight() / 2.0;
         scale = Math.sqrt(hww * hwh) / 5;
+
         if (posIndex < positions.length && positions[posIndex] > currentStringIndex) {
             centerImage(g, w, Sprite.getImage(images[posIndex]), w.getWidth() / 2, w.getHeight() / 2);
         } else {
@@ -128,6 +125,11 @@ public class Lesson implements Serializable, ScreenElement {
         Color c = new Color(53, 45, 82, 255);
         centerBox(g, c, w.getWidth() / 2, w.getHeight() * 4 / 5, (int) scale * 8 + 1, (int) scale * 3 / 2 + 1);
 
+        try {
+            font = Font.createFont(Font.TRUETYPE_FONT, new File("src/main/Fonts/VCR_OSD_MONO_1.001.ttf"));
+        } catch (Exception e) {
+        }
+
         if (currentStringIndex < texts.length && timer % DELAY < DELAY) {
             // TODO fix scaling of font, not efficient but works
             String currentText = texts[currentStringIndex];
@@ -136,7 +138,9 @@ public class Lesson implements Serializable, ScreenElement {
             centerString(g, Color.WHITE, currentText.substring(0, Math.min(currentIndex, currentText.length())),
                     w.getWidth() / 2, w.getHeight() * 4 / 5, (int) scale * 8 + 1, size, temp);
         }
+
         timer++;
+        
         if (timer % DELAY == 0) {
             if (currentStringIndex < texts.length && currentIndex < texts[currentStringIndex].length() + 50) {
                 currentIndex++;
