@@ -62,30 +62,58 @@ public class Lesson implements Serializable, ScreenElement {
         g.fillRect(startX+(int)scale*3/16, startY+(int)scale*3/16, w-(int)scale*3/8, h-(int)scale*3/8);
     }
 
-    public void addToWindow(Window w) {
-        w.addElement(this);
-    }
-    public void removeFromWindow(Window w) {
-        w.removeElement(this);
-    }
-
     public void centerString(Graphics g, Color c, String text, int x, int y, int maxWidth, int lineHeight, Font font) {
+        String[] lines = text.split("\n");
         g.setFont(font);
         g.setColor(c);
         
         FontMetrics metrics = g.getFontMetrics(font);
     
-        String[] lines = text.split("\n");
+        
         int lineY = y - ((lines.length * lineHeight) / 2) + metrics.getAscent();
 
-        for (String line : lines) {
-
-        }
         for (String line : lines) {
             int lineX = x - (metrics.stringWidth(line) / 2);
             g.drawString(line, lineX, lineY);
             lineY += lineHeight;
         }
+    }
+
+    public int maxFontSize(Graphics g, String text, int maxWidth, int maxHeight, Font font) {
+        String[] lines = text.split("\n");
+        int minSize = 1;
+        int maxSize = maxHeight; // Assuming the maximum font size should not exceed the maximum height
+        
+        int optimalSize = 0;
+        
+        for (String line : lines) {
+            int size = 0;
+            while (minSize <= maxSize) {
+                int midSize = (minSize + maxSize) / 2;
+                
+                Font testFont = font.deriveFont(Font.PLAIN, midSize);
+                FontMetrics metrics = g.getFontMetrics(testFont);
+                
+                int textWidth = metrics.stringWidth(line);
+                
+                if (textWidth <= maxWidth) {
+                    size = midSize;
+                    minSize = midSize + 1;
+                } else {
+                    maxSize = midSize - 1;
+                }
+            }
+            optimalSize = Math.max(optimalSize, size);
+        }
+        return optimalSize;
+    }    
+
+    public void addToWindow(Window w) {
+        w.addElement(this);
+    }
+
+    public void removeFromWindow(Window w) {
+        w.removeElement(this);
     }
     
     public void update(Window w, Graphics g) {
@@ -102,10 +130,11 @@ public class Lesson implements Serializable, ScreenElement {
         centerBox(g, c, w.getWidth() / 2, w.getHeight() * 4 / 5, (int) scale*8 + 1, (int) scale*3/2 + 1);
     
         if (currentStringIndex < texts.length && timer % DELAY < DELAY) {
+            //TODO fix scaling of font, inconsistent at best
             String currentText = texts[currentStringIndex];
-            int maxWidth = w.getWidth() * 3 / 4;
-            int lineHeight = 20;
-            centerString(g, Color.WHITE, currentText.substring(0, Math.min(currentIndex, currentText.length())), w.getWidth() / 2, w.getHeight() * 4 / 5, maxWidth, lineHeight, font);
+            int size = maxFontSize(g, currentText, (int) scale*8 + 1, (int) scale*3/2 + 1, font) - 2;
+            Font temp = font.deriveFont(Font.PLAIN, size);
+            centerString(g, Color.WHITE, currentText.substring(0, Math.min(currentIndex, currentText.length())), w.getWidth() / 2, w.getHeight() * 4 / 5, (int) scale*8 + 1, size, temp);
         }
         timer++;
         if (timer % DELAY == 0) {
