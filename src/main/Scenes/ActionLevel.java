@@ -42,3 +42,4 @@ public class ActionLevel implements ScreenElement {
             health[i] = (int)(Math.random()*80+30);
         }
     }
+}
