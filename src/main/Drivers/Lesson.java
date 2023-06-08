@@ -141,14 +141,14 @@ public class Lesson implements Serializable, ScreenElement {
     }
 
     public void update(Window w, Graphics g) {
-        if (backImage == null || backImage.getWidth(null) != w.getWidth() || backImage.getHeight(null) != w.getHeight()) {
+        /*if (backImage == null || backImage.getWidth(null) != w.getWidth() || backImage.getHeight(null) != w.getHeight()) {
             int width = Sprite.getImage(background).getWidth();
             int height = Sprite.getImage(background).getHeight();
             double fit = Math.max((double)w.getWidth() / width, (double)w.getHeight() / height);
             backImage = Sprite.getImage(background).getScaledInstance((int)(fit*width), (int)(fit*height), Image.SCALE_SMOOTH);
-        }
+        }*/
         
-        centerImage(g, backImage, w.getWidth() / 2, w.getHeight() / 2);
+        centerImage(g, Sprite.getScaledBackground(background), w.getWidth() / 2, w.getHeight() / 2);
 
         if (currentStringIndex < 0) {
             heading(g, w, Color.BLACK, font);
