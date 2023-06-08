@@ -44,7 +44,9 @@ public class ActionLevel extends ScreenElement {
         health[wolfNum] -= (int)(Math.random()*30+1);
     }
 
-    //public void damagePlayer(playerHealth){
+    public void damagePlayer(int health, int amount){
+        health  -= Math.random()*10*amount;
+    }
 
-    //}
+    //public void 
 }
