@@ -20,11 +20,11 @@ public class LevelCreator {
         Level l;
 
         // Create level 1
-        ground = new String[10][10];
-        objects = new String[10][10];
-        for (int i=0; i<10; i++)
+        ground = new String[30][30];
+        objects = new String[30][30];
+        for (int i=0; i<30; i++)
         {
-            for (int j=0; j<10; j++)
+            for (int j=0; j<30; j++)
             {
                 int temp = (int)(Math.random()*4);
                 ground[i][j] = "grass-"+temp;
