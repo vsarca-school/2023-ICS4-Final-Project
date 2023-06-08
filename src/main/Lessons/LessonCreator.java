@@ -3,6 +3,7 @@ package src.main.Lessons;
 import java.io.*;
 
 import src.main.Drivers.Lesson;
+
 /**
  * - Victor
  */
@@ -10,21 +11,20 @@ public class LessonCreator {
     public static void main(String argv[]) throws IOException {
         ObjectOutputStream out;
 
-        String[] strs = {"There are many ways to navigate yourself in the forest, even without a compass.", 
-                         "During the night, you can use the North Star, which is a large star next to the big dipper, to locate north.", 
-                         "The North Star rarely moves in the night sky, and it is always within 1 degree of true north.", 
-                         "During the day, you can identify the cardinal directions based off of the sun and signs in nature.",
-                         "In the northern hemisphere, the sun spends most of the time in the southern part of the sky,",
-                         "so trees and plants tend to be heavier/more dense on the southern side.",
-                         "Moss also tends to grow on the northern side, but take these signs with a grain of salt as they may not always work.",
-                         "When you have no other options left, remember to walk in a straight line, as people tend to walk in circles and get even more lost.",
-                         "Focus on a landmark and walk towards it, you have a higher chance of rescue if you walk in a straight line rather than a circle."};
-        int[] pos = {3, 5};
-        String[] images = {"quit", "logo"};
+        String[] strs = { "There are many ways to navigate yourself in the forest,\neven without a compass.",
+                "During the night, you can use the North Star, which is a\nlarge star next to the big dipper, to locate north.",
+                "The North Star rarely moves in the night sky, and it is\nalways within 1 degree of true north.",
+                "During the day, you can identify the cardinal directions\nbased off of the sun and signs in nature.",
+                "In the northern hemisphere, the sun spends most of the time in\nthe southern part of the sky, so trees and plants tend\nto be heavier/more dense on the southern side.",
+                "Moss also tends to grow on the northern side,\nbut take all signs in nature with a grain of salt.",
+                "When you have no other options left, remember to walk in a straight line,\nas people tend to walk in circles and get even more lost.",
+                "Focus on a landmark and walk towards it, you have a higher chance of\nrescue as you will find a way out eventually." };
+        int[] pos = { 3, 5 };
+        String[] images = { "quit", "logo" };
         String next = "Lesson-2.lsn";
         // Create level 1
-        Lesson l1 = new Lesson("Lesson 1: TEMPORARY PLACEHOLDER", strs, pos, "raymond", images, next);
-        
+        Lesson l1 = new Lesson("Finding Food", strs, pos, "raymond", images, next);
+
         // Save level 1
         out = new ObjectOutputStream(new FileOutputStream("src/main/Lessons/Lesson-1.lsn"));
         out.writeObject(l1);

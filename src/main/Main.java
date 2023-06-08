@@ -55,7 +55,6 @@ public class Main {
         while (true) {
             w.update();
             w.tick(60);
-            break;
         }
     }
 

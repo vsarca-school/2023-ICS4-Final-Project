@@ -3,7 +3,7 @@ package src.main.Drivers;
 import java.awt.*;
 import java.io.*;
 
-public class Lesson implements Serializable, ScreenElement {
+public class Lesson extends ScreenElement implements Serializable {
     private String title;
     private String[] texts;
     private int[] positions;
@@ -142,11 +142,11 @@ public class Lesson implements Serializable, ScreenElement {
     }
 
     public void addToWindow(Window w) {
+        try {
+            font = Font.createFont(Font.TRUETYPE_FONT, new File("src/main/Fonts/VCR_OSD_MONO_1.001.ttf"));
+        } catch (Exception e) {
+        }
         w.addElement(this);
-    }
-
-    public void removeFromWindow(Window w) {
-        w.removeElement(this);
     }
 
     public void update(Window w, Graphics g) {

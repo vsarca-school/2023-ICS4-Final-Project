@@ -9,7 +9,7 @@ import src.main.Drivers.*;
 //////// TODOOOOOO
 //////// MAKE IT CLEANER REMOVE THE SCALE VAIRABLE
 
-public class MainMenu implements ScreenElement {
+public class MainMenu extends ScreenElement {
     public void update(Window w, Graphics g) {
         // Find scaling
         double hww = w.getWidth() / 2.0;
@@ -57,13 +57,5 @@ public class MainMenu implements ScreenElement {
         int newHeight = (int) (scale / 2 * image.getHeight(null));
         return (mouse[0] > x - newWidth && mouse[0] < x + newWidth && mouse[1] > y - newHeight
                 && mouse[1] < y + newHeight);
-    }
-
-    public void addToWindow(Window w) {
-        w.addElement(this);
-    }
-
-    public void removeFromWindow(Window w) {
-        w.removeElement(this);
     }
 }
