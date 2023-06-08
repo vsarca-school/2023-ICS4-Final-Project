@@ -91,6 +91,7 @@ public class Main {
                 currentScene = e;
                 currentScene.addToWindow(w);
                 break;
-            currentSceneNum = newScene;
+        }
+        currentSceneNum = newScene;
     }
 }

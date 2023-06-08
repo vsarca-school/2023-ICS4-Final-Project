@@ -97,13 +97,19 @@ public class Player implements ScreenElement {
         hwh -= scale / 2;
         // Render player
         animation = (animation + 1) % 20;
-        
-        String cur;
-        if (walking) cur = animations[direction][animation/5];
-        else cur = animations[direction][0];
 
-        g.drawImage(Sprite.getTile(cur).getScaledInstance((int) scale + 1, (int) scale + 1,
-                Image.SCALE_SMOOTH), (int) hww, (int) hwh, null);
+        String cur;
+        if (walking)
+            cur = animations[direction][animation / 5];
+        else
+            cur = animations[direction][0];
+
+        /*
+         * g.drawImage(Sprite.getTile(cur).getScaledInstance((int) scale + 1, (int)
+         * scale + 1,
+         * Image.SCALE_SMOOTH), (int) hww, (int) hwh, null);
+         */
+        g.drawImage(Sprite.getScaledTile(cur), (int) hww, (int) hwh, null);
     }
 
     public void addToWindow(Window w) {
