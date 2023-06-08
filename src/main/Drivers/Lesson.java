@@ -258,6 +258,7 @@ public class Lesson extends ScreenElement implements Serializable {
                  * / 16, w.getWidth() / 2,
                  * w.getHeight() / 2, mouse)) {
                  */
+                g.drawOval(mouse[0]-1, mouse[1]-1, 3, 3);
                 if (isClicked(Sprite.getScaledImage("next"), w.getWidth() / 2,
                         w.getHeight() / 2, mouse)) {
                     System.out.println("CLICKED!");
