@@ -1,5 +1,6 @@
 package src.main.Drivers;
 
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -15,6 +16,11 @@ import javax.imageio.ImageIO;
 public class Sprite {
     private static Map<String, BufferedImage> tiles = new HashMap<>();
     private static Map<String, BufferedImage> images = new HashMap<>();
+    private static Map<String, BufferedImage> backgrounds = new HashMap<>();
+    private static Map<String, BufferedImage> scaledTiles = new HashMap<>();
+    private static Map<String, BufferedImage> scaledImages = new HashMap<>();
+    private static Map<String, BufferedImage> scaledBackgrounds = new HashMap<>();
+    private static double tileScale, imageScale, bgScale;
 
     /**
      * Load all images into buffers, and intializes everything
@@ -45,9 +51,51 @@ public class Sprite {
             for (File file : folder.listFiles()) {
                 images.put(file.getName().replaceFirst("[.][^.]+$", ""), ImageIO.read(file));
             }
+            // Load individual backgrounds
+            folder = new File("src/main/Textures/Backgrounds");
+            for (File file : folder.listFiles()) {
+                backgrounds.put(file.getName().replaceFirst("[.][^.]+$", ""), ImageIO.read(file));
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void updateScale(int windowWidth, int windowHeight) {
+        tileScale = Math.sqrt(windowWidth * windowHeight) / 160;
+        imageScale = Math.min(windowWidth / 128, windowHeight / 96);
+        bgScale = Math.max(windowWidth / 128, windowHeight / 96);
+
+        BufferedImage temp;
+        for (Map.Entry<String, BufferedImage> e : tiles.entrySet()) {
+            temp = e.getValue();
+            scaledTiles.put(e.getKey(), (BufferedImage) (temp.getScaledInstance((int) (tileScale * temp.getWidth()) + 1,
+                    (int) (tileScale * temp.getHeight()) + 1, Image.SCALE_SMOOTH)));
+        }
+        for (Map.Entry<String, BufferedImage> e : images.entrySet()) {
+            temp = e.getValue();
+            scaledImages.put(e.getKey(),
+                    (BufferedImage) (temp.getScaledInstance((int) (imageScale * temp.getWidth()) + 1,
+                            (int) (imageScale * temp.getHeight()) + 1, Image.SCALE_SMOOTH)));
+        }
+        for (Map.Entry<String, BufferedImage> e : backgrounds.entrySet()) {
+            temp = e.getValue();
+            scaledBackgrounds.put(e.getKey(),
+                    (BufferedImage) (temp.getScaledInstance((int) (bgScale * temp.getWidth()) + 1,
+                            (int) (bgScale * temp.getHeight()) + 1, Image.SCALE_SMOOTH)));
+        }
+    }
+
+    public static double getTileScale() {
+        return tileScale;
+    }
+
+    public static double getImageScale() {
+        return imageScale;
+    }
+
+    public static double getBgScale() {
+        return bgScale;
     }
 
     /**
@@ -63,6 +111,10 @@ public class Sprite {
         for (String s : images.keySet())
             System.out.print(s + " ");
         System.out.println();
+        System.out.println("Backgrounds:");
+        for (String s : backgrounds.keySet())
+            System.out.print(s + " ");
+        System.out.println();
     }
 
     /**
@@ -72,8 +124,8 @@ public class Sprite {
      * @param sprite The key of the tile requested
      * @return The tile image
      */
-    public static BufferedImage getTile(String sprite) {
-        return tiles.get(sprite);
+    public static BufferedImage getScaledTile(String sprite) {
+        return scaledTiles.get(sprite);
     }
 
     /**
@@ -83,7 +135,18 @@ public class Sprite {
      * @param sprite The key of the image requested
      * @return The image
      */
-    public static BufferedImage getImage(String sprite) {
-        return images.get(sprite);
+    public static BufferedImage getScaledImage(String sprite) {
+        return scaledImages.get(sprite);
+    }
+
+    /**
+     * Returns the background requested
+     * - Victor
+     * 
+     * @param sprite The key of the image requested
+     * @return The image
+     */
+    public static BufferedImage getScaledBackground(String sprite) {
+        return scaledBackgrounds.get(sprite);
     }
 }
