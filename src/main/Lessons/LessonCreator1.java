@@ -21,7 +21,7 @@ public class LessonCreator1 {
             "Choose a landmark as a reference point and proceed\ntowards it for a higher chance of rescue."
         };
         int[] pos = {1, 2, 5, 7};
-        String[] images = {"droplet", "dipper", "droplet", "vine"};
+        String[] images = {"droplet", "dipper", "droplet", "bigrock"};
         String next = "Lesson-2.lsn";
         // Create level 1
         Lesson l1 = new Lesson("Navigation", strs, pos, "map", images, next);
