@@ -1,7 +1,6 @@
-package src.main.Scenes;
+package src.main.Drivers;
 
 import src.main.Drivers.*;
-import src.main.Drivers.Window;
 
 import java.awt.*;
 import java.io.*;
@@ -10,19 +9,22 @@ public class Lesson implements Serializable, ScreenElement {
     private String[] texts;
     private int[] positions;
     private String[] images;
+    private String nextLesson;
+
     private int currentIndex = 0;
     private int currentStringIndex = 0;
     private int posIndex = 0;
-    private int timer;
-    private int animTimer;
-    private final int DELAY = 3;
+    private int timer = 0;
+    private int animTimer = 0;
+    private static final int DELAY = 3;
     private double scale;
     private Font font;
 
-    public Lesson(String[] texts, int[] slides, String[] images) {
+    public Lesson(String[] texts, int[] slides, String[] images, String nextLesson) {
         this.texts = texts;
         this.positions = slides;
         this.images = images;
+        this.nextLesson = nextLesson;
     }
 
     public static Lesson fromFile(String file) {
@@ -39,7 +41,13 @@ public class Lesson implements Serializable, ScreenElement {
         return lesson;
     }
 
-    public void centerImage(Graphics g, Window w, Image image, int x, int y) {
+    public Lesson nextLesson() {
+        if (nextLesson != null)
+            return Lesson.fromFile(nextLesson);
+        return null;
+    }
+
+    public void centerImage(Graphics g, Image image, int x, int y) {
         int imageWidth = image.getWidth(null);
         int imageHeight = image.getHeight(null);
 
@@ -104,6 +112,12 @@ public class Lesson implements Serializable, ScreenElement {
         return optimalSize;
     }
 
+    public boolean isClicked(Image image, int scaleX, int scaleY, int x, int y, int[] mouse) {
+        int newWidth = (int) (scaleX / 2);
+        int newHeight = (int) (scaleY / 2);
+        return (mouse[0] > x - newWidth && mouse[0] < x + newWidth && mouse[1] > y - newHeight && mouse[1] < y + newHeight);
+    }    
+
     public void addToWindow(Window w) {
         w.addElement(this);
     }
@@ -119,7 +133,7 @@ public class Lesson implements Serializable, ScreenElement {
             scale = Math.sqrt(hww * hwh) / 5;
 
             if (posIndex < positions.length && positions[posIndex] > currentStringIndex) {
-                centerImage(g, w, Sprite.getImage(images[posIndex]), w.getWidth() / 2, w.getHeight() / 2);
+                centerImage(g, Sprite.getImage(images[posIndex]), w.getWidth() / 2, w.getHeight() / 2);
             } else {
                 posIndex++;
             }
@@ -135,7 +149,8 @@ public class Lesson implements Serializable, ScreenElement {
             if (timer % DELAY < DELAY) {
                 // TODO fix scaling of font, not efficient but works
                 String currentText = texts[currentStringIndex];
-                int size = maxFontSize(g, currentText, (int) scale * 8 + 1 - (int) scale * 3 / 8 - 5, (int) scale * 3 / 2 + 1 - (int) scale * 3 / 8 - 5, font);
+                int size = maxFontSize(g, currentText, (int) scale * 8 + 1 - (int) scale * 3 / 8 - 5,
+                        (int) scale * 3 / 2 + 1 - (int) scale * 3 / 8 - 5, font);
                 Font temp = font.deriveFont(Font.PLAIN, size);
                 centerString(g, Color.WHITE, currentText.substring(0, Math.min(currentIndex, currentText.length())),
                         w.getWidth() / 2, w.getHeight() * 31 / 40, (int) scale * 8 + 1, size, temp);
@@ -161,11 +176,12 @@ public class Lesson implements Serializable, ScreenElement {
             } else {
                 anim = w.getHeight() * 133 / 160;
             }
-            int[] xPoints = {w.getWidth() / 2 - (int)scale/8, w.getWidth() / 2, w.getWidth() / 2 + (int)scale/8};
-            int[] yPoints = {anim, anim + (int)scale/8, anim};
+            int[] xPoints = { w.getWidth() / 2 - (int) scale / 8, w.getWidth() / 2,
+                    w.getWidth() / 2 + (int) scale / 8 };
+            int[] yPoints = { anim, anim + (int) scale / 8, anim };
             g.setColor(Color.WHITE);
             g.fillPolygon(xPoints, yPoints, 3);
-            
+
             if (animTimer % 120 == 0) {
                 animTimer = 0;
             }
@@ -175,6 +191,14 @@ public class Lesson implements Serializable, ScreenElement {
                 currentStringIndex++;
                 timer = 0;
                 animTimer = 0;
+            }
+        } else {
+            centerImage(g, Sprite.getImage("next").getScaledInstance((int)scale*19/8, (int)scale*13/16, Image.SCALE_SMOOTH), w.getWidth()/2, w.getHeight()/2);
+            int[] mouse;
+            while ((mouse = w.nextMouse()) != null) {
+                if (isClicked(Sprite.getImage("next"), (int)scale*19/8, (int)scale*13/16, w.getWidth()/2, w.getHeight()/2, mouse)) {
+                    System.out.println("CLICKED!");
+                }
             }
         }
     }

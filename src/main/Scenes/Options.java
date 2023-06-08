@@ -28,25 +28,11 @@ public class Options implements ScreenElement {
         // Check for input
         int[] mouse;
         while ((mouse = w.nextMouse()) != null) {
-            g.drawOval(mouse[0]-1, mouse[1]-1, 3, 3);
-            if (isClicked(Sprite.getImage("continue"), scale, (int) (hww), (int) (hwh), mouse))
-            {
+            if (isClicked(Sprite.getImage("continue"), scale, (int) (hww), (int) (hwh), mouse)) {
                 Main.changeScene(previousScene);
-            }
-            else if (isClicked(Sprite.getImage("menuquit"), scale, (int) (hww), (int) (hwh + 16 * scale), mouse))
-            {
+            } else if (isClicked(Sprite.getImage("menuquit"), scale, (int) (hww), (int) (hwh + 16 * scale), mouse)) {
                 Main.changeScene(0);
             }
-            /*if (mouse[0] > hww - 1.5 * scale && mouse[0] < hww + scale * 23 / 16 && mouse[1] > hwh - scale * 7 / 16
-                    && mouse[1] < hwh + scale * 3 / 8) {
-                // Continue clicked
-                Main.changeScene(previousScene);
-            }
-            if (mouse[0] > hww - 2 * scale && mouse[0] < hww + scale * 31 / 16 && mouse[1] > hwh + scale * 9 / 16
-                    && mouse[1] < hwh + scale * 11 / 8) {
-                // Quit clicked
-                Main.changeScene(0);
-            }*/
         }
     }
 
@@ -60,7 +46,8 @@ public class Options implements ScreenElement {
     private boolean isClicked(Image image, double scale, int x, int y, int[] mouse) {
         int newWidth = (int) (scale / 2 * image.getWidth(null));
         int newHeight = (int) (scale / 2 * image.getHeight(null));
-        return (mouse[0] > x - newWidth && mouse[0] < x + newWidth && mouse[1] > y - newHeight && mouse[1] < y + newHeight);
+        return (mouse[0] > x - newWidth && mouse[0] < x + newWidth && mouse[1] > y - newHeight
+                && mouse[1] < y + newHeight);
     }
 
     public void previousScene(int previousScene) {
