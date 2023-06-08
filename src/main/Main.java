@@ -58,7 +58,7 @@ public class Main {
     }
 
     public static void changeScene(int newScene) {
-        if (currentSceneNum == newScene) return; // Useless call
+        if (currentSceneNum == newScene) return; // Useless call, don't screw up the previousScene
         switch (newScene) {
             case -1:
                 running = false;
