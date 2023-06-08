@@ -124,17 +124,6 @@ public class Lesson extends ScreenElement implements Serializable {
         return optimalSize;
     }
 
-    /*
-     * public boolean isClicked(Image image, int scaleX, int scaleY, int x, int y,
-     * int[] mouse) {
-     * int newWidth = (int) (scaleX / 2);
-     * int newHeight = (int) (scaleY / 2);
-     * return (mouse[0] > x - newWidth && mouse[0] < x + newWidth && mouse[1] > y -
-     * newHeight
-     * && mouse[1] < y + newHeight);
-     * }
-     */
-
     public boolean isClicked(Image image, int x, int y, int[] mouse) {
         int width = image.getWidth(null) / 2;
         int height = image.getHeight(null) / 2;
@@ -150,18 +139,6 @@ public class Lesson extends ScreenElement implements Serializable {
     }
 
     public void update(Window w, Graphics g) {
-        /*
-         * if (backImage == null || backImage.getWidth(null) != w.getWidth() ||
-         * backImage.getHeight(null) != w.getHeight()) {
-         * int width = Sprite.getImage(background).getWidth();
-         * int height = Sprite.getImage(background).getHeight();
-         * double fit = Math.max((double)w.getWidth() / width, (double)w.getHeight() /
-         * height);
-         * backImage = Sprite.getImage(background).getScaledInstance((int)(fit*width),
-         * (int)(fit*height), Image.SCALE_SMOOTH);
-         * }
-         */
-
         centerImage(g, Sprite.getScaledBackground(background), w.getWidth() / 2, w.getHeight() / 2);
 
         if (currentStringIndex < 0) {
@@ -171,7 +148,6 @@ public class Lesson extends ScreenElement implements Serializable {
                 timer = 0;
                 currentStringIndex++;
             }
-            System.out.println(timer);
         } else if (currentStringIndex >= 0 && currentStringIndex < texts.length) {
             double hww = w.getWidth() / 2.0;
             double hwh = w.getHeight() / 2.0;
