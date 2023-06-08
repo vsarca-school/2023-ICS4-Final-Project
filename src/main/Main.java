@@ -11,7 +11,6 @@ public class Main {
     static Window w;
 
     static Player p;
-    static PlayerCombat pc;
 
     static MainMenu m;
     static Options o;
@@ -41,14 +40,12 @@ public class Main {
         w = new Window("Timber Trek", 800, 600);
 
         p = new Player();
-        pc = new PlayerCombat();
 
         m = new MainMenu();
         o = new Options();
         l = new LessonScene();
         z = new Maze(p);
         a = new ActionLevel(p);
-        c = new Combat(pc);
         e = new EndScreen();
 
         currentSceneNum = 0;
@@ -95,12 +92,6 @@ public class Main {
                 currentScene = e;
                 currentScene.addToWindow(w);
                 break;
-            case 6:
-                currentScene.removeFromWindow(w);
-                currentScene = c;
-                currentScene.addToWindow(w);
-                break;
-        }
-        currentSceneNum = newScene;
+            currentSceneNum = newScene;
     }
 }
