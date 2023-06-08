@@ -6,7 +6,7 @@ import java.awt.Image;
 /**
  * Hnadles all player movement, plus rendering
  */
-public class Player implements ScreenElement {
+public class Player extends ScreenElement {
     private double scale;
     private Level l;
     private int direction = 2;
@@ -110,13 +110,5 @@ public class Player implements ScreenElement {
          * Image.SCALE_SMOOTH), (int) hww, (int) hwh, null);
          */
         g.drawImage(Sprite.getScaledTile(cur), (int) hww, (int) hwh, null);
-    }
-
-    public void addToWindow(Window w) {
-        w.addElement(this);
-    }
-
-    public void removeFromWindow(Window w) {
-        w.removeElement(this);
     }
 }

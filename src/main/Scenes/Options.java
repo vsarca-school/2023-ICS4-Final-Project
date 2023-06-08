@@ -12,7 +12,7 @@ import src.main.Drivers.Window;
 
 // TODO: MAKE IT SEE THROUGH BY ADDING "PAUSE" METHOD TO SCREEN ELEMENTS
 
-public class Options implements ScreenElement {
+public class Options extends ScreenElement {
     private int previousScene;
 
     public void update(Window w, Graphics g) {
@@ -21,11 +21,10 @@ public class Options implements ScreenElement {
         double hww = w.getWidth() / 2.0;
         double hwh = w.getHeight() / 2.0;
         double scale = Sprite.getImageScale();
-        double screenFit = Sprite.getBgScale();
-        ;
+        //double screenFit = Sprite.getBgScale();
 
         // Draw screen
-        //drawImage(g, Sprite.getScaledBackground("TitleScreen"), screenFit, (int) hww, (int) hwh);
+        //drawImage(g, Sprite.getScaledBackground("TitleScreen"), screenFit, (int) hww, (int) hwh); SEE THROUGH
         drawImage(g, Sprite.getScaledImage("paused"), scale, (int) (hww), (int) (hwh - 32 * scale));
         for (int i = 0; i < 5; i++) {
             drawImage(g, Sprite.getScaledImage("vine"), scale, (int) (hww + (16 * i - 32) * scale),
@@ -69,13 +68,5 @@ public class Options implements ScreenElement {
 
     public void previousScene(int previousScene) {
         this.previousScene = previousScene;
-    }
-
-    public void addToWindow(Window w) {
-        w.addElement(this);
-    }
-
-    public void removeFromWindow(Window w) {
-        w.removeElement(this);
     }
 }

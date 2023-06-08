@@ -8,7 +8,7 @@ import java.io.*;
  * All of this class
  * - Victor
  */
-public class Level implements Serializable, ScreenElement {
+public class Level extends ScreenElement implements Serializable  {
     /**
      * This hash table is copied from Victor's noise generation programs
      * This is the hash table used by Ken Perlin for his algorithms as well as many
@@ -175,13 +175,5 @@ public class Level implements Serializable, ScreenElement {
                         (int) (hwh + scale * (j - py)), null);
             }
         }
-    }
-
-    public void addToWindow(Window w) {
-        w.addElement(this);
-    }
-
-    public void removeFromWindow(Window w) {
-        w.removeElement(this);
     }
 }
