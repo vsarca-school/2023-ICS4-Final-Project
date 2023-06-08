@@ -67,7 +67,7 @@ public class Main {
                 currentScene.addToWindow(w);
                 break;
             case 1:
-                currentScene.removeFromWindow(w);
+                //currentScene.removeFromWindow(w);
                 o.previousScene(currentSceneNum);
                 currentScene = o;
                 currentScene.addToWindow(w);

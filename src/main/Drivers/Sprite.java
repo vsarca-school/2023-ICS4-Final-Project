@@ -84,8 +84,8 @@ public class Sprite {
         }
         for (Map.Entry<String, BufferedImage> e : images.entrySet()) {
             temp = e.getValue();
-            width = (int) (tileScale * temp.getWidth()) + 1;
-            height = (int) (tileScale * temp.getHeight()) + 1;
+            width = (int) (imageScale * temp.getWidth()) + 1;
+            height = (int) (imageScale * temp.getHeight()) + 1;
             tkImage = temp.getScaledInstance(width, height, Image.SCALE_SMOOTH);
 
             temp = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
@@ -97,8 +97,8 @@ public class Sprite {
         }
         for (Map.Entry<String, BufferedImage> e : backgrounds.entrySet()) {
             temp = e.getValue();
-            width = (int) (tileScale * temp.getWidth()) + 1;
-            height = (int) (tileScale * temp.getHeight()) + 1;
+            width = (int) (bgScale * temp.getWidth()) + 1;
+            height = (int) (bgScale * temp.getHeight()) + 1;
             tkImage = temp.getScaledInstance(width, height, Image.SCALE_SMOOTH);
 
             temp = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
