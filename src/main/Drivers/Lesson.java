@@ -113,8 +113,8 @@ public class Lesson implements Serializable, ScreenElement {
     }
 
     public boolean isClicked(Image image, int scaleX, int scaleY, int x, int y, int[] mouse) {
-        int newWidth = (int) (scaleX * image.getWidth(null) / 2);
-        int newHeight = (int) (scaleY * image.getHeight(null) / 2);
+        int newWidth = (int) (scaleX / 2);
+        int newHeight = (int) (scaleY / 2);
         return (mouse[0] > x - newWidth && mouse[0] < x + newWidth && mouse[1] > y - newHeight && mouse[1] < y + newHeight);
     }    
 
