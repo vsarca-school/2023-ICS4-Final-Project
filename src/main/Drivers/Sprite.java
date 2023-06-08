@@ -62,9 +62,9 @@ public class Sprite {
     }
 
     public static void updateScale(int windowWidth, int windowHeight) {
-        tileScale = Math.sqrt(windowWidth * windowHeight) / 160;
-        imageScale = Math.min(windowWidth / 128, windowHeight / 96);
-        bgScale = Math.max(windowWidth / 128, windowHeight / 96);
+        tileScale = Math.sqrt(windowWidth * windowHeight) / 160.0;
+        imageScale = Math.min(windowWidth / 128.0, windowHeight / 96.0);
+        bgScale = Math.max(windowWidth / 128.0, windowHeight / 96.0);
 
         BufferedImage temp;
         Image tkImage;
