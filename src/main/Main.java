@@ -18,7 +18,6 @@ public class Main {
     static Maze z;
     static ActionLevel a;
     static EndScreen e;
-    static Combat c;
 
     static ScreenElement currentScene;
     static int currentSceneNum;
@@ -56,6 +55,7 @@ public class Main {
         while (true) {
             w.update();
             w.tick(60);
+            break;
         }
     }
 
@@ -92,6 +92,7 @@ public class Main {
                 currentScene = e;
                 currentScene.addToWindow(w);
                 break;
-            currentSceneNum = newScene;
+        }
+        currentSceneNum = newScene;
     }
 }

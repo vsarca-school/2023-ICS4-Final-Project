@@ -6,40 +6,50 @@ import java.awt.Image;
 import src.main.Main;
 import src.main.Drivers.*;
 
+//////// TODOOOOOO
+//////// MAKE IT CLEANER REMOVE THE SCALE VAIRABLE
+
 public class MainMenu implements ScreenElement {
     public void update(Window w, Graphics g) {
         // Find scaling
         double hww = w.getWidth() / 2.0;
         double hwh = w.getHeight() / 2.0;
-        double scale = Math.min(hww / 64, hwh / 48);
-        double screenFit = Math.max(hww / 64, hwh / 48);
+        double scale = Sprite.getImageScale();
+        double screenFit = Sprite.getBgScale();
 
         // Draw screen
-        drawImage(g, Sprite.getImage("TitleScreen"), screenFit, (int) hww, (int) hwh);
-        drawImage(g, Sprite.getImage("timbertrek"), scale, (int) (hww), (int) (hwh - 32 * scale));
+        drawImage(g, Sprite.getScaledBackground("TitleScreen"), screenFit, (int) hww, (int) hwh);
+        drawImage(g, Sprite.getScaledImage("timbertrek"), scale, (int) (hww), (int) (hwh - 32 * scale));
         for (int i = 0; i < 5; i++) {
-            drawImage(g, Sprite.getTile("vine-0"), scale, (int) (hww + (16 * i - 32) * scale),
+            drawImage(g, Sprite.getScaledImage("vine"), scale, (int) (hww + (16 * i - 32) * scale),
                     (int) (hwh - 16 * scale));
         }
-        drawImage(g, Sprite.getImage("play"), scale, (int) (hww), (int) (hwh));
-        drawImage(g, Sprite.getImage("quit"), scale, (int) (hww), (int) (hwh + 16 * scale));
+        drawImage(g, Sprite.getScaledImage("play"), scale, (int) (hww), (int) (hwh));
+        drawImage(g, Sprite.getScaledImage("quit"), scale, (int) (hww), (int) (hwh + 16 * scale));
 
         // Check for input
         int[] mouse;
         while ((mouse = w.nextMouse()) != null) {
-            if (isClicked(Sprite.getImage("play"), scale, (int) (hww), (int) (hwh), mouse)) {
+            if (isClicked(Sprite.getScaledImage("play"), scale, (int) (hww), (int) (hwh), mouse)) {
                 Main.changeScene(2);
-            } else if (isClicked(Sprite.getImage("quit"), scale, (int) (hww), (int) (hwh + 16 * scale), mouse)) {
+            } else if (isClicked(Sprite.getScaledImage("quit"), scale, (int) (hww), (int) (hwh + 16 * scale), mouse)) {
                 Main.changeScene(1);
             }
         }
     }
 
     private void drawImage(Graphics g, Image image, double scale, int x, int y) {
-        int newWidth = (int) (scale * image.getWidth(null)) + 1;
-        int newHeight = (int) (scale * image.getHeight(null)) + 1;
-        g.drawImage(image.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH), x - newWidth / 2,
-                y - newHeight / 2, null);
+        /*
+         * int newWidth = (int) (scale * image.getWidth(null)) + 1;
+         * int newHeight = (int) (scale * image.getHeight(null)) + 1;
+         * g.drawImage(image.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH),
+         * x - newWidth / 2,
+         * y - newHeight / 2, null);
+         */
+        int width = image.getWidth(null) / 2;
+        int height = image.getHeight(null) / 2;
+        g.drawImage(image, x - width,
+                y - height, null);
     }
 
     private boolean isClicked(Image image, double scale, int x, int y, int[] mouse) {
