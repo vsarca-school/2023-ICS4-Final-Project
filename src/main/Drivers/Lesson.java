@@ -19,6 +19,7 @@ public class Lesson implements Serializable, ScreenElement {
     private static final int DELAY = 3;
     private double scale;
     private Font font;
+    private Image backImage;
 
     public Lesson(String title, String[] texts, int[] slides, String background, String[] images, String nextLesson) {
         this.title = title;
@@ -92,7 +93,7 @@ public class Lesson implements Serializable, ScreenElement {
     }
 
     public void heading(Graphics g, Window w, Color c, Font font) {
-        int size = maxFontSize(g, title, w.getWidth() * 15 / 16, w.getHeight(), font);
+        int size = maxFontSize(g, title, w.getWidth() * 15 / 16, w.getHeight()/2, font);
         Font temp = font.deriveFont(Font.PLAIN, size);
         centerString(g, c, title, w.getWidth() / 2, w.getHeight() / 3, w.getWidth(), size, temp);
     }
@@ -140,7 +141,15 @@ public class Lesson implements Serializable, ScreenElement {
     }
 
     public void update(Window w, Graphics g) {
-        centerImage(g, Sprite.getImage(background), w.getWidth() / 2, w.getHeight() / 2);
+        if (backImage == null || backImage.getWidth(null) != w.getWidth() || backImage.getHeight(null) != w.getHeight()) {
+            int width = Sprite.getImage(background).getWidth();
+            int height = Sprite.getImage(background).getHeight();
+            double fit = Math.max((double)w.getWidth() / width, (double)w.getHeight() / height);
+            backImage = Sprite.getImage(background).getScaledInstance((int)(fit*width), (int)(fit*height), Image.SCALE_SMOOTH);
+        }
+        
+        centerImage(g, backImage, w.getWidth() / 2, w.getHeight() / 2);
+
         if (currentStringIndex < 0) {
             heading(g, w, Color.BLACK, font);
             timer++;
@@ -148,6 +157,7 @@ public class Lesson implements Serializable, ScreenElement {
                 timer = 0;
                 currentStringIndex++;
             }
+            System.out.println(timer);
         } else if (currentStringIndex >= 0 && currentStringIndex < texts.length) {
             double hww = w.getWidth() / 2.0;
             double hwh = w.getHeight() / 2.0;
