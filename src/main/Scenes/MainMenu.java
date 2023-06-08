@@ -18,10 +18,10 @@ public class MainMenu implements ScreenElement {
         double screenFit = Math.max(hww / 64, hwh / 48);
 
         // Draw screen
-        drawImage(g, Sprite.getScaledImage("TitleScreen"), screenFit, (int) hww, (int) hwh);
+        drawImage(g, Sprite.getScaledBackground("TitleScreen"), screenFit, (int) hww, (int) hwh);
         drawImage(g, Sprite.getScaledImage("timbertrek"), scale, (int) (hww), (int) (hwh - 32 * scale));
         for (int i = 0; i < 5; i++) {
-            drawImage(g, Sprite.getScaledTile("vine-0"), scale, (int) (hww + (16 * i - 32) * scale),
+            drawImage(g, Sprite.getScaledImage("vine"), scale, (int) (hww + (16 * i - 32) * scale),
                     (int) (hwh - 16 * scale));
         }
         drawImage(g, Sprite.getScaledImage("play"), scale, (int) (hww), (int) (hwh));
