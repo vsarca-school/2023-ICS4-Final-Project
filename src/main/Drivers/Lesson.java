@@ -3,6 +3,8 @@ package src.main.Drivers;
 import java.awt.*;
 import java.io.*;
 
+import src.main.Main;
+
 public class Lesson extends ScreenElement implements Serializable {
     private String title;
     private String[] texts;
@@ -124,17 +126,6 @@ public class Lesson extends ScreenElement implements Serializable {
         return optimalSize;
     }
 
-    /*
-     * public boolean isClicked(Image image, int scaleX, int scaleY, int x, int y,
-     * int[] mouse) {
-     * int newWidth = (int) (scaleX / 2);
-     * int newHeight = (int) (scaleY / 2);
-     * return (mouse[0] > x - newWidth && mouse[0] < x + newWidth && mouse[1] > y -
-     * newHeight
-     * && mouse[1] < y + newHeight);
-     * }
-     */
-
     public boolean isClicked(Image image, int x, int y, int[] mouse) {
         int width = image.getWidth(null) / 2;
         int height = image.getHeight(null) / 2;
@@ -150,18 +141,6 @@ public class Lesson extends ScreenElement implements Serializable {
     }
 
     public void update(Window w, Graphics g) {
-        /*
-         * if (backImage == null || backImage.getWidth(null) != w.getWidth() ||
-         * backImage.getHeight(null) != w.getHeight()) {
-         * int width = Sprite.getImage(background).getWidth();
-         * int height = Sprite.getImage(background).getHeight();
-         * double fit = Math.max((double)w.getWidth() / width, (double)w.getHeight() /
-         * height);
-         * backImage = Sprite.getImage(background).getScaledInstance((int)(fit*width),
-         * (int)(fit*height), Image.SCALE_SMOOTH);
-         * }
-         */
-
         centerImage(g, Sprite.getScaledBackground(background), w.getWidth() / 2, w.getHeight() / 2);
 
         if (currentStringIndex < 0) {
@@ -171,39 +150,38 @@ public class Lesson extends ScreenElement implements Serializable {
                 timer = 0;
                 currentStringIndex++;
             }
-            System.out.println(timer);
         } else if (currentStringIndex >= 0 && currentStringIndex < texts.length) {
             double hww = w.getWidth() / 2.0;
             double hwh = w.getHeight() / 2.0;
-            scale = Math.sqrt(hww * hwh) / 5;
+            scale = Sprite.getTileScale();
 
             if (posIndex < positions.length && positions[posIndex] > currentStringIndex) {
                 if (images[posIndex].equals("droplet")) {
                     if (animTimer <= 40) {
-                        centerImage(g, Sprite.getScaledTile("droplet-0"), w.getWidth() / 2, w.getHeight()*3 / 5);
+                        centerImage(g, Sprite.getScaledTile("droplet-0"), (int)hww, (int)hwh);
                     } else if (animTimer > 40 && animTimer <= 80) {
-                        centerImage(g, Sprite.getScaledTile("droplet-1"), w.getWidth() / 2, w.getHeight()*3 / 5);
+                        centerImage(g, Sprite.getScaledTile("droplet-1"), (int)hww, (int)hwh);
                     } else {
-                        centerImage(g, Sprite.getScaledTile("droplet-2"), w.getWidth() / 2, w.getHeight()*3 / 5);
+                        centerImage(g, Sprite.getScaledTile("droplet-2"), (int)hww, (int)hwh);
                     }
                 } else {
-                    centerImage(g, Sprite.getScaledImage(images[posIndex]), w.getWidth() / 2, w.getHeight()*2 / 5);
+                    centerImage(g, Sprite.getScaledImage(images[posIndex]), (int)hww, (int)hwh);
                 }
             } else {
                 posIndex++;
             }
 
             Color c = new Color(53, 45, 82, 255);
-            centerBox(g, c, w.getWidth() / 2, w.getHeight() * 4 / 5, (int) scale * 8 + 1, (int) scale * 3 / 2 + 1);
+            centerBox(g, c, w.getWidth() / 2, w.getHeight() * 4 / 5, (int) scale * 128 + 1, (int) scale * 48 / 2 + 1);
 
             if (timer % DELAY < DELAY) {
                 // TODO fix scaling of font, not efficient but works
                 String currentText = texts[currentStringIndex];
-                int size = maxFontSize(g, currentText, (int) scale * 8 + 1 - (int) scale * 3 / 8 - 5,
-                        (int) scale * 3 / 2 + 1 - (int) scale * 3 / 8 - 5, font);
+                int size = maxFontSize(g, currentText, (int) scale * 128 + 1 - (int) scale * 6 - 5,
+                        (int) scale * 24 + 1 - (int) scale * 6 - 5, font);
                 Font temp = font.deriveFont(Font.PLAIN, size);
                 centerString(g, Color.WHITE, currentText.substring(0, Math.min(currentIndex, currentText.length())),
-                        w.getWidth() / 2, w.getHeight() * 31 / 40, (int) scale * 8 + 1, size, temp);
+                        w.getWidth() / 2, w.getHeight() * 31 / 40, (int) scale * 128 + 1, size, temp);
             }
 
             timer++;
@@ -226,9 +204,9 @@ public class Lesson extends ScreenElement implements Serializable {
             } else {
                 anim = w.getHeight() * 133 / 160;
             }
-            int[] xPoints = { w.getWidth() / 2 - (int) scale / 8, w.getWidth() / 2,
-                    w.getWidth() / 2 + (int) scale / 8 };
-            int[] yPoints = { anim, anim + (int) scale / 8, anim };
+            int[] xPoints = { w.getWidth() / 2 - (int) scale * 2, w.getWidth() / 2,
+                    w.getWidth() / 2 + (int) scale * 2 };
+            int[] yPoints = { anim, anim + (int) scale * 2, anim };
             g.setColor(Color.WHITE);
             g.fillPolygon(xPoints, yPoints, 3);
 
@@ -245,23 +223,13 @@ public class Lesson extends ScreenElement implements Serializable {
         } else {
             double hww = w.getWidth() / 2.0;
             double hwh = w.getHeight() / 2.0;
-            scale = Math.sqrt(hww * hwh) / 5;
-
-            // centerImage(g, Sprite.getImage("next").getScaledInstance((int) scale * 19 /
-            // 8, (int) scale * 13 / 16,
-            // Image.SCALE_SMOOTH), w.getWidth() / 2, w.getHeight() / 2);
-            centerImage(g, Sprite.getScaledImage("next"), w.getWidth() / 2, w.getHeight() / 2);
+            centerImage(g, Sprite.getScaledImage("next"), (int)hww, (int)hwh);
             int[] mouse;
             while ((mouse = w.nextMouse()) != null) {
-                /*
-                 * if (isClicked(Sprite.getImage("next"), (int) scale * 19 / 8, (int) scale * 13
-                 * / 16, w.getWidth() / 2,
-                 * w.getHeight() / 2, mouse)) {
-                 */
                 g.drawOval(mouse[0]-1, mouse[1]-1, 3, 3);
-                if (isClicked(Sprite.getScaledImage("next"), w.getWidth() / 2,
-                        w.getHeight() / 2, mouse)) {
-                    System.out.println("CLICKED!");
+                if (isClicked(Sprite.getScaledImage("next"), (int)hww,
+                        (int)hwh, mouse)) {
+                    Main.changeScene(3);
                 }
             }
         }
