@@ -43,6 +43,7 @@ public class Window implements KeyListener, MouseListener {
     private ArrayList<ScreenElement> elements = new ArrayList<>();
     private boolean[] keysdown = new boolean[4]; // Stores whether key is up or down, 0-3 are up left down right
     private Queue<int[]> mouseclicks = new ArrayDeque<>(); // Stores the location of mouse clicks, only left click
+    int width, height;
 
     public Window(String name, int width, int height) {
         frame = new JFrame(name);
@@ -53,27 +54,35 @@ public class Window implements KeyListener, MouseListener {
         frame.addKeyListener(this);
         frame.addMouseListener(this);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.addComponentListener(new ComponentAdapter() {
-            public void componentResized(ComponentEvent componentEvent) {
-                Sprite.updateScale(frame.getWidth(), frame.getHeight());
-            }
-        });
+        frame.addComponentListener(new WindowResizeListener(this));
         Sprite.updateScale(width, height);
+        this.width = width;
+        this.height = height;
+    }
+
+    void setWidth(int w) {
+        width = w;
+    }
+
+    void setHeight(int h) {
+        height = h;
     }
 
     public int getWidth() {
-        return frame.getWidth();
+        return width;
     }
 
     public int getHeight() {
-        return frame.getHeight();
+        return height;
     }
 
     public void addElement(ScreenElement s) {
+        if (elements.contains(s)) return;
         elements.add(s);
     }
 
     public void removeElement(ScreenElement s) {
+        if (!elements.contains(s)) System.out.println("Error: Tried to remove scene that does not exist.");
         elements.remove(s);
     }
 
@@ -112,6 +121,29 @@ public class Window implements KeyListener, MouseListener {
 
         public void paint(Graphics g) {
             parent.paint(g);
+        }
+    }
+
+    private class WindowResizeListener implements ComponentListener{
+        Window w;
+        
+        public WindowResizeListener(Window w) {
+            this.w = w;
+        }
+
+        public void componentHidden(ComponentEvent arg0) {
+        }
+        public void componentMoved(ComponentEvent arg0) {   
+        }
+        public void componentResized(ComponentEvent arg0) {
+            width = frame.getWidth();
+            height = frame.getHeight();
+            w.setWidth(width);
+            w.setHeight(height);
+            Sprite.updateScale(width, height);
+        }
+        public void componentShown(ComponentEvent arg0) {
+        
         }
     }
 
