@@ -16,7 +16,6 @@ public class ActionLevel extends ScreenElement {
     public ActionLevel(Player pl) {
         p = pl;
         l = Level.fromFile("src/main/Levels/Level-1.lvl");
-        p.joinLevel(l);
     }
 
     public void addToWindow(Window w) {
@@ -24,6 +23,7 @@ public class ActionLevel extends ScreenElement {
 
         l.addToWindow(w);
         p.addToWindow(w);
+        p.joinLevel(l);
         w.addElement(this);
     }
 

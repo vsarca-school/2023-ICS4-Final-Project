@@ -50,7 +50,7 @@ public class Main {
         e = new EndScreen();
 
         currentSceneNum = 0;
-        currentScene = l; // TODO: change back to menu when done debugging
+        currentScene = z; // TODO: change back to menu when done debugging
 
         currentScene.addToWindow(w);
 

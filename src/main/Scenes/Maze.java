@@ -12,7 +12,6 @@ public class Maze extends ScreenElement {
     public Maze(Player pl) {
         p = pl;
         l = Level.fromFile("src/main/Levels/Maze-1.lvl");
-        p.joinLevel(l);
     }
 
     public void update(Window w, Graphics g) {
@@ -23,6 +22,7 @@ public class Maze extends ScreenElement {
 
         l.addToWindow(w);
         p.addToWindow(w);
+        p.joinLevel(l);
         w.addElement(this);
     }
 
