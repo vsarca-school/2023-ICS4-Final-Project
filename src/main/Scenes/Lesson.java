@@ -39,7 +39,7 @@ public class Lesson implements Serializable, ScreenElement {
         return lesson;
     }
 
-    public void centerImage(Graphics g, Window w, Image image, int x, int y) {
+    public void centerImage(Graphics g, Image image, int x, int y) {
         int imageWidth = image.getWidth(null);
         int imageHeight = image.getHeight(null);
 
@@ -104,6 +104,12 @@ public class Lesson implements Serializable, ScreenElement {
         return optimalSize;
     }
 
+    public boolean isClicked(Image image, int scaleX, int scaleY, int x, int y, int[] mouse) {
+        int newWidth = (int) (scaleX * image.getWidth(null) / 2);
+        int newHeight = (int) (scaleY * image.getHeight(null) / 2);
+        return (mouse[0] > x - newWidth && mouse[0] < x + newWidth && mouse[1] > y - newHeight && mouse[1] < y + newHeight);
+    }    
+
     public void addToWindow(Window w) {
         w.addElement(this);
     }
@@ -113,61 +119,79 @@ public class Lesson implements Serializable, ScreenElement {
     }
 
     public void update(Window w, Graphics g) {
-        double hww = w.getWidth() / 2.0;
-        double hwh = w.getHeight() / 2.0;
-        scale = Math.sqrt(hww * hwh) / 5;
+        if (currentStringIndex < texts.length) {
+            double hww = w.getWidth() / 2.0;
+            double hwh = w.getHeight() / 2.0;
+            scale = Math.sqrt(hww * hwh) / 5;
 
-        if (posIndex < positions.length && positions[posIndex] > currentStringIndex) {
-            centerImage(g, w, Sprite.getImage(images[posIndex]), w.getWidth() / 2, w.getHeight() / 2);
-        } else {
-            posIndex++;
-        }
-
-        Color c = new Color(53, 45, 82, 255);
-        centerBox(g, c, w.getWidth() / 2, w.getHeight() * 4 / 5, (int) scale * 8 + 1, (int) scale * 3 / 2 + 1);
-
-        try {
-            font = Font.createFont(Font.TRUETYPE_FONT, new File("src/main/Fonts/VCR_OSD_MONO_1.001.ttf"));
-        } catch (Exception e) {
-        }
-
-        if (currentStringIndex < texts.length && timer % DELAY < DELAY) {
-            // TODO fix scaling of font, not efficient but works
-            String currentText = texts[currentStringIndex];
-            int size = maxFontSize(g, currentText, (int) scale * 8 + 1 - (int) scale * 3 / 8 - 5, (int) scale * 3 / 2 + 1 - (int) scale * 3 / 8 - 5, font);
-            Font temp = font.deriveFont(Font.PLAIN, size);
-            centerString(g, Color.WHITE, currentText.substring(0, Math.min(currentIndex, currentText.length())),
-                    w.getWidth() / 2, w.getHeight() * 31 / 40, (int) scale * 8 + 1, size, temp);
-        }
-
-        timer++;
-
-        if (timer % DELAY == 0) {
-            if (currentStringIndex < texts.length && currentIndex < texts[currentStringIndex].length() + 50) {
-                currentIndex++;
+            if (posIndex < positions.length && positions[posIndex] > currentStringIndex) {
+                centerImage(g, Sprite.getImage(images[posIndex]), w.getWidth() / 2, w.getHeight() / 2);
             } else {
+                posIndex++;
+            }
+
+            Color c = new Color(53, 45, 82, 255);
+            centerBox(g, c, w.getWidth() / 2, w.getHeight() * 4 / 5, (int) scale * 8 + 1, (int) scale * 3 / 2 + 1);
+
+            try {
+                font = Font.createFont(Font.TRUETYPE_FONT, new File("src/main/Fonts/VCR_OSD_MONO_1.001.ttf"));
+            } catch (Exception e) {
+            }
+
+            if (timer % DELAY < DELAY) {
+                // TODO fix scaling of font, not efficient but works
+                String currentText = texts[currentStringIndex];
+                int size = maxFontSize(g, currentText, (int) scale * 8 + 1 - (int) scale * 3 / 8 - 5,
+                        (int) scale * 3 / 2 + 1 - (int) scale * 3 / 8 - 5, font);
+                Font temp = font.deriveFont(Font.PLAIN, size);
+                centerString(g, Color.WHITE, currentText.substring(0, Math.min(currentIndex, currentText.length())),
+                        w.getWidth() / 2, w.getHeight() * 31 / 40, (int) scale * 8 + 1, size, temp);
+            }
+
+            timer++;
+
+            if (timer % DELAY == 0) {
+                if (currentIndex < texts[currentStringIndex].length() + 50) {
+                    currentIndex++;
+                } else {
+                    currentIndex = 0;
+                    currentStringIndex++;
+                }
+                timer = 0;
+            }
+
+            animTimer++;
+
+            int anim = 0;
+            if (animTimer <= 60) {
+                anim = w.getHeight() * 33 / 40;
+            } else {
+                anim = w.getHeight() * 133 / 160;
+            }
+            int[] xPoints = { w.getWidth() / 2 - (int) scale / 8, w.getWidth() / 2,
+                    w.getWidth() / 2 + (int) scale / 8 };
+            int[] yPoints = { anim, anim + (int) scale / 8, anim };
+            g.setColor(Color.WHITE);
+            g.fillPolygon(xPoints, yPoints, 3);
+
+            if (animTimer % 120 == 0) {
+                animTimer = 0;
+            }
+
+            while (w.nextMouse() != null) {
                 currentIndex = 0;
                 currentStringIndex++;
+                timer = 0;
+                animTimer = 0;
             }
-            timer = 0;
-        }
-
-        animTimer++;
-
-        int anim = 0;
-        if (animTimer <= 60) {
-            anim = w.getHeight() * 33 / 40;
         } else {
-            anim = w.getHeight() * 133 / 160;
+            centerImage(g, Sprite.getImage("next").getScaledInstance((int)scale*19/8, (int)scale*13/16, Image.SCALE_SMOOTH), w.getWidth()/2, w.getHeight()/2);
+            int[] mouse;
+            while ((mouse = w.nextMouse()) != null) {
+                if (isClicked(Sprite.getImage("next"), (int)scale*19/8, (int)scale*13/16, w.getWidth()/2, w.getHeight()/2, mouse)) {
+                    System.out.println("CLICKED!");
+                }
+            }
         }
-        int[] xPoints = {w.getWidth() / 2 - (int)scale/8, w.getWidth() / 2, w.getWidth() / 2 + (int)scale/8};
-        int[] yPoints = {anim, anim + (int)scale/8, anim};
-        g.setColor(Color.WHITE);
-        g.fillPolygon(xPoints, yPoints, 3);
-        
-        if (animTimer % 120 == 0) {
-            animTimer = 0;
-        }
-
     }
 }
