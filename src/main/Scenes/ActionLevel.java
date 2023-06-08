@@ -1,6 +1,7 @@
 package src.main.Scenes;
 
 import java.awt.Graphics;
+import java.util.Random;
 
 import src.main.Main;
 import src.main.Drivers.*;
@@ -8,6 +9,9 @@ import src.main.Drivers.*;
 public class ActionLevel implements ScreenElement {
     private Player p;
     private Level l;
+    private int playerHealth = 110;
+    private int wolfAmount = (int)(Math.random()*5)+1;
+    private int[] wolfHealth = new int[wolfAmount];
 
     public ActionLevel(Player pl) {
         p = pl;
@@ -31,5 +35,11 @@ public class ActionLevel implements ScreenElement {
         l = l.nextLevel();
         p.removeFromWindow(w);
         w.removeElement(this);
+    }
+
+    public void generateHealth(int[] health){
+        for(int i = 0; i < health.length; i++){
+            health[i] = (int)(Math.random()*80+30);
+        }
     }
 }
