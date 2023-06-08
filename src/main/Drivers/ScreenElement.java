@@ -7,7 +7,7 @@ import java.awt.*;
  * - Victor
  */
 public abstract class ScreenElement {
-    protected boolean paused = false;
+    private boolean paused = false;
 
     /**
      * Update and render the screen element
@@ -41,13 +41,18 @@ public abstract class ScreenElement {
         w.removeElement(this);
     }
 
-    public void pause() {
-        // Default behaviour: paused = true
+    public final void pause() {
+        // Final behaviour: paused = true
         paused = true;
     }
 
-    public void unpause() {
-        // Default behaviour: paused = false
+    public final void unpause() {
+        // Final behaviour: paused = false
         paused = false;
+    }
+
+    public final boolean ispaused() {
+        // Final behaviour: return paused
+        return paused;
     }
 }
