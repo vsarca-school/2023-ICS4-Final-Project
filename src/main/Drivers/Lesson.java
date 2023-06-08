@@ -1,18 +1,18 @@
 package src.main.Drivers;
 
-import src.main.Drivers.*;
-
 import java.awt.*;
 import java.io.*;
 
 public class Lesson implements Serializable, ScreenElement {
+    private String title;
     private String[] texts;
     private int[] positions;
+    private String background;
     private String[] images;
     private String nextLesson;
 
     private int currentIndex = 0;
-    private int currentStringIndex = 0;
+    private int currentStringIndex = -1;
     private int posIndex = 0;
     private int timer = 0;
     private int animTimer = 0;
@@ -20,11 +20,17 @@ public class Lesson implements Serializable, ScreenElement {
     private double scale;
     private Font font;
 
-    public Lesson(String[] texts, int[] slides, String[] images, String nextLesson) {
+    public Lesson(String title, String[] texts, int[] slides, String background, String[] images, String nextLesson) {
+        this.title = title;
         this.texts = texts;
         this.positions = slides;
+        this.background = background;
         this.images = images;
         this.nextLesson = nextLesson;
+        try {
+            font = Font.createFont(Font.TRUETYPE_FONT, new File("src/main/Fonts/VCR_OSD_MONO_1.001.ttf"));
+        } catch (Exception e) {
+        }
     }
 
     public static Lesson fromFile(String file) {
@@ -85,6 +91,12 @@ public class Lesson implements Serializable, ScreenElement {
         }
     }
 
+    public void heading(Graphics g, Window w, Color c, Font font) {
+        int size = maxFontSize(g, title, w.getWidth() * 15 / 16, w.getHeight(), font);
+        Font temp = font.deriveFont(Font.PLAIN, size);
+        centerString(g, c, title, w.getWidth() / 2, w.getHeight() / 3, w.getWidth(), size, temp);
+    }
+
     public int maxFontSize(Graphics g, String text, int maxWidth, int maxHeight, Font font) {
         String[] lines = text.split("\n");
         int optimalSize = Integer.MAX_VALUE;
@@ -115,8 +127,9 @@ public class Lesson implements Serializable, ScreenElement {
     public boolean isClicked(Image image, int scaleX, int scaleY, int x, int y, int[] mouse) {
         int newWidth = (int) (scaleX / 2);
         int newHeight = (int) (scaleY / 2);
-        return (mouse[0] > x - newWidth && mouse[0] < x + newWidth && mouse[1] > y - newHeight && mouse[1] < y + newHeight);
-    }    
+        return (mouse[0] > x - newWidth && mouse[0] < x + newWidth && mouse[1] > y - newHeight
+                && mouse[1] < y + newHeight);
+    }
 
     public void addToWindow(Window w) {
         w.addElement(this);
@@ -127,7 +140,15 @@ public class Lesson implements Serializable, ScreenElement {
     }
 
     public void update(Window w, Graphics g) {
-        if (currentStringIndex < texts.length) {
+        centerImage(g, Sprite.getImage(background), w.getWidth() / 2, w.getHeight() / 2);
+        if (currentStringIndex < 0) {
+            heading(g, w, Color.BLACK, font);
+            timer++;
+            if (timer > 120) {
+                timer = 0;
+                currentStringIndex++;
+            }
+        } else if (currentStringIndex >= 0 && currentStringIndex < texts.length) {
             double hww = w.getWidth() / 2.0;
             double hwh = w.getHeight() / 2.0;
             scale = Math.sqrt(hww * hwh) / 5;
@@ -140,11 +161,6 @@ public class Lesson implements Serializable, ScreenElement {
 
             Color c = new Color(53, 45, 82, 255);
             centerBox(g, c, w.getWidth() / 2, w.getHeight() * 4 / 5, (int) scale * 8 + 1, (int) scale * 3 / 2 + 1);
-
-            try {
-                font = Font.createFont(Font.TRUETYPE_FONT, new File("src/main/Fonts/VCR_OSD_MONO_1.001.ttf"));
-            } catch (Exception e) {
-            }
 
             if (timer % DELAY < DELAY) {
                 // TODO fix scaling of font, not efficient but works
@@ -193,10 +209,16 @@ public class Lesson implements Serializable, ScreenElement {
                 animTimer = 0;
             }
         } else {
-            centerImage(g, Sprite.getImage("next").getScaledInstance((int)scale*19/8, (int)scale*13/16, Image.SCALE_SMOOTH), w.getWidth()/2, w.getHeight()/2);
+            double hww = w.getWidth() / 2.0;
+            double hwh = w.getHeight() / 2.0;
+            scale = Math.sqrt(hww * hwh) / 5;
+
+            centerImage(g, Sprite.getImage("next").getScaledInstance((int) scale * 19 / 8, (int) scale * 13 / 16,
+                    Image.SCALE_SMOOTH), w.getWidth() / 2, w.getHeight() / 2);
             int[] mouse;
             while ((mouse = w.nextMouse()) != null) {
-                if (isClicked(Sprite.getImage("next"), (int)scale*19/8, (int)scale*13/16, w.getWidth()/2, w.getHeight()/2, mouse)) {
+                if (isClicked(Sprite.getImage("next"), (int) scale * 19 / 8, (int) scale * 13 / 16, w.getWidth() / 2,
+                        w.getHeight() / 2, mouse)) {
                     System.out.println("CLICKED!");
                 }
             }
