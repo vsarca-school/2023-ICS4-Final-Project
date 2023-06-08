@@ -19,7 +19,6 @@ public class Lesson implements Serializable, ScreenElement {
     private static final int DELAY = 3;
     private double scale;
     private Font font;
-    private Image backImage;
 
     public Lesson(String title, String[] texts, int[] slides, String background, String[] images, String nextLesson) {
         this.title = title;
@@ -93,7 +92,7 @@ public class Lesson implements Serializable, ScreenElement {
     }
 
     public void heading(Graphics g, Window w, Color c, Font font) {
-        int size = maxFontSize(g, title, w.getWidth() * 15 / 16, w.getHeight()/2, font);
+        int size = maxFontSize(g, title, w.getWidth() * 15 / 16, w.getHeight() / 2, font);
         Font temp = font.deriveFont(Font.PLAIN, size);
         centerString(g, c, title, w.getWidth() / 2, w.getHeight() / 3, w.getWidth(), size, temp);
     }
@@ -125,11 +124,21 @@ public class Lesson implements Serializable, ScreenElement {
         return optimalSize;
     }
 
-    public boolean isClicked(Image image, int scaleX, int scaleY, int x, int y, int[] mouse) {
-        int newWidth = (int) (scaleX / 2);
-        int newHeight = (int) (scaleY / 2);
-        return (mouse[0] > x - newWidth && mouse[0] < x + newWidth && mouse[1] > y - newHeight
-                && mouse[1] < y + newHeight);
+    /*
+     * public boolean isClicked(Image image, int scaleX, int scaleY, int x, int y,
+     * int[] mouse) {
+     * int newWidth = (int) (scaleX / 2);
+     * int newHeight = (int) (scaleY / 2);
+     * return (mouse[0] > x - newWidth && mouse[0] < x + newWidth && mouse[1] > y -
+     * newHeight
+     * && mouse[1] < y + newHeight);
+     * }
+     */
+
+    public boolean isClicked(Image image, int x, int y, int[] mouse) {
+        int width = image.getWidth(null) / 2;
+        int height = image.getHeight(null) / 2;
+        return (mouse[0] > x - width && mouse[0] < x + width && mouse[1] > y - height && mouse[1] < y + height);
     }
 
     public void addToWindow(Window w) {
@@ -141,13 +150,18 @@ public class Lesson implements Serializable, ScreenElement {
     }
 
     public void update(Window w, Graphics g) {
-        /*if (backImage == null || backImage.getWidth(null) != w.getWidth() || backImage.getHeight(null) != w.getHeight()) {
-            int width = Sprite.getImage(background).getWidth();
-            int height = Sprite.getImage(background).getHeight();
-            double fit = Math.max((double)w.getWidth() / width, (double)w.getHeight() / height);
-            backImage = Sprite.getImage(background).getScaledInstance((int)(fit*width), (int)(fit*height), Image.SCALE_SMOOTH);
-        }*/
-        
+        /*
+         * if (backImage == null || backImage.getWidth(null) != w.getWidth() ||
+         * backImage.getHeight(null) != w.getHeight()) {
+         * int width = Sprite.getImage(background).getWidth();
+         * int height = Sprite.getImage(background).getHeight();
+         * double fit = Math.max((double)w.getWidth() / width, (double)w.getHeight() /
+         * height);
+         * backImage = Sprite.getImage(background).getScaledInstance((int)(fit*width),
+         * (int)(fit*height), Image.SCALE_SMOOTH);
+         * }
+         */
+
         centerImage(g, Sprite.getScaledBackground(background), w.getWidth() / 2, w.getHeight() / 2);
 
         if (currentStringIndex < 0) {
@@ -164,7 +178,10 @@ public class Lesson implements Serializable, ScreenElement {
             scale = Math.sqrt(hww * hwh) / 5;
 
             if (posIndex < positions.length && positions[posIndex] > currentStringIndex) {
-                centerImage(g, Sprite.getImage(images[posIndex]), w.getWidth() / 2, w.getHeight() / 2);
+                centerImage(g, Sprite.getScaledImage(images[posIndex]), w.getWidth() / 2, w.getHeight() / 2); // Scaled
+                                                                                                              // this,
+                                                                                                              // idk if
+                                                                                                              // intended?
             } else {
                 posIndex++;
             }
@@ -223,11 +240,18 @@ public class Lesson implements Serializable, ScreenElement {
             double hwh = w.getHeight() / 2.0;
             scale = Math.sqrt(hww * hwh) / 5;
 
-            centerImage(g, Sprite.getImage("next").getScaledInstance((int) scale * 19 / 8, (int) scale * 13 / 16,
-                    Image.SCALE_SMOOTH), w.getWidth() / 2, w.getHeight() / 2);
+            // centerImage(g, Sprite.getImage("next").getScaledInstance((int) scale * 19 /
+            // 8, (int) scale * 13 / 16,
+            // Image.SCALE_SMOOTH), w.getWidth() / 2, w.getHeight() / 2);
+            centerImage(g, Sprite.getScaledImage("next"), w.getWidth() / 2, w.getHeight() / 2);
             int[] mouse;
             while ((mouse = w.nextMouse()) != null) {
-                if (isClicked(Sprite.getImage("next"), (int) scale * 19 / 8, (int) scale * 13 / 16, w.getWidth() / 2,
+                /*
+                 * if (isClicked(Sprite.getImage("next"), (int) scale * 19 / 8, (int) scale * 13
+                 * / 16, w.getWidth() / 2,
+                 * w.getHeight() / 2, mouse)) {
+                 */
+                if (isClicked(Sprite.getScaledImage("next"), w.getWidth() / 2,
                         w.getHeight() / 2, mouse)) {
                     System.out.println("CLICKED!");
                 }
