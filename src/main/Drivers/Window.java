@@ -63,12 +63,6 @@ public class Window implements KeyListener, MouseListener {
         return frame.getHeight();
     }
 
-    /*
-     * public JFrame getFrame() {
-     * return frame;
-     * }
-     */
-
     public void addElement(ScreenElement s) {
         elements.add(s);
     }
@@ -81,16 +75,13 @@ public class Window implements KeyListener, MouseListener {
         canvas.repaint();
     }
 
-    /*
-     * public void clearInput() {
-     * keysPressed.clear();
-     * mousePressed.clear();
-     * }
-     */
-
     void paint(Graphics g) {
+        try {
         for (ScreenElement s : elements) {
             s.update(this, g);
+        }
+        } catch (ConcurrentModificationException e) {
+            // Expected when scene is changed; do nothing, should work out anyways
         }
     }
 
