@@ -33,7 +33,7 @@ public class MainMenu extends ScreenElement {
             if (isClicked(Sprite.getScaledImage("play"), scale, (int) (hww), (int) (hwh), mouse)) {
                 Main.changeScene(2);
             } else if (isClicked(Sprite.getScaledImage("quit"), scale, (int) (hww), (int) (hwh + 16 * scale), mouse)) {
-                Main.changeScene(1);
+                Main.changeScene(-1);
             }
         }
     }

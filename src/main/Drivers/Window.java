@@ -91,6 +91,10 @@ public class Window implements KeyListener, MouseListener {
         canvas.repaint();
     }
 
+    public void close() {
+        frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+    }
+
     void paint(Graphics g) {
         try {
         for (ScreenElement s : elements) {
