@@ -3,6 +3,12 @@ package src.main.Drivers;
 import java.awt.Graphics;
 
 public class ActionPlayer extends Player {
+    private int health;
+
+    public ActionPlayer(int health) {
+        this.health = health;
+    }
+
     /**
      * - Victor
      */
