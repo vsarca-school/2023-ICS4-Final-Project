@@ -23,7 +23,7 @@ public class LessonCreator {
         String[] images = {"quit", "logo"};
         String next = "Lesson-2.lsn";
         // Create level 1
-        Lesson l1 = new Lesson(strs, pos, images, next);
+        Lesson l1 = new Lesson("Lesson 1: TEMPORARY PLACEHOLDER", strs, pos, "raymond", images, next);
         
         // Save level 1
         out = new ObjectOutputStream(new FileOutputStream("src/main/Lessons/Lesson-1.lsn"));
