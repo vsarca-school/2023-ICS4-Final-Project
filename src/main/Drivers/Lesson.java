@@ -142,6 +142,10 @@ public class Lesson implements Serializable, ScreenElement {
     }
 
     public void addToWindow(Window w) {
+        try {
+            font = Font.createFont(Font.TRUETYPE_FONT, new File("src/main/Fonts/VCR_OSD_MONO_1.001.ttf"));
+        } catch (Exception e) {
+        }
         w.addElement(this);
     }
 
