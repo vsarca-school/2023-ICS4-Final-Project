@@ -53,6 +53,12 @@ public class Window implements KeyListener, MouseListener {
         frame.addKeyListener(this);
         frame.addMouseListener(this);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.addComponentListener(new ComponentAdapter() {
+            public void componentResized(ComponentEvent componentEvent) {
+                Sprite.updateScale(frame.getWidth(), frame.getHeight());
+            }
+        });
+        Sprite.updateScale(width, height);
     }
 
     public int getWidth() {
