@@ -10,8 +10,6 @@ import src.main.Scenes.*;
 public class Main {
     static Window w;
 
-    static Player p;
-
     static MainMenu m;
     static Options o;
     static LessonScene l;
@@ -40,13 +38,11 @@ public class Main {
         // Create all objects necessary
         w = new Window("Timber Trek", 800, 600);
 
-        p = new Player();
-
         m = new MainMenu();
         o = new Options();
         l = new LessonScene();
-        z = new Maze(p);
-        a = new ActionLevel(p);
+        z = new Maze();
+        a = new ActionLevel();
         e = new EndScreen();
 
         currentSceneNum = 0;

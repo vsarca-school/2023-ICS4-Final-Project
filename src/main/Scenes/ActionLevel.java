@@ -7,14 +7,14 @@ import src.main.Main;
 import src.main.Drivers.*;
 
 public class ActionLevel extends ScreenElement {
-    private Player p;
+    private ActionPlayer p;
     private Level l;
     private int playerHealth = 110;
     private int wolfAmount = (int)(Math.random()*5)+1;
     private int[] wolfHealth = new int[wolfAmount];
 
-    public ActionLevel(Player pl) {
-        p = pl;
+    public ActionLevel() {
+        p = new ActionPlayer();
         l = Level.fromFile("src/main/Levels/Level-1.lvl");
     }
 

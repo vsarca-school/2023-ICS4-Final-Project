@@ -24,10 +24,11 @@ public class LevelCreator {
         objects = new String[40][40];
         for (int i=0; i<40; i++)
         {
-            for (int j=0; j<10; j++)
+            for (int j=0; j<40; j++)
             {
                 int temp = (int)(Math.random()*4);
-                ground[i][j] = "grass-"+temp;
+                if ((i+j)%2 == 0) ground[i][j] = "grass-"+temp;
+                else ground[i][j] = "dirt-"+(60+temp);
             }
         }
         px = 5;
