@@ -92,23 +92,18 @@ public class Player extends ScreenElement {
         // Calculate scaling and centering
         double hww = w.getWidth() / 2.0;
         double hwh = w.getHeight() / 2.0;
-        scale = Math.sqrt(hww * hwh) / 5;
+        scale = Sprite.getTileScale()*16;
         hww -= scale / 2;
         hwh -= scale / 2;
         // Render player
-        animation = (animation + 1) % 20;
+        animation = (animation + 1) % 32;
 
         String cur;
         if (walking)
-            cur = animations[direction][animation / 5];
+            cur = animations[direction][animation / 8];
         else
             cur = animations[direction][0];
 
-        /*
-         * g.drawImage(Sprite.getTile(cur).getScaledInstance((int) scale + 1, (int)
-         * scale + 1,
-         * Image.SCALE_SMOOTH), (int) hww, (int) hwh, null);
-         */
         g.drawImage(Sprite.getScaledTile(cur), (int) hww, (int) hwh, null);
     }
 }
