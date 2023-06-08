@@ -7,24 +7,21 @@ import src.main.Drivers.*;
 
 public class MainMenu implements ScreenElement {
     public void update(Window w, Graphics g) {
+        // Find scaling
         double hww = w.getWidth() / 2.0;
         double hwh = w.getHeight() / 2.0;
-        double scale = Math.sqrt(hww * hwh) / 5;
-        g.drawImage(Sprite.getImage("TitleScreen").getScaledInstance((int) scale * 18 + 1, (int) (scale * 9 + 1),
-                Image.SCALE_SMOOTH), (int) (hww - 9 * scale), (int) (hwh - 5 * scale), null);
-        g.drawImage(Sprite.getImage("timbertrek").getScaledInstance((int) scale * 9 + 1, (int) scale + 1,
-                Image.SCALE_SMOOTH), (int) (hww - 4.65 * scale), (int) (hwh - 2.5 * scale), null);
-        for (int i = 0; i < 5; i++) {
-            g.drawImage(
-                    Sprite.getTile("vine-0").getScaledInstance((int) scale + 1, (int) scale + 1, Image.SCALE_SMOOTH),
-                    (int) (hww + (i - 2.5) * scale), (int) (hwh - 1.5 * scale), null);
-        }
-        g.drawImage(Sprite.getImage("play").getScaledInstance((int) scale * 2 + 1, (int) scale + 1, Image.SCALE_SMOOTH),
-                (int) (hww - 1 * scale), (int) (hwh - 0.5 * scale), null);
-        g.drawImage(Sprite.getImage("quit").getScaledInstance((int) scale * 2 + 1, (int) scale + 1, Image.SCALE_SMOOTH),
-                (int) (hww - 1 * scale), (int) (hwh + 0.6 * scale), null);
+        double scale = Math.min(hww / 64, hwh / 48);
+        double screenFit = Math.max(hww / 64, hwh / 48);
 
-        // Get bounding boxes for buttons
+        // Draw screen
+        drawImage(g, Sprite.getImage("TitleScreen"), screenFit, (int)hww, (int)hwh);
+        drawImage(g, Sprite.getImage("timbertrek"), scale, (int) (hww), (int) (hwh - 32 * scale));
+        for (int i = 0; i < 5; i++) {
+            drawImage(g, Sprite.getTile("vine-0"), scale, (int) (hww + (16 * i - 32) * scale),
+                    (int) (hwh - 16 * scale));
+        }
+        drawImage(g, Sprite.getImage("play"), scale, (int) (hww), (int) (hwh));
+        drawImage(g, Sprite.getImage("quit"), scale, (int) (hww), (int) (hwh + 16 * scale));
 
         // Check for input
         int[] mouse;
@@ -35,8 +32,8 @@ public class MainMenu implements ScreenElement {
     }
 
     private void drawImage(Graphics g, Image image, double scale, int x, int y) {
-        int newWidth = (int) (scale * image.getWidth(null));
-        int newHeight = (int) (scale * image.getHeight(null));
+        int newWidth = (int) (scale * image.getWidth(null)) + 1;
+        int newHeight = (int) (scale * image.getHeight(null)) + 1;
         g.drawImage(image.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH), x - newWidth / 2,
                 y - newHeight / 2, null);
     }
