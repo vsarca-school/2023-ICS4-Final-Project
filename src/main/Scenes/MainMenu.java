@@ -14,8 +14,8 @@ public class MainMenu implements ScreenElement {
         // Find scaling
         double hww = w.getWidth() / 2.0;
         double hwh = w.getHeight() / 2.0;
-        double scale = Math.min(hww / 64, hwh / 48);
-        double screenFit = Math.max(hww / 64, hwh / 48);
+        double scale = Sprite.getImageScale();
+        double screenFit = Sprite.getBgScale();
 
         // Draw screen
         drawImage(g, Sprite.getScaledBackground("TitleScreen"), screenFit, (int) hww, (int) hwh);
@@ -48,8 +48,8 @@ public class MainMenu implements ScreenElement {
          */
         int width = image.getWidth(null) / 2;
         int height = image.getHeight(null) / 2;
-        g.drawImage(image, x - width / 2,
-                y - height / 2, null);
+        g.drawImage(image, x - width,
+                y - height, null);
     }
 
     private boolean isClicked(Image image, double scale, int x, int y, int[] mouse) {

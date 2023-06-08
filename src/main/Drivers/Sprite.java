@@ -1,6 +1,6 @@
 package src.main.Drivers;
 
-import java.awt.Image;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -62,27 +62,51 @@ public class Sprite {
     }
 
     public static void updateScale(int windowWidth, int windowHeight) {
-        tileScale = Math.sqrt(windowWidth * windowHeight) / 160;
-        imageScale = Math.min(windowWidth / 128, windowHeight / 96);
-        bgScale = Math.max(windowWidth / 128, windowHeight / 96);
+        tileScale = Math.sqrt(windowWidth * windowHeight) / 160.0;
+        imageScale = Math.min(windowWidth / 128.0, windowHeight / 96.0);
+        bgScale = Math.max(windowWidth / 128.0, windowHeight / 96.0);
 
         BufferedImage temp;
+        Image tkImage;
+        int width, height;
         for (Map.Entry<String, BufferedImage> e : tiles.entrySet()) {
             temp = e.getValue();
-            scaledTiles.put(e.getKey(), (BufferedImage) (temp.getScaledInstance((int) (tileScale * temp.getWidth()) + 1,
-                    (int) (tileScale * temp.getHeight()) + 1, Image.SCALE_SMOOTH)));
+            width = (int) (tileScale * temp.getWidth()) + 1;
+            height = (int) (tileScale * temp.getHeight()) + 1;
+            tkImage = temp.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+
+            temp = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+            Graphics g = temp.getGraphics();
+            g.drawImage(tkImage, 0, 0, null);
+            g.dispose();
+
+            scaledTiles.put(e.getKey(), temp);
         }
         for (Map.Entry<String, BufferedImage> e : images.entrySet()) {
             temp = e.getValue();
-            scaledImages.put(e.getKey(),
-                    (BufferedImage) (temp.getScaledInstance((int) (imageScale * temp.getWidth()) + 1,
-                            (int) (imageScale * temp.getHeight()) + 1, Image.SCALE_SMOOTH)));
+            width = (int) (tileScale * temp.getWidth()) + 1;
+            height = (int) (tileScale * temp.getHeight()) + 1;
+            tkImage = temp.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+
+            temp = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+            Graphics g = temp.getGraphics();
+            g.drawImage(tkImage, 0, 0, null);
+            g.dispose();
+
+            scaledImages.put(e.getKey(), temp);
         }
         for (Map.Entry<String, BufferedImage> e : backgrounds.entrySet()) {
             temp = e.getValue();
-            scaledBackgrounds.put(e.getKey(),
-                    (BufferedImage) (temp.getScaledInstance((int) (bgScale * temp.getWidth()) + 1,
-                            (int) (bgScale * temp.getHeight()) + 1, Image.SCALE_SMOOTH)));
+            width = (int) (tileScale * temp.getWidth()) + 1;
+            height = (int) (tileScale * temp.getHeight()) + 1;
+            tkImage = temp.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+
+            temp = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+            Graphics g = temp.getGraphics();
+            g.drawImage(tkImage, 0, 0, null);
+            g.dispose();
+
+            scaledBackgrounds.put(e.getKey(), temp);
         }
     }
 
