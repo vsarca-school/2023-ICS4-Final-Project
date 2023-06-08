@@ -18,7 +18,6 @@ public class Main {
     static Maze z;
     static ActionLevel a;
     static EndScreen e;
-    static Combat c;
 
     static ScreenElement currentScene;
     static int currentSceneNum;
