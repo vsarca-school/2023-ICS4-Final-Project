@@ -104,6 +104,12 @@ public class Lesson implements Serializable, ScreenElement {
         return optimalSize;
     }
 
+    public boolean isClicked(Image image, int scaleX, int scaleY, int x, int y, int[] mouse) {
+        int newWidth = (int) (scaleX * image.getWidth(null) / 2);
+        int newHeight = (int) (scaleY * image.getHeight(null) / 2);
+        return (mouse[0] > x - newWidth && mouse[0] < x + newWidth && mouse[1] > y - newHeight && mouse[1] < y + newHeight);
+    }    
+
     public void addToWindow(Window w) {
         w.addElement(this);
     }
@@ -179,7 +185,13 @@ public class Lesson implements Serializable, ScreenElement {
                 animTimer = 0;
             }
         } else {
-            centerImage(g, Sprite.getImage("next").getScaledInstance((int)scale*19 / 8, (int)scale*13 / 16, Image.SCALE_SMOOTH), w.getWidth()/2, w.getHeight()/2);
+            centerImage(g, Sprite.getImage("next").getScaledInstance((int)scale*19/8, (int)scale*13/16, Image.SCALE_SMOOTH), w.getWidth()/2, w.getHeight()/2);
+            int[] mouse;
+            while ((mouse = w.nextMouse()) != null) {
+                if (isClicked(Sprite.getImage("next"), (int)scale*19/8, (int)scale*13/16, w.getWidth()/2, w.getHeight()/2, mouse)) {
+                    System.out.println("CLICKED!");
+                }
+            }
         }
     }
 }
