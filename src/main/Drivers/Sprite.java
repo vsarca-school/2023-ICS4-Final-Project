@@ -97,8 +97,8 @@ public class Sprite {
         }
         for (Map.Entry<String, BufferedImage> e : backgrounds.entrySet()) {
             temp = e.getValue();
-            width = (int) (bgScale * temp.getWidth() / 2) + 1;
-            height = (int) (bgScale * temp.getHeight() / 2) + 1;
+            width = (int) (bgScale * temp.getWidth()) + 1;
+            height = (int) (bgScale * temp.getHeight()) + 1;
             tkImage = temp.getScaledInstance(width, height, Image.SCALE_SMOOTH);
 
             temp = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);

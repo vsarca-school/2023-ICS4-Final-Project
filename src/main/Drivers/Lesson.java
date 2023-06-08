@@ -163,10 +163,6 @@ public class Lesson extends ScreenElement implements Serializable {
          */
 
         centerImage(g, Sprite.getScaledBackground(background), w.getWidth() / 2, w.getHeight() / 2);
-        g.drawOval(-1, -1, 3, 3);
-        g.drawOval(w.getWidth()-1, w.getHeight()-1, 3, 3);
-
-        g.drawOval(w.getWidth()/2-1, w.getHeight()/2-1, 3, 3);
 
         if (currentStringIndex < 0) {
             heading(g, w, Color.BLACK, font);
@@ -255,6 +251,7 @@ public class Lesson extends ScreenElement implements Serializable {
                  * / 16, w.getWidth() / 2,
                  * w.getHeight() / 2, mouse)) {
                  */
+                g.drawOval(mouse[0]-1, mouse[1]-1, 3, 3);
                 if (isClicked(Sprite.getScaledImage("next"), w.getWidth() / 2,
                         w.getHeight() / 2, mouse)) {
                     System.out.println("CLICKED!");

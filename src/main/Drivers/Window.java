@@ -44,7 +44,7 @@ public class Window implements KeyListener, MouseListener {
     private boolean[] keysdown = new boolean[4]; // Stores whether key is up or down, 0-3 are up left down right
     private Queue<int[]> mouseclicks = new ArrayDeque<>(); // Stores the location of mouse clicks, only left click
     int width, height;
-    boolean hasUpdated;
+    boolean hasUpdated = true;
 
     public Window(String name, int width, int height) {
         frame = new JFrame(name);
@@ -56,9 +56,6 @@ public class Window implements KeyListener, MouseListener {
         frame.addMouseListener(this);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.addComponentListener(new WindowResizeListener(this));
-        Sprite.updateScale(width, height);
-        this.width = width;
-        this.height = height;
     }
 
     void hasUpdated() {
@@ -87,8 +84,8 @@ public class Window implements KeyListener, MouseListener {
         if (hasUpdated)
         {
             hasUpdated = false;
-            width = frame.getWidth();
-            height = frame.getHeight();
+            width = frame.getWidth() - 16;
+            height = frame.getHeight() - 39;
             Sprite.updateScale(width, height);
         }
         canvas.repaint();
