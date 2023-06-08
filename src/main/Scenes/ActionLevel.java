@@ -6,7 +6,7 @@ import java.util.Random;
 import src.main.Main;
 import src.main.Drivers.*;
 
-public class ActionLevel implements ScreenElement {
+public class ActionLevel extends ScreenElement {
     private Player p;
     private Level l;
     private int playerHealth = 110;
@@ -17,9 +17,6 @@ public class ActionLevel implements ScreenElement {
         p = pl;
         l = Level.fromFile("src/main/Levels/Level-1.lvl");
         p.joinLevel(l);
-    }
-
-    public void update(Window w, Graphics g) {
     }
 
     public void addToWindow(Window w) {

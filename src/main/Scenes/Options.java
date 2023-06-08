@@ -12,7 +12,7 @@ import src.main.Drivers.Window;
 
 // TODO: MAKE IT SEE THROUGH BY ADDING "PAUSE" METHOD TO SCREEN ELEMENTS
 
-public class Options implements ScreenElement {
+public class Options extends ScreenElement {
     private int previousScene;
 
     public void update(Window w, Graphics g) {
@@ -69,13 +69,5 @@ public class Options implements ScreenElement {
 
     public void previousScene(int previousScene) {
         this.previousScene = previousScene;
-    }
-
-    public void addToWindow(Window w) {
-        w.addElement(this);
-    }
-
-    public void removeFromWindow(Window w) {
-        w.removeElement(this);
     }
 }

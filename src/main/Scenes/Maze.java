@@ -5,7 +5,7 @@ import java.awt.Graphics;
 import src.main.Main;
 import src.main.Drivers.*;
 
-public class Maze implements ScreenElement {
+public class Maze extends ScreenElement {
     private Player p;
     private Level l;
 
