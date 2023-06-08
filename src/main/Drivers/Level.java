@@ -8,7 +8,7 @@ import java.io.*;
  * All of this class
  * - Victor
  */
-public class Level extends ScreenElement implements Serializable  {
+public class Level extends ScreenElement implements Serializable {
     /**
      * This hash table is copied from Victor's noise generation programs
      * This is the hash table used by Ken Perlin for his algorithms as well as many
@@ -101,7 +101,7 @@ public class Level extends ScreenElement implements Serializable  {
         // Calculate scaling and centering
         double hww = w.getWidth() / 2.0;
         double hwh = w.getHeight() / 2.0;
-        double scale = Math.sqrt(hww * hwh) / 5;
+        double scale = Sprite.getTileScale();
         double hwwt = hww / scale;
         double hwht = hwh / scale;
         hww -= scale / 2;
@@ -122,40 +122,18 @@ public class Level extends ScreenElement implements Serializable  {
         for (int i = start_i; i <= max_x; i++, new_x += scale) {
             new_y = start_y;
             for (int j = start_j; j <= max_y; j++, new_y += scale) {
-                /*g.drawImage(
-                        Sprite.getTile(getFloor(i, j)).getScaledInstance((int) scale + 1, (int) scale + 1,
-                                Image.SCALE_SMOOTH),
-                        (int) new_x, (int) new_y, null);
+                g.drawImage(Sprite.getScaledTile(getFloor(i, j)), (int) new_x, (int) new_y, null);
                 String temp = getBlock(i, j);
                 if (temp == null)
                     continue;
-                g.drawImage(
-                        Sprite.getTile(temp).getScaledInstance((int) scale + 1, (int) scale + 1,
-                                Image.SCALE_SMOOTH),
-                        (int) new_x, (int) new_y, null);*/
-                g.drawImage(
-                        Sprite.getScaledTile(getFloor(i, j)),
-                        (int) new_x, (int) new_y, null);
-                String temp = getBlock(i, j);
-                if (temp == null)
-                    continue;
-                g.drawImage(
-                        Sprite.getScaledTile(temp),
-                        (int) new_x, (int) new_y, null);
+                g.drawImage(Sprite.getScaledTile(temp), (int) new_x, (int) new_y, null);
             }
         }
 
         // Render floor
         for (int i = 0; i < ground.length; i++) {
             for (int j = 0; j < ground[i].length; j++) {
-                /*g.drawImage(
-                        Sprite.getTile(ground[i][j]).getScaledInstance((int) scale + 1, (int) scale + 1,
-                                Image.SCALE_SMOOTH),
-                        (int) (hww + scale * (i - px)),
-                        (int) (hwh + scale * (j - py)), null);*/
-                g.drawImage(
-                        Sprite.getScaledTile(ground[i][j]),
-                        (int) (hww + scale * (i - px)),
+                g.drawImage(Sprite.getScaledTile(ground[i][j]), (int) (hww + scale * (i - px)),
                         (int) (hwh + scale * (j - py)), null);
             }
         }
@@ -164,14 +142,7 @@ public class Level extends ScreenElement implements Serializable  {
             for (int j = 0; j < objects[i].length; j++) {
                 if (objects[i][j] == null)
                     continue;
-                    /*g.drawImage(
-                            Sprite.getTile(objects[i][j]).getScaledInstance((int) scale + 1, (int) scale + 1,
-                                    Image.SCALE_SMOOTH),
-                            (int) (hww + scale * (i - px)),
-                            (int) (hwh + scale * (j - py)), null);*/
-                    g.drawImage(
-                        Sprite.getScaledTile(objects[i][j]),
-                        (int) (hww + scale * (i - px)),
+                g.drawImage(Sprite.getScaledTile(objects[i][j]), (int) (hww + scale * (i - px)),
                         (int) (hwh + scale * (j - py)), null);
             }
         }
