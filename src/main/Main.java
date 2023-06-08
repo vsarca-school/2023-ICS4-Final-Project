@@ -14,7 +14,7 @@ public class Main {
 
     static MainMenu m;
     static Options o;
-    static Lesson l;
+    static LessonScene l;
     static Maze z;
     static ActionLevel a;
     static EndScreen e;
@@ -42,13 +42,13 @@ public class Main {
 
         m = new MainMenu();
         o = new Options();
-        l = Lesson.fromFile("src/main/Lessons/Lesson-1.lsn");
+        l = new LessonScene();
         z = new Maze(p);
         a = new ActionLevel(p);
         e = new EndScreen();
 
         currentSceneNum = 0;
-        currentScene = o; // TODO: change back to menu when done debugging
+        currentScene = m; // TODO: change back to menu when done debugging
 
         currentScene.addToWindow(w);
 

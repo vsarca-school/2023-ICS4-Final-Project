@@ -51,7 +51,7 @@ public class Test {
         int[] pos = {3, 5};
         String[] images = {"raymond", "logo"};
         // Create level 1
-        Lesson l1 = new Lesson(strs, pos, images);
+        Lesson l1 = new Lesson(strs, pos, images, "Lesson-2.lsn");
         z = new Maze(p);
         a = new ActionLevel(p);
         ScreenElement currentScene = l1; // TODO: change back to menu when done debugging

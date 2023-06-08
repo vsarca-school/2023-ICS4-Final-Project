@@ -1,7 +1,8 @@
 package src.main.Lessons;
 
-import src.main.Scenes.Lesson;
 import java.io.*;
+
+import src.main.Drivers.Lesson;
 /**
  * - Victor
  */
@@ -20,8 +21,9 @@ public class LessonCreator {
                          "Focus on a landmark and walk towards it, you have a higher chance of rescue if you walk in a straight line rather than a circle."};
         int[] pos = {3, 5};
         String[] images = {"quit", "logo"};
+        String next = "Lesson-2.lsn";
         // Create level 1
-        Lesson l1 = new Lesson(strs, pos, images);
+        Lesson l1 = new Lesson(strs, pos, images, next);
         
         // Save level 1
         out = new ObjectOutputStream(new FileOutputStream("src/main/Lessons/Lesson-1.lsn"));

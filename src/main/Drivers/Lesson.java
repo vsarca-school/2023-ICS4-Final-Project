@@ -1,7 +1,6 @@
-package src.main.Scenes;
+package src.main.Drivers;
 
 import src.main.Drivers.*;
-import src.main.Drivers.Window;
 
 import java.awt.*;
 import java.io.*;
@@ -10,19 +9,22 @@ public class Lesson implements Serializable, ScreenElement {
     private String[] texts;
     private int[] positions;
     private String[] images;
+    private String nextLesson;
+
     private int currentIndex = 0;
     private int currentStringIndex = 0;
     private int posIndex = 0;
-    private int timer;
-    private int animTimer;
-    private final int DELAY = 3;
+    private int timer = 0;
+    private int animTimer = 0;
+    private static final int DELAY = 3;
     private double scale;
     private Font font;
 
-    public Lesson(String[] texts, int[] slides, String[] images) {
+    public Lesson(String[] texts, int[] slides, String[] images, String nextLesson) {
         this.texts = texts;
         this.positions = slides;
         this.images = images;
+        this.nextLesson = nextLesson;
     }
 
     public static Lesson fromFile(String file) {
@@ -37,6 +39,12 @@ public class Lesson implements Serializable, ScreenElement {
             e.printStackTrace();
         }
         return lesson;
+    }
+
+    public Lesson nextLesson() {
+        if (nextLesson != null)
+            return Lesson.fromFile(nextLesson);
+        return null;
     }
 
     public void centerImage(Graphics g, Image image, int x, int y) {

@@ -3,6 +3,7 @@ package src.main.Scenes;
 import java.awt.Graphics;
 import java.awt.Image;
 
+import src.main.Main;
 import src.main.Drivers.*;
 
 public class MainMenu implements ScreenElement {
@@ -14,7 +15,7 @@ public class MainMenu implements ScreenElement {
         double screenFit = Math.max(hww / 64, hwh / 48);
 
         // Draw screen
-        drawImage(g, Sprite.getImage("TitleScreen"), screenFit, (int)hww, (int)hwh);
+        drawImage(g, Sprite.getImage("TitleScreen"), screenFit, (int) hww, (int) hwh);
         drawImage(g, Sprite.getImage("timbertrek"), scale, (int) (hww), (int) (hwh - 32 * scale));
         for (int i = 0; i < 5; i++) {
             drawImage(g, Sprite.getTile("vine-0"), scale, (int) (hww + (16 * i - 32) * scale),
@@ -26,8 +27,11 @@ public class MainMenu implements ScreenElement {
         // Check for input
         int[] mouse;
         while ((mouse = w.nextMouse()) != null) {
-            if (mouse[0] > 0)
-                ;
+            if (isClicked(Sprite.getImage("play"), scale, (int) (hww), (int) (hwh), mouse)) {
+                Main.changeScene(2);
+            } else if (isClicked(Sprite.getImage("quit"), scale, (int) (hww), (int) (hwh + 16 * scale), mouse)) {
+                Main.changeScene(1);
+            }
         }
     }
 

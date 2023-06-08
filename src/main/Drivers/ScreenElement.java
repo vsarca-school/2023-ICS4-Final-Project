@@ -1,8 +1,6 @@
 package src.main.Drivers;
 import java.awt.*;
 
-import src.main.Scenes.Lesson;
-
 /**
  * This is an interface implemented by all class which will draw to the screen
  *      - Victor
