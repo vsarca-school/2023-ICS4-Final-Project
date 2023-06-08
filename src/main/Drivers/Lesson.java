@@ -71,10 +71,10 @@ public class Lesson extends ScreenElement implements Serializable {
         g.setColor(c);
         g.fillRect(startX, startY, w, h);
         g.setColor(Color.WHITE);
-        g.fillRect(startX + (int) scale / 8, startY + (int) scale / 8, w - (int) scale / 4, h - (int) scale / 4);
+        g.fillRect(startX + (int) scale * 2, startY + (int) scale * 2, w - (int) scale * 4, h - (int) scale * 4);
         g.setColor(c);
-        g.fillRect(startX + (int) scale * 3 / 16, startY + (int) scale * 3 / 16, w - (int) scale * 3 / 8,
-                h - (int) scale * 3 / 8);
+        g.fillRect(startX + (int) scale * 3, startY + (int) scale * 3, w - (int) scale * 6,
+                h - (int) scale * 6);
     }
 
     public void centerString(Graphics g, Color c, String text, int x, int y, int maxWidth, int lineHeight, Font font) {
