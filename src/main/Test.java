@@ -49,11 +49,9 @@ public class Test {
                          "When you have no other options left, remember to walk in a straight line,\nas people tend to walk in circles and get even more lost.",
                          "Focus on a landmark and walk towards it, you have a higher chance of\nrescue as you will find a way out eventually."};
         int[] pos = {3, 5};
-        String[] images = {"quit", "logo"};
+        String[] images = {"droplet", "logo"};
         // Create level 1
         Lesson l1 = new Lesson("Finding Food", strs, pos, "map", images, "Lesson-2.lsn");
-        z = new Maze(p);
-        a = new ActionLevel(p);
         ScreenElement currentScene = l1; // TODO: change back to menu when done debugging
 
         currentScene.addToWindow(w);

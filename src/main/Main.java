@@ -22,6 +22,8 @@ public class Main {
     static ScreenElement currentScene;
     static int currentSceneNum;
 
+    static boolean running = true;
+
     /**
      * Control for the entire program, however, each individual object is
      * responsible for its own control
@@ -52,14 +54,18 @@ public class Main {
 
         currentScene.addToWindow(w);
 
-        while (true) {
+        while (running) {
             w.update();
             w.tick(60);
         }
+        w.close();
     }
 
     public static void changeScene(int newScene) {
         switch (newScene) {
+            case -1:
+                running = false;
+                break;
             case 0:
                 currentScene.removeFromWindow(w);
                 currentScene = m;
