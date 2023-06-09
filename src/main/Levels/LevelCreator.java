@@ -150,7 +150,7 @@ public class LevelCreator {
         next = "Maze-2.lvl";
         scene = 0;
         questions = new Question[1];
-        questions[0] = new Question("TEST QUESTION", new String[]{"A: test", "B: test", "C: test", "d: test"});
+        questions[0] = new Question("TEST QUESTION", new String[]{"A: test", "B: test", "C: test", "d: test"}, 0, 3);
         // Save level 1
         l = new Level(ground, objects, px, py, next, scene, new int[0][0], questions);
         out = new ObjectOutputStream(new FileOutputStream("src/main/Levels/Maze-1.lvl"));
