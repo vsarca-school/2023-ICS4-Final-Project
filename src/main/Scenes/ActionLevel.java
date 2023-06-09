@@ -18,7 +18,7 @@ public class ActionLevel extends ScreenElement {
         int[][] start = l.getWolves();
         wolves = new Wolf[start.length];
         for (int i=0; i<start.length; i++) {
-            wolves[i] = new Wolf(start[i][0], start[i][1]);
+            wolves[i] = new Wolf(start[i][0], start[i][1], l);
         }
     }
 
