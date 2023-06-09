@@ -4,6 +4,13 @@ import java.awt.Graphics;
 
 import src.main.Scenes.ActionLevel;
 
+/**
+ * <h1>ActionPlayer Class</h1>
+ * Time spent: 2.1 hours
+ * @version 1.2
+ * @version 6/8/2023
+ * @author Radin Ahari
+ */
 public class ActionPlayer extends Player {
     private int health;
     private ActionLevel parent;
