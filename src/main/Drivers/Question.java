@@ -10,17 +10,24 @@ public class Question extends ScreenElement implements Serializable {
     private String question;
     private String[] answers;
     private int correct;
+    private int sx, sy;
 
     private double scale;
     private Font font;
 
-    public Question(String question, String[] answers, int correct) {
+    public Question(String question, String[] answers, int correct, int x, int y) {
         this.question = question;
         this.answers = answers;
         this.correct = correct;
+        this.sx = x;
+        this.sy = y;
     }
 
-    public static Question fromFile(String file) {
+    public boolean isAt(int x, int y) {
+        return x == sx && y == sy;
+    }
+
+    /*public static Question fromFile(String file) {
         Question q = null;
         try {
             ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
@@ -32,7 +39,7 @@ public class Question extends ScreenElement implements Serializable {
             e.printStackTrace();
         }
         return q;
-    }
+    }*/
 
     public void centerImage(Graphics g, Image image, int x, int y) {
         int imageWidth = image.getWidth(null);
@@ -172,36 +179,40 @@ public class Question extends ScreenElement implements Serializable {
             letter++;
         }
 
-        centerImage(g, Sprite.getScaledImage("A"), (int) (hww * 2 / 5), (int) (hwh * 7 / 5));
-        centerImage(g, Sprite.getScaledImage("B"), (int) (hww * 4 / 5), (int) (hwh * 7 / 5));
-        centerImage(g, Sprite.getScaledImage("C"), (int) (hww * 6 / 5), (int) (hwh * 7 / 5));
-        centerImage(g, Sprite.getScaledImage("D"), (int) (hww * 8 / 5), (int) (hwh * 7 / 5));
+        centerImage(g, Sprite.getScaledImage("a"), (int) (hww * 2 / 5), (int) (hwh * 7 / 5));
+        centerImage(g, Sprite.getScaledImage("b"), (int) (hww * 4 / 5), (int) (hwh * 7 / 5));
+        centerImage(g, Sprite.getScaledImage("c"), (int) (hww * 6 / 5), (int) (hwh * 7 / 5));
+        centerImage(g, Sprite.getScaledImage("d"), (int) (hww * 8 / 5), (int) (hwh * 7 / 5));
 
         int[] mouse;
         while ((mouse = w.nextMouse()) != null) {
-            if (isClicked(Sprite.getScaledImage("A"), (int) (hww * 2 / 5), (int) (hwh * 7 / 5), mouse)) {
-                if (correct == 1) {
-                    // answer
-                    System.out.println("correct");
-                }
+            if (isClicked(Sprite.getScaledImage("a"), (int) (hww * 2 / 5), (int) (hwh * 7 / 5), mouse)) {
+                if (correct == 0)
+                    Main.questionCorrect(true, sx, sy);
+                else
+                    Main.questionCorrect(false, sx, sy);
+                removeFromWindow(w);
             }
-            if (isClicked(Sprite.getScaledImage("B"), (int) (hww * 4 / 5), (int) (hwh * 7 / 5), mouse)) {
-                if (correct == 2) {
-                    // answer
-                    System.out.println("correct");
-                }
+            if (isClicked(Sprite.getScaledImage("b"), (int) (hww * 4 / 5), (int) (hwh * 7 / 5), mouse)) {
+                if (correct == 1)
+                    Main.questionCorrect(true, sx, sy);
+                else
+                    Main.questionCorrect(false, sx, sy);
+                removeFromWindow(w);
             }
-            if (isClicked(Sprite.getScaledImage("C"), (int) (hww * 6 / 5), (int) (hwh * 7 / 5), mouse)) {
-                if (correct == 3) {
-                    // answer
-                    System.out.println("correct");
-                }
+            if (isClicked(Sprite.getScaledImage("c"), (int) (hww * 6 / 5), (int) (hwh * 7 / 5), mouse)) {
+                if (correct == 2)
+                    Main.questionCorrect(true, sx, sy);
+                else
+                    Main.questionCorrect(false, sx, sy);
+                removeFromWindow(w);
             }
-            if (isClicked(Sprite.getScaledImage("D"), (int) (hww * 8 / 5), (int) (hwh * 7 / 5), mouse)) {
-                if (correct == 4) {
-                    // answer
-                    System.out.println("correct");
-                }
+            if (isClicked(Sprite.getScaledImage("d"), (int) (hww * 8 / 5), (int) (hwh * 7 / 5), mouse)) {
+                if (correct == 3)
+                    Main.questionCorrect(true, sx, sy);
+                else
+                    Main.questionCorrect(false, sx, sy);
+                removeFromWindow(w);
             }
         }
     }

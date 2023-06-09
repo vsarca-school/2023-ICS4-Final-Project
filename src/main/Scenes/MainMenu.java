@@ -38,10 +38,8 @@ public class MainMenu extends ScreenElement {
         int[] mouse;
         while ((mouse = w.nextMouse()) != null) {
             if (isClicked(Sprite.getScaledImage("play"), (int) (hww), (int) (hwh), mouse)) {
-                System.out.println("Play");
                 Main.changeScene(2);
             } else if (isClicked(Sprite.getScaledImage("quit"), (int) (hww), (int) (hwh + 16 * scale), mouse)) {
-                System.out.println("QUIt");
                 Main.changeScene(-1);
             }
         }
