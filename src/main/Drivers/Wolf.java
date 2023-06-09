@@ -39,17 +39,17 @@ public class Wolf extends ScreenElement {
         if (!isPaused()) {
             if (!walking) {
                 orient();
-                collide();
-            } else if (interpolation < 8) {
+                collide(w);
+            } else if (interpolation < 16) {
                 interpolation++;
                 // Do some interpolation in walking between tiles
-                realx += directions[direction][0] / 8.0;
-                realy += directions[direction][1] / 8.0;
+                realx += directions[direction][0] / 16.0;
+                realy += directions[direction][1] / 16.0;
             } else {
                 interpolation = 0;
                 walk();
                 orient();
-                collide();
+                collide(w);
             }
             // System.out.println("Wolf at " + x + ", " + y + ", " +
             // (x+directions[direction][0]) + ", " + (y+directions[direction][1]));
@@ -66,56 +66,63 @@ public class Wolf extends ScreenElement {
 
     private void walk() {
         // Walk
-        x  = nextx;
+        x = nextx;
         y = nexty;
         realx = x;
         realy = y;
-        if (Math.random() < 0.7)
+        if (Math.random() < 0.1)
             walking = false; // Stop walking
     }
 
     private void orient() {
         // Try to walk
         walking = false;
-        if (Math.random() < 0.1 && (playerWalking || Math.random() < 0.3)) {
+        if (Math.random() < 0.2 && (playerWalking || Math.random() < 0.5)) {
             walking = true;
         }
         int dir = Math.random() < 0.5 ? 0 : 1; // Which way to go, vertical or sideways
+        double decision = Math.random() * 3;
         if (dir == 0) {
             if (y < py)
                 direction = 2;
             else if (y > py)
                 direction = 0;
-            else if (Math.random() < 0.5)
+            else if (decision < 0.2)
                 direction = 2;
-            else
+            else if (decision < 0.4)
                 direction = 0;
+            else
+                walking = false;
         } else {
             if (x < px)
                 direction = 3;
             else if (x > px)
                 direction = 1;
-            else if (Math.random() < 0.5)
+            else if (decision < 0.2)
                 direction = 3;
-            else
+            else if (decision < 0.4)
                 direction = 1;
+            else
+                walking = false;
         }
         nextx = x + directions[direction][0];
         nexty = y + directions[direction][1];
     }
 
-    private void collide() {
+    private void collide(Window w) {
         // Check for collision
         String block = l.getBlock(nextx, nexty);
         if (block == null && (nextx != apx || nexty != apy) && (nextx != npx || nexty != npy))
+            return;
+        walking = false;
+        if (block != null)
             return;
         if (damagepolation < 60) {
             damagepolation++;
         } else {
             damagepolation = 0;
-            p.damage((int) (5 + Math.random() * 10));
+            p.damage((int) (5 + Math.random() * 10), w);
         }
-        walking = false;
     }
 
     public void updatePlayerPos(double x, double y, int ax, int ay, int nx, int ny, boolean walking, ActionPlayer p) {
@@ -127,6 +134,7 @@ public class Wolf extends ScreenElement {
         npy = ny;
         playerWalking = walking;
         this.p = p;
+        System.out.println("Updated " + px + " " + py + " " + this.x + " " + this.y);
     }
 
     private void render(Window w, Graphics g) {

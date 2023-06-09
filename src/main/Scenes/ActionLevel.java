@@ -30,11 +30,25 @@ public class ActionLevel extends ScreenElement {
      * Loads all of the wolves for the cave
      */
     public void loadWolves() {
+        // Make new wolves
         int[][] start = l.getWolves();
         wolves = new Wolf[start.length];
         for (int i = 0; i < start.length; i++) {
             wolves[i] = new Wolf(start[i][0], start[i][1], l);
+            int[] temp = wolves[i].getCoords();
+            System.out.println("Wolf at " + temp[0] + ", " + temp[1]);
         }
+        System.out.println("Loading wolves");
+    }
+
+    public void refreshWolves(Window w) {
+        // Delete old wolves
+        for (Wolf wf : wolves)
+            if (w != null)
+                wf.removeFromWindow(w);
+        loadWolves();
+        for (Wolf wf : wolves)
+            wf.addToWindow(w);
     }
 
     /**
@@ -82,7 +96,7 @@ public class ActionLevel extends ScreenElement {
         for (Wolf wf : wolves)
             wf.addToWindow(w);
         w.addElement(this);
-        System.out.println(wolves.length);
+        // System.out.println(wolves.length);
     }
 
     /**

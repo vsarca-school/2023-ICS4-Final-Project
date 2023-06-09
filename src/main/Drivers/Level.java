@@ -140,7 +140,7 @@ public class Level extends ScreenElement implements Serializable {
      * @return name of the tile
      */
     private String getFloor(int x, int y) {
-        if (x < 0 || x >= objects.length || y < 0 || y >= objects.length) {
+        if (x < 0 || x >= objects.length || y < 0 || y >= objects[0].length) {
             int sprite = perm[(Math.abs(x) + perm[Math.abs(y) % 256]) % 256];
             switch (backgroundScene) {
                 case 0:

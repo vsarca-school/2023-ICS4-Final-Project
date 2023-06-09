@@ -43,10 +43,11 @@ public class ActionPlayer extends Player {
      * 
      * @param damage taken
      */
-    public void damage(int damage) {
+    public void damage(int damage, Window w) {
         health -= damage;
+        System.out.println(health);
         if (health <= 0) {
-            parent.loadWolves();
+            parent.refreshWolves(w);
             joinLevel(l, parent);
         }
     }
