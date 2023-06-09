@@ -51,6 +51,11 @@ public class Wolf extends ScreenElement {
         render(w, g);
     }
 
+    public int[] getCoords() {
+        int[] coords = {x, y};
+        return coords;
+    }
+
     private void walk() {
         // Walk
         x += directions[direction][0];
