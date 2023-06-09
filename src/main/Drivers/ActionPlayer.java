@@ -34,11 +34,11 @@ public class ActionPlayer extends Player {
             if (!walking) {
                 getInput(w);
                 direction = nextDirection;
-                collide();
+                collide(w);
             } else if (interpolation < 10) {
                 interpolation++;
                 getInput(w);
-                collide();
+                collide(w);
                 // Do some interpolation in walking between tiles
                 realx += directions[direction][0] / 10.0;
                 realy += directions[direction][1] / 10.0;
@@ -47,7 +47,7 @@ public class ActionPlayer extends Player {
                 getInput(w);
                 walk();
                 direction = nextDirection;
-                collide();
+                collide(w);
             }
             // Clear input and update level
             l.updatePlayerPos(realx, realy);

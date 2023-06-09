@@ -30,7 +30,7 @@ public class LessonCreator3 {
         };
         int[] pos = {2, 3, 4, 7, 11, 14, 15};
         String[] images = {"droplet", "dandelion", "berries", "fish", "spider", "mushroom", "droplet"};
-        String next = "Lesson-4.lsn";
+        String next = "src/main/Lessons/Lesson-4.lsn";
         // Create level 1
         Lesson l1 = new Lesson("Foraging", strs, pos, "apples", images, next);
 

@@ -21,7 +21,7 @@ public class LessonCreator4 {
         };
         int[] pos = {4, 5, 6};
         String[] images = {"droplet", "entrance", "droplet"};
-        String next = "Lesson-5.lsn";
+        String next = "src/main/Lessons/Lesson-5.lsn";
         // Create level 1
         Lesson l1 = new Lesson("Making Shelter", strs, pos, "cave", images, next);
 

@@ -16,6 +16,7 @@ public class Player extends ScreenElement {
     protected int x, y;
     protected double realx, realy;
     protected boolean walking = false;
+    protected boolean askingQuestion = false;
     protected int interpolation = 0;
     protected static final String[][] animations = { { "player-12", "player-13", "player-14", "player-15" },
             { "player-4", "player-5", "player-6", "player-7" },
@@ -41,11 +42,11 @@ public class Player extends ScreenElement {
      * - Radin (contribution to subfunctions - Victor)
      */
     public void update(Window w, Graphics g) {
-        if (!isPaused()) {
+        if (!isPaused() && !askingQuestion) {
             if (!walking) {
                 getInput(w);
                 direction = nextDirection;
-                collide();
+                collide(w);
             } else if (interpolation < 6) {
                 interpolation++;
                 // Do some interpolation in walking between tiles
@@ -55,7 +56,7 @@ public class Player extends ScreenElement {
                 interpolation = 0;
                 direction = nextDirection;
                 walk();
-                collide();
+                collide(w);
             }
             // Clear input and update level
             l.updatePlayerPos(realx, realy);
@@ -86,16 +87,21 @@ public class Player extends ScreenElement {
         }
     }
 
-    protected void collide() {
+    protected void collide(Window w) {
         // Check for collision
-        String block = l.getBlock(x + directions[direction][0], y + directions[direction][1]);
+        int tempx = x + directions[direction][0];
+        int tempy = y + directions[direction][1];
+        String block = l.getBlock(tempx, tempy);
         if (block == null) return;
         if (block == "sign-0")
         {
             // Give the user a question
+            l.getQuestion(tempx, tempy).addToWindow(w);
+            askingQuestion = true;
         }
         else if (block == "campfire-0" || block == "tent-0")
         {
+            // Won
             Main.changeScene(4);
         }
         walking = false;

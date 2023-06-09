@@ -26,9 +26,8 @@ public class LessonCreator5 {
         };
         int[] pos = {2, 3, 4, 7, 11};
         String[] images = {"droplet", "board", "drill", "bow", "fire"};
-        String next = "Lesson-5.lsn";
         // Create level 1
-        Lesson l1 = new Lesson("Starting Fire", strs, pos, "site", images, next);
+        Lesson l1 = new Lesson("Starting Fire", strs, pos, "site", images, null);
 
         // Save level 1
         out = new ObjectOutputStream(new FileOutputStream("src/main/Lessons/Lesson-5.lsn"));

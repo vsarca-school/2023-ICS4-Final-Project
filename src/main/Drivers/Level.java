@@ -33,12 +33,13 @@ public class Level extends ScreenElement implements Serializable {
     private String nextLevel;
     private int backgroundScene;
     private int[][] startWolves;
+    private Question[] questions;
 
     /**
      * Used for level creation for initializing a level before saving
      * - Victor
      */
-    public Level(String[][] ground, String[][] objects, int px, int py, String nextLevel, int scene, int[][] wolves) {
+    public Level(String[][] ground, String[][] objects, int px, int py, String nextLevel, int scene, int[][] wolves, Question[] questions) {
         this.ground = ground;
         this.objects = objects;
         this.startx = px;
@@ -46,6 +47,7 @@ public class Level extends ScreenElement implements Serializable {
         this.nextLevel = nextLevel;
         this.backgroundScene = scene;
         this.startWolves = wolves;
+        this.questions = questions;
     }
 
     /**
