@@ -31,23 +31,25 @@ public class LevelCreator {
             }
         }
 
+        //trees
+        for(int i=0; i<200; i++){
+            int temp = (int)(Math.random()*7);
+            int x = (int)(Math.random()*40);
+            int y = (int)(Math.random()*40);
+            while(x>=20 && x<=26 && y>=30 && y<=34 && x>=0 && x <= 10 && y>=0 && y <= 10){
+                x = (int)(Math.random()*40);
+                y = (int)(Math.random()*40);
+            }
+            objects[x][y] = "tree-"+temp;
+        }
+
         //campsite
         objects[7][5] = "tent-0";
         objects[10][7] = "tent-0";
         objects[4][6] = "tent-0";
         //objects[7][9] = ""
 
-        //trees
-        for(int i=0; i<200; i++){
-            int temp = (int)(Math.random()*7);
-            int x = (int)(Math.random()*40);
-            int y = (int)(Math.random()*40);
-            while(x>=20 && x<=26 && y>=30 && y<=34 && x>=4 && x <= 10 && y>=5 && y <= 10){
-                x = (int)(Math.random()*40);
-                y = (int)(Math.random()*40);
-            }
-            objects[x][y] = "tree-"+temp;
-        }
+        
 
         
 
