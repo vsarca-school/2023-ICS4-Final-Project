@@ -51,7 +51,7 @@ public class Test {
         int[] pos = {3, 5};
         String[] images = {"droplet", "logo"};
         // Create level 1
-        Lesson l1 = Lesson.fromFile("src/main/Lessons/Lesson-3.lsn");
+        Lesson l1 = Lesson.fromFile("src/main/Lessons/Lesson-4.lsn");
         ScreenElement currentScene = l1; // TODO: change back to menu when done debugging
 
         currentScene.addToWindow(w);
