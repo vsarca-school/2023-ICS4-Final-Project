@@ -86,7 +86,7 @@ public class Player extends ScreenElement {
 
     protected void collide() {
         // Check for collision
-        String block = l.getBlock(x + directions[direction][0], y + directions[direction][1])
+        String block = l.getBlock(x + directions[direction][0], y + directions[direction][1]);
         if (block == null) return;
         if (block == "sign-0")
         {
