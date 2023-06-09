@@ -13,8 +13,8 @@ public class ActionLevel extends ScreenElement {
     private int wolfAmount = (int)(Math.random()*5)+1;
     private int[] wolfHealth = new int[wolfAmount];
 
-    public ActionLevel(Player pl) {
-        p = pl;
+    public ActionLevel() {
+        p = new ActionPlayer(100);
         l = Level.fromFile("src/main/Levels/Level-1.lvl");
     }
 
