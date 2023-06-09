@@ -75,10 +75,11 @@ public class Wolf extends ScreenElement {
 
     private void orient() {
         // Try to walk
-        if (Math.random() > 0.01 || !playerWalking)
-            return; // No walking
+        walking = false;
+        if (Math.random() < 0.1 && playerWalking) {
+            walking = true;
+        }
         int dir = Math.random() < 0.5 ? 0 : 1; // Which way to go, vertical or sideways
-        walking = true;
         if (dir == 0) {
             if (y < py)
                 direction = 2;
@@ -105,17 +106,13 @@ public class Wolf extends ScreenElement {
         int tempx = x + directions[direction][0];
         int tempy = y + directions[direction][1];
         String block = l.getBlock(tempx, tempy);
-        if (block == null)
+        if (block == null && (tempx != apx || tempy != apy) && (tempx != npx || tempy != npy))
             return;
-        if ((tempx != apx || tempy != apy) && (tempx != npx || tempy != npy)) {
-            if (damagepolation < 60) {
-                damagepolation++;
-            }
-            else {
-                damagepolation = 0;
-                p.damage((int)(5 + Math.random()*10));
-            }
-            return;
+        if (damagepolation < 60) {
+            damagepolation++;
+        } else {
+            damagepolation = 0;
+            p.damage((int) (5 + Math.random() * 10));
         }
         walking = false;
     }
