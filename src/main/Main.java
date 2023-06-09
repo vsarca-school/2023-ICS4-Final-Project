@@ -45,7 +45,7 @@ public class Main {
         a = new ActionLevel();
         e = new EndScreen();
 
-        currentSceneNum = 0;
+        currentSceneNum = 4;
         currentScene = a; // TODO: change back to menu when done debugging
 
         currentScene.addToWindow(w);
@@ -58,7 +58,7 @@ public class Main {
     }
 
     public static void changeScene(int newScene) {
-        if (currentSceneNum == newScene) return; // Useless call, don't screw up the previousScene
+        //if (currentSceneNum == newScene) return; // Useless call, don't screw up the previousScene
         switch (newScene) {
             case -1:
                 running = false;
@@ -69,8 +69,8 @@ public class Main {
                 currentScene.addToWindow(w);
                 break;
             case 1:
-                //currentScene.removeFromWindow(w);
-                o.previousScene(currentSceneNum);
+                //currentScene.removeFromWindow(w); See through?
+                //o.previousScene(currentSceneNum);
                 currentScene = o;
                 currentScene.addToWindow(w);
                 break;
@@ -95,6 +95,12 @@ public class Main {
                 currentScene.addToWindow(w);
                 break;
         }
-        currentSceneNum = newScene;
+        //currentSceneNum = newScene;
+    }
+
+    public static void pause() {
+        currentScene.pause();
+        if (currentScene.isPaused()) o.addToWindow(w);
+        else o.removeFromWindow(w);
     }
 }
