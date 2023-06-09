@@ -22,6 +22,14 @@ public class ActionLevel extends ScreenElement {
         }
     }
 
+    public boolean hasWolf(int x, int y) {
+        for (Wolf wl : wolves) {
+            int[] temp = wl.getCoords();
+            if (x == temp[0] && y == temp[1]) return true;
+        }
+        return false;
+    }
+
     public void updatePlayerPos(double x, double y) {
         for (Wolf w : wolves) {
             w.updatePlayerPos(x, y);
