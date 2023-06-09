@@ -8,21 +8,10 @@ import src.main.Drivers.*;
 import src.main.Drivers.Window;
 
 public class EndScreen extends ScreenElement {
-    private String title;
-    private String[] texts;
-    private int[] positions;
-    private String background;
-    private String[] images;
-    private String nextLesson;
 
-    private int currentIndex = 0;
-    private int currentStringIndex = -1;
-    private int posIndex = 0;
-    private int timer = 0;
-    private int animTimer = 0;
-    private static final int DELAY = 3;
     private double scale;
     private Font font;
+
     public void centerImage(Graphics g, Image image, int x, int y) {
         int imageWidth = image.getWidth(null);
         int imageHeight = image.getHeight(null);
@@ -31,13 +20,6 @@ public class EndScreen extends ScreenElement {
         int b = y - imageHeight / 2;
 
         g.drawImage(image, a, b, null);
-    }
-
-    private void drawImage(Graphics g, Image image, int x, int y) {
-        int width = image.getWidth(null) / 2;
-        int height = image.getHeight(null) / 2;
-        g.drawImage(image, x - width,
-                y - height, null);
     }
 
     public void centerBox(Graphics g, Color c, int x, int y, int w, int h) {
@@ -111,8 +93,6 @@ public class EndScreen extends ScreenElement {
     }
 
     public void update(Window w, Graphics g) {
-        double hww = w.getWidth() / 2.0;
-        double hwh = w.getHeight() / 2.0;
         double scale = Sprite.getImageScale();
         centerImage(g, Sprite.getScaledBackground("TitleScreen"), w.getWidth() / 2, w.getHeight() / 2);
         heading(g, w, "Thanks for Playing!", Color.WHITE, font);
