@@ -1,9 +1,11 @@
 package src.main.Scenes;
 
 import java.awt.*;
+import java.io.*;
 
 import src.main.Main;
 import src.main.Drivers.*;
+import src.main.Drivers.Window;
 
 public class EndScreen extends ScreenElement {
     private String title;
@@ -29,6 +31,13 @@ public class EndScreen extends ScreenElement {
         int b = y - imageHeight / 2;
 
         g.drawImage(image, a, b, null);
+    }
+
+    private void drawImage(Graphics g, Image image, int x, int y) {
+        int width = image.getWidth(null) / 2;
+        int height = image.getHeight(null) / 2;
+        g.drawImage(image, x - width,
+                y - height, null);
     }
 
     public void centerBox(Graphics g, Color c, int x, int y, int w, int h) {
@@ -59,27 +68,10 @@ public class EndScreen extends ScreenElement {
         }
     }
 
-    public void heading(Graphics g, Window w, Color c, Font font) {
-        int size = maxFontSize(g, title, w.getWidth() * 15 / 16, w.getHeight() / 2, font);
+    public void heading(Graphics g, Window w, String str, Color c, Font font) {
+        int size = maxFontSize(g, str, w.getWidth() * 15 / 16, w.getHeight() / 2, font);
         Font temp = font.deriveFont(Font.PLAIN, size);
-    
-        // Calculate the dimensions of the rectangle
-        FontMetrics fm = g.getFontMetrics(temp);
-        int textWidth = fm.stringWidth(title);
-        int textHeight = fm.getHeight();
-        int rectWidth = textWidth + 10; // 5 pixels on each side
-        int rectHeight = textHeight + 10; // 5 pixels on each side
-    
-        // Calculate the position of the rectangle
-        int rectX = (w.getWidth() - rectWidth) / 2;
-        int rectY = w.getHeight() / 3 - rectHeight / 2;
-    
-        // Draw the white rectangle as the background
-        g.setColor(Color.WHITE);
-        g.fillRect(rectX, rectY, rectWidth, rectHeight);
-    
-        // Draw the centered text
-        centerString(g, c, title, w.getWidth() / 2, w.getHeight() / 3, w.getWidth(), size, temp);
+        centerString(g, c, str, w.getWidth() / 2, w.getHeight() / 3, w.getWidth(), size, temp);
     }
     
 
@@ -119,107 +111,14 @@ public class EndScreen extends ScreenElement {
     }
 
     public void update(Window w, Graphics g) {
-        boolean paused = isPaused();
-
-        centerImage(g, Sprite.getScaledBackground(background), w.getWidth() / 2, w.getHeight() / 2);
-
-        if (currentStringIndex < 0) {
-            heading(g, w, Color.BLACK, font);
-
-            if (paused)
-                return;
-
-            timer++;
-            if (timer > 120) {
-                timer = 0;
-                currentStringIndex++;
-            }
-        } else if (currentStringIndex >= 0 && currentStringIndex < texts.length) {
-            double hww = w.getWidth() / 2.0;
-            double hwh = w.getHeight() / 2.0;
-            scale = Sprite.getTileScale();
-
-            if (posIndex < positions.length && positions[posIndex] > currentStringIndex) {
-                if (images[posIndex].equals("droplet")) {
-                    if (animTimer <= 40) {
-                        centerImage(g, Sprite.getScaledTile("droplet-0"), (int) hww, (int) hwh * 6 / 5);
-                    } else if (animTimer > 40 && animTimer <= 80) {
-                        centerImage(g, Sprite.getScaledTile("droplet-1"), (int) hww, (int) hwh * 6 / 5);
-                    } else {
-                        centerImage(g, Sprite.getScaledTile("droplet-2"), (int) hww, (int) hwh * 6 / 5);
-                    }
-                } else {
-                    centerImage(g, Sprite.getScaledImage(images[posIndex]), (int) hww, (int) hwh * 4 / 5);
-                }
-            } else if (!paused) {
-                posIndex++;
-            }
-
-            Color c = new Color(53, 45, 82, 255);
-            centerBox(g, c, w.getWidth() / 2, w.getHeight() * 4 / 5, (int) scale * 128 + 1, (int) scale * 48 / 2 + 1);
-
-            if (timer % DELAY < DELAY) {
-                // TODO fix scaling of font, not efficient but works
-                String currentText = texts[currentStringIndex];
-                int size = maxFontSize(g, currentText, (int) scale * 128 + 1 - (int) scale * 6 - 5,
-                        (int) scale * 24 + 1 - (int) scale * 6 - 5, font);
-                Font temp = font.deriveFont(Font.PLAIN, size);
-                centerString(g, Color.WHITE, currentText.substring(0, Math.min(currentIndex, currentText.length())),
-                        w.getWidth() / 2, w.getHeight() * 31 / 40, (int) scale * 128 + 1, size, temp);
-            }
-
-            if (!paused) {
-                timer++;
-                if (timer % DELAY == 0) {
-                    if (currentIndex < texts[currentStringIndex].length() + 50) {
-                        currentIndex++;
-                    } else {
-                        currentIndex = 0;
-                        currentStringIndex++;
-                    }
-                    timer = 0;
-                }
-                animTimer++;
-            }
-
-            int anim = 0;
-            if (animTimer <= 60) {
-                anim = w.getHeight() * 33 / 40;
-            } else {
-                anim = w.getHeight() * 133 / 160;
-            }
-            int[] xPoints = { w.getWidth() / 2 - (int) scale * 2, w.getWidth() / 2,
-                    w.getWidth() / 2 + (int) scale * 2 };
-            int[] yPoints = { anim, anim + (int) scale * 2, anim };
-            g.setColor(Color.WHITE);
-            g.fillPolygon(xPoints, yPoints, 3);
-
-            if (paused) return;
-
-            if (animTimer % 120 == 0) {
-                animTimer = 0;
-            }
-
-            while (w.nextMouse() != null) {
-                currentIndex = 0;
-                currentStringIndex++;
-                timer = 0;
-                animTimer = 0;
-            }
-        } else {
-            double hww = w.getWidth() / 2.0;
-            double hwh = w.getHeight() / 2.0;
-            centerImage(g, Sprite.getScaledImage("next"), (int) hww, (int) hwh);
-
-            if (paused) return;
-
-            int[] mouse;
-            while ((mouse = w.nextMouse()) != null) {
-                if (isClicked(Sprite.getScaledImage("next"), (int) hww,
-                        (int) hwh, mouse)) {
-                    Main.changeScene(3);
-                }
-            }
-        }
+        double hww = w.getWidth() / 2.0;
+        double hwh = w.getHeight() / 2.0;
+        double scale = Sprite.getImageScale();
+        centerImage(g, Sprite.getScaledBackground("TitleScreen"), w.getWidth() / 2, w.getHeight() / 2);
+        heading(g, w, "Thanks for Playing!", Color.WHITE, font);
+        int size = maxFontSize(g, "Made by Grob Studios.", w.getWidth() / 2, w.getHeight() / 2, font);
+        Font temp = font.deriveFont(Font.PLAIN, size);
+        centerString(g, Color.WHITE, "Made by Grob Studios.", (int)(w.getWidth() / 2 - scale*8), w.getHeight() * 2 / 3, w.getWidth(), size, temp);
+        centerImage(g, Sprite.getScaledImage("logo"), w.getWidth()*3 / 4, w.getHeight() * 2 / 3);
     }
 }
