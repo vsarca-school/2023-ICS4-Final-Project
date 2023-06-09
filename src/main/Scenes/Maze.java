@@ -37,6 +37,7 @@ public class Maze extends ScreenElement {
         else {
             p.joinLevel(l);
         }
+        p.endQuestion();
     }
     /**
      * Adds to window

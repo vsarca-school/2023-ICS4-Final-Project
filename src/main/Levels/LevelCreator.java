@@ -12,6 +12,11 @@ import src.main.Drivers.*;
  */
 
 public class LevelCreator {
+    /**
+     * the main method
+     * @param argv arguments
+     * @throws IOException exception thrown
+     */
     public static void main(String argv[]) throws IOException {
         ObjectOutputStream out;
         String[][] ground, objects;
@@ -145,6 +150,7 @@ public class LevelCreator {
             }
         }
         objects[0][3] = "sign-0";
+        objects[5][0] = "campfire-0";
         px = 5;
         py = 5;
         next = "Maze-2.lvl";
