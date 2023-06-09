@@ -3,8 +3,10 @@ package src.main.Drivers;
 import java.awt.Graphics;
 
 public class Wolf extends ScreenElement {
-    int x, y;
-    double px, py;
+    private int x, y;
+    private double px, py;
+    private int animation = 0;
+    private String[][] animations = {{"wolf-0", "wolf-1", "wolf-2", "wolf-3"}, {"wolf-7", "wolf-6", "wolf-5", "wolf-4"}};
 
     public Wolf(int x, int y) {
         this.x = x;
@@ -39,6 +41,10 @@ public class Wolf extends ScreenElement {
         hww -= scale / 2;
         hwh -= scale / 2;
 
-        g.drawImage(Sprite.getScaledTile("wolf-0"), (int) (hww + (x - px)*scale), (int) (hwh + (y - py)*scale), null);
+        if (!isPaused()) {
+            animation = (animation + 1) % 32;
+        }
+
+        g.drawImage(Sprite.getScaledTile(animations[px < x ? 1 : 0][animation / 8]), (int) (hww + (x - px)*scale), (int) (hwh + (y - py)*scale), null);
     }
 }
