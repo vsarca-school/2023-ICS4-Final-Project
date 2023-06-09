@@ -96,8 +96,26 @@ public class Lesson extends ScreenElement implements Serializable {
     public void heading(Graphics g, Window w, Color c, Font font) {
         int size = maxFontSize(g, title, w.getWidth() * 15 / 16, w.getHeight() / 2, font);
         Font temp = font.deriveFont(Font.PLAIN, size);
+    
+        // Calculate the dimensions of the rectangle
+        FontMetrics fm = g.getFontMetrics(temp);
+        int textWidth = fm.stringWidth(title);
+        int textHeight = fm.getHeight();
+        int rectWidth = textWidth + 10; // 5 pixels on each side
+        int rectHeight = textHeight + 10; // 5 pixels on each side
+    
+        // Calculate the position of the rectangle
+        int rectX = (w.getWidth() - rectWidth) / 2;
+        int rectY = w.getHeight() / 3 - rectHeight / 2;
+    
+        // Draw the white rectangle as the background
+        g.setColor(Color.WHITE);
+        g.fillRect(rectX, rectY, rectWidth, rectHeight);
+    
+        // Draw the centered text
         centerString(g, c, title, w.getWidth() / 2, w.getHeight() / 3, w.getWidth(), size, temp);
     }
+    
 
     public int maxFontSize(Graphics g, String text, int maxWidth, int maxHeight, Font font) {
         String[] lines = text.split("\n");
