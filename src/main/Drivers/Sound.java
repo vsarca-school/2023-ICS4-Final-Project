@@ -5,15 +5,12 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * Changelog: creation by Felix
- * 
- * Bugfix in looping, removed reset()
- *      - Victor
- * 
- * Removed play method in favor of calling loop(1), added volume control
- *      - Victor
+ * <h1>Sound Class</h1>
+ * Time spent: 4.5 hours
+ * @version 1.2
+ * @version 6/8/2023
+ * @author Felix Zhao, Victor Sarca (bugfixes)
  */
-
 public class Sound {
     private File soundFile;
     private AudioInputStream audioStream;
@@ -22,6 +19,10 @@ public class Sound {
     private SourceDataLine sourceDataLine;
     private static final int BUFFER_SIZE = 12288;
 
+    /**
+     * Felix Zhao - makes a sound object with the file path
+     * @param filePath file path of the sound file
+     */
     public Sound(String filePath) {
         try {
             soundFile = new File(filePath);
@@ -58,11 +59,19 @@ public class Sound {
         soundThread.start();
     }*/
 
-    public void play(float volume)
-    {
+    /**
+     * Felix Zhao - plays the sound once
+     * @param volume specified volume
+     */
+    public void play(float volume) {
         loop(1, volume);
     }
 
+    /**
+     * Felix Zhao - loops the sound a specified number of times
+     * @param times number of times
+     * @param volume specified volume
+     */
     public void loop(int times, float volume) {
         Thread soundThread = new Thread(() -> {
             try {
@@ -101,5 +110,4 @@ public class Sound {
     
         soundThread.start();
     }
-
 }
