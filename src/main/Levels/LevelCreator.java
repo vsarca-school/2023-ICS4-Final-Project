@@ -44,6 +44,9 @@ public class LevelCreator {
         ground[6][10] = "dirt-28";
         ground[7][10] = "dirt-12";
         ground[8][10] = "dirt-24";
+        
+
+        
 
         //trees
         for(int i=0; i<200; i++){
@@ -105,11 +108,6 @@ public class LevelCreator {
             int temp = (int)(Math.random()*3+16);
             ground[20][j] = "dirt-"+temp;
         }
-
-        //Wolves
-        //for(int i = 0; i < getWolfAmount; i++){
-
-        //}
         
         px = 5;
         py = 5;
@@ -118,6 +116,24 @@ public class LevelCreator {
         scene = 0; // forest
         l = new Level(ground, objects, px, py, next, scene);
         out = new ObjectOutputStream(new FileOutputStream("src/main/Levels/Level-1.lvl"));
+        out.writeObject(l);
+        out.close();
+
+        // Create Cave
+        ground = new String[40][40];
+        objects = new String[40][40];
+        for (int i=0; i<40; i++)
+        {
+            for (int j=0; j<40; j++)
+            {
+                int temp = (int)(Math.random()*4);
+                ground[i][j] = "grass-"+temp;
+            }
+        }
+        // Save level 2
+        scene = 1; // cave
+        l = new Level(ground, objects, px, py, next, scene);
+        out = new ObjectOutputStream(new FileOutputStream("src/main/Levels/Level-2.lvl"));
         out.writeObject(l);
         out.close();
 
