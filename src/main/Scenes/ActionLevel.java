@@ -22,7 +22,7 @@ public class ActionLevel extends ScreenElement {
      */
     public ActionLevel() {
         p = new ActionPlayer(100);
-        l = Level.fromFile("src/main/Levels/Level-3.lvl");
+        l = Level.fromFile("src/main/Levels/Level-2.lvl");
         loadWolves();
     }
 
