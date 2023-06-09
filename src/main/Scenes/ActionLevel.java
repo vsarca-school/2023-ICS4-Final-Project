@@ -4,7 +4,7 @@ import src.main.Main;
 import src.main.Drivers.*;
 
 /**
- * <h1>ActionPlayer Class</h1>
+ * <h1>ActionLevel Class</h1>
  * Time spent: 1.8 hours
  * @version 1.2
  * @version 6/8/2023

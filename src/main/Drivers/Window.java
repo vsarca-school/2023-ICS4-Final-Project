@@ -3,41 +3,18 @@ package src.main.Drivers;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
+import java.util.Queue;
 
 import javax.swing.*;
 
 import src.main.Main;
 
-/**
- * An object of this class represents a window.
- * 
- * Constructor - receives parameters specifying window dimensions, etc.
- * 
- * The JComponent class has a paint method - this does NOT update in real time,
- * only when you move the window. (I think). Create a test setup and make sure
- * you can RUN IT AT 60 FPS. Also, the drawing will be outsourced to the game
- * class.
- * 
- * WHAT DO WE WANT:
- * We want to have a canvas that we can update at will, 60 times per second. We
- * can draw to the canvas as much as we want, and it will update the screen when
- * we tell it to, and will clear the screen when we want it to.
- * WE DO NOT WANT A PAINT METHOD. We don't want to draw all the graphics when
- * Java wants us to, we want to draw it when its convenient for us. That is how
- * most renderers work, including the default one from the OS so it must be
- * possible in Java.
- * - Victor
- */
-
-/**
- * Class created by Radin
- * 
- * Drawing class created by Victor, plus methods
- * 
- * update method, add/remove element, keyPressed/released created by Victor
- * changes to constructor by Victor
- * 
- * Class completely changed again by Victor
+ /**
+ * <h1>Window Class</h1>
+ * Time spent: 5 hours
+ * @version 1.2
+ * @version 6/8/2023
+ * @author Victor Sarca/Radin Ahari/Felix Zhao (code)/Radin Ahari(comments)
  */
 public class Window implements KeyListener, MouseListener {
     private JFrame frame;
@@ -47,7 +24,12 @@ public class Window implements KeyListener, MouseListener {
     private Queue<int[]> mouseclicks = new ArrayDeque<>(); // Stores the location of mouse clicks, only left click
     int width, height;
     boolean hasUpdated = true;
-
+    /**
+     * Window constructor
+     * @param name window name
+     * @param width window width
+     * @param height window height
+     */
     public Window(String name, int width, int height) {
         frame = new JFrame(name);
         frame.setSize(width, height);
@@ -60,27 +42,45 @@ public class Window implements KeyListener, MouseListener {
         frame.addComponentListener(new WindowResizeListener(this));
     }
 
+    /**
+     * Changes hasUpdated
+     */
     void hasUpdated() {
         hasUpdated = true;
     }
-
+    /**
+     * 
+     * @return returns width
+     */
     public int getWidth() {
         return width;
     }
-
+    /**
+     * 
+     * @return returns height
+     */
     public int getHeight() {
         return height;
     }
-
+    /**
+     * Adds an element
+     * @param s ScreenElement object being added
+     */
     public void addElement(ScreenElement s) {
         if (s.isPaused()) s.pause(); // Make sure it isn't pause
         elements.add(s);
     }
-
+/**
+     * Removes an element
+     * @param s ScreenElement object being removed
+     */
     public void removeElement(ScreenElement s) {
         elements.remove(s);
     }
 
+    /**
+     * Pauses all elements
+     */
     public void pauseAll() {
         try {
         for (ScreenElement s : elements) {
@@ -90,7 +90,9 @@ public class Window implements KeyListener, MouseListener {
             // Expected when scene is changed; do nothing, should work out anyways
         }
     }
-
+    /**
+     * Updates the canvas
+     */
     public void update() {
         if (hasUpdated)
         {
@@ -101,11 +103,16 @@ public class Window implements KeyListener, MouseListener {
         }
         canvas.repaint();
     }
-
+    /**
+     * Closes the window
+     */
     public void close() {
         frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
     }
-
+    /**
+     * Paints the the screen
+     * @param g graphics
+     */
     void paint(Graphics g) {
         try {
         for (int i=0; i<elements.size(); i++) {
@@ -116,6 +123,10 @@ public class Window implements KeyListener, MouseListener {
         }
     }
 
+    /**
+     * makes the game run at a given fps
+     * @param fps the fps the game runs at
+     */
     public void tick(int fps) {
         try {
             Thread.sleep(1000 / fps);
@@ -123,18 +134,19 @@ public class Window implements KeyListener, MouseListener {
         }
     }
 
-    /**
-     * Dummy class to receive Graphics object for drawing
-     * Immediately passes it back to window class for use
-     * - Victor
-     */
     class Canvas extends JComponent {
         Window parent;
-
+        /**
+         * sets window to canvas
+         * @param w window
+         */
         public Canvas(Window w) {
             parent = w;
         }
-
+        /**
+         * Paints to canvas
+         * @param g graphics
+         */
         public void paint(Graphics g) {
             parent.paint(g);
         }
@@ -143,34 +155,63 @@ public class Window implements KeyListener, MouseListener {
     private class WindowResizeListener implements ComponentListener{
         Window w;
         
+        /**
+         * not used
+         * @param w window
+         */
         public WindowResizeListener(Window w) {
             this.w = w;
         }
 
+        /**
+         * not used
+         * @param arg0 window event
+         */
         public void componentHidden(ComponentEvent arg0) {
         }
+        /**
+         * not used
+         * @param arg0 window event
+         */
         public void componentMoved(ComponentEvent arg0) {   
         }
+        /**
+         * not used
+         * @param arg0 window event
+         */
         public void componentResized(ComponentEvent arg0) {
             w.hasUpdated();
         }
+        /**
+         * not used
+         * @param arg0 window event
+         */
         public void componentShown(ComponentEvent arg0) {
         
         }
     }
 
-    // Accessor methods
+    /**
+     * Returns whether the key has been pressed
+     * @param key key
+     * @return retuns whether the key has been pressed
+     */
     public boolean keyDown(int key) {
         return keysdown[key];
     }
-
+    /**
+     * returns list of mouse clicks
+     * @return list of mouse clicks
+     */
     public int[] nextMouse() {
         if (mouseclicks.isEmpty()) return null;
         return mouseclicks.remove();
     }
 
-    // Only useful methods
     @Override
+    /** checks if a key is pressed
+     * @param event the KeyEvent
+     */
     public void keyPressed(KeyEvent event) {
         switch (event.getKeyCode()) {
             case KeyEvent.VK_W:
@@ -196,6 +237,10 @@ public class Window implements KeyListener, MouseListener {
     }
 
     @Override
+    /**
+     * Checks if a key is released
+     * @param e the event 
+     */
     public void keyReleased(KeyEvent e) {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_W:
@@ -218,32 +263,45 @@ public class Window implements KeyListener, MouseListener {
     }
 
     @Override
+    /**
+     * checks if mouse is clicked
+     * @param e the event
+     */
     public void mouseClicked(MouseEvent e) {
         if (e.getButton() != MouseEvent.BUTTON1) return;
         mouseclicks.add(new int[]{e.getX()-8, e.getY()-31});
     }
 
-    // Junk methods
     @Override
+    /**
+     * not used
+     */
     public void mousePressed(MouseEvent event) {
-        // Not necessary
     }
-
+    /**
+     * not used
+     */
     @Override
     public void mouseReleased(MouseEvent event) {
         // Not necessary
     }
-
+    /**
+     * not used
+     */
     @Override
     public void mouseEntered(MouseEvent e) {
         // Not necessary
     }
-
+    /**
+     * not used
+     */
     @Override
     public void mouseExited(MouseEvent e) {
         // Not necessary
     }
-
+    /**
+     * not used
+     */
     @Override
     public void keyTyped(KeyEvent e) {
         // Not necessary

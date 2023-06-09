@@ -6,7 +6,7 @@ import src.main.Main;
 import src.main.Drivers.*;
 
 /**
- * <h1>ActionPlayer Class</h1>
+ * <h1>Maze Class</h1>
  * Time spent: 2.1 hours
  * @version 1.2
  * @version 6/8/2023

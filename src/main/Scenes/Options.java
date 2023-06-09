@@ -8,7 +8,7 @@ import src.main.Drivers.*;
 import src.main.Drivers.Window;
 
 /**
- * <h1>ActionPlayer Class</h1>
+ * <h1>Options Class</h1>
  * Time spent: 2.1 hours
  * @version 1.2
  * @version 6/8/2023

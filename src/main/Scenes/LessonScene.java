@@ -6,9 +6,11 @@ import src.main.Main;
 import src.main.Drivers.*;
 
 /**
- * Wrapper around Lesson class to handle lesson loading and moving to the end
- * screen
- *      - Victor
+ * <h1>LessonScene Class</h1>
+ * Time spent: 1.7 hours
+ * @version 1.2
+ * @version 6/8/2023
+ * @author Radin Ahari (comment)/Victor Sarca (code)
  */
 public class LessonScene extends ScreenElement {
     private Lesson l;
