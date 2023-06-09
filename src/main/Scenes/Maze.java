@@ -48,8 +48,10 @@ public class Maze extends ScreenElement {
      * @param w window being added to
      */
     public void addToWindow(Window w) {
-        if (l == null)
+        if (l == null) {
             Main.changeScene(5);
+            return;
+        }
 
         l.addToWindow(w);
         p.addToWindow(w);
@@ -64,6 +66,8 @@ public class Maze extends ScreenElement {
      */
 
     public void removeFromWindow(Window w) {
+        if (l == null)
+            return;
         l.removeFromWindow(w);
         l = l.nextLevel();
         p.removeFromWindow(w);

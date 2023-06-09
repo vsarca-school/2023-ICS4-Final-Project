@@ -7,6 +7,7 @@ public class Wolf extends ScreenElement {
     private int x, y;
     private double realx, realy;
     private double px, py;
+    private int nextx, nexty;
     private int apx, apy, npx, npy;
     private int animation = 0;
     private int direction = 0;
@@ -60,13 +61,13 @@ public class Wolf extends ScreenElement {
     public int[] getCoords() {
         if (!walking)
             return new int[] { x, y, x, y };
-        return new int[] { x, y, x + directions[direction][0], y + directions[direction][1] };
+        return new int[] { x, y, nextx, nexty };
     }
 
     private void walk() {
         // Walk
-        x += directions[direction][0];
-        y += directions[direction][1];
+        x  = nextx;
+        y = nexty;
         realx = x;
         realy = y;
         if (Math.random() < 0.7)
@@ -99,14 +100,14 @@ public class Wolf extends ScreenElement {
             else
                 direction = 1;
         }
+        nextx = x + directions[direction][0];
+        nexty = y + directions[direction][1];
     }
 
     private void collide() {
         // Check for collision
-        int tempx = x + directions[direction][0];
-        int tempy = y + directions[direction][1];
-        String block = l.getBlock(tempx, tempy);
-        if (block == null && (tempx != apx || tempy != apy) && (tempx != npx || tempy != npy))
+        String block = l.getBlock(nextx, nexty);
+        if (block == null && (nextx != apx || nexty != apy) && (nextx != npx || nexty != npy))
             return;
         if (damagepolation < 60) {
             damagepolation++;

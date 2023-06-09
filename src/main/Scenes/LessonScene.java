@@ -30,8 +30,10 @@ public class LessonScene extends ScreenElement {
      */
 
     public void addToWindow(Window w) {
-        if (l == null)
+        if (l == null) {
             Main.changeScene(5);
+            return;
+        }
 
         l.addToWindow(w);
         w.addElement(this);
@@ -44,6 +46,8 @@ public class LessonScene extends ScreenElement {
      */
 
     public void removeFromWindow(Window w) {
+        if (l == null)
+            return;
         l.removeFromWindow(w);
         l = l.nextLesson();
         w.removeElement(this);

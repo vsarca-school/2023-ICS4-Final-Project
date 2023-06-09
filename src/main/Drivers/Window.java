@@ -29,9 +29,11 @@ public class Window implements KeyListener, MouseListener {
     /** Stores the location of mouse clicks, only left click */
     private Queue<int[]> mouseclicks = new ArrayDeque<>();
     /** width and height of canvas */
-    int width, height;
+    private int width, height;
     /** whether window has updated */
-    boolean hasUpdated = true;
+    private boolean hasUpdated = true;
+    /** whether escape is pressed or not */
+    private boolean escaped = false;
 
     /**
      * Window constructor
@@ -270,7 +272,10 @@ public class Window implements KeyListener, MouseListener {
                 keysdown[3] = true;
                 break;
             case KeyEvent.VK_ESCAPE:
-                Main.pause();
+                if (!escaped) {
+                    escaped = true;
+                    Main.pause();
+                }
                 break;
         }
     }
@@ -298,6 +303,9 @@ public class Window implements KeyListener, MouseListener {
             case KeyEvent.VK_D:
             case KeyEvent.VK_RIGHT:
                 keysdown[3] = false;
+                break;
+            case KeyEvent.VK_ESCAPE:
+                escaped = false;
                 break;
         }
     }

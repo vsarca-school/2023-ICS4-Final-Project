@@ -71,14 +71,16 @@ public class ActionLevel extends ScreenElement {
      * @param w window
      */
     public void addToWindow(Window w) {
-        if (l == null)
+        if (l == null) {
             Main.changeScene(5);
+            return;
+        }
 
         l.addToWindow(w);
-        for (Wolf wf : wolves)
-            wf.addToWindow(w);
         p.joinLevel(l, this);
         p.addToWindow(w);
+        for (Wolf wf : wolves)
+            wf.addToWindow(w);
         w.addElement(this);
         System.out.println(wolves.length);
     }
@@ -89,6 +91,8 @@ public class ActionLevel extends ScreenElement {
      * @param w window
      */
     public void removeFromWindow(Window w) {
+        if (l == null)
+            return;
         l.removeFromWindow(w);
         l = l.nextLevel();
         if (l != null)
