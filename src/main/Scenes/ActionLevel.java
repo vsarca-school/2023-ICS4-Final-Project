@@ -69,7 +69,7 @@ public class ActionLevel extends ScreenElement {
     }
 
     /**
-     * tells wolves where the player is
+     * Tells wolves where the player is
      * 
      * @param x x coordinate
      * @param y y coordinate
