@@ -52,9 +52,9 @@ public class ActionLevel extends ScreenElement {
      * @param x x coordinate
      * @param y y coordinate
      */
-    public void updatePlayerPos(double x, double y, int ax, int ay, boolean walking) {
+    public void updatePlayerPos(double x, double y, int ax, int ay, int nx, int ny, boolean walking) {
         for (Wolf w : wolves) {
-            w.updatePlayerPos(x, y, ax, ay, walking);
+            w.updatePlayerPos(x, y, ax, ay, nx, ny, walking);
         }
     }
     /**

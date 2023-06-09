@@ -50,7 +50,7 @@ public class Main {
 
         while (running) {
             w.update();
-            w.tick(20);
+            w.tick(60);
         }
         w.close();
     }

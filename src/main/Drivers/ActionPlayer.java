@@ -15,7 +15,6 @@ import src.main.Scenes.ActionLevel;
 public class ActionPlayer extends Player {
     private int health;
     private ActionLevel parent;
-    private boolean backward;
 
     public ActionPlayer(int health) {
         this.health = health;
@@ -36,16 +35,16 @@ public class ActionPlayer extends Player {
         realy = y;
     }
 
-    protected void collide(Window w) {
+    private void collideMoving(Window w) {
         int tempx = x + directions[direction][0];
         int tempy = y + directions[direction][1];
-        super.collide(w);
         if (parent.hasWolf(tempx, tempy)) {
-            backward = !backward;
+            // New wolf here, turn around
             x = tempx;
             y = tempy;
             direction = (direction + 2) % 4;
             interpolation = 10 - interpolation;
+            nextDirection = -1;
         }
     }
 
@@ -58,33 +57,28 @@ public class ActionPlayer extends Player {
     public void update(Window w, Graphics g) {
         if (!isPaused()) {
             if (!walking) {
-                backward = false;
                 getInput(w);
-                direction = nextDirection;
+                if (nextDirection == -1) walking = false;
+                else direction = nextDirection;
                 collide(w);
             } else if (interpolation < 10) {
                 interpolation++;
                 getInput(w);
-                collide(w);
+                collideMoving(w);
                 // Do some interpolation in walking between tiles
-                if (!backward) {
-                    realx += directions[direction][0] / 10.0;
-                    realy += directions[direction][1] / 10.0;
-                } else {
-                    realx -= directions[direction][0] / 10.0;
-                    realy -= directions[direction][1] / 10.0;
-                }
+                realx += directions[direction][0] / 10.0;
+                realy += directions[direction][1] / 10.0;
             } else {
                 interpolation = 0;
-                backward = false;
                 getInput(w);
                 walk();
-                direction = nextDirection;
+                if (nextDirection == -1) walking = false;
+                else direction = nextDirection;
                 collide(w);
             }
             // Clear input and update level
             l.updatePlayerPos(realx, realy);
-            parent.updatePlayerPos(realx, realy, x, y, walking);
+            parent.updatePlayerPos(realx, realy, x, y, x + directions[direction][0], y + directions[direction][1], walking);
             animation = (animation + 1) % 32;
         }
 

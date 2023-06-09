@@ -6,7 +6,7 @@ public class Wolf extends ScreenElement {
     private int x, y;
     private double realx, realy;
     private double px, py;
-    private int apx, apy;
+    private int apx, apy, npx, npy;
     private int animation = 0;
     private int direction = 0;
     private boolean walking;
@@ -99,16 +99,18 @@ public class Wolf extends ScreenElement {
         int tempx = x + directions[direction][0];
         int tempy = y + directions[direction][1];
         String block = l.getBlock(tempx, tempy);
-        if (block == null && (tempx != apx || tempy != apy))
+        if (block == null && (tempx != apx || tempy != apy) && (tempx != apx || tempy != apy))
             return;
         walking = false;
     }
 
-    public void updatePlayerPos(double x, double y, int ax, int ay, boolean walking) {
+    public void updatePlayerPos(double x, double y, int ax, int ay, int nx, int ny, boolean walking) {
         px = x;
         py = y;
         apx = ax;
         apy = ay;
+        npx = nx;
+        npy = ny;
         playerWalking = walking;
     }
 
