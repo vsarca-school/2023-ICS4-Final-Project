@@ -31,7 +31,7 @@ public class Main {
      */
     public static void main(String[] args) {
         // Loads resources
-        Sprite.init();  
+        Sprite.init();
         Sprite.print(); // DEBUG
 
         // Create all objects necessary
@@ -44,7 +44,7 @@ public class Main {
         a = new ActionLevel();
         e = new EndScreen();
 
-        currentScene = e; // TODO: change back to menu when done debugging
+        currentScene = m; // TODO: change back to menu when done debugging
 
         currentScene.addToWindow(w);
 
@@ -63,11 +63,12 @@ public class Main {
             case 0:
                 currentScene.removeFromWindow(w);
                 currentScene = m;
+                reset();
                 currentScene.addToWindow(w);
                 break;
             case 1:
-                //currentScene.removeFromWindow(w); See through?
-                //o.previousScene(currentSceneNum);
+                // currentScene.removeFromWindow(w); See through?
+                // o.previousScene(currentSceneNum);
                 currentScene = o;
                 currentScene.addToWindow(w);
                 break;
@@ -96,7 +97,19 @@ public class Main {
 
     public static void pause() {
         w.pauseAll();
-        if (currentScene.isPaused()) o.addToWindow(w);
-        else o.removeFromWindow(w);
+        if (currentScene.isPaused())
+            o.addToWindow(w);
+        else
+            o.removeFromWindow(w);
+    }
+
+    public static void questionCorrect(boolean correct, int x, int y) {
+        z.questionCorrect(correct, x, y);
+    }
+
+    public static void reset() {
+        l = new LessonScene();
+        z = new Maze();
+        a = new ActionLevel();
     }
 }
