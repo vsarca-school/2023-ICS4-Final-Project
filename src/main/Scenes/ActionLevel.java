@@ -34,7 +34,7 @@ public class ActionLevel extends ScreenElement {
         int[][] start = l.getWolves();
         wolves = new Wolf[start.length];
         for (int i = 0; i < start.length; i++) {
-            wolves[i] = new Wolf(start[i][0], start[i][1], l);
+            wolves[i] = new Wolf(start[i][0], start[i][1], l, this);
             int[] temp = wolves[i].getCoords();
             //System.out.println("Wolf at " + temp[0] + ", " + temp[1]);
         }
@@ -111,7 +111,7 @@ public class ActionLevel extends ScreenElement {
         l.removeFromWindow(w);
         l = l.nextLevel();
         if (l != null)
-            loadWolves();
+            refreshWolves(w);
         for (Wolf wf : wolves)
             wf.addToWindow(w);
         p.removeFromWindow(w);
