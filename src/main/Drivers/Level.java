@@ -88,7 +88,7 @@ public class Level extends ScreenElement implements Serializable {
 
     public String getBlock(int x, int y) {
         if (x < 0 || x >= objects.length || y < 0 || y >= objects[0].length) {
-            int sprite = perm[(Math.abs(x) + perm[Math.abs(y) % 256]) % 256];
+            int sprite = perm[(Math.abs(x) + 13 + perm[(Math.abs(y)+13) % 256]) % 256];
             if (x == -1 || x == objects.length || y == -1 || y == objects[0].length || sprite % 2 == 0) {
                 switch (backgroundScene) {
                     case 0:

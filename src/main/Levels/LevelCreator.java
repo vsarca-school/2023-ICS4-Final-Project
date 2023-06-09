@@ -115,7 +115,7 @@ public class LevelCreator {
         py = 5;
         next = "Level-2.lvl";
         // Save level 1
-        scene = 1; // forest
+        scene = 0; // forest
         l = new Level(ground, objects, px, py, next, scene);
         out = new ObjectOutputStream(new FileOutputStream("src/main/Levels/Level-1.lvl"));
         out.writeObject(l);
