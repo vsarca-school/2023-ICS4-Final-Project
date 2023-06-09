@@ -41,6 +41,7 @@ public class ActionLevel extends ScreenElement {
     public void removeFromWindow(Window w) {
         l.removeFromWindow(w);
         l = l.nextLevel();
+        for (Wolf wf : wolves) wf.addToWindow(w);
         loadWolves();
         p.removeFromWindow(w);
         w.removeElement(this);
