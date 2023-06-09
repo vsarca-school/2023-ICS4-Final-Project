@@ -5,6 +5,12 @@ import java.awt.Graphics;
 public class Wolf extends ScreenElement {
     int x, y;
     double px, py;
+
+    public Wolf(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
     /**
      * Update and render the screen element
      * 
@@ -22,8 +28,6 @@ public class Wolf extends ScreenElement {
     }
 
     protected void render(Window w, Graphics g) {
-        int x = 10;
-        int y = 10;
         // Calculate scaling and centering
         double hww = w.getWidth() / 2.0;
         double hwh = w.getHeight() / 2.0;
