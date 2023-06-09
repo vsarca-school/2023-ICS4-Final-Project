@@ -18,7 +18,6 @@ public class Main {
     static EndScreen e;
 
     static ScreenElement currentScene;
-    static int currentSceneNum;
 
     static boolean running = true;
 
@@ -45,8 +44,7 @@ public class Main {
         a = new ActionLevel();
         e = new EndScreen();
 
-        currentSceneNum = 4;
-        currentScene = a; // TODO: change back to menu when done debugging
+        currentScene = m; // TODO: change back to menu when done debugging
 
         currentScene.addToWindow(w);
 
@@ -58,7 +56,6 @@ public class Main {
     }
 
     public static void changeScene(int newScene) {
-        //if (currentSceneNum == newScene) return; // Useless call, don't screw up the previousScene
         switch (newScene) {
             case -1:
                 running = false;
@@ -95,7 +92,6 @@ public class Main {
                 currentScene.addToWindow(w);
                 break;
         }
-        //currentSceneNum = newScene;
     }
 
     public static void pause() {
