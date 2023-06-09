@@ -31,7 +31,7 @@ public class Main {
      */
     public static void main(String[] args) {
         // Loads resources
-        Sprite.init();
+        Sprite.init();  
         Sprite.print(); // DEBUG
 
         // Create all objects necessary

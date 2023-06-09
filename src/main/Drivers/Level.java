@@ -42,6 +42,7 @@ public class Level extends ScreenElement implements Serializable {
         this.startx = px;
         this.starty = py;
         this.nextLevel = nextLevel;
+        
     }
 
     /**

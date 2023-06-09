@@ -30,35 +30,45 @@ public class LevelCreator {
                 ground[i][j] = "grass-"+temp;
             }
         }
+                
+        //campsite
+        objects[7][5] = "tent-0";
+        objects[10][7] = "tent-0";
+        objects[4][6] = "tent-0";
+        objects[7][9] = "campfire-0";
+        ground[6][8] = "dirt-32";
+        ground[7][8] = "dirt-4";
+        ground[8][8] = "dirt-20";
+        ground[6][9] = "dirt-16";
+        ground[8][9] = "dirt-8";
+        ground[6][10] = "dirt-28";
+        ground[7][10] = "dirt-12";
+        ground[8][10] = "dirt-24";
 
         //trees
         for(int i=0; i<200; i++){
             int temp = (int)(Math.random()*7);
             int x = (int)(Math.random()*40);
             int y = (int)(Math.random()*40);
-            while(x>=20 && x<=26 && y>=30 && y<=34 && x>=0 && x <= 10 && y>=0 && y <= 10){
+            while(x>=20 && x<=26 && y>=30 && y<=34){
+                x = (int)(Math.random()*40);
+                y = (int)(Math.random()*40);
+            }
+            while(x>=4 && x <= 10 && y>=5 && y <= 10){
                 x = (int)(Math.random()*40);
                 y = (int)(Math.random()*40);
             }
             objects[x][y] = "tree-"+temp;
         }
 
-        //campsite
-        objects[7][5] = "tent-0";
-        objects[10][7] = "tent-0";
-        objects[4][6] = "tent-0";
-        //objects[7][9] = ""
 
-        
-
-        
 
         //water tiles
-        for (int i=20; i<27; i++)
+        for (int i=21; i<26; i++)
         {
-            for (int j=30; j<35; j++)
+            for (int j=31; j<34; j++)
             {
-                ground[i][j] = "water-0";
+                objects[i][j] = "water-0";
             }
         }
         
@@ -94,6 +104,11 @@ public class LevelCreator {
         {
             int temp = (int)(Math.random()*3+16);
             ground[20][j] = "dirt-"+temp;
+        }
+
+        //Wolves
+        for(int i = 0; i < getWolfAmount; i++){
+
         }
         
         px = 5;
