@@ -31,18 +31,19 @@ public class Level extends ScreenElement implements Serializable {
     private double px, py; // Player x and y position
     private int startx, starty;
     private String nextLevel;
+    private int backgroundScene;
 
     /**
      * Used for level creation for initializing a level before saving
      * - Victor
      */
-    public Level(String[][] ground, String[][] objects, int px, int py, String nextLevel) {
+    public Level(String[][] ground, String[][] objects, int px, int py, String nextLevel, int scene) {
         this.ground = ground;
         this.objects = objects;
         this.startx = px;
         this.starty = py;
         this.nextLevel = nextLevel;
-        
+        this.backgroundScene = scene;
     }
 
     /**
@@ -79,14 +80,25 @@ public class Level extends ScreenElement implements Serializable {
     }
 
     private String getFloor(int x, int y) {
-        if (x < 0 || x >= objects.length || y < 0 || y >= objects.length)
-            return "wall-" + (Math.abs(perm[(Math.abs(x) + perm[Math.abs(y) % 256]) % 256]) % 4);
+        if (x < 0 || x >= objects.length || y < 0 || y >= objects.length) {
+            return "grass-" + (Math.abs(perm[(Math.abs(x) + perm[Math.abs(y) % 256]) % 256]) % 4);
+        }
         return ground[x][y];
     }
 
     public String getBlock(int x, int y) {
-        if (x < 0 || x >= objects.length || y < 0 || y >= objects.length)
-            return "wall-" + (Math.abs(perm[(Math.abs(x) + perm[Math.abs(y) % 256]) % 256]) % 4);
+        if (x < 0 || x >= objects.length || y < 0 || y >= objects[0].length) {
+            int sprite = perm[(Math.abs(x) + perm[Math.abs(y) % 256]) % 256];
+            if (x == -1 || x == objects.length || y == -1 || y == objects[0].length || sprite % 2 == 0) {
+                switch (backgroundScene) {
+                    case 0:
+                        return "tree-" + sprite % 8;
+                    case 1:
+                        return "rock-" + sprite % 4;
+                }
+            } else
+                return null;
+        }
         return objects[x][y];
     }
 
@@ -102,7 +114,7 @@ public class Level extends ScreenElement implements Serializable {
         // Calculate scaling and centering
         double hww = w.getWidth() / 2.0;
         double hwh = w.getHeight() / 2.0;
-        double scale = Sprite.getTileScale()*16;
+        double scale = Sprite.getTileScale() * 16;
         double hwwt = hww / scale;
         double hwht = hwh / scale;
         hww -= scale / 2;
