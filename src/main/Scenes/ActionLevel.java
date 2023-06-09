@@ -58,8 +58,9 @@ public class ActionLevel extends ScreenElement {
      * @param y y coordinate
      * @return returns whether there is a wolf at x,y
      */
-    public boolean hasWolf(int x, int y) {
+    public boolean hasWolf(int x, int y, Wolf me) {
         for (Wolf wl : wolves) {
+            if (wl == me) continue;
             int[] temp = wl.getCoords();
             if ((x == temp[0] && y == temp[1]) || (x == temp[2] && y == temp[3]))
                 return true;
