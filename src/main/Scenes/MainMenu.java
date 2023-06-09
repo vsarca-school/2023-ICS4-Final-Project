@@ -16,8 +16,9 @@ public class MainMenu extends ScreenElement {
         double hwh = w.getHeight() / 2.0;
         double scale = Sprite.getImageScale();
 
-        // Draw background
+        // Draw background and logo
         drawImage(g, Sprite.getScaledBackground("TitleScreen"), (int) hww, (int) hwh);
+        drawImage(g, Sprite.getScaledImage("logo"), (int)(2*hww - scale*16), (int)(2*hwh - scale*16));
 
         // Leave if paused
         if (isPaused()) return;
