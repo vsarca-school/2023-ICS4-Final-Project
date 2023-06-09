@@ -36,20 +36,6 @@ public class LevelCreator {
             }
         }
 
-        // campsite
-        objects[7][5] = "tent-0";
-        objects[10][7] = "tent-0";
-        objects[4][6] = "tent-0";
-        objects[7][9] = "campfire-0";
-        ground[6][8] = "dirt-32";
-        ground[7][8] = "dirt-4";
-        ground[8][8] = "dirt-20";
-        ground[6][9] = "dirt-16";
-        ground[8][9] = "dirt-8";
-        ground[6][10] = "dirt-28";
-        ground[7][10] = "dirt-12";
-        ground[8][10] = "dirt-24";
-
         // trees
         for (int i = 0; i < 200; i++) {
             int temp = (int) (Math.random() * 7);
@@ -59,7 +45,7 @@ public class LevelCreator {
                 x = (int) (Math.random() * 40);
                 y = (int) (Math.random() * 40);
             }
-            while (x >= 4 && x <= 10 && y >= 5 && y <= 10) {
+            while (x >= 29 && x <= 35 && y >= 30 && y <= 35) {
                 x = (int) (Math.random() * 40);
                 y = (int) (Math.random() * 40);
             }
@@ -103,12 +89,29 @@ public class LevelCreator {
             ground[20][j] = "dirt-" + temp;
         }
 
+        int s = 25;
+        // campsite
+        objects[7+s][5+s] = "tent-0";
+        objects[10+s][7+s] = "tent-0";
+        objects[4+s][6+s] = "tent-0";
+        objects[7+s][9+s] = "campfire-0";
+        ground[6+s][8+s] = "dirt-32";
+        ground[7+s][8+s] = "dirt-4";
+        ground[8+s][8+s] = "dirt-20";
+        ground[6+s][9+s] = "dirt-16";
+        ground[8+s][9+s] = "dirt-8";
+        ground[6+s][10+s] = "dirt-28";
+        ground[7+s][10+s] = "dirt-12";
+        ground[8+s][10+s] = "dirt-24";
+
         px = 5;
         py = 5;
-        next = "Level-2.lvl";
+        next = "src/main/Levels/Level-2.lvl";
         // Save level 1
         scene = 0; // forest
-        wolves = new int[0][0];
+        wolves = new int[1][2];
+        wolves[0][0] = 7+s;
+        wolves[0][1] = 9+s;
         l = new Level(ground, objects, px, py, next, scene, wolves, null);
         out = new ObjectOutputStream(new FileOutputStream("src/main/Levels/Level-1.lvl"));
         out.writeObject(l);
