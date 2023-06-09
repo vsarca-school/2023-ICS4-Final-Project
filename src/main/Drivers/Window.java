@@ -17,12 +17,19 @@ import src.main.Main;
  * @author Victor Sarca/Radin Ahari/Felix Zhao (code)/Radin Ahari(comments)
  */
 public class Window implements KeyListener, MouseListener {
+    /**Jframe */
     private JFrame frame;
+    /**Canvas being drawn on */
     private Canvas canvas;
+    /**all ScreenElements */
     private ArrayList<ScreenElement> elements = new ArrayList<>();
-    private boolean[] keysdown = new boolean[4]; // Stores whether key is up or down, 0-3 are up left down right
-    private Queue<int[]> mouseclicks = new ArrayDeque<>(); // Stores the location of mouse clicks, only left click
+    /**Stores whether key is up or down, 0-3 are up left down right */
+    private boolean[] keysdown = new boolean[4];
+    /**Stores the location of mouse clicks, only left click */
+    private Queue<int[]> mouseclicks = new ArrayDeque<>(); 
+    /**width and height of canvas */
     int width, height;
+    /**whether window has updated */
     boolean hasUpdated = true;
     /**
      * Window constructor
