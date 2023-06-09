@@ -118,7 +118,7 @@ public class Wolf extends ScreenElement {
         String block = l.getBlock(nextx, nexty);
         if (block == null && (nextx != apx || nexty != apy) && (nextx != npx || nexty != npy))
             return;
-        if (parent.hasWolf)
+        //if (parent.hasWolf)
         walking = false;
         if (block != null)
             return;
