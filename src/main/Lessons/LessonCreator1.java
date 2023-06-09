@@ -22,7 +22,7 @@ public class LessonCreator1 {
         };
         int[] pos = {1, 2, 5, 7};
         String[] images = {"droplet", "dipper", "droplet", "bigrock"};
-        String next = "Lesson-2.lsn";
+        String next = "src/main/Lessons/Lesson-2.lsn";
         // Create level 1
         Lesson l1 = new Lesson("Navigation", strs, pos, "map", images, next);
 
