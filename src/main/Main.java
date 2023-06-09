@@ -10,8 +10,6 @@ import src.main.Scenes.*;
 public class Main {
     static Window w;
 
-    static Player p;
-
     static MainMenu m;
     static Options o;
     static LessonScene l;
@@ -40,17 +38,15 @@ public class Main {
         // Create all objects necessary
         w = new Window("Timber Trek", 800, 600);
 
-        p = new Player();
-
         m = new MainMenu();
         o = new Options();
         l = new LessonScene();
-        z = new Maze(p);
-        a = new ActionLevel(p);
+        z = new Maze();
+        a = new ActionLevel();
         e = new EndScreen();
 
-        currentSceneNum = 0;
-        currentScene = l; // TODO: change back to menu when done debugging
+        currentSceneNum = 4;
+        currentScene = a; // TODO: change back to menu when done debugging
 
         currentScene.addToWindow(w);
 
@@ -62,6 +58,7 @@ public class Main {
     }
 
     public static void changeScene(int newScene) {
+        //if (currentSceneNum == newScene) return; // Useless call, don't screw up the previousScene
         switch (newScene) {
             case -1:
                 running = false;
@@ -72,8 +69,8 @@ public class Main {
                 currentScene.addToWindow(w);
                 break;
             case 1:
-                //currentScene.removeFromWindow(w);
-                o.previousScene(currentSceneNum);
+                //currentScene.removeFromWindow(w); See through?
+                //o.previousScene(currentSceneNum);
                 currentScene = o;
                 currentScene.addToWindow(w);
                 break;
@@ -98,6 +95,12 @@ public class Main {
                 currentScene.addToWindow(w);
                 break;
         }
-        currentSceneNum = newScene;
+        //currentSceneNum = newScene;
+    }
+
+    public static void pause() {
+        w.pauseAll();
+        if (currentScene.isPaused()) o.addToWindow(w);
+        else o.removeFromWindow(w);
     }
 }

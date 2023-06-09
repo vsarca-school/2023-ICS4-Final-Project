@@ -9,8 +9,8 @@ public class Maze extends ScreenElement {
     private Player p;
     private Level l;
 
-    public Maze(Player pl) {
-        p = pl;
+    public Maze() {
+        p = new Player();
         l = Level.fromFile("src/main/Levels/Maze-1.lvl");
     }
 

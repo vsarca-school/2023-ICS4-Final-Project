@@ -101,7 +101,7 @@ public class Level extends ScreenElement implements Serializable {
         // Calculate scaling and centering
         double hww = w.getWidth() / 2.0;
         double hwh = w.getHeight() / 2.0;
-        double scale = Sprite.getTileScale();
+        double scale = Sprite.getTileScale()*16;
         double hwwt = hww / scale;
         double hwht = hwh / scale;
         hww -= scale / 2;

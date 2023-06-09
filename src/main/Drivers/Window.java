@@ -6,6 +6,8 @@ import java.util.*;
 
 import javax.swing.*;
 
+import src.main.Main;
+
 /**
  * An object of this class represents a window.
  * 
@@ -71,13 +73,22 @@ public class Window implements KeyListener, MouseListener {
     }
 
     public void addElement(ScreenElement s) {
-        if (elements.contains(s)) return;
+        if (s.isPaused()) s.pause(); // Make sure it isn't pause
         elements.add(s);
     }
 
     public void removeElement(ScreenElement s) {
-        if (!elements.contains(s)) System.out.println("Error: Tried to remove scene that does not exist.");
         elements.remove(s);
+    }
+
+    public void pauseAll() {
+        try {
+        for (ScreenElement s : elements) {
+            s.pause();
+        }
+        } catch (ConcurrentModificationException e) {
+            // Expected when scene is changed; do nothing, should work out anyways
+        }
     }
 
     public void update() {
@@ -177,6 +188,9 @@ public class Window implements KeyListener, MouseListener {
             case KeyEvent.VK_D:
             case KeyEvent.VK_RIGHT:
                 keysdown[3] = true;
+                break;
+            case KeyEvent.VK_ESCAPE:
+                Main.pause();
                 break;
         }
     }

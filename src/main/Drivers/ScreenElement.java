@@ -42,16 +42,11 @@ public abstract class ScreenElement {
     }
 
     public final void pause() {
-        // Final behaviour: paused = true
-        paused = true;
+        // Final behaviour: toggle pause
+        paused = !paused;
     }
 
-    public final void unpause() {
-        // Final behaviour: paused = false
-        paused = false;
-    }
-
-    public final boolean ispaused() {
+    public final boolean isPaused() {
         // Final behaviour: return paused
         return paused;
     }

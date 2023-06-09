@@ -13,8 +13,6 @@ import src.main.Drivers.Window;
 // TODO: MAKE IT SEE THROUGH BY ADDING "PAUSE" METHOD TO SCREEN ELEMENTS
 
 public class Options extends ScreenElement {
-    private int previousScene;
-
     public void update(Window w, Graphics g) {
         // Find scaling
         double hww = w.getWidth() / 2.0;
@@ -34,7 +32,7 @@ public class Options extends ScreenElement {
         int[] mouse;
         while ((mouse = w.nextMouse()) != null) {
             if (isClicked(Sprite.getScaledImage("continue"), (int) (hww), (int) (hwh), mouse)) {
-                Main.changeScene(previousScene);
+                Main.pause();
             } else if (isClicked(Sprite.getScaledImage("menuquit"), (int) (hww), (int) (hwh + 16 * scale),
                     mouse)) {
                 Main.changeScene(0);
@@ -53,9 +51,5 @@ public class Options extends ScreenElement {
         int height = image.getHeight(null) / 2;
         return (mouse[0] > x - width && mouse[0] < x + width && mouse[1] > y - height
                 && mouse[1] < y + height);
-    }
-
-    public void previousScene(int previousScene) {
-        this.previousScene = previousScene;
     }
 }
