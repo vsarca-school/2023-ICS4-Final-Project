@@ -15,7 +15,6 @@ import src.main.Drivers.Window;
  * @version 6/8/2023
  * @author Radin Ahari (comment)/Felix Zhao (code)
  */
-
 public class Options extends ScreenElement {
 
     /**
@@ -76,7 +75,6 @@ public class Options extends ScreenElement {
      * @param mouse mouse position
      * @return returns whether a button is clicked
      */
-
     private boolean isClicked(Image image, int x, int y, int[] mouse) {
         int width = image.getWidth(null) / 2;
         int height = image.getHeight(null) / 2;
