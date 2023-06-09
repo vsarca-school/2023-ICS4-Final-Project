@@ -1,42 +1,60 @@
 package src.main.Drivers;
 
-import java.io.File;
-import java.io.Serializable;
-
-import src.main.Main;
-
 import java.awt.*;
 import java.io.*;
 
+import src.main.Main;
+
 public class Question extends ScreenElement implements Serializable {
+
+    private String question;
+    private String[] answers;
+    private int correct;
 
     private String title;
     private String[] texts;
-    private int[] location;
-    //private int[] positions;
-    //private String nextQuestion;
+    private int[] positions;
+    private String background;
+    private String[] images;
+    private String nextLesson;
 
     private int currentIndex = 0;
     private int currentStringIndex = -1;
-    //private int posIndex = 0;
+    private int posIndex = 0;
     private int timer = 0;
     private int animTimer = 0;
     private static final int DELAY = 3;
     private double scale;
     private Font font;
 
-    public Question(String title, String[] texts, int x, int y) {
-        this.title = title;
-        this.texts = texts;
-        location = new int[]{x,y};
-        try {
-            font = Font.createFont(Font.TRUETYPE_FONT, new File("src/main/Fonts/VCR_OSD_MONO_1.001.ttf"));
-        } catch (Exception e) {
-        }
+    public Question(String question, String[] answers, int correct) {
+        this.question = question;
+        this.answers = answers;
+        this.correct = correct;
     }
 
-    public boolean isAt(int x, int y) {
-        return x == location[0] && y == location[1];
+    public static Question fromFile(String file) {
+        Question q = null;
+        try {
+            ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
+            q = (Question) in.readObject();
+            in.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return q;
+    }
+
+    public void centerImage(Graphics g, Image image, int x, int y) {
+        int imageWidth = image.getWidth(null);
+        int imageHeight = image.getHeight(null);
+
+        int a = x - imageWidth / 2;
+        int b = y - imageHeight / 2;
+
+        g.drawImage(image, a, b, null);
     }
 
     public void centerBox(Graphics g, Color c, int x, int y, int w, int h) {
@@ -67,29 +85,38 @@ public class Question extends ScreenElement implements Serializable {
         }
     }
 
-    public void heading(Graphics g, Window w, Color c, Font font) {
-        int size = maxFontSize(g, title, w.getWidth() * 15 / 16, w.getHeight() / 2, font);
-        Font temp = font.deriveFont(Font.PLAIN, size);
-    
-        // Calculate the dimensions of the rectangle
-        FontMetrics fm = g.getFontMetrics(temp);
-        int textWidth = fm.stringWidth(title);
-        int textHeight = fm.getHeight();
-        int rectWidth = textWidth + 10; // 5 pixels on each side
-        int rectHeight = textHeight + 10; // 5 pixels on each side
-    
-        // Calculate the position of the rectangle
-        int rectX = (w.getWidth() - rectWidth) / 2;
-        int rectY = w.getHeight() / 3 - rectHeight / 2;
-    
-        // Draw the white rectangle as the background
-        g.setColor(Color.WHITE);
-        g.fillRect(rectX, rectY, rectWidth, rectHeight);
-    
-        // Draw the centered text
-        centerString(g, c, title, w.getWidth() / 2, w.getHeight() / 3, w.getWidth(), size, temp);
+    public int maxFontSizeAll(Graphics g, int maxWidth, int maxHeight, Font font) {
+        char letter = 65;
+        int min = Integer.MAX_VALUE;
+        for (String str : answers) {
+            String tmp = (char) (letter) + ": " + str;
+            String[] lines = tmp.split("\n");
+            int optimalSize = Integer.MAX_VALUE;
+
+            for (String line : lines) {
+                int minSize = 1;
+                int maxSize = maxHeight;
+                int size = 0;
+
+                while (minSize <= maxSize) {
+                    int midSize = (minSize + maxSize) / 2;
+                    Font testFont = font.deriveFont(Font.PLAIN, midSize);
+                    FontMetrics metrics = g.getFontMetrics(testFont);
+                    int textWidth = metrics.stringWidth(line);
+
+                    if (textWidth <= maxWidth) {
+                        size = midSize;
+                        minSize = midSize + 1;
+                    } else {
+                        maxSize = midSize - 1;
+                    }
+                }
+                optimalSize = Math.min(optimalSize, size);
+            }
+            min = Math.min(min, optimalSize);
+        }
+        return min;
     }
-    
 
     public int maxFontSize(Graphics g, String text, int maxWidth, int maxHeight, Font font) {
         String[] lines = text.split("\n");
@@ -135,72 +162,39 @@ public class Question extends ScreenElement implements Serializable {
     public void update(Window w, Graphics g) {
         boolean paused = isPaused();
 
-        if (currentStringIndex < 0) {
-            heading(g, w, Color.BLACK, font);
+        double hww = w.getWidth() / 2.0;
+        double hwh = w.getHeight() / 2.0;
+        scale = Sprite.getTileScale();
 
-            if (paused)
-                return;
+        Color c = new Color(53, 45, 82, 255);
+        centerBox(g, c, (int) hww, (int) hwh, (int) (hww * 8 / 5), (int) (hwh * 8 / 5));
 
-            timer++;
-            if (timer > 120) {
-                timer = 0;
-                currentStringIndex++;
-            }
-        } else if (currentStringIndex >= 0 && currentStringIndex < texts.length) {
-            double hww = w.getWidth() / 2.0;
-            double hwh = w.getHeight() / 2.0;
-            scale = Sprite.getTileScale();
+        int size = maxFontSize(g, question, (int) (hww * 7 / 5), (int) hwh, font);
+        Font temp = font.deriveFont(Font.PLAIN, size);
+        centerString(g, Color.WHITE, question, (int) hww, (int) (hwh * 2 / 5), (int) hww * 2, size, temp);
 
-            Color c = new Color(53, 45, 82, 255);
-            centerBox(g, c, w.getWidth() / 2, w.getHeight() * 4 / 5, (int) scale * 128 + 1, (int) scale * 48 / 2 + 1);
+        char letter = 65;
+        int i = 0;
 
-            if (timer % DELAY < DELAY) {
-                // TODO fix scaling of font, not efficient but works
-                String currentText = texts[currentStringIndex];
-                int size = maxFontSize(g, currentText, (int) scale * 128 + 1 - (int) scale * 6 - 5,
-                        (int) scale * 24 + 1 - (int) scale * 6 - 5, font);
-                Font temp = font.deriveFont(Font.PLAIN, size);
-                centerString(g, Color.WHITE, currentText.substring(0, Math.min(currentIndex, currentText.length())),
-                        w.getWidth() / 2, w.getHeight() * 31 / 40, (int) scale * 128 + 1, size, temp);
-            }
+        for (String str : answers) {
+            String tmp = (char) (letter) + ": " + str;
+            size = maxFontSizeAll(g, (int) (hww * 6 / 5), (int) (hwh / 10), font);
+            temp = font.deriveFont(Font.PLAIN, size);
+            centerString(g, Color.WHITE, tmp, (int) hww, (int) (hwh * 7 / 10 + i), (int) hww * 2, size, temp);
+            i += size * 1.25;
+            letter++;
+        }
 
-            if (!paused) {
-                timer++;
-                if (timer % DELAY == 0) {
-                    if (currentIndex < texts[currentStringIndex].length() + 50) {
-                        currentIndex++;
-                    } else {
-                        currentIndex = 0;
-                        currentStringIndex++;
-                    }
-                    timer = 0;
-                }
-                animTimer++;
-            }
-
-            int anim = 0;
-            if (animTimer <= 60) {
-                anim = w.getHeight() * 33 / 40;
-            } else {
-                anim = w.getHeight() * 133 / 160;
-            }
-            int[] xPoints = { w.getWidth() / 2 - (int) scale * 2, w.getWidth() / 2,
-                    w.getWidth() / 2 + (int) scale * 2 };
-            int[] yPoints = { anim, anim + (int) scale * 2, anim };
-            g.setColor(Color.WHITE);
-            g.fillPolygon(xPoints, yPoints, 3);
-
-            if (paused) return;
-
-            if (animTimer % 120 == 0) {
-                animTimer = 0;
-            }
-
-            while (w.nextMouse() != null) {
-                currentIndex = 0;
-                currentStringIndex++;
-                timer = 0;
-                animTimer = 0;
+        centerImage(g, Sprite.getScaledImage("a"), (int)(hww / 5), (int)(hwh*7 / 5));
+        centerImage(g, Sprite.getScaledImage("b"), (int)(hww*4 / 5), (int)(hwh*7 / 5));
+        centerImage(g, Sprite.getScaledImage("c"), (int)(hww*3 / 5), (int)(hwh*7 / 5));
+        centerImage(g, Sprite.getScaledImage("d"), (int)(hww*4 / 5), (int)(hwh*7 / 5));
+        
+        int[] mouse;
+        while ((mouse = w.nextMouse()) != null) {
+            if (isClicked(Sprite.getScaledImage("next"), (int) hww,
+                    (int) hwh, mouse)) {
+                Main.changeScene(3);
             }
         }
     }

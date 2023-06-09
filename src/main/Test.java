@@ -49,10 +49,16 @@ public class Test {
                          "When you have no other options left, remember to walk in a straight line,\nas people tend to walk in circles and get even more lost.",
                          "Focus on a landmark and walk towards it, you have a higher chance of\nrescue as you will find a way out eventually."};
         int[] pos = {3, 5};
-        String[] images = {"droplet", "logo"};
-        // Create level 1
-        Lesson l1 = Lesson.fromFile("src/main/Lessons/Lesson-1.lsn");
-        ScreenElement currentScene = l1; // TODO: change back to menu when done debugging
+
+        String[] answers = {
+            "The North Star",
+            "Sirius",
+            "Orion",
+            "Haedus"
+        };
+        Question q = new Question("Which star is near the Big Dipper?", answers, 0);
+
+        ScreenElement currentScene = q; // TODO: change back to menu when done debugging
 
         currentScene.addToWindow(w);
 
