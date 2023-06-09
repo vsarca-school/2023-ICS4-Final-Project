@@ -226,6 +226,7 @@ public class Lesson extends ScreenElement implements Serializable {
 
     /**
      * Victor Sarca - adds the object to the window class
+     * @param w window
      */
     public void addToWindow(Window w) {
         try {
@@ -237,6 +238,8 @@ public class Lesson extends ScreenElement implements Serializable {
 
     /**
      * Felix Zhao - the update loop for the lesson class, handles all of the logic
+     * @param g graphics window
+     * @param w window object
      */
     public void update(Window w, Graphics g) {
         boolean paused = isPaused();
