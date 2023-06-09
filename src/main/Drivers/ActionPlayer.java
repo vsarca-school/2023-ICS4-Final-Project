@@ -7,6 +7,7 @@ import src.main.Scenes.ActionLevel;
 /**
  * <h1>ActionPlayer Class</h1>
  * Time spent: 3.5 hours
+ * 
  * @version 1.2
  * @version 6/8/2023
  * @author Victor Sarca (code)/Radin Ahari(comments)
@@ -14,14 +15,16 @@ import src.main.Scenes.ActionLevel;
 public class ActionPlayer extends Player {
     private int health;
     private ActionLevel parent;
+    private boolean backward;
 
-    public ActionPlayer(int health) { 
+    public ActionPlayer(int health) {
         this.health = health;
     }
 
     /**
      * Adds player to an action level
-     * @param l level being added to
+     * 
+     * @param l  level being added to
      * @param lv action level being added
      */
     public void joinLevel(Level l, ActionLevel lv) {
@@ -39,13 +42,13 @@ public class ActionPlayer extends Player {
         super.collide(w);
         if (parent.hasWolf(tempx, tempy)) {
             walking = false;
-            realx = x;
-            realy = y;
+            backward = !backward;
         }
     }
 
     /**
      * Updates window
+     * 
      * @param w window
      * @param g graphics
      */
@@ -60,12 +63,19 @@ public class ActionPlayer extends Player {
                 getInput(w);
                 collide(w);
                 // Do some interpolation in walking between tiles
-                realx += directions[direction][0] / 10.0;
-                realy += directions[direction][1] / 10.0;
+                if (!backward) {
+                    realx += directions[direction][0] / 10.0;
+                    realy += directions[direction][1] / 10.0;
+                } else {
+
+                    realx -= directions[direction][0] / 10.0;
+                    realy -= directions[direction][1] / 10.0;
+                }
             } else {
                 interpolation = 0;
                 getInput(w);
                 walk();
+                backward = false;
                 direction = nextDirection;
                 collide(w);
             }
