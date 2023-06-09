@@ -112,8 +112,6 @@ public class ActionLevel extends ScreenElement {
         l = l.nextLevel();
         if (l != null)
             refreshWolves(w);
-        for (Wolf wf : wolves)
-            wf.addToWindow(w);
         p.removeFromWindow(w);
         w.removeElement(this);
     }
