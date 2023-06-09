@@ -7,6 +7,14 @@ import src.main.Main;
 import src.main.Drivers.*;
 import src.main.Drivers.Window;
 
+/**
+ * <h1>ActionPlayer Class</h1>
+ * Time spent: 1 hour
+ * @version 1.2
+ * @version 6/8/2023
+ * @author Radin Ahari(comment)/Felix Zhao(code)
+ */
+
 public class EndScreen extends ScreenElement {
 
     private double scale;

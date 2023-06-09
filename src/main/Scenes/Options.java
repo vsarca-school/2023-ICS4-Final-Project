@@ -7,12 +7,21 @@ import src.main.Main;
 import src.main.Drivers.*;
 import src.main.Drivers.Window;
 
-//////// TODOOOOOO
-//////// MAKE IT CLEANER REMOVE THE SCALE VAIRABLE
-
-// TODO: MAKE IT SEE THROUGH BY ADDING "PAUSE" METHOD TO SCREEN ELEMENTS
+/**
+ * <h1>ActionPlayer Class</h1>
+ * Time spent: 2.1 hours
+ * @version 1.2
+ * @version 6/8/2023
+ * @author Radin Ahari (comment)/Felix Zhao (code)
+ */
 
 public class Options extends ScreenElement {
+    
+    /**
+     * updates the window
+     * @param w the window being updated
+     * @param g graphics
+     */
     public void update(Window w, Graphics g) {
         // Find scaling
         double hww = w.getWidth() / 2.0;
@@ -41,12 +50,28 @@ public class Options extends ScreenElement {
             }
         }
     }
-
+    /**
+     * Draws an image to the screen
+     * 
+     * @param g graphics
+     * @param image image being drawn
+     * @param x x coordinate
+     * @param y y coordinate
+     */
     private void drawImage(Graphics g, Image image, int x, int y) {
         int width = image.getWidth(null) / 2;
         int height = image.getHeight(null) / 2;
         g.drawImage(image, x - width, y - height, null);
     }
+
+    /**
+     * Checks if a button is clicked
+     * @param image image being clicked
+     * @param x x coordinate
+     * @param y y coordinate
+     * @param mouse mouse position 
+     * @return returns whether a button is clicked
+     */
 
     private boolean isClicked(Image image, int x, int y, int[] mouse) {
         int width = image.getWidth(null) / 2;

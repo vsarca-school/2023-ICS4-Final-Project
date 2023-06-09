@@ -6,10 +6,12 @@ import java.awt.Image;
 import src.main.Main;
 import src.main.Drivers.*;
 
-//////// TODOOOOOO
-//////// MAKE IT CLEANER REMOVE THE SCALE VAIRABLE
-
 public class MainMenu extends ScreenElement {
+    /**
+     * Updates the window
+     * @param w window being updated
+     * @param g graphics
+     */
     public void update(Window w, Graphics g) {
         // Find scaling
         double hww = w.getWidth() / 2.0;
@@ -44,13 +46,29 @@ public class MainMenu extends ScreenElement {
             }
         }
     }
-
+    /**
+     * Draws an image
+     * 
+     * @param g graphics
+     * @param image image being drawn
+     * @param x x coordinate
+     * @param y y coordinate
+     */
     private void drawImage(Graphics g, Image image, int x, int y) {
         int width = image.getWidth(null) / 2;
         int height = image.getHeight(null) / 2;
         g.drawImage(image, x - width,
                 y - height, null);
     }
+
+    /**
+     * checks if a button has been clicked or not
+     * @param image image being clicked
+     * @param x x coordinate
+     * @param y y coordinate
+     * @param mouse mouse position
+     * @return returns whether the button has been clicked or not
+     */
 
     private boolean isClicked(Image image, int x, int y, int[] mouse) {
         int width = image.getWidth(null) / 2;
