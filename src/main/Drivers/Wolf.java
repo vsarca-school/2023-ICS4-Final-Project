@@ -19,6 +19,10 @@ public class Wolf extends ScreenElement {
      *          - Victor
      */
     public void update(Window w, Graphics g) {
+        if (!isPaused()) {
+            // LOGIC HERE
+        }
+
         render(w, g);
     }
 

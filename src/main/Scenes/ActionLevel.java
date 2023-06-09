@@ -14,6 +14,15 @@ public class ActionLevel extends ScreenElement {
     public ActionLevel() {
         p = new ActionPlayer(100);
         l = Level.fromFile("src/main/Levels/Level-1.lvl");
+        loadWolves();
+    }
+
+    public void loadWolves() {
+        int[][] start = l.getWolves();
+        wolves = new Wolf[start.length];
+        for (int i=0; i<start.length; i++) {
+            wolves[i] = new Wolf(start[i][0], start[i][1]);
+        }
     }
 
     public void updatePlayerPos(double x, double y) {
@@ -34,6 +43,7 @@ public class ActionLevel extends ScreenElement {
     public void removeFromWindow(Window w) {
         l.removeFromWindow(w);
         l = l.nextLevel();
+        loadWolves();
         p.removeFromWindow(w);
         w.removeElement(this);
     }
