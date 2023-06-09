@@ -6,13 +6,12 @@ import java.io.*;
 import src.main.Main;
 
 /**
- * <h1>ActionPlayer Class</h1>
- * Time spent: 1.2 hours
- * @version 1.2
+ * <h1>Question Class</h1>
+ * Time spent: 2 hours
+ * @version 1.1
  * @version 6/8/2023
- * @author Victor Sarca/Radin Ahari
+ * @author Victor Sarca, Radin Ahari, Felix Zhao
  */
-
 public class Question extends ScreenElement implements Serializable {
 
     private String question;
@@ -22,8 +21,9 @@ public class Question extends ScreenElement implements Serializable {
 
     private double scale;
     private Font font;
+    
     /**
-     * Questoin class constructor
+     * Question class constructor
      * @param question question asked
      * @param answers possible answers
      * @param correct correct answer
