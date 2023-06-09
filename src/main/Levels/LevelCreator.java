@@ -114,25 +114,25 @@ public class LevelCreator {
         next = "Level-2.lvl";
         // Save level 1
         scene = 0; // forest
-        l = new Level(ground, objects, px, py, next, scene);
+        l = new Level(ground, objects, px, py, next, scene, new int[0][0]);
         out = new ObjectOutputStream(new FileOutputStream("src/main/Levels/Level-1.lvl"));
         out.writeObject(l);
         out.close();
 
         // Create Cave
-        ground = new String[40][40];
-        objects = new String[40][40];
-        for (int i=0; i<40; i++)
+        ground = new String[15][15];
+        objects = new String[15][15];
+        for (int i=0; i<15; i++)
         {
-            for (int j=0; j<40; j++)
+            for (int j=0; j<15; j++)
             {
                 int temp = (int)(Math.random()*4);
-                ground[i][j] = "grass-"+temp;
+                ground[i][j] = "wall-"+temp;
             }
         }
         // Save level 2
         scene = 1; // cave
-        l = new Level(ground, objects, px, py, next, scene);
+        l = new Level(ground, objects, px, py, next, scene, new int[0][0]);
         out = new ObjectOutputStream(new FileOutputStream("src/main/Levels/Level-2.lvl"));
         out.writeObject(l);
         out.close();
@@ -153,7 +153,7 @@ public class LevelCreator {
         py = 5;
         next = "Maze-2.lvl";
         // Save level 1
-        l = new Level(ground, objects, px, py, next, 0);
+        l = new Level(ground, objects, px, py, next, 0, new int[0][0]);
         out = new ObjectOutputStream(new FileOutputStream("src/main/Levels/Maze-1.lvl"));
         out.writeObject(l);
         out.close();
