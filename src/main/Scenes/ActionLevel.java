@@ -3,17 +3,29 @@ package src.main.Scenes;
 import src.main.Main;
 import src.main.Drivers.*;
 
+/**
+ * <h1>ActionPlayer Class</h1>
+ * Time spent: 1.4 hours
+ * @version 1.2
+ * @version 6/8/2023
+ * @author Radin Ahari(comment)/Victor Sarca(code)
+ */
+
 public class ActionLevel extends ScreenElement {
     private ActionPlayer p;
     private Level l;
     private Wolf[] wolves;
-
+    /**
+     * Action level constructor
+     */
     public ActionLevel() {
         p = new ActionPlayer(100);
         l = Level.fromFile("src/main/Levels/Level-2.lvl");
         loadWolves();
     }
-
+    /**
+     * Loads all of the wolves for the cave
+     */
     public void loadWolves() {
         int[][] start = l.getWolves();
         wolves = new Wolf[start.length];
@@ -21,7 +33,12 @@ public class ActionLevel extends ScreenElement {
             wolves[i] = new Wolf(start[i][0], start[i][1], l);
         }
     }
-
+    /**
+     * Checks if a wolf is already at a position x,y
+     * @param x x coordinate
+     * @param y y coordinate
+     * @return returns whether there is a wolf at x,y
+     */
     public boolean hasWolf(int x, int y) {
         for (Wolf wl : wolves) {
             int[] temp = wl.getCoords();
@@ -30,12 +47,20 @@ public class ActionLevel extends ScreenElement {
         return false;
     }
 
+    /**
+     * tells wolves where the player is
+     * @param x x coordinate
+     * @param y y coordinate
+     */
     public void updatePlayerPos(double x, double y) {
         for (Wolf w : wolves) {
             w.updatePlayerPos(x, y);
         }
     }
-
+    /**
+     * Adds to window
+     * @param w window
+    */
     public void addToWindow(Window w) {
         if (l == null) Main.changeScene(5);
 
@@ -47,6 +72,10 @@ public class ActionLevel extends ScreenElement {
         System.out.println(wolves.length);
     }
 
+    /**
+     * Removes from  window
+     * @param w window
+    */
     public void removeFromWindow(Window w) {
         l.removeFromWindow(w);
         l = l.nextLevel();
