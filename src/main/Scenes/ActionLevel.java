@@ -9,9 +9,7 @@ import src.main.Drivers.*;
 public class ActionLevel extends ScreenElement {
     private Player p;
     private Level l;
-    private int playerHealth = 110;
-    private int wolfAmount = (int)(Math.random()*5)+1;
-    private int[] wolfHealth = new int[wolfAmount];
+    private Wolf[] wolves;
 
     public ActionLevel() {
         p = new ActionPlayer(100);
@@ -46,17 +44,5 @@ public class ActionLevel extends ScreenElement {
 
     public void damagePlayer(int health, int amount){
         health  -= Math.random()*10*amount;
-    }
-
-    public int getPlayerHealth(){
-        return playerHealth;
-    }
-
-    public int getWolfAmount(){
-        return wolfAmount;
-    }
-
-    public int[] getWolfHealth(){
-        return wolfHealth;
     }
 }   
