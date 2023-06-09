@@ -8,7 +8,7 @@ public class ActionPlayer extends Player {
     private int health;
     private ActionLevel parent;
 
-    public ActionPlayer(int health) {
+    public ActionPlayer(int health) { 
         this.health = health;
     }
 
