@@ -14,9 +14,6 @@ public class Maze extends ScreenElement {
         l = Level.fromFile("src/main/Levels/Maze-1.lvl");
     }
 
-    public void update(Window w, Graphics g) {
-    }
-
     public void addToWindow(Window w) {
         if (l == null) Main.changeScene(5);
 

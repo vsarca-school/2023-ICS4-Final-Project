@@ -20,6 +20,7 @@ public class Options extends ScreenElement {
         double scale = Sprite.getImageScale();
 
         // Draw screen
+        drawImage(g, Sprite.getScaledBackground("filter"), (int) hww, (int) hwh);
         drawImage(g, Sprite.getScaledImage("paused"), (int) (hww), (int) (hwh - 32 * scale));
         for (int i = 0; i < 5; i++) {
             drawImage(g, Sprite.getScaledImage("vine"), (int) (hww + (16 * i - 32) * scale),

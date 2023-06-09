@@ -10,7 +10,7 @@ public class Player extends ScreenElement {
     protected Level l;
     protected int direction = 2;
     protected int nextDirection = 2;
-    private int animation = 0;
+    protected int animation = 0;
     private int x, y;
     protected double realx, realy;
     protected boolean walking = false;
@@ -39,23 +39,26 @@ public class Player extends ScreenElement {
      * - Radin (contribution to subfunctions - Victor)
      */
     public void update(Window w, Graphics g) {
-        if (!walking) {
-            getInput(w);
-            direction = nextDirection;
-            collide();
-        } else if (interpolation < 6) {
-            interpolation++;
-            // Do some interpolation in walking between tiles
-            realx += directions[direction][0] / 6.0;
-            realy += directions[direction][1] / 6.0;
-        } else {
-            interpolation = 0;
-            direction = nextDirection;
-            walk();
-            collide();
+        if (!isPaused()) {
+            if (!walking) {
+                getInput(w);
+                direction = nextDirection;
+                collide();
+            } else if (interpolation < 6) {
+                interpolation++;
+                // Do some interpolation in walking between tiles
+                realx += directions[direction][0] / 6.0;
+                realy += directions[direction][1] / 6.0;
+            } else {
+                interpolation = 0;
+                direction = nextDirection;
+                walk();
+                collide();
+            }
+            // Clear input and update level
+            l.updatePlayerPos(realx, realy);
+            animation = (animation + 1) % 32;
         }
-        // Clear input and update level
-        l.updatePlayerPos(realx, realy);
 
         render(w, g);
     }
@@ -102,9 +105,8 @@ public class Player extends ScreenElement {
         double scale = Sprite.getTileScale() * 16;
         hww -= scale / 2;
         hwh -= scale / 2;
+        
         // Render player
-        animation = (animation + 1) % 32;
-
         String cur;
         if (walking)
             cur = animations[direction][animation / 8];
