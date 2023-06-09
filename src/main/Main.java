@@ -54,7 +54,11 @@ public class Main {
         }
         w.close();
     }
-
+    /** 
+     * Changes the scene based on the number the scene is defined as
+     * 
+     * @param newScene The number that the scene is defined as.
+    */
     public static void changeScene(int newScene) {
         switch (newScene) {
             case -1:
@@ -95,6 +99,11 @@ public class Main {
         }
     }
 
+    /** 
+     * Pauses the game by overlaying the pause menu over the current level
+     * 
+    */
+
     public static void pause() {
         w.pauseAll();
         if (currentScene.isPaused())
@@ -103,9 +112,24 @@ public class Main {
             o.removeFromWindow(w);
     }
 
+    
+    /**
+     * 
+     * 
+     * 
+     * @param correct
+     * @param x
+     * @param y
+     */
     public static void questionCorrect(boolean correct, int x, int y) {
         z.questionCorrect(correct, x, y);
     }
+
+    /** 
+     * Changes the scene based on the number the scene is defined as
+     * 
+     * @param newScene The number that the scene is defined as.
+    */
 
     public static void reset() {
         l = new LessonScene();
