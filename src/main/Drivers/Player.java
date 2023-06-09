@@ -3,6 +3,8 @@ package src.main.Drivers;
 import java.awt.Graphics;
 import java.awt.Image;
 
+import src.main.Main;
+
 /**
  * Hnadles all player movement, plus rendering
  */
@@ -86,13 +88,17 @@ public class Player extends ScreenElement {
 
     protected void collide() {
         // Check for collision
-        String block = l.getBlock(x + directions[direction][0], y + directions[direction][1])
+        String block = l.getBlock(x + directions[direction][0], y + directions[direction][1]);
         if (block == null) return;
         if (block == "sign-0")
         {
             // Give the user a question
         }
-            walking = false;
+        else if (block == "campfire-0" || block == "tent-0")
+        {
+            Main.changeScene(4);
+        }
+        walking = false;
     }
 
     protected void walk() {
