@@ -6,7 +6,7 @@ import java.awt.Image;
 import src.main.Main;
 
 /**
- * Hnadles all player movement, plus rendering
+ * Handles all player movement, plus rendering
  */
 public class Player extends ScreenElement {
     protected Level l;
