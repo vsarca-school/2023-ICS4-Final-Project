@@ -145,6 +145,7 @@ public class LevelCreator {
             }
         }
         objects[0][3] = "sign-0";
+        objects[5][0] = "campfire-0";
         px = 5;
         py = 5;
         next = "Maze-2.lvl";

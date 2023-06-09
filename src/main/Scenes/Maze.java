@@ -21,6 +21,7 @@ public class Maze extends ScreenElement {
         else {
             p.joinLevel(l);
         }
+        p.endQuestion();
     }
 
     public void addToWindow(Window w) {
