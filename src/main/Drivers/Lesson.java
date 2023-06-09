@@ -5,6 +5,13 @@ import java.io.*;
 
 import src.main.Main;
 
+/**
+ * <h1>ActionPlayer Class</h1>
+ * Time spent: 6.5 hours
+ * @version 1.3
+ * @version 6/8/2023
+ * @author Victor Sarca, Felix Zhao
+ */
 public class Lesson extends ScreenElement implements Serializable {
     private String title;
     private String[] texts;
@@ -21,7 +28,15 @@ public class Lesson extends ScreenElement implements Serializable {
     private static final int DELAY = 3;
     private double scale;
     private Font font;
-
+    /**
+     * Felix Zhao - Lesson constructor
+     * @param title heading of the lesson
+     * @param texts all text used for the lesson
+     * @param slides the positions used for the images
+     * @param background background image
+     * @param images the images used for 
+     * @param nextLesson the next lesson the current lesson tranisitions to
+     */
     public Lesson(String title, String[] texts, int[] slides, String background, String[] images, String nextLesson) {
         this.title = title;
         this.texts = texts;
@@ -35,6 +50,11 @@ public class Lesson extends ScreenElement implements Serializable {
         }
     }
 
+    /**
+     * Vicotr Sarca - Loads lesson from file
+     * @param file the file path to load the lesson
+     * @return lesson from the file
+     */
     public static Lesson fromFile(String file) {
         Lesson lesson = null;
         try {
@@ -49,12 +69,23 @@ public class Lesson extends ScreenElement implements Serializable {
         return lesson;
     }
 
+    /**
+     * Felix Zhao - Next Lesson
+     * @return the next lesson from the current one
+     */
     public Lesson nextLesson() {
         if (nextLesson != null)
             return Lesson.fromFile(nextLesson);
         return null;
     }
 
+    /**
+     * Felix Zhao - Draws a centered image based off of the coordinates
+     * @param g graphics window
+     * @param image image drawn
+     * @param x coordinate
+     * @param y coordinate
+     */
     public void centerImage(Graphics g, Image image, int x, int y) {
         int imageWidth = image.getWidth(null);
         int imageHeight = image.getHeight(null);
@@ -65,6 +96,15 @@ public class Lesson extends ScreenElement implements Serializable {
         g.drawImage(image, a, b, null);
     }
 
+    /**
+     * Felix Zhao - Draws a box with outlines centered around x and y coordinates
+     * @param g graphics window
+     * @param c color of box
+     * @param x coordinate
+     * @param y coordinate
+     * @param w width of box
+     * @param h height of box
+     */
     public void centerBox(Graphics g, Color c, int x, int y, int w, int h) {
         int startX = x - (w / 2);
         int startY = y - (h / 2);
@@ -77,6 +117,17 @@ public class Lesson extends ScreenElement implements Serializable {
                 h - (int) scale * 6);
     }
 
+    /**
+     * Felix Zhao - Centers a string based off of x and y coordinates, update: multiple lines implemented
+     * @param g graphics window
+     * @param c colo of the text
+     * @param text to display
+     * @param x coordinate
+     * @param y coordinate
+     * @param maxWidth max width of the text
+     * @param lineHeight height of a single line
+     * @param font font of the text
+     */
     public void centerString(Graphics g, Color c, String text, int x, int y, int maxWidth, int lineHeight, Font font) {
         String[] lines = text.split("\n");
         g.setFont(font);
@@ -93,6 +144,13 @@ public class Lesson extends ScreenElement implements Serializable {
         }
     }
 
+    /**
+     * Felix Zhao - Draws a large title text
+     * @param g graphics window
+     * @param w window object
+     * @param c color of text
+     * @param font size of font
+     */
     public void heading(Graphics g, Window w, Color c, Font font) {
         int size = maxFontSize(g, title, w.getWidth() * 15 / 16, w.getHeight() / 2, font);
         Font temp = font.deriveFont(Font.PLAIN, size);
@@ -116,7 +174,15 @@ public class Lesson extends ScreenElement implements Serializable {
         centerString(g, c, title, w.getWidth() / 2, w.getHeight() / 3, w.getWidth(), size, temp);
     }
     
-
+    /**
+     * Felix Zhao - finds the max font size based off of a given width and height, binary search
+     * @param g graphics window
+     * @param text text used to test
+     * @param maxWidth
+     * @param maxHeight
+     * @param font font used to check
+     * @return the maximum font size
+     */
     public int maxFontSize(Graphics g, String text, int maxWidth, int maxHeight, Font font) {
         String[] lines = text.split("\n");
         int optimalSize = Integer.MAX_VALUE;
@@ -144,12 +210,23 @@ public class Lesson extends ScreenElement implements Serializable {
         return optimalSize;
     }
 
+    /**
+     * Victor Sarca - checks if an image is clicked
+     * @param image image to check
+     * @param x coordinate
+     * @param y coordinate
+     * @param mouse positions to check
+     * @return if the image was clicked
+     */
     public boolean isClicked(Image image, int x, int y, int[] mouse) {
         int width = image.getWidth(null) / 2;
         int height = image.getHeight(null) / 2;
         return (mouse[0] > x - width && mouse[0] < x + width && mouse[1] > y - height && mouse[1] < y + height);
     }
 
+    /**
+     * Victor Sarca - adds the object to the window class
+     */
     public void addToWindow(Window w) {
         try {
             font = Font.createFont(Font.TRUETYPE_FONT, new File("src/main/Fonts/VCR_OSD_MONO_1.001.ttf"));
@@ -158,6 +235,9 @@ public class Lesson extends ScreenElement implements Serializable {
         w.addElement(this);
     }
 
+    /**
+     * Felix Zhao - the update loop for the lesson class, handles all of the logic
+     */
     public void update(Window w, Graphics g) {
         boolean paused = isPaused();
 
