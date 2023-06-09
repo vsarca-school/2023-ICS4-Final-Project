@@ -35,6 +35,10 @@ public class Question extends ScreenElement implements Serializable {
         }
     }
 
+    public boolean isAt(int x, int y) {
+        return x == location[0] && y == location[1];
+    }
+
     public void centerBox(Graphics g, Color c, int x, int y, int w, int h) {
         int startX = x - (w / 2);
         int startY = y - (h / 2);

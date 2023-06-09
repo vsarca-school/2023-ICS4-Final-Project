@@ -50,6 +50,13 @@ public class Level extends ScreenElement implements Serializable {
         this.questions = questions;
     }
 
+    public Question getQuestion(int x, int y) {
+        for (Question q : questions) {
+            if (q.isAt(x,y)) return q;
+        }
+        return null;
+    }
+
     /**
      * Loads a level from file
      * Returns null if there is an error; after the final level, a null string will
