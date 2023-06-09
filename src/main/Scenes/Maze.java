@@ -13,7 +13,6 @@ import src.main.Drivers.*;
  * @version 6/8/2023
  * @author Radin Ahari (comment)/Victor Sarca (code)
  */
-
 public class Maze extends ScreenElement {
     private Player p;
     private Level l;
@@ -64,7 +63,6 @@ public class Maze extends ScreenElement {
      * 
      * @param w window being removed from
      */
-
     public void removeFromWindow(Window w) {
         if (l == null)
             return;

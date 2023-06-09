@@ -79,7 +79,6 @@ public class MainMenu extends ScreenElement {
      * @param mouse mouse position
      * @return returns whether the button has been clicked or not
      */
-
     private boolean isClicked(Image image, int x, int y, int[] mouse) {
         int width = image.getWidth(null) / 2;
         int height = image.getHeight(null) / 2;

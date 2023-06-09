@@ -28,7 +28,6 @@ public class LessonScene extends ScreenElement {
      * 
      * @param w window being added to
      */
-
     public void addToWindow(Window w) {
         if (l == null) {
             Main.changeScene(5);
@@ -44,7 +43,6 @@ public class LessonScene extends ScreenElement {
      * 
      * @param w window being removed from
      */
-
     public void removeFromWindow(Window w) {
         if (l == null)
             return;
