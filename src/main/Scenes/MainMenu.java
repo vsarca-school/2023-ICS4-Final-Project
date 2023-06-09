@@ -6,9 +6,6 @@ import java.awt.Image;
 import src.main.Main;
 import src.main.Drivers.*;
 
-//////// TODOOOOOO
-//////// MAKE IT CLEANER REMOVE THE SCALE VAIRABLE
-
 public class MainMenu extends ScreenElement {
     public void update(Window w, Graphics g) {
         // Find scaling
@@ -36,10 +33,8 @@ public class MainMenu extends ScreenElement {
         int[] mouse;
         while ((mouse = w.nextMouse()) != null) {
             if (isClicked(Sprite.getScaledImage("play"), (int) (hww), (int) (hwh), mouse)) {
-                System.out.println("Play");
                 Main.changeScene(2);
             } else if (isClicked(Sprite.getScaledImage("quit"), (int) (hww), (int) (hwh + 16 * scale), mouse)) {
-                System.out.println("QUIt");
                 Main.changeScene(-1);
             }
         }
