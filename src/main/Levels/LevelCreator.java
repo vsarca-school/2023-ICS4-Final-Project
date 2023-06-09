@@ -18,6 +18,7 @@ public class LevelCreator {
         int px, py, scene; // scene is 0=forest, 1=cave
         String next;
         Level l;
+        int[][] wolves;
 
         // Grass tiles
         ground = new String[40][40];
@@ -44,6 +45,9 @@ public class LevelCreator {
         ground[6][10] = "dirt-28";
         ground[7][10] = "dirt-12";
         ground[8][10] = "dirt-24";
+        
+
+        
 
         //trees
         for(int i=0; i<200; i++){
@@ -105,19 +109,43 @@ public class LevelCreator {
             int temp = (int)(Math.random()*3+16);
             ground[20][j] = "dirt-"+temp;
         }
-
-        //Wolves
-        //for(int i = 0; i < getWolfAmount; i++){
-
-        //}
         
         px = 5;
         py = 5;
         next = "Level-2.lvl";
         // Save level 1
         scene = 0; // forest
-        l = new Level(ground, objects, px, py, next, scene);
+        wolves = new int[0][0];
+        l = new Level(ground, objects, px, py, next, scene, wolves);
         out = new ObjectOutputStream(new FileOutputStream("src/main/Levels/Level-1.lvl"));
+        out.writeObject(l);
+        out.close();
+
+        // Create Cave
+        ground = new String[15][15];
+        objects = new String[15][15];
+        for (int i=0; i<15; i++)
+        {
+            for (int j=0; j<15; j++)
+            {
+                int temp = (int)(Math.random()*4);
+                ground[i][j] = "wall-"+temp;
+            }
+        }
+
+        //rocks
+        for(int i=0; i<25; i++){
+            int temp = (int)(Math.random()*4);
+            int x = (int)(Math.random()*15);
+            int y = (int)(Math.random()*15);
+            objects[x][y] = "rock-"+temp;
+        }
+        
+        // Save level 2
+        scene = 1; // cave
+        l = new Level(ground, objects, px, py, next, scene, new int[0][0]);
+        l = new Level(ground, objects, px, py, next, scene, new int[0][0]);
+        out = new ObjectOutputStream(new FileOutputStream("src/main/Levels/Level-2.lvl"));
         out.writeObject(l);
         out.close();
 
@@ -129,14 +157,15 @@ public class LevelCreator {
             for (int j=0; j<10; j++)
             {
                 int temp = (int)(Math.random()*4);
-                ground[i][j] = "dirt-"+temp;
+                ground[i][j] = "grass-"+temp;
             }
         }
+        objects[0][3] = "sign-0";
         px = 5;
         py = 5;
         next = "Maze-2.lvl";
         // Save level 1
-        l = new Level(ground, objects, px, py, next, 0);
+        l = new Level(ground, objects, px, py, next, scene, new int[0][0]);
         out = new ObjectOutputStream(new FileOutputStream("src/main/Levels/Maze-1.lvl"));
         out.writeObject(l);
         out.close();

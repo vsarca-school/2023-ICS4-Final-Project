@@ -32,18 +32,20 @@ public class Level extends ScreenElement implements Serializable {
     private int startx, starty;
     private String nextLevel;
     private int backgroundScene;
+    private int[][] startWolves;
 
     /**
      * Used for level creation for initializing a level before saving
      * - Victor
      */
-    public Level(String[][] ground, String[][] objects, int px, int py, String nextLevel, int scene) {
+    public Level(String[][] ground, String[][] objects, int px, int py, String nextLevel, int scene, int[][] wolves) {
         this.ground = ground;
         this.objects = objects;
         this.startx = px;
         this.starty = py;
         this.nextLevel = nextLevel;
         this.backgroundScene = scene;
+        this.startWolves = wolves;
     }
 
     /**
@@ -81,7 +83,14 @@ public class Level extends ScreenElement implements Serializable {
 
     private String getFloor(int x, int y) {
         if (x < 0 || x >= objects.length || y < 0 || y >= objects.length) {
-            return "grass-" + (Math.abs(perm[(Math.abs(x) + perm[Math.abs(y) % 256]) % 256]) % 4);
+            int sprite = perm[(Math.abs(x) + perm[Math.abs(y) % 256]) % 256];
+            switch (backgroundScene) {
+                case 0:
+                return "grass-" + sprite % 4;
+                case 1:
+                return "wall-" + sprite % 4;
+            }
+            
         }
         return ground[x][y];
     }
@@ -108,6 +117,10 @@ public class Level extends ScreenElement implements Serializable {
 
     public int getStartY() {
         return starty;
+    }
+
+    public int[][] getWolves() {
+        return startWolves;
     }
 
     public void update(Window w, Graphics g) {
