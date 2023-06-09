@@ -122,18 +122,19 @@ public class LevelCreator {
         out.close();
 
         // Create Cave
-        ground = new String[40][40];
-        objects = new String[40][40];
-        for (int i=0; i<40; i++)
+        ground = new String[15][15];
+        objects = new String[15][15];
+        for (int i=0; i<15; i++)
         {
-            for (int j=0; j<40; j++)
+            for (int j=0; j<15; j++)
             {
                 int temp = (int)(Math.random()*4);
-                ground[i][j] = "grass-"+temp;
+                ground[i][j] = "wall-"+temp;
             }
         }
         // Save level 2
         scene = 1; // cave
+        l = new Level(ground, objects, px, py, next, scene, new int[0][0]);
         l = new Level(ground, objects, px, py, next, scene, new int[0][0]);
         out = new ObjectOutputStream(new FileOutputStream("src/main/Levels/Level-2.lvl"));
         out.writeObject(l);
