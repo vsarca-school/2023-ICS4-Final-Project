@@ -4,8 +4,12 @@ import src.main.Drivers.*;
 import src.main.Scenes.*;
 
 /**
- * Implemented main function
- * - Victor
+ * <h1>Main Class</h1>
+ * Time spent: 1.2 hours
+ * 
+ * @version 1.1
+ * @version 6/6/2023
+ * @author Victor Sarca, Felix Zhao, Radin Ahari
  */
 public class Main {
     static Window w;
@@ -32,7 +36,7 @@ public class Main {
     public static void main(String[] args) {
         // Loads resources
         Sprite.init();
-        //Sprite.print(); // DEBUG
+        // Sprite.print(); // DEBUG
 
         // Create all objects necessary
         w = new Window("Timber Trek", 800, 600);
@@ -54,11 +58,12 @@ public class Main {
         }
         w.close();
     }
-    /** 
+
+    /**
      * Changes the scene based on the number the scene is defined as
      * 
      * @param newScene The number that the scene is defined as.
-    */
+     */
     public static void changeScene(int newScene) {
         switch (newScene) {
             case -1:
@@ -99,11 +104,9 @@ public class Main {
         }
     }
 
-    /** 
-     * Pauses the game by overlaying the pause menu over the current level
-     * 
-    */
-
+    /**
+     * Pauses the screen elements
+     */
     public static void pause() {
         w.pauseAll();
         if (currentScene.isPaused())
@@ -112,25 +115,22 @@ public class Main {
             o.removeFromWindow(w);
     }
 
-    
     /**
-     * 
-     * 
+     * Check if the question at a given coordinate is correct
      * 
      * @param correct whether the answer is correct
-     * @param x x coordinate
-     * @param y y coordinate
+     * @param x       x coordinate
+     * @param y       y coordinate
      */
     public static void questionCorrect(boolean correct, int x, int y) {
         z.questionCorrect(correct, x, y);
     }
 
-    /** 
+    /**
      * Changes the scene based on the number the scene is defined as
      * 
      * @param newScene The number that the scene is defined as.
-    */
-
+     */
     public static void reset() {
         l = new LessonScene();
         z = new Maze();
