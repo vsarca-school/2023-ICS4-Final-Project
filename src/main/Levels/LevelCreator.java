@@ -147,20 +147,20 @@ public class LevelCreator {
         out.close();
 
         // Level 3
-        ground = new String[20][3];
-        objects = new String[20][3];
+        ground = new String[20][4];
+        objects = new String[20][4];
         for (int i = 0; i < 20; i++) {
-            for (int j = 0; j < 3; j++) {
+            for (int j = 0; j < 4; j++) {
                 int temp = (int) (Math.random() * 4);
                 ground[i][j] = "grass-" + temp;
             }
         }
 
         // rocks
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 10; i++) {
             int temp = (int) (Math.random() * 4);
             int x = (int) (Math.random() * 20);
-            int y = (int) (Math.random() * 3);
+            int y = (int) (Math.random() * 4);
             objects[x][y] = "rock-" + temp;
         }
         
@@ -169,7 +169,7 @@ public class LevelCreator {
         // Save level 2
         scene = 0; // cave
         wolves = new int[][]{{2,0}, {5,2}, {9, 1}, {15, 0}};
-        l = new Level(ground, objects, 0, 1, next, scene, wolves, null);
+        l = new Level(ground, objects, 0, 0, next, scene, wolves, null);
         out = new ObjectOutputStream(new FileOutputStream("src/main/Levels/Level-3.lvl"));
         out.writeObject(l);
         out.close();
