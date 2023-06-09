@@ -76,12 +76,12 @@ public class Main {
                 reset();
                 currentScene.addToWindow(w);
                 break;
-            case 1:
+            /*case 1:
                 // currentScene.removeFromWindow(w); See through?
                 // o.previousScene(currentSceneNum);
                 currentScene = o;
                 currentScene.addToWindow(w);
-                break;
+                break;*/
             case 2:
                 currentScene.removeFromWindow(w);
                 currentScene = l;
@@ -102,6 +102,10 @@ public class Main {
                 currentScene = e;
                 currentScene.addToWindow(w);
                 break;
+            default:
+                // Oops?
+                running = false;
+                System.out.println("Error: invalid scene index " + newScene);
         }
     }
 
