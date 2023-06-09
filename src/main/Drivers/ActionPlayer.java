@@ -36,8 +36,11 @@ public class ActionPlayer extends Player {
         int tempx = x + directions[direction][0];
         int tempy = y + directions[direction][1];
         super.collide(w);
-        if (parent.hasWolf(tempx, tempy))
+        if (parent.hasWolf(tempx, tempy)) {
             walking = false;
+            realx = x;
+            realy = y;
+        }
     }
 
     /**
@@ -65,7 +68,7 @@ public class ActionPlayer extends Player {
             }
             // Clear input and update level
             l.updatePlayerPos(realx, realy);
-            parent.updatePlayerPos(realx, realy);
+            parent.updatePlayerPos(realx, realy, x, y, walking);
             animation = (animation + 1) % 32;
         }
 
