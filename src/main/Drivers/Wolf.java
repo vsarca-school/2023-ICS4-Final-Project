@@ -6,10 +6,12 @@ public class Wolf extends ScreenElement {
     private int x, y;
     private double realx, realy;
     private double px, py;
+    private int apx, apy;
     private int animation = 0;
     private int direction = 0;
     private boolean walking;
-    protected int interpolation = 0;
+    private int interpolation = 0;
+    private boolean playerWalking = false;
     private static final String[][] animations = { { "wolf-0", "wolf-1", "wolf-2", "wolf-3" },
             { "wolf-7", "wolf-6", "wolf-5", "wolf-4" } };
     private Level l;
@@ -52,8 +54,7 @@ public class Wolf extends ScreenElement {
     }
 
     public int[] getCoords() {
-        int[] coords = {x, y};
-        return coords;
+        return new int[] { x, y, x + directions[direction][0], y + directions[direction][1] };
     }
 
     private void walk() {
@@ -68,8 +69,8 @@ public class Wolf extends ScreenElement {
 
     private void orient() {
         // Try to walk
-        if (Math.random() > 0.01)
-            return; // No walking
+        // if (Math.random() > 0.01 || !playerWalking)
+        // return; // No walking
         int dir = Math.random() < 0.5 ? 0 : 1; // Which way to go, vertical or sideways
         walking = true;
         if (dir == 0) {
@@ -77,29 +78,38 @@ public class Wolf extends ScreenElement {
                 direction = 2;
             else if (y > py)
                 direction = 0;
+            else if (Math.random() < 0.5)
+                direction = 2;
             else
-                walking = false;
+                direction = 0;
         } else {
             if (x < px)
                 direction = 3;
             else if (x > px)
                 direction = 1;
+            else if (Math.random() < 0.5)
+                direction = 3;
             else
-                walking = false;
+                direction = 1;
         }
     }
 
     private void collide() {
         // Check for collision
-        String block = l.getBlock(x + directions[direction][0], y + directions[direction][1]);
-        if (block == null)
+        int tempx = x + directions[direction][0];
+        int tempy = y + directions[direction][1];
+        String block = l.getBlock(tempx, tempy);
+        if (block == null && (tempx != apx || tempy != apy))
             return;
         walking = false;
     }
 
-    public void updatePlayerPos(double x, double y) {
+    public void updatePlayerPos(double x, double y, int ax, int ay, boolean walking) {
         px = x;
         py = y;
+        apx = ax;
+        apy = ay;
+        playerWalking = walking;
     }
 
     private void render(Window w, Graphics g) {
@@ -117,17 +127,23 @@ public class Wolf extends ScreenElement {
         String cur;
         switch (direction) {
             case 1:
-                if (walking) cur = animations[1][animation / 8];
-                else cur = animations[1][0];
+                if (walking)
+                    cur = animations[1][animation / 8];
+                else
+                    cur = animations[1][0];
                 break;
             case 3:
-            if (walking) cur = animations[0][animation / 8];
-            else cur = animations[0][0];
+                if (walking)
+                    cur = animations[0][animation / 8];
+                else
+                    cur = animations[0][0];
                 break;
             case 0:
             case 2:
-            if (walking) cur = animations[px < x ? 1 : 0][animation / 8];
-            else cur = animations[px < x ? 1 : 0][0];
+                if (walking)
+                    cur = animations[px < x ? 1 : 0][animation / 8];
+                else
+                    cur = animations[px < x ? 1 : 0][0];
                 break;
         }
         if (walking)

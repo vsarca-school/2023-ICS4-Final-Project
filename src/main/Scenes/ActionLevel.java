@@ -42,7 +42,7 @@ public class ActionLevel extends ScreenElement {
     public boolean hasWolf(int x, int y) {
         for (Wolf wl : wolves) {
             int[] temp = wl.getCoords();
-            if (x == temp[0] && y == temp[1]) return true;
+            if ((x == temp[0] && y == temp[1]) || (x == temp[2] && y == temp[3])) return true;
         }
         return false;
     }
@@ -52,9 +52,9 @@ public class ActionLevel extends ScreenElement {
      * @param x x coordinate
      * @param y y coordinate
      */
-    public void updatePlayerPos(double x, double y) {
+    public void updatePlayerPos(double x, double y, int ax, int ay, boolean walking) {
         for (Wolf w : wolves) {
-            w.updatePlayerPos(x, y);
+            w.updatePlayerPos(x, y, ax, ay, walking);
         }
     }
     /**

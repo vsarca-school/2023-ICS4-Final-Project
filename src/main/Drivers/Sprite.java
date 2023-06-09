@@ -8,10 +8,11 @@ import java.util.*;
 import javax.imageio.ImageIO;
 
 /**
- * Loads and stores all images to be easily used by other classes
- * The code .replaceFirst("[.][^.]+$", "") is from
- * https://stackoverflow.com/questions/924394/how-to-get-the-filename-without-the-extension-in-java
- * - Victor
+ * <h1>Sprite Class</h1>
+ * Time spent: 3.2 hours
+ * @version 1.3
+ * @version 6/7/2023
+ * @author Victor Sarca, Radin Ahari, Felix Zhao
  */
 public class Sprite {
     private static Map<String, BufferedImage> tiles = new HashMap<>();
@@ -25,10 +26,7 @@ public class Sprite {
     private static double tileScale, imageScale, lessonImageScale, bgScale;
 
     /**
-     * Load all images into buffers, and intializes everything
-     * For simplicity, all images are shoved into a map with names equal to the file
-     * name, with tile numbers appended for tiles.
-     * - Victor
+     * Victor Sarca - initiates the tilemaps
      */
     public static void init() {
         BufferedImage spritemap;
@@ -68,6 +66,11 @@ public class Sprite {
         }
     }
 
+    /**
+     * Victor Sarca - updates the scale only when the user changes window size
+     * @param windowWidth current width
+     * @param windowHeight current height
+     */
     public static void updateScale(int windowWidth, int windowHeight) {
         tileScale = Math.sqrt(windowWidth * windowHeight) / 160.0;
         imageScale = Math.min(windowWidth / 128.0, windowHeight / 96.0);
@@ -131,25 +134,40 @@ public class Sprite {
         }
     }
 
+    /**
+     * Radin Ahari - returns tile scale
+     * @return tile scale
+     */
     public static double getTileScale() {
         return tileScale;
     }
 
+    /**
+     * Radin Ahari - returns image scale
+     * @return image scale
+     */
     public static double getImageScale() {
         return imageScale;
     }
 
+    /**
+     * Felix Zhao - returns lesson image scale
+     * @return image scale
+     */
     public static double getLessonImageScale() {
         return lessonImageScale;
     }
 
+    /**
+     * Felix Zhao - returns background image scale
+     * @return image scale
+     */
     public static double getBgScale() {
         return bgScale;
     }
 
     /**
-     * Debug to print all loaded sprites
-     * - Victor
+     * Victor Sarca - prints all tiles and images, debugging
      */
     public static void print() {
         System.out.println("Tiles:");
@@ -167,9 +185,7 @@ public class Sprite {
     }
 
     /**
-     * Returns the tile requested
-     * - Victor
-     * 
+     * Victor Sarca - Returns the tile requested
      * @param sprite The key of the tile requested
      * @return The tile image
      */
@@ -178,9 +194,7 @@ public class Sprite {
     }
 
     /**
-     * Returns the image requested
-     * - Victor
-     * 
+     * Victor Sarca - Returns the image requested
      * @param sprite The key of the image requested
      * @return The image
      */
@@ -189,9 +203,7 @@ public class Sprite {
     }
 
     /**
-     * Returns the background requested
-     * - Victor
-     * 
+     * Victor Sarca - Returns the background requested
      * @param sprite The key of the image requested
      * @return The image
      /
@@ -200,9 +212,7 @@ public class Sprite {
     }*/
 
     /**
-     * Returns the background requested
-     * - Victor
-     * 
+     * Victor Sarca - Returns the background requested
      * @param sprite The key of the image requested
      * @return The image
      */
