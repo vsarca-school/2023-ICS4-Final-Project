@@ -6,10 +6,9 @@ import src.main.Scenes.ActionLevel;
 
 /**
  * <h1>ActionPlayer Class</h1>
- * Time spent: 2.1 hours
- * @version 1.2
+ * @version 1
  * @version 6/8/2023
- * @author Radin Ahari
+ * @author Victor Sarca
  */
 public class ActionPlayer extends Player {
     private int health;
