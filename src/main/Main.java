@@ -65,6 +65,7 @@ public class Main {
      * @param newScene The number that the scene is defined as.
      */
     public static void changeScene(int newScene) {
+        System.out.println("DEBUG: Change to scene " + newScene);
         switch (newScene) {
             case -1:
                 running = false;
