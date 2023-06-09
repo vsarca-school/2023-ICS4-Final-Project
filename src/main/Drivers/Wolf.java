@@ -2,8 +2,11 @@ package src.main.Drivers;
 
 import java.awt.Graphics;
 
+import src.main.Scenes.ActionLevel;
+
 public class Wolf extends ScreenElement {
     private ActionPlayer p;
+    private ActionLevel parent;
     private int x, y;
     private double realx, realy;
     private double px, py;
@@ -20,12 +23,13 @@ public class Wolf extends ScreenElement {
     private Level l;
     private static final int[][] directions = { { 0, -1 }, { -1, 0 }, { 0, 1 }, { 1, 0 } };
 
-    public Wolf(int x, int y, Level l) {
+    public Wolf(int x, int y, Level l, ActionLevel p) {
         this.x = x;
         this.y = y;
         this.l = l;
         realx = x;
         realy = y;
+        parent = p;
     }
 
     /**
@@ -114,6 +118,7 @@ public class Wolf extends ScreenElement {
         String block = l.getBlock(nextx, nexty);
         if (block == null && (nextx != apx || nexty != apy) && (nextx != npx || nexty != npy))
             return;
+        if (parent.hasWolf)
         walking = false;
         if (block != null)
             return;

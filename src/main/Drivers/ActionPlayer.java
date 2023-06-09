@@ -61,7 +61,7 @@ public class ActionPlayer extends Player {
         super.collide(w);
         int tempx = x + directions[direction][0];
         int tempy = y + directions[direction][1];
-        if (parent.hasWolf(tempx, tempy))
+        if (parent.hasWolf(tempx, tempy, null))
             walking = false;
     }
 
@@ -73,7 +73,7 @@ public class ActionPlayer extends Player {
     private void collideMoving(Window w) {
         int tempx = x + directions[direction][0];
         int tempy = y + directions[direction][1];
-        if (parent.hasWolf(tempx, tempy)) {
+        if (parent.hasWolf(tempx, tempy, null)) {
             // New wolf here, turn around
             x = tempx;
             y = tempy;
