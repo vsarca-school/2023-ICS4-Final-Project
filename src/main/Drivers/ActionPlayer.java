@@ -2,6 +2,7 @@ package src.main.Drivers;
 
 import java.awt.Graphics;
 
+import src.main.Main;
 import src.main.Scenes.ActionLevel;
 
 /**
@@ -33,6 +34,11 @@ public class ActionPlayer extends Player {
         y = l.getStartY();
         realx = x;
         realy = y;
+    }
+
+    public void damage(int damage) {
+        health -= damage;
+        if (health <= 0) Main.changeScene(2);
     }
 
     private void collideMoving(Window w) {
