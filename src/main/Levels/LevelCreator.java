@@ -15,7 +15,7 @@ public class LevelCreator {
     public static void main(String argv[]) throws IOException {
         ObjectOutputStream out;
         String[][] ground, objects;
-        int px, py;
+        int px, py, scene; // scene is 0=forest, 1=cave
         String next;
         Level l;
 
@@ -115,7 +115,8 @@ public class LevelCreator {
         py = 5;
         next = "Level-2.lvl";
         // Save level 1
-        l = new Level(ground, objects, px, py, next);
+        scene = 0; // forest
+        l = new Level(ground, objects, px, py, next, scene);
         out = new ObjectOutputStream(new FileOutputStream("src/main/Levels/Level-1.lvl"));
         out.writeObject(l);
         out.close();
@@ -135,7 +136,7 @@ public class LevelCreator {
         py = 5;
         next = "Maze-2.lvl";
         // Save level 1
-        l = new Level(ground, objects, px, py, next);
+        l = new Level(ground, objects, px, py, next, 0);
         out = new ObjectOutputStream(new FileOutputStream("src/main/Levels/Maze-1.lvl"));
         out.writeObject(l);
         out.close();
