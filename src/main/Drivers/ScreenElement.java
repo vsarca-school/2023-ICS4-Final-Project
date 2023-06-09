@@ -3,8 +3,11 @@ package src.main.Drivers;
 import java.awt.*;
 
 /**
- * This is an interface implemented by all class which will draw to the screen
- * - Victor
+ * <h1>ScreenElement Abstract Class</h1>
+ * Time spent: 2.5 hours
+ * @version 1.1
+ * @version 6/6/2023
+ * @author Victor Sarca
  */
 public abstract class ScreenElement {
     private boolean paused = false;
