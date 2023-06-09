@@ -9,7 +9,7 @@ import src.main.Scenes.ActionLevel;
  * Time spent: 3.5 hours
  * @version 1.2
  * @version 6/8/2023
- * @author Victor Sarca
+ * @author Victor Sarca (code)/Radin Ahari(comments)
  */
 public class ActionPlayer extends Player {
     private int health;
@@ -20,9 +20,9 @@ public class ActionPlayer extends Player {
     }
 
     /**
-     * - Victor
-     * 
-     * @param lv
+     * Adds player to an action level
+     * @param l level being added to
+     * @param lv action level being added
      */
     public void joinLevel(Level l, ActionLevel lv) {
         this.l = l;
@@ -42,7 +42,9 @@ public class ActionPlayer extends Player {
     }
 
     /**
-     * - Victor
+     * Updates window
+     * @param w window
+     * @param g graphics
      */
     public void update(Window w, Graphics g) {
         if (!isPaused()) {
