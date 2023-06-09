@@ -117,9 +117,9 @@ public class Main {
      * 
      * 
      * 
-     * @param correct
-     * @param x
-     * @param y
+     * @param correct whether the answer is correct
+     * @param x x coordinate
+     * @param y y coordinate
      */
     public static void questionCorrect(boolean correct, int x, int y) {
         z.questionCorrect(correct, x, y);

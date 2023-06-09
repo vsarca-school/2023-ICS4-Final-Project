@@ -12,6 +12,11 @@ import src.main.Drivers.*;
  */
 
 public class LevelCreator {
+    /**
+     * the main method
+     * @param argv arguments
+     * @throws IOException exception thrown
+     */
     public static void main(String argv[]) throws IOException {
         ObjectOutputStream out;
         String[][] ground, objects;
