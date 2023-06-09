@@ -38,16 +38,21 @@ public class Wolf extends ScreenElement {
     private void walk() {
         // Try to walk
         int dir = Math.random() < 0.5 ? 0 : 1; // Which way to go, vertical or sideways
+        walking = true;
         if (dir == 0) {
             if (y < py)
                 direction = 2;
             else if (y > py)
                 direction = 0;
+            else
+                walking = false;
         } else {
             if (x < px)
                 direction = 3;
             else if (x > px)
                 direction = 1;
+            else
+                walking = false;
         }
     }
 
@@ -56,7 +61,7 @@ public class Wolf extends ScreenElement {
         String block = l.getBlock(x + directions[direction][0], y + directions[direction][1]);
         if (block == null)
             return;
-            System.out.println("WALL");
+        System.out.println("WALL");
         walking = false;
     }
 
