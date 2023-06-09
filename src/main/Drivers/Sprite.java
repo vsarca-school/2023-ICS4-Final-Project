@@ -16,11 +16,11 @@ import javax.imageio.ImageIO;
 public class Sprite {
     private static Map<String, BufferedImage> tiles = new HashMap<>();
     private static Map<String, BufferedImage> images = new HashMap<>();
-    private static Map<String, BufferedImage> lessonImages = new HashMap<>();
+    //private static Map<String, BufferedImage> lessonImages = new HashMap<>();
     private static Map<String, BufferedImage> backgrounds = new HashMap<>();
     private static Map<String, BufferedImage> scaledTiles = new HashMap<>();
     private static Map<String, BufferedImage> scaledImages = new HashMap<>();
-    private static Map<String, BufferedImage> scaledLessonImages = new HashMap<>();
+    //private static Map<String, BufferedImage> scaledLessonImages = new HashMap<>();
     private static Map<String, BufferedImage> scaledBackgrounds = new HashMap<>();
     private static double tileScale, imageScale, lessonImageScale, bgScale;
 
@@ -53,11 +53,11 @@ public class Sprite {
             for (File file : folder.listFiles()) {
                 images.put(file.getName().replaceFirst("[.][^.]+$", ""), ImageIO.read(file));
             }
-            // Load individual lesson images
+            /*/ Load individual lesson images
             folder = new File("src/main/Textures/LessonImages");
             for (File file : folder.listFiles()) {
                 lessonImages.put(file.getName().replaceFirst("[.][^.]+$", ""), ImageIO.read(file));
-            }
+            }*/
             // Load individual backgrounds
             folder = new File("src/main/Textures/Backgrounds");
             for (File file : folder.listFiles()) {
@@ -72,7 +72,7 @@ public class Sprite {
         tileScale = Math.sqrt(windowWidth * windowHeight) / 160.0;
         imageScale = Math.min(windowWidth / 128.0, windowHeight / 96.0);
         bgScale = Math.max(windowWidth / 128.0, windowHeight / 96.0);
-        lessonImageScale = bgScale / 2.0;
+        //lessonImageScale = bgScale / 2.0;
 
         BufferedImage temp;
         Image tkImage;
@@ -103,7 +103,7 @@ public class Sprite {
 
             scaledImages.put(e.getKey(), temp);
         }
-        for (Map.Entry<String, BufferedImage> e : lessonImages.entrySet()) {
+        /*for (Map.Entry<String, BufferedImage> e : lessonImages.entrySet()) {
             temp = e.getValue();
             width = (int) (lessonImageScale * temp.getWidth()) + 1;
             height = (int) (lessonImageScale * temp.getHeight()) + 1;
@@ -115,7 +115,7 @@ public class Sprite {
             g.dispose();
 
             scaledLessonImages.put(e.getKey(), temp);
-        }
+        }*/
         for (Map.Entry<String, BufferedImage> e : backgrounds.entrySet()) {
             temp = e.getValue();
             width = (int) (bgScale * temp.getWidth()) + 1;
@@ -194,10 +194,10 @@ public class Sprite {
      * 
      * @param sprite The key of the image requested
      * @return The image
-     */
+     /
     public static BufferedImage getScaledLessonImage(String sprite) {
         return scaledLessonImages.get(sprite);
-    }
+    }*/
 
     /**
      * Returns the background requested

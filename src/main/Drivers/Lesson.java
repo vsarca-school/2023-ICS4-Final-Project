@@ -189,7 +189,7 @@ public class Lesson extends ScreenElement implements Serializable {
                         centerImage(g, Sprite.getScaledTile("droplet-2"), (int) hww, (int) hwh * 6 / 5);
                     }
                 } else {
-                    centerImage(g, Sprite.getScaledLessonImage(images[posIndex]), (int) hww, (int) hwh * 4 / 5);
+                    centerImage(g, Sprite.getScaledImage(images[posIndex]), (int) hww, (int) hwh * 4 / 5);
                 }
             } else if (!paused) {
                 posIndex++;
