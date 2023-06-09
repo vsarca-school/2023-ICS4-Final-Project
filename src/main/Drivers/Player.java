@@ -37,6 +37,10 @@ public class Player extends ScreenElement {
         realy = y;
     }
 
+    public void endQuestion() {
+        askingQuestion = false;
+    }
+
     /**
      * - Victor
      * - Radin (contribution to subfunctions - Victor)
