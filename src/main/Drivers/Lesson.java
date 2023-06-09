@@ -6,7 +6,7 @@ import java.io.*;
 import src.main.Main;
 
 /**
- * <h1>ActionPlayer Class</h1>
+ * <h1>Lesson Class</h1>
  * Time spent: 6.5 hours
  * @version 1.3
  * @version 6/8/2023

@@ -5,8 +5,11 @@ import java.awt.Image;
 import java.io.*;
 
 /**
- * All of this class
- * - Victor
+ * <h1>Level Class</h1>
+ * Time spent: 3.6 hours
+ * @version 1.2
+ * @version 6/7/2023
+ * @author Victor Sarca
  */
 public class Level extends ScreenElement implements Serializable {
     /**
@@ -36,8 +39,15 @@ public class Level extends ScreenElement implements Serializable {
     private Question[] questions;
 
     /**
-     * Used for level creation for initializing a level before saving
-     * - Victor
+     * Victor Sarca - Level class constructor
+     * @param ground ground tiles
+     * @param objects object collision tiles
+     * @param px player x
+     * @param py player y
+     * @param nextLevel next level
+     * @param scene chooses scene: trees or rocks
+     * @param wolves wolf tiles
+     * @param questions array of questions
      */
     public Level(String[][] ground, String[][] objects, int px, int py, String nextLevel, int scene, int[][] wolves, Question[] questions) {
         this.ground = ground;
@@ -50,6 +60,12 @@ public class Level extends ScreenElement implements Serializable {
         this.questions = questions;
     }
 
+    /**
+     * Victor Sarca - gets the question at the x and y coordinates
+     * @param x coordinate
+     * @param y coordinate
+     * @return the question
+     */
     public Question getQuestion(int x, int y) {
         for (Question q : questions) {
             if (q.isAt(x,y)) return q;
@@ -57,12 +73,17 @@ public class Level extends ScreenElement implements Serializable {
         return null;
     }
 
+    /**
+     * Victor Sarca - deletes an object from the obstacles
+     * @param x coordinate
+     * @param y coordinate
+     */
     public void delete(int x, int y) {
         objects[x][y] = null;
     }
 
     /**
-     * Loads a level from file
+     * Victor Sarca - Loads a level from file
      * Returns null if there is an error; after the final level, a null string will
      * be passed as a parameter and as such null will be returned
      * 
@@ -83,17 +104,32 @@ public class Level extends ScreenElement implements Serializable {
         return level;
     }
 
+    /**
+     * Victor Sarca - gets the next level
+     * @return
+     */
     public Level nextLevel() {
         if (nextLevel != null)
             return Level.fromFile(nextLevel);
         return null;
     }
 
+    /**
+     * Victor Sarca - updates the player position
+     * @param x
+     * @param y
+     */
     public void updatePlayerPos(double x, double y) {
         px = x;
         py = y;
     }
 
+    /**
+     * Victor Sarca - gets the floor tile and returns it as a string
+     * @param x coordinate
+     * @param y coordinate
+     * @return name of the tile
+     */
     private String getFloor(int x, int y) {
         if (x < 0 || x >= objects.length || y < 0 || y >= objects.length) {
             int sprite = perm[(Math.abs(x) + perm[Math.abs(y) % 256]) % 256];
@@ -108,6 +144,12 @@ public class Level extends ScreenElement implements Serializable {
         return ground[x][y];
     }
 
+    /**
+     * Victor Sarca - gets the obstacle at x and y coordinate
+     * @param x coordinate
+     * @param y coordinate
+     * @return the tile as a string
+     */
     public String getBlock(int x, int y) {
         if (x < 0 || x >= objects.length || y < 0 || y >= objects[0].length) {
             int sprite = perm[(Math.abs(x) + 13 + perm[(Math.abs(y)+13) % 256]) % 256];
@@ -124,18 +166,33 @@ public class Level extends ScreenElement implements Serializable {
         return objects[x][y];
     }
 
+    /**
+     * Victor Sarca - start position of player
+     * @return x coordinate
+     */
     public int getStartX() {
         return startx;
     }
 
+    /**
+     * Victor Sarca - start position of player
+     * @return y coordinate
+     */
     public int getStartY() {
         return starty;
     }
 
+    /**
+     * Victor Sarca - start position of the wolves
+     * @return start coordinates of the wolves
+     */
     public int[][] getWolves() {
         return startWolves;
     }
 
+    /**
+     * Victor Sarca - main update loop, handles all logic
+     */
     public void update(Window w, Graphics g) {
         // Calculate scaling and centering
         double hww = w.getWidth() / 2.0;
