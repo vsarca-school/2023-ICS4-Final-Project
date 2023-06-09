@@ -41,8 +41,11 @@ public class ActionPlayer extends Player {
         int tempy = y + directions[direction][1];
         super.collide(w);
         if (parent.hasWolf(tempx, tempy)) {
-            walking = false;
             backward = !backward;
+            x = tempx;
+            y = tempy;
+            direction = (direction + 2) % 4;
+            interpolation = 10 - interpolation;
         }
     }
 
@@ -55,6 +58,7 @@ public class ActionPlayer extends Player {
     public void update(Window w, Graphics g) {
         if (!isPaused()) {
             if (!walking) {
+                backward = false;
                 getInput(w);
                 direction = nextDirection;
                 collide(w);
@@ -67,15 +71,14 @@ public class ActionPlayer extends Player {
                     realx += directions[direction][0] / 10.0;
                     realy += directions[direction][1] / 10.0;
                 } else {
-
                     realx -= directions[direction][0] / 10.0;
                     realy -= directions[direction][1] / 10.0;
                 }
             } else {
                 interpolation = 0;
+                backward = false;
                 getInput(w);
                 walk();
-                backward = false;
                 direction = nextDirection;
                 collide(w);
             }
