@@ -24,15 +24,15 @@ public class LessonCreator3 {
             "Ants, crickets, maggots, and earthworms\nare among the edible insects you can find.",
             "However, exercise caution and avoid consuming\nbrightly colored or hard-to-chew insects,\nas they may be dangerous.",
             "Lastly, mushrooms can provide a valuable source\nof food, but they also come with added risk.",
-            "Pay attention to warning signs such as bright\ncolors, spots, or strangely shaped caps,\nas they may indicate poisonous varieties.",
+            "Pay attention to warning signs such as bright colors,\nspots, or strangely shaped caps,\nas they may indicate poisonous varieties.",
             "Always be meticulous and consume mushrooms only\nwhen you are completely certain about their safety.",
             "By exercising caution and making informed choices,\nyou can successfully gather food from the forest.",
         };
-        int[] pos = {3, 5, 6, 7, 11};
-        String[] images = {"droplet", "waterfall", "shirt", "shovel", "droplet"};
+        int[] pos = {2, 3, 4, 7, 11, 14, 15};
+        String[] images = {"droplet", "dandelion", "berries", "fish", "spider", "mushroom", "droplet"};
         String next = "Lesson-4.lsn";
         // Create level 1
-        Lesson l1 = new Lesson("Finding Water", strs, pos, "water", images, next);
+        Lesson l1 = new Lesson("Foraging", strs, pos, "apples", images, next);
 
         // Save level 1
         out = new ObjectOutputStream(new FileOutputStream("src/main/Lessons/Lesson-3.lsn"));
