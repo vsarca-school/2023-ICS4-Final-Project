@@ -107,9 +107,9 @@ public class LevelCreator {
         }
 
         //Wolves
-        for(int i = 0; i < getWolfAmount; i++){
+        //for(int i = 0; i < getWolfAmount; i++){
 
-        }
+        //}
         
         px = 5;
         py = 5;
