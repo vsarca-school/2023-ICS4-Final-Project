@@ -18,6 +18,7 @@ public class LevelCreator {
         int px, py, scene; // scene is 0=forest, 1=cave
         String next;
         Level l;
+        int[][] wolves;
 
         // Grass tiles
         ground = new String[40][40];
@@ -114,7 +115,8 @@ public class LevelCreator {
         next = "Level-2.lvl";
         // Save level 1
         scene = 0; // forest
-        l = new Level(ground, objects, px, py, next, scene);
+        wolves = new int[0][0];
+        l = new Level(ground, objects, px, py, next, scene, wolves);
         out = new ObjectOutputStream(new FileOutputStream("src/main/Levels/Level-1.lvl"));
         out.writeObject(l);
         out.close();
@@ -132,7 +134,7 @@ public class LevelCreator {
         }
         // Save level 2
         scene = 1; // cave
-        l = new Level(ground, objects, px, py, next, scene);
+        l = new Level(ground, objects, px, py, next, scene, new int[0][0]);
         out = new ObjectOutputStream(new FileOutputStream("src/main/Levels/Level-2.lvl"));
         out.writeObject(l);
         out.close();
@@ -153,7 +155,7 @@ public class LevelCreator {
         py = 5;
         next = "Maze-2.lvl";
         // Save level 1
-        l = new Level(ground, objects, px, py, next, 0);
+        l = new Level(ground, objects, px, py, next, scene, new int[0][0]);
         out = new ObjectOutputStream(new FileOutputStream("src/main/Levels/Maze-1.lvl"));
         out.writeObject(l);
         out.close();

@@ -83,7 +83,14 @@ public class Level extends ScreenElement implements Serializable {
 
     private String getFloor(int x, int y) {
         if (x < 0 || x >= objects.length || y < 0 || y >= objects.length) {
-            return "grass-" + (Math.abs(perm[(Math.abs(x) + perm[Math.abs(y) % 256]) % 256]) % 4);
+            int sprite = perm[(Math.abs(x) + perm[Math.abs(y) % 256]) % 256];
+            switch (backgroundScene) {
+                case 0:
+                return "grass-" + sprite % 4;
+                case 1:
+                return "wall-" + sprite % 4;
+            }
+            
         }
         return ground[x][y];
     }
