@@ -39,6 +39,6 @@ public class Wolf extends ScreenElement {
         hww -= scale / 2;
         hwh -= scale / 2;
 
-        g.drawImage(Sprite.getScaledTile("wolf-0"), (int) (hww + (x - px)*scale*16), (int) (hwh + (y - py)*scale*16), null);
+        g.drawImage(Sprite.getScaledTile("wolf-0"), (int) (hww + (x - px)*scale), (int) (hwh + (y - py)*scale), null);
     }
 }

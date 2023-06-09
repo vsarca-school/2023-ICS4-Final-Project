@@ -36,6 +36,7 @@ public class ActionLevel extends ScreenElement {
         p.addToWindow(w);
         for (Wolf wf : wolves) wf.addToWindow(w);
         w.addElement(this);
+        System.out.println(wolves.length);
     }
 
     public void removeFromWindow(Window w) {
