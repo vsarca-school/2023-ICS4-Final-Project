@@ -19,13 +19,13 @@ public class LessonCreator2 {
             "Once you find the stream, move upstream towards its\nsource as it tends to be cleaner than downstream\nareas, which can contain contaminants.",
             "Rainwater can be collected by using your clothing \nto absorb it and then wringing it into a container.",
             "While obtaining groundwater is more challenging,\nyou can search for signs like mud and dig down to\naccess it.",
-            "Remember to settle out any debris from the collected water. Purification is crucial for all water sources.",
-            "Begin by filtering the water using materials like sand and gravel.",
-            "Next, boiling the water will effectively eliminate microorganisms.",
-            "Following these steps, the water should be safe for consumption."
+            "Remember to settle out any debris from the collected\nwater. Purification is crucial for all water\nsources.",
+            "Begin by filtering the water using materials like\nsand and gravel.",
+            "Next, boiling the water will effectively eliminate\nmicroorganisms.",
+            "Following these steps, the water should be safe\nfor consumption."
         };
-        int[] pos = {1, 2, 5, 7};
-        String[] images = {"droplet", "dipper", "droplet", "bigrock"};
+        int[] pos = {3, 5, 6, 7, 11};
+        String[] images = {"droplet", "waterfall", "shirt", "shovel", "droplet"};
         String next = "Lesson-3.lsn";
         // Create level 1
         Lesson l1 = new Lesson("Finding Water", strs, pos, "water", images, next);
