@@ -3,6 +3,8 @@ package src.main.Drivers;
 import java.awt.Graphics;
 
 public class Wolf extends ScreenElement {
+    int x, y;
+    double px, py;
     /**
      * Update and render the screen element
      * 
@@ -12,6 +14,11 @@ public class Wolf extends ScreenElement {
      */
     public void update(Window w, Graphics g) {
         render(w, g);
+    }
+
+    public void updatePlayerPos(double x, double y) {
+        px = x;
+        py = y;
     }
 
     protected void render(Window w, Graphics g) {
@@ -24,6 +31,6 @@ public class Wolf extends ScreenElement {
         hww -= scale / 2;
         hwh -= scale / 2;
 
-        g.drawImage(Sprite.getScaledTile("wolf-0"), (int) hww, (int) hwh, null);
+        g.drawImage(Sprite.getScaledTile("wolf-0"), (int) (hww + (x - px)*scale*16), (int) (hwh + (y - py)*scale*16), null);
     }
 }

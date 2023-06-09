@@ -11,7 +11,7 @@ public class Player extends ScreenElement {
     protected int direction = 2;
     protected int nextDirection = 2;
     protected int animation = 0;
-    private int x, y;
+    protected int x, y;
     protected double realx, realy;
     protected boolean walking = false;
     protected int interpolation = 0;

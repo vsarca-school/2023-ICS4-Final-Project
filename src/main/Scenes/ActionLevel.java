@@ -7,7 +7,7 @@ import src.main.Main;
 import src.main.Drivers.*;
 
 public class ActionLevel extends ScreenElement {
-    private Player p;
+    private ActionPlayer p;
     private Level l;
     private Wolf[] wolves;
 
@@ -16,12 +16,18 @@ public class ActionLevel extends ScreenElement {
         l = Level.fromFile("src/main/Levels/Level-1.lvl");
     }
 
+    public void updatePlayerPos(double x, double y) {
+        for (Wolf w : wolves) {
+            w.updatePlayerPos(x, y);
+        }
+    }
+
     public void addToWindow(Window w) {
         if (l == null) Main.changeScene(5);
 
         l.addToWindow(w);
+        p.joinLevel(l, this);
         p.addToWindow(w);
-        p.joinLevel(l);
         w.addElement(this);
     }
 
@@ -30,19 +36,5 @@ public class ActionLevel extends ScreenElement {
         l = l.nextLevel();
         p.removeFromWindow(w);
         w.removeElement(this);
-    }
-
-    public void generateHealth(int[] health){
-        for(int i = 0; i < health.length; i++){
-            health[i] = (int)(Math.random()*80+30);
-        }
-    }
-
-    public void damageWolf(int wolfNum, int[] health){
-        health[wolfNum] -= (int)(Math.random()*30+1);
-    }
-
-    public void damagePlayer(int health, int amount){
-        health  -= Math.random()*10*amount;
     }
 }   

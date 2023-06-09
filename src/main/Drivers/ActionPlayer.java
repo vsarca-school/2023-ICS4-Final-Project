@@ -2,11 +2,28 @@ package src.main.Drivers;
 
 import java.awt.Graphics;
 
+import src.main.Scenes.ActionLevel;
+
 public class ActionPlayer extends Player {
     private int health;
+    private ActionLevel parent;
 
     public ActionPlayer(int health) {
         this.health = health;
+    }
+
+    /**
+     * - Victor
+     * 
+     * @param lv
+     */
+    public void joinLevel(Level l, ActionLevel lv) {
+        this.l = l;
+        parent = lv;
+        x = l.getStartX();
+        y = l.getStartY();
+        realx = x;
+        realy = y;
     }
 
     /**
@@ -34,6 +51,7 @@ public class ActionPlayer extends Player {
             }
             // Clear input and update level
             l.updatePlayerPos(realx, realy);
+            parent.updatePlayerPos(realx, realy);
             animation = (animation + 1) % 32;
         }
 
