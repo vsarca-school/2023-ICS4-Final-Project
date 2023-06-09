@@ -14,11 +14,12 @@ import src.main.Scenes.ActionLevel;
  * @author Victor Sarca (code)/Radin Ahari(comments)
  */
 public class ActionPlayer extends Player {
-    private int health;
+    private int health, maxHealth;
     private ActionLevel parent;
 
     public ActionPlayer(int health) {
-        this.health = health;
+        maxHealth = health;
+        this.health = maxHealth;
     }
 
     /**
@@ -34,6 +35,7 @@ public class ActionPlayer extends Player {
         y = l.getStartY();
         realx = x;
         realy = y;
+        this.health = maxHealth;
     }
 
     /**
@@ -43,8 +45,10 @@ public class ActionPlayer extends Player {
      */
     public void damage(int damage) {
         health -= damage;
-        if (health <= 0)
-            Main.changeScene(2);
+        if (health <= 0) {
+            parent.loadWolves();
+            joinLevel(l, parent);
+        }
     }
 
     /**
