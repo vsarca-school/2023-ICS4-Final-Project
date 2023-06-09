@@ -12,6 +12,14 @@ public class EndScreen extends ScreenElement {
     private double scale;
     private Font font;
 
+    /**
+     * Centers the image
+     * 
+     * @param g graphics
+     * @param image the image we want to center
+     * @param x the x coordinate of the image
+     * @param y the y coordinatee of the image
+     */
     public void centerImage(Graphics g, Image image, int x, int y) {
         int imageWidth = image.getWidth(null);
         int imageHeight = image.getHeight(null);
@@ -21,6 +29,17 @@ public class EndScreen extends ScreenElement {
 
         g.drawImage(image, a, b, null);
     }
+
+    /**
+     * Centers a box
+     * 
+     * @param g graphics
+     * @param c the colour
+     * @param x x coordinate
+     * @param y y coordinate
+     * @param w width of box
+     * @param h height of box
+     */
 
     public void centerBox(Graphics g, Color c, int x, int y, int w, int h) {
         int startX = x - (w / 2);
@@ -33,7 +52,18 @@ public class EndScreen extends ScreenElement {
         g.fillRect(startX + (int) scale * 3, startY + (int) scale * 3, w - (int) scale * 6,
                 h - (int) scale * 6);
     }
-
+    /**
+     * Centers a string
+     * 
+     * @param g Graphics
+     * @param c Text Colour
+     * @param text Given text
+     * @param x x coordinate
+     * @param y y coordinate
+     * @param maxWidth  width of the string
+     * @param lineHeight height of the string
+     * @param font font
+     */
     public void centerString(Graphics g, Color c, String text, int x, int y, int maxWidth, int lineHeight, Font font) {
         String[] lines = text.split("\n");
         g.setFont(font);
@@ -50,13 +80,30 @@ public class EndScreen extends ScreenElement {
         }
     }
 
+    /**
+     * Draws a big title
+     * @param g graphics
+     * @param w width
+     * @param str string created
+     * @param c colour of text
+     * @param font font
+     */
     public void heading(Graphics g, Window w, String str, Color c, Font font) {
         int size = maxFontSize(g, str, w.getWidth() * 15 / 16, w.getHeight() / 2, font);
         Font temp = font.deriveFont(Font.PLAIN, size);
         centerString(g, c, str, w.getWidth() / 2, w.getHeight() / 3, w.getWidth(), size, temp);
     }
     
-
+    /**
+     * Maximum font size
+     * 
+     * @param g  graphics
+     * @param text text being tested
+     * @param maxWidth Width of the string
+     * @param maxHeight height of the string
+     * @param font font
+     * @return the optimal font size
+     */
     public int maxFontSize(Graphics g, String text, int maxWidth, int maxHeight, Font font) {
         String[] lines = text.split("\n");
         int optimalSize = Integer.MAX_VALUE;
@@ -83,7 +130,10 @@ public class EndScreen extends ScreenElement {
         }
         return optimalSize;
     }
-
+    /**
+     * adds current element to window
+     * @param w the window being added to
+     */
     public void addToWindow(Window w) {
         try {
             font = Font.createFont(Font.TRUETYPE_FONT, new File("src/main/Fonts/VCR_OSD_MONO_1.001.ttf"));
@@ -91,7 +141,11 @@ public class EndScreen extends ScreenElement {
         }
         w.addElement(this);
     }
-
+    /** 
+     * Updates the screen
+     * @param w the window being updated
+     * @param g graphics
+    */
     public void update(Window w, Graphics g) {
         double scale = Sprite.getImageScale();
         centerImage(g, Sprite.getScaledBackground("TitleScreen"), w.getWidth() / 2, w.getHeight() / 2);
