@@ -138,7 +138,7 @@ public class LevelCreator {
             int temp = (int)(Math.random()*4);
             int x = (int)(Math.random()*15);
             int y = (int)(Math.random()*15);
-            objects[x][y] = "rock"+temp;
+            objects[x][y] = "rock-"+temp;
         }
         
         // Save level 2
