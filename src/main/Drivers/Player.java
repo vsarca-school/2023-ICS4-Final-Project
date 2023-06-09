@@ -93,13 +93,13 @@ public class Player extends ScreenElement {
         int tempy = y + directions[direction][1];
         String block = l.getBlock(tempx, tempy);
         if (block == null) return;
-        if (block == "sign-0")
+        if (block.equals("sign-0"))
         {
             // Give the user a question
             l.getQuestion(tempx, tempy).addToWindow(w);
             askingQuestion = true;
         }
-        else if (block == "campfire-0" || block == "tent-0")
+        else if (block.equals("campfire-0") || block.equals("tent-0"))
         {
             // Won
             Main.changeScene(4);
