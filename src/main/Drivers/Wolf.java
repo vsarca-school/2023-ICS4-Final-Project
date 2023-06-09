@@ -3,6 +3,7 @@ package src.main.Drivers;
 import java.awt.Graphics;
 
 public class Wolf extends ScreenElement {
+    private Player p;
     private int x, y;
     private double realx, realy;
     private double px, py;
@@ -48,14 +49,16 @@ public class Wolf extends ScreenElement {
                 orient();
                 collide();
             }
-            //System.out.println("Wolf at " + x + ", " + y + ", " + (x+directions[direction][0]) + ", " + (y+directions[direction][1]));
+            // System.out.println("Wolf at " + x + ", " + y + ", " +
+            // (x+directions[direction][0]) + ", " + (y+directions[direction][1]));
         }
 
         render(w, g);
     }
 
     public int[] getCoords() {
-        if (!walking) return new int[] {x, y, x, y};
+        if (!walking)
+            return new int[] { x, y, x, y };
         return new int[] { x, y, x + directions[direction][0], y + directions[direction][1] };
     }
 
@@ -71,8 +74,8 @@ public class Wolf extends ScreenElement {
 
     private void orient() {
         // Try to walk
-        // if (Math.random() > 0.01 || !playerWalking)
-        // return; // No walking
+        if (Math.random() > 0.01 || !playerWalking)
+            return; // No walking
         int dir = Math.random() < 0.5 ? 0 : 1; // Which way to go, vertical or sideways
         walking = true;
         if (dir == 0) {
@@ -106,7 +109,7 @@ public class Wolf extends ScreenElement {
         walking = false;
     }
 
-    public void updatePlayerPos(double x, double y, int ax, int ay, int nx, int ny, boolean walking) {
+    public void updatePlayerPos(double x, double y, int ax, int ay, int nx, int ny, boolean walking, Player p) {
         px = x;
         py = y;
         apx = ax;
@@ -114,6 +117,7 @@ public class Wolf extends ScreenElement {
         npx = nx;
         npy = ny;
         playerWalking = walking;
+        this.p = p;
     }
 
     private void render(Window w, Graphics g) {
