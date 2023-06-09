@@ -10,14 +10,21 @@ public class Question extends ScreenElement implements Serializable {
     private String question;
     private String[] answers;
     private int correct;
+    private int sx, sy;
 
     private double scale;
     private Font font;
 
-    public Question(String question, String[] answers, int correct) {
+    public Question(String question, String[] answers, int correct, int x, int y) {
         this.question = question;
         this.answers = answers;
         this.correct = correct;
+        this.sx = x;
+        this.sy = y;
+    }
+
+    public boolean isAt(int x, int y) {
+        return x == sx && y == sy;
     }
 
     public static Question fromFile(String file) {
