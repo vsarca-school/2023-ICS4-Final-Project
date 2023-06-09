@@ -3,14 +3,16 @@ package src.main.Drivers;
 import java.awt.Graphics;
 
 public class Wolf extends ScreenElement {
+    private ActionPlayer p;
     private int x, y;
     private double realx, realy;
     private double px, py;
-    private int apx, apy;
+    private int apx, apy, npx, npy;
     private int animation = 0;
     private int direction = 0;
     private boolean walking;
     private int interpolation = 0;
+    private int damagepolation = 0;
     private boolean playerWalking = false;
     private static final String[][] animations = { { "wolf-0", "wolf-1", "wolf-2", "wolf-3" },
             { "wolf-7", "wolf-6", "wolf-5", "wolf-4" } };
@@ -48,12 +50,16 @@ public class Wolf extends ScreenElement {
                 orient();
                 collide();
             }
+            // System.out.println("Wolf at " + x + ", " + y + ", " +
+            // (x+directions[direction][0]) + ", " + (y+directions[direction][1]));
         }
 
         render(w, g);
     }
 
     public int[] getCoords() {
+        if (!walking)
+            return new int[] { x, y, x, y };
         return new int[] { x, y, x + directions[direction][0], y + directions[direction][1] };
     }
 
@@ -69,8 +75,8 @@ public class Wolf extends ScreenElement {
 
     private void orient() {
         // Try to walk
-        // if (Math.random() > 0.01 || !playerWalking)
-        // return; // No walking
+        if (Math.random() > 0.01 || !playerWalking)
+            return; // No walking
         int dir = Math.random() < 0.5 ? 0 : 1; // Which way to go, vertical or sideways
         walking = true;
         if (dir == 0) {
@@ -99,17 +105,30 @@ public class Wolf extends ScreenElement {
         int tempx = x + directions[direction][0];
         int tempy = y + directions[direction][1];
         String block = l.getBlock(tempx, tempy);
-        if (block == null && (tempx != apx || tempy != apy))
+        if (block == null)
             return;
+        if ((tempx != apx || tempy != apy) && (tempx != npx || tempy != npy)) {
+            if (damagepolation < 60) {
+                damagepolation++;
+            }
+            else {
+                damagepolation = 0;
+                p.damage((int)(5 + Math.random()*10));
+            }
+            return;
+        }
         walking = false;
     }
 
-    public void updatePlayerPos(double x, double y, int ax, int ay, boolean walking) {
+    public void updatePlayerPos(double x, double y, int ax, int ay, int nx, int ny, boolean walking, ActionPlayer p) {
         px = x;
         py = y;
         apx = ax;
         apy = ay;
+        npx = nx;
+        npy = ny;
         playerWalking = walking;
+        this.p = p;
     }
 
     private void render(Window w, Graphics g) {

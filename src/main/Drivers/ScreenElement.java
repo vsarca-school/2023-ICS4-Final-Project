@@ -10,6 +10,7 @@ import java.awt.*;
  * @author Victor Sarca
  */
 public abstract class ScreenElement {
+    /** whether the game is paused or not */
     private boolean paused = false;
 
     /**
