@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 /**
  * <h1>Sprite Class</h1>
  * Time spent: 3.2 hours
+ * 
  * @version 1.3
  * @version 6/7/2023
  * @author Victor Sarca, Radin Ahari, Felix Zhao
@@ -17,11 +18,12 @@ import javax.imageio.ImageIO;
 public class Sprite {
     private static Map<String, BufferedImage> tiles = new HashMap<>();
     private static Map<String, BufferedImage> images = new HashMap<>();
-    //private static Map<String, BufferedImage> lessonImages = new HashMap<>();
+    // private static Map<String, BufferedImage> lessonImages = new HashMap<>();
     private static Map<String, BufferedImage> backgrounds = new HashMap<>();
     private static Map<String, BufferedImage> scaledTiles = new HashMap<>();
     private static Map<String, BufferedImage> scaledImages = new HashMap<>();
-    //private static Map<String, BufferedImage> scaledLessonImages = new HashMap<>();
+    // private static Map<String, BufferedImage> scaledLessonImages = new
+    // HashMap<>();
     private static Map<String, BufferedImage> scaledBackgrounds = new HashMap<>();
     private static double tileScale, imageScale, lessonImageScale, bgScale;
 
@@ -51,11 +53,14 @@ public class Sprite {
             for (File file : folder.listFiles()) {
                 images.put(file.getName().replaceFirst("[.][^.]+$", ""), ImageIO.read(file));
             }
-            /*/ Load individual lesson images
-            folder = new File("src/main/Textures/LessonImages");
-            for (File file : folder.listFiles()) {
-                lessonImages.put(file.getName().replaceFirst("[.][^.]+$", ""), ImageIO.read(file));
-            }*/
+            /*
+             * / Load individual lesson images
+             * folder = new File("src/main/Textures/LessonImages");
+             * for (File file : folder.listFiles()) {
+             * lessonImages.put(file.getName().replaceFirst("[.][^.]+$", ""),
+             * ImageIO.read(file));
+             * }
+             */
             // Load individual backgrounds
             folder = new File("src/main/Textures/Backgrounds");
             for (File file : folder.listFiles()) {
@@ -68,14 +73,15 @@ public class Sprite {
 
     /**
      * Victor Sarca - updates the scale only when the user changes window size
-     * @param windowWidth current width
+     * 
+     * @param windowWidth  current width
      * @param windowHeight current height
      */
     public static void updateScale(int windowWidth, int windowHeight) {
         tileScale = Math.sqrt(windowWidth * windowHeight) / 160.0;
         imageScale = Math.min(windowWidth / 128.0, windowHeight / 96.0);
         bgScale = Math.max(windowWidth / 128.0, windowHeight / 96.0);
-        //lessonImageScale = bgScale / 2.0;
+        // lessonImageScale = bgScale / 2.0;
 
         BufferedImage temp;
         Image tkImage;
@@ -106,19 +112,21 @@ public class Sprite {
 
             scaledImages.put(e.getKey(), temp);
         }
-        /*for (Map.Entry<String, BufferedImage> e : lessonImages.entrySet()) {
-            temp = e.getValue();
-            width = (int) (lessonImageScale * temp.getWidth()) + 1;
-            height = (int) (lessonImageScale * temp.getHeight()) + 1;
-            tkImage = temp.getScaledInstance(width, height, Image.SCALE_SMOOTH);
-
-            temp = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-            Graphics g = temp.getGraphics();
-            g.drawImage(tkImage, 0, 0, null);
-            g.dispose();
-
-            scaledLessonImages.put(e.getKey(), temp);
-        }*/
+        /*
+         * for (Map.Entry<String, BufferedImage> e : lessonImages.entrySet()) {
+         * temp = e.getValue();
+         * width = (int) (lessonImageScale * temp.getWidth()) + 1;
+         * height = (int) (lessonImageScale * temp.getHeight()) + 1;
+         * tkImage = temp.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+         * 
+         * temp = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+         * Graphics g = temp.getGraphics();
+         * g.drawImage(tkImage, 0, 0, null);
+         * g.dispose();
+         * 
+         * scaledLessonImages.put(e.getKey(), temp);
+         * }
+         */
         for (Map.Entry<String, BufferedImage> e : backgrounds.entrySet()) {
             temp = e.getValue();
             width = (int) (bgScale * temp.getWidth()) + 1;
@@ -136,6 +144,7 @@ public class Sprite {
 
     /**
      * Radin Ahari - returns tile scale
+     * 
      * @return tile scale
      */
     public static double getTileScale() {
@@ -144,6 +153,7 @@ public class Sprite {
 
     /**
      * Radin Ahari - returns image scale
+     * 
      * @return image scale
      */
     public static double getImageScale() {
@@ -152,6 +162,7 @@ public class Sprite {
 
     /**
      * Felix Zhao - returns lesson image scale
+     * 
      * @return image scale
      */
     public static double getLessonImageScale() {
@@ -160,6 +171,7 @@ public class Sprite {
 
     /**
      * Felix Zhao - returns background image scale
+     * 
      * @return image scale
      */
     public static double getBgScale() {
@@ -186,6 +198,7 @@ public class Sprite {
 
     /**
      * Victor Sarca - Returns the tile requested
+     * 
      * @param sprite The key of the tile requested
      * @return The tile image
      */
@@ -195,6 +208,7 @@ public class Sprite {
 
     /**
      * Victor Sarca - Returns the image requested
+     * 
      * @param sprite The key of the image requested
      * @return The image
      */
@@ -204,15 +218,18 @@ public class Sprite {
 
     /**
      * Victor Sarca - Returns the background requested
+     * 
      * @param sprite The key of the image requested
      * @return The image
-     /
-    public static BufferedImage getScaledLessonImage(String sprite) {
-        return scaledLessonImages.get(sprite);
-    }*/
+     *         /
+     *         public static BufferedImage getScaledLessonImage(String sprite) {
+     *         return scaledLessonImages.get(sprite);
+     *         }
+     */
 
     /**
      * Victor Sarca - Returns the background requested
+     * 
      * @param sprite The key of the image requested
      * @return The image
      */

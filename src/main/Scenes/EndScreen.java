@@ -10,6 +10,7 @@ import src.main.Drivers.Window;
 /**
  * <h1>EndScreen Class</h1>
  * Time spent: 1 hour
+ * 
  * @version 1.2
  * @version 6/8/2023
  * @author Radin Ahari(comment)/Felix Zhao(code)
@@ -23,10 +24,10 @@ public class EndScreen extends ScreenElement {
     /**
      * Centers the image
      * 
-     * @param g graphics
+     * @param g     graphics
      * @param image the image we want to center
-     * @param x the x coordinate of the image
-     * @param y the y coordinatee of the image
+     * @param x     the x coordinate of the image
+     * @param y     the y coordinatee of the image
      */
     public void centerImage(Graphics g, Image image, int x, int y) {
         int imageWidth = image.getWidth(null);
@@ -60,17 +61,18 @@ public class EndScreen extends ScreenElement {
         g.fillRect(startX + (int) scale * 3, startY + (int) scale * 3, w - (int) scale * 6,
                 h - (int) scale * 6);
     }
+
     /**
      * Centers a string
      * 
-     * @param g Graphics
-     * @param c Text Colour
-     * @param text Given text
-     * @param x x coordinate
-     * @param y y coordinate
-     * @param maxWidth  width of the string
+     * @param g          Graphics
+     * @param c          Text Colour
+     * @param text       Given text
+     * @param x          x coordinate
+     * @param y          y coordinate
+     * @param maxWidth   width of the string
      * @param lineHeight height of the string
-     * @param font font
+     * @param font       font
      */
     public void centerString(Graphics g, Color c, String text, int x, int y, int maxWidth, int lineHeight, Font font) {
         String[] lines = text.split("\n");
@@ -90,10 +92,11 @@ public class EndScreen extends ScreenElement {
 
     /**
      * Draws a big title
-     * @param g graphics
-     * @param w width
-     * @param str string created
-     * @param c colour of text
+     * 
+     * @param g    graphics
+     * @param w    width
+     * @param str  string created
+     * @param c    colour of text
      * @param font font
      */
     public void heading(Graphics g, Window w, String str, Color c, Font font) {
@@ -101,15 +104,15 @@ public class EndScreen extends ScreenElement {
         Font temp = font.deriveFont(Font.PLAIN, size);
         centerString(g, c, str, w.getWidth() / 2, w.getHeight() / 3, w.getWidth(), size, temp);
     }
-    
+
     /**
      * Maximum font size
      * 
-     * @param g  graphics
-     * @param text text being tested
-     * @param maxWidth Width of the string
+     * @param g         graphics
+     * @param text      text being tested
+     * @param maxWidth  Width of the string
      * @param maxHeight height of the string
-     * @param font font
+     * @param font      font
      * @return the optimal font size
      */
     public int maxFontSize(Graphics g, String text, int maxWidth, int maxHeight, Font font) {
@@ -138,8 +141,10 @@ public class EndScreen extends ScreenElement {
         }
         return optimalSize;
     }
+
     /**
      * adds current element to window
+     * 
      * @param w the window being added to
      */
     public void addToWindow(Window w) {
@@ -149,18 +154,21 @@ public class EndScreen extends ScreenElement {
         }
         w.addElement(this);
     }
-    /** 
+
+    /**
      * Updates the screen
+     * 
      * @param w the window being updated
      * @param g graphics
-    */
+     */
     public void update(Window w, Graphics g) {
         double scale = Sprite.getImageScale();
         centerImage(g, Sprite.getScaledBackground("TitleScreen"), w.getWidth() / 2, w.getHeight() / 2);
         heading(g, w, "Thanks for Playing!", Color.WHITE, font);
         int size = maxFontSize(g, "Made by Grob Studios.", w.getWidth() / 2, w.getHeight() / 2, font);
         Font temp = font.deriveFont(Font.PLAIN, size);
-        centerString(g, Color.WHITE, "Made by Grob Studios.", (int)(w.getWidth() / 2 - scale*8), w.getHeight() * 2 / 3, w.getWidth(), size, temp);
-        centerImage(g, Sprite.getScaledImage("logo"), w.getWidth()*3 / 4, w.getHeight() * 2 / 3);
+        centerString(g, Color.WHITE, "Made by Grob Studios.", (int) (w.getWidth() / 2 - scale * 8),
+                w.getHeight() * 2 / 3, w.getWidth(), size, temp);
+        centerImage(g, Sprite.getScaledImage("logo"), w.getWidth() * 3 / 4, w.getHeight() * 2 / 3);
     }
 }

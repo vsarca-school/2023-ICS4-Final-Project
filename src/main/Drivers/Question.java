@@ -8,6 +8,7 @@ import src.main.Main;
 /**
  * <h1>Question Class</h1>
  * Time spent: 2 hours
+ * 
  * @version 1.1
  * @version 6/8/2023
  * @author Victor Sarca, Radin Ahari, Felix Zhao
@@ -21,14 +22,15 @@ public class Question extends ScreenElement implements Serializable {
 
     private double scale;
     private Font font;
-    
+
     /**
      * Question class constructor
+     * 
      * @param question question asked
-     * @param answers possible answers
-     * @param correct correct answer
-     * @param x x coordinate
-     * @param y y coordinate
+     * @param answers  possible answers
+     * @param correct  correct answer
+     * @param x        x coordinate
+     * @param y        y coordinate
      */
     public Question(String question, String[] answers, int correct, int x, int y) {
         this.question = question;
@@ -40,6 +42,7 @@ public class Question extends ScreenElement implements Serializable {
 
     /**
      * Checks if the x and y values are equal
+     * 
      * @param x x coordinate
      * @param y y coordinate
      * @return whether they are equal.
@@ -48,26 +51,29 @@ public class Question extends ScreenElement implements Serializable {
         return x == sx && y == sy;
     }
 
-    /*public static Question fromFile(String file) {
-        Question q = null;
-        try {
-            ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
-            q = (Question) in.readObject();
-            in.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        return q;
-    }*/
+    /*
+     * public static Question fromFile(String file) {
+     * Question q = null;
+     * try {
+     * ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
+     * q = (Question) in.readObject();
+     * in.close();
+     * } catch (IOException e) {
+     * e.printStackTrace();
+     * } catch (ClassNotFoundException e) {
+     * e.printStackTrace();
+     * }
+     * return q;
+     * }
+     */
 
     /**
      * Centers image
-     * @param g graphics
+     * 
+     * @param g     graphics
      * @param image image being centered
-     * @param x x coordinate
-     * @param y y coordinate
+     * @param x     x coordinate
+     * @param y     y coordinate
      */
     public void centerImage(Graphics g, Image image, int x, int y) {
         int imageWidth = image.getWidth(null);
@@ -81,6 +87,7 @@ public class Question extends ScreenElement implements Serializable {
 
     /**
      * Centers box
+     * 
      * @param g graphics
      * @param c box colour
      * @param x x coordinate
@@ -100,17 +107,18 @@ public class Question extends ScreenElement implements Serializable {
         g.fillRect(startX + (int) scale * 3, startY + (int) scale * 3, w - (int) scale * 6,
                 h - (int) scale * 6);
     }
-    
+
     /**
      * Centers string
-     * @param g graphics
-     * @param c string colour
-     * @param text text centered
-     * @param x x coordinate
-     * @param y y coordinate
-     * @param maxWidth width
+     * 
+     * @param g          graphics
+     * @param c          string colour
+     * @param text       text centered
+     * @param x          x coordinate
+     * @param y          y coordinate
+     * @param maxWidth   width
      * @param lineHeight height
-     * @param font font
+     * @param font       font
      */
     public void centerString(Graphics g, Color c, String text, int x, int y, int maxWidth, int lineHeight, Font font) {
         String[] lines = text.split("\n");
@@ -127,13 +135,16 @@ public class Question extends ScreenElement implements Serializable {
             lineY += lineHeight;
         }
     }
+
     /**
      * Max font size for all questions
-     * @param g graphics
-     * @param maxWidth maximum width
+     * 
+     * @param g         graphics
+     * @param maxWidth  maximum width
      * @param maxHeight maximum height
-     * @param font font
-     * @return returns either the optimal size or the minimum size depending on which is smaller.
+     * @param font      font
+     * @return returns either the optimal size or the minimum size depending on
+     *         which is smaller.
      */
     public int maxFontSizeAll(Graphics g, int maxWidth, int maxHeight, Font font) {
         char letter = 65;
@@ -167,13 +178,15 @@ public class Question extends ScreenElement implements Serializable {
         }
         return min;
     }
+
     /**
      * Max size for all questions
-     * @param g graphics
-     * @param text text being tested
-     * @param maxWidth maximum width
+     * 
+     * @param g         graphics
+     * @param text      text being tested
+     * @param maxWidth  maximum width
      * @param maxHeight maximum height
-     * @param font font
+     * @param font      font
      * @return returns the optimal text size
      */
     public int maxFontSize(Graphics g, String text, int maxWidth, int maxHeight, Font font) {
@@ -202,11 +215,13 @@ public class Question extends ScreenElement implements Serializable {
         }
         return optimalSize;
     }
+
     /**
      * checks if a button is clicked
+     * 
      * @param image image being tested
-     * @param x x coordinate
-     * @param y y coordinate
+     * @param x     x coordinate
+     * @param y     y coordinate
      * @param mouse mouse positions
      * @return returns whether its been clicked
      */
@@ -216,10 +231,11 @@ public class Question extends ScreenElement implements Serializable {
         return (mouse[0] > x - width && mouse[0] < x + width && mouse[1] > y - height && mouse[1] < y + height);
     }
 
-    /** 
+    /**
      * adds to window
+     * 
      * @param w window
-    */ 
+     */
     public void addToWindow(Window w) {
         try {
             font = Font.createFont(Font.TRUETYPE_FONT, new File("src/main/Fonts/VCR_OSD_MONO_1.001.ttf"));
@@ -228,11 +244,12 @@ public class Question extends ScreenElement implements Serializable {
         w.addElement(this);
     }
 
-    /** 
+    /**
      * updates window
+     * 
      * @param w window
      * @param g graphics
-    */ 
+     */
     public void update(Window w, Graphics g) {
         boolean paused = isPaused();
 

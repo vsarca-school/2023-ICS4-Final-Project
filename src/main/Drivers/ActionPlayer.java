@@ -23,6 +23,7 @@ public class ActionPlayer extends Player {
 
     /**
      * Adds player to an action level
+     * 
      * @param l  level being added to
      * @param lv action level being added
      */
@@ -37,26 +38,31 @@ public class ActionPlayer extends Player {
 
     /**
      * Calculates damage
+     * 
      * @param damage taken
      */
     public void damage(int damage) {
         health -= damage;
-        if (health <= 0) Main.changeScene(2);
+        if (health <= 0)
+            Main.changeScene(2);
     }
 
     /**
      * Checks player collision
-     * @param w 
+     * 
+     * @param w
      */
     protected void collide(Window w) {
         super.collide(w);
         int tempx = x + directions[direction][0];
         int tempy = y + directions[direction][1];
-        if (parent.hasWolf(tempx, tempy)) walking = false;
+        if (parent.hasWolf(tempx, tempy))
+            walking = false;
     }
 
     /**
      * Checks player collision while moving
+     * 
      * @param w
      */
     private void collideMoving(Window w) {
@@ -74,6 +80,7 @@ public class ActionPlayer extends Player {
 
     /**
      * Updates window
+     * 
      * @param w window
      * @param g graphics
      */
@@ -81,8 +88,10 @@ public class ActionPlayer extends Player {
         if (!isPaused()) {
             if (!walking) {
                 getInput(w);
-                if (nextDirection == -1) walking = false;
-                else direction = nextDirection;
+                if (nextDirection == -1)
+                    walking = false;
+                else
+                    direction = nextDirection;
                 collide(w);
             } else if (interpolation < 10) {
                 interpolation++;
@@ -95,14 +104,18 @@ public class ActionPlayer extends Player {
                 interpolation = 0;
                 getInput(w);
                 walk();
-                if (nextDirection == -1) walking = false;
-                else direction = nextDirection;
+                if (nextDirection == -1)
+                    walking = false;
+                else
+                    direction = nextDirection;
                 collide(w);
             }
             // Clear input and update level
             l.updatePlayerPos(realx, realy);
-            //System.out.println("Player at " + x + ", " + y + ", " + (x+directions[direction][0]) + ", " + (y+directions[direction][1]));
-            parent.updatePlayerPos(realx, realy, x, y, x + directions[direction][0], y + directions[direction][1], walking);
+            // System.out.println("Player at " + x + ", " + y + ", " +
+            // (x+directions[direction][0]) + ", " + (y+directions[direction][1]));
+            parent.updatePlayerPos(realx, realy, x, y, x + directions[direction][0], y + directions[direction][1],
+                    walking);
             animation = (animation + 1) % 32;
         }
 

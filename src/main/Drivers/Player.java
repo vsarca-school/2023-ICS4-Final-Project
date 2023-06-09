@@ -8,6 +8,7 @@ import src.main.Main;
 /**
  * <h1>Player Class</h1>
  * Time spent: 4 hours
+ * 
  * @version 1.7
  * @version 6/7/2023
  * @author Victor Sarca, Felix Zhao, Radin Ahari
@@ -30,6 +31,7 @@ public class Player extends ScreenElement {
 
     /**
      * Victor Sarca - Joins the level
+     * 
      * @param lv level to join
      */
     public void joinLevel(Level lv) {
@@ -48,7 +50,8 @@ public class Player extends ScreenElement {
     }
 
     /**
-     * Victor Sarca, Radin Ahari (subfunctions) - main update loop, implements all player actions
+     * Victor Sarca, Radin Ahari (subfunctions) - main update loop, implements all
+     * player actions
      */
     public void update(Window w, Graphics g) {
         if (!isPaused() && !askingQuestion) {
@@ -77,6 +80,7 @@ public class Player extends ScreenElement {
 
     /**
      * Victor Sarca, Felix Zhao - gets the player input to move the player
+     * 
      * @param w window object
      */
     protected void getInput(Window w) {
@@ -102,6 +106,7 @@ public class Player extends ScreenElement {
 
     /**
      * Victor Sarca - checks if the player is colliding with any obstacles
+     * 
      * @param w
      */
     protected void collide(Window w) {
@@ -109,15 +114,13 @@ public class Player extends ScreenElement {
         int tempx = x + directions[direction][0];
         int tempy = y + directions[direction][1];
         String block = l.getBlock(tempx, tempy);
-        if (block == null) return;
-        if (block.equals("sign-0"))
-        {
+        if (block == null)
+            return;
+        if (block.equals("sign-0")) {
             // Give the user a question
             l.getQuestion(tempx, tempy).addToWindow(w);
             askingQuestion = true;
-        }
-        else if (block.equals("campfire-0") || block.equals("tent-0"))
-        {
+        } else if (block.equals("campfire-0") || block.equals("tent-0")) {
             // Won
             Main.changeScene(4);
         }
@@ -136,7 +139,9 @@ public class Player extends ScreenElement {
     }
 
     /**
-     * Victor Sarca - renders the player in the middle and redraws tiles to compensate for movement
+     * Victor Sarca - renders the player in the middle and redraws tiles to
+     * compensate for movement
+     * 
      * @param w window object
      * @param g graphics window
      */
@@ -147,7 +152,7 @@ public class Player extends ScreenElement {
         double scale = Sprite.getTileScale() * 16;
         hww -= scale / 2;
         hwh -= scale / 2;
-        
+
         // Render player
         String cur;
         if (walking)

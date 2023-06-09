@@ -8,12 +8,14 @@ import src.main.Drivers.*;
 /**
  * <h1>LessonScene Class</h1>
  * Time spent: 1.7 hours
+ * 
  * @version 1.2
  * @version 6/8/2023
  * @author Radin Ahari (comment)/Victor Sarca (code)
  */
 public class LessonScene extends ScreenElement {
     private Lesson l;
+
     /**
      * LessonScene constructor
      */
@@ -21,7 +23,7 @@ public class LessonScene extends ScreenElement {
         l = Lesson.fromFile("src/main/Lessons/Lesson-1.lsn");
     }
 
-        /**
+    /**
      * Adds to window
      * 
      * @param w window being added to

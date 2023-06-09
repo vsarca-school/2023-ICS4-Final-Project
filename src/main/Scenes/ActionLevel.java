@@ -6,6 +6,7 @@ import src.main.Drivers.*;
 /**
  * <h1>ActionLevel Class</h1>
  * Time spent: 1.8 hours
+ * 
  * @version 1.2
  * @version 6/8/2023
  * @author Radin Ahari(comment)/Victor Sarca(code)
@@ -15,6 +16,7 @@ public class ActionLevel extends ScreenElement {
     private ActionPlayer p;
     private Level l;
     private Wolf[] wolves;
+
     /**
      * Action level constructor
      */
@@ -23,18 +25,21 @@ public class ActionLevel extends ScreenElement {
         l = Level.fromFile("src/main/Levels/Level-2.lvl");
         loadWolves();
     }
+
     /**
      * Loads all of the wolves for the cave
      */
     public void loadWolves() {
         int[][] start = l.getWolves();
         wolves = new Wolf[start.length];
-        for (int i=0; i<start.length; i++) {
+        for (int i = 0; i < start.length; i++) {
             wolves[i] = new Wolf(start[i][0], start[i][1], l);
         }
     }
+
     /**
      * Checks if a wolf is already at a position x,y
+     * 
      * @param x x coordinate
      * @param y y coordinate
      * @return returns whether there is a wolf at x,y
@@ -42,13 +47,15 @@ public class ActionLevel extends ScreenElement {
     public boolean hasWolf(int x, int y) {
         for (Wolf wl : wolves) {
             int[] temp = wl.getCoords();
-            if ((x == temp[0] && y == temp[1]) || (x == temp[2] && y == temp[3])) return true;
+            if ((x == temp[0] && y == temp[1]) || (x == temp[2] && y == temp[3]))
+                return true;
         }
         return false;
     }
 
     /**
      * tells wolves where the player is
+     * 
      * @param x x coordinate
      * @param y y coordinate
      */
@@ -57,15 +64,19 @@ public class ActionLevel extends ScreenElement {
             w.updatePlayerPos(x, y, ax, ay, nx, ny, walking, p);
         }
     }
+
     /**
      * Adds to window
+     * 
      * @param w window
-    */
+     */
     public void addToWindow(Window w) {
-        if (l == null) Main.changeScene(5);
+        if (l == null)
+            Main.changeScene(5);
 
         l.addToWindow(w);
-        for (Wolf wf : wolves) wf.addToWindow(w);
+        for (Wolf wf : wolves)
+            wf.addToWindow(w);
         p.joinLevel(l, this);
         p.addToWindow(w);
         w.addElement(this);
@@ -73,15 +84,18 @@ public class ActionLevel extends ScreenElement {
     }
 
     /**
-     * Removes from  window
+     * Removes from window
+     * 
      * @param w window
-    */
+     */
     public void removeFromWindow(Window w) {
         l.removeFromWindow(w);
         l = l.nextLevel();
-        if (l != null) loadWolves();
-        for (Wolf wf : wolves) wf.addToWindow(w);
+        if (l != null)
+            loadWolves();
+        for (Wolf wf : wolves)
+            wf.addToWindow(w);
         p.removeFromWindow(w);
         w.removeElement(this);
     }
-}   
+}

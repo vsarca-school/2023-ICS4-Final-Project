@@ -5,9 +5,11 @@ import java.awt.Image;
 
 import src.main.Main;
 import src.main.Drivers.*;
+
 /**
  * <h1>MainMenu Class</h1>
  * Time spent: 2.3 hours
+ * 
  * @version 1.2
  * @version 6/8/2023
  * @author Radin Ahari (comment)/Victor Sarca/Radin Ahari/Felix Zhao (code)
@@ -15,6 +17,7 @@ import src.main.Drivers.*;
 public class MainMenu extends ScreenElement {
     /**
      * Updates the window
+     * 
      * @param w window being updated
      * @param g graphics
      */
@@ -26,10 +29,11 @@ public class MainMenu extends ScreenElement {
 
         // Draw background and logo
         drawImage(g, Sprite.getScaledBackground("TitleScreen"), (int) hww, (int) hwh);
-        drawImage(g, Sprite.getScaledImage("logo"), (int)(2*hww - scale*16), (int)(2*hwh - scale*16));
+        drawImage(g, Sprite.getScaledImage("logo"), (int) (2 * hww - scale * 16), (int) (2 * hwh - scale * 16));
 
         // Leave if paused
-        if (isPaused()) return;
+        if (isPaused())
+            return;
 
         // Draw screen
         drawImage(g, Sprite.getScaledImage("timbertrek"), (int) (hww), (int) (hwh - 32 * scale));
@@ -50,13 +54,14 @@ public class MainMenu extends ScreenElement {
             }
         }
     }
+
     /**
      * Draws an image
      * 
-     * @param g graphics
+     * @param g     graphics
      * @param image image being drawn
-     * @param x x coordinate
-     * @param y y coordinate
+     * @param x     x coordinate
+     * @param y     y coordinate
      */
     private void drawImage(Graphics g, Image image, int x, int y) {
         int width = image.getWidth(null) / 2;
@@ -67,9 +72,10 @@ public class MainMenu extends ScreenElement {
 
     /**
      * checks if a button has been clicked or not
+     * 
      * @param image image being clicked
-     * @param x x coordinate
-     * @param y y coordinate
+     * @param x     x coordinate
+     * @param y     y coordinate
      * @param mouse mouse position
      * @return returns whether the button has been clicked or not
      */

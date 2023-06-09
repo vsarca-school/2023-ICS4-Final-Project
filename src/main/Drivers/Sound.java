@@ -7,6 +7,7 @@ import java.io.IOException;
 /**
  * <h1>Sound Class</h1>
  * Time spent: 4.5 hours
+ * 
  * @version 1.2
  * @version 6/8/2023
  * @author Felix Zhao, Victor Sarca (bugfixes)
@@ -21,6 +22,7 @@ public class Sound {
 
     /**
      * Felix Zhao - makes a sound object with the file path
+     * 
      * @param filePath file path of the sound file
      */
     public Sound(String filePath) {
@@ -35,32 +37,35 @@ public class Sound {
         }
     }
 
-    /*public void play(int volume) {
-        Thread soundThread = new Thread(() -> {
-            try {
-                sourceDataLine.open(audioFormat);
-                sourceDataLine.start();
-
-                byte[] buffer = new byte[BUFFER_SIZE];
-                int bytesRead;
-
-                while ((bytesRead = audioStream.read(buffer, 0, buffer.length)) != -1) {
-                    sourceDataLine.write(buffer, 0, bytesRead);
-                }
-
-                sourceDataLine.drain();
-                sourceDataLine.stop();
-                sourceDataLine.close();
-                audioStream.close();
-            } catch (IOException | LineUnavailableException e) {
-                e.printStackTrace();
-            }
-        });
-        soundThread.start();
-    }*/
+    /*
+     * public void play(int volume) {
+     * Thread soundThread = new Thread(() -> {
+     * try {
+     * sourceDataLine.open(audioFormat);
+     * sourceDataLine.start();
+     * 
+     * byte[] buffer = new byte[BUFFER_SIZE];
+     * int bytesRead;
+     * 
+     * while ((bytesRead = audioStream.read(buffer, 0, buffer.length)) != -1) {
+     * sourceDataLine.write(buffer, 0, bytesRead);
+     * }
+     * 
+     * sourceDataLine.drain();
+     * sourceDataLine.stop();
+     * sourceDataLine.close();
+     * audioStream.close();
+     * } catch (IOException | LineUnavailableException e) {
+     * e.printStackTrace();
+     * }
+     * });
+     * soundThread.start();
+     * }
+     */
 
     /**
      * Felix Zhao - plays the sound once
+     * 
      * @param volume specified volume
      */
     public void play(float volume) {
@@ -69,7 +74,8 @@ public class Sound {
 
     /**
      * Felix Zhao - loops the sound a specified number of times
-     * @param times number of times
+     * 
+     * @param times  number of times
      * @param volume specified volume
      */
     public void loop(int times, float volume) {
@@ -84,21 +90,21 @@ public class Sound {
                 }
 
                 sourceDataLine.start();
-    
+
                 byte[] buffer = new byte[BUFFER_SIZE];
                 int bytesRead;
-    
+
                 for (int i = 0; i < times; i++) {
                     audioStream = AudioSystem.getAudioInputStream(soundFile);
-    
+
                     while ((bytesRead = audioStream.read(buffer, 0, buffer.length)) != -1) {
                         sourceDataLine.write(buffer, 0, bytesRead);
                     }
-    
+
                     // Rewind the audio stream to the beginning for the next loop
-                    //audioStream.reset();
+                    // audioStream.reset();
                 }
-    
+
                 sourceDataLine.drain();
                 sourceDataLine.stop();
                 sourceDataLine.close();
@@ -107,7 +113,7 @@ public class Sound {
                 e.printStackTrace();
             }
         });
-    
+
         soundThread.start();
     }
 }

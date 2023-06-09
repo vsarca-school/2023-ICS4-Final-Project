@@ -5,6 +5,7 @@ import java.awt.*;
 /**
  * <h1>ScreenElement Abstract Class</h1>
  * Time spent: 2.5 hours
+ * 
  * @version 1.1
  * @version 6/6/2023
  * @author Victor Sarca
@@ -29,8 +30,7 @@ public abstract class ScreenElement {
      * 
      * @param l The window to render to
      */
-    public void addToWindow(Window w)
-    {
+    public void addToWindow(Window w) {
         // Default behaviour: add only this
         w.addElement(this);
     }
@@ -55,6 +55,7 @@ public abstract class ScreenElement {
 
     /**
      * Checks if the element is paused
+     * 
      * @return if the element is paused
      */
     public final boolean isPaused() {
