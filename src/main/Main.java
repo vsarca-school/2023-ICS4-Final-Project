@@ -99,4 +99,8 @@ public class Main {
         if (currentScene.isPaused()) o.addToWindow(w);
         else o.removeFromWindow(w);
     }
+
+    public static void questionCorrect(boolean correct, int x, int y) {
+        z.questionCorrect(correct, x, y);
+    }
 }

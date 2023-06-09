@@ -14,6 +14,15 @@ public class Maze extends ScreenElement {
         l = Level.fromFile("src/main/Levels/Maze-1.lvl");
     }
 
+    public void questionCorrect(boolean correct, int x, int y) {
+        if (correct) {
+            l.delete(x, y);
+        }
+        else {
+            p.joinLevel(l);
+        }
+    }
+
     public void addToWindow(Window w) {
         if (l == null) Main.changeScene(5);
 

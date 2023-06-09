@@ -57,6 +57,10 @@ public class Level extends ScreenElement implements Serializable {
         return null;
     }
 
+    public void delete(int x, int y) {
+        objects[x][y] = null;
+    }
+
     /**
      * Loads a level from file
      * Returns null if there is an error; after the final level, a null string will
