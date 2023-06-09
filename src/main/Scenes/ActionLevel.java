@@ -36,9 +36,9 @@ public class ActionLevel extends ScreenElement {
         for (int i = 0; i < start.length; i++) {
             wolves[i] = new Wolf(start[i][0], start[i][1], l);
             int[] temp = wolves[i].getCoords();
-            System.out.println("Wolf at " + temp[0] + ", " + temp[1]);
+            //System.out.println("Wolf at " + temp[0] + ", " + temp[1]);
         }
-        System.out.println("Loading wolves");
+        //System.out.println("Loading wolves");
     }
 
     public void refreshWolves(Window w) {

@@ -134,7 +134,7 @@ public class Wolf extends ScreenElement {
         npy = ny;
         playerWalking = walking;
         this.p = p;
-        System.out.println("Updated " + px + " " + py + " " + this.x + " " + this.y);
+        //System.out.println("Updated " + px + " " + py + " " + this.x + " " + this.y);
     }
 
     private void render(Window w, Graphics g) {
