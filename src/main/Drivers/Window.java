@@ -73,11 +73,22 @@ public class Window implements KeyListener, MouseListener {
     }
 
     public void addElement(ScreenElement s) {
+        if (s.isPaused()) s.pause(); // Make sure it isn't pause
         elements.add(s);
     }
 
     public void removeElement(ScreenElement s) {
         elements.remove(s);
+    }
+
+    public void pauseAll() {
+        try {
+        for (ScreenElement s : elements) {
+            s.pause();
+        }
+        } catch (ConcurrentModificationException e) {
+            // Expected when scene is changed; do nothing, should work out anyways
+        }
     }
 
     public void update() {

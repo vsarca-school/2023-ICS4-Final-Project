@@ -99,7 +99,7 @@ public class Main {
     }
 
     public static void pause() {
-        currentScene.pause();
+        w.pauseAll();
         if (currentScene.isPaused()) o.addToWindow(w);
         else o.removeFromWindow(w);
     }
