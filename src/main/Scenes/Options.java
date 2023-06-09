@@ -47,6 +47,7 @@ public class Options extends ScreenElement {
                 Main.pause();
             } else if (isClicked(Sprite.getScaledImage("menuquit"), (int) (hww), (int) (hwh + 16 * scale),
                     mouse)) {
+                Main.pause();
                 Main.changeScene(0);
             }
         }

@@ -23,6 +23,7 @@ public class Player extends ScreenElement {
     protected boolean walking = false;
     protected boolean askingQuestion = false;
     protected int interpolation = 0;
+    protected boolean hasWon = false;
     protected static final String[][] animations = { { "player-12", "player-13", "player-14", "player-15" },
             { "player-4", "player-5", "player-6", "player-7" },
             { "player-0", "player-1", "player-2", "player-3" },
@@ -35,6 +36,7 @@ public class Player extends ScreenElement {
      * @param lv level to join
      */
     public void joinLevel(Level lv) {
+        hasWon = false;
         l = lv;
         x = l.getStartX();
         y = l.getStartY();
@@ -73,6 +75,9 @@ public class Player extends ScreenElement {
             // Clear input and update level
             l.updatePlayerPos(realx, realy);
             animation = (animation + 1) % 32;
+            // Check if won
+            if (hasWon)
+                Main.changeScene(4);
         }
 
         render(w, g);
@@ -122,7 +127,7 @@ public class Player extends ScreenElement {
             askingQuestion = true;
         } else if (block.equals("campfire-0") || block.equals("tent-0")) {
             // Won
-            Main.changeScene(4);
+            hasWon = true;
         }
         walking = false;
     }
