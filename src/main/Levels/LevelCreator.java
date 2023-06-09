@@ -35,7 +35,7 @@ public class LevelCreator {
         objects[7][5] = "tent-0";
         objects[10][7] = "tent-0";
         objects[4][6] = "tent-0";
-        objects[7][9] = ""
+        //objects[7][9] = ""
 
         //trees
         for(int i=0; i<200; i++){
