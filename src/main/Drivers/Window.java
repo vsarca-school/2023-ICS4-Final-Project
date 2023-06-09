@@ -108,8 +108,8 @@ public class Window implements KeyListener, MouseListener {
 
     void paint(Graphics g) {
         try {
-        for (ScreenElement s : elements) {
-            s.update(this, g);
+        for (int i=0; i<elements.size(); i++) {
+            elements.get(i).update(this, g);
         }
         } catch (ConcurrentModificationException e) {
             // Expected when scene is changed; do nothing, should work out anyways

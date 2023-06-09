@@ -147,6 +147,7 @@ public class LevelCreator {
         px = 5;
         py = 5;
         next = "Maze-2.lvl";
+        scene = 0;
         // Save level 1
         l = new Level(ground, objects, px, py, next, scene, new int[0][0]);
         out = new ObjectOutputStream(new FileOutputStream("src/main/Levels/Maze-1.lvl"));
