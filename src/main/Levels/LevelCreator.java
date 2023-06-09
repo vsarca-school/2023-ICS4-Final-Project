@@ -95,6 +95,7 @@ public class LevelCreator {
         objects[10+s][7+s] = "tent-0";
         objects[4+s][6+s] = "tent-0";
         objects[7+s][9+s] = "campfire-0";
+        ground[7+s][9+s] = "dirt-0";
         ground[6+s][8+s] = "dirt-32";
         ground[7+s][8+s] = "dirt-4";
         ground[8+s][8+s] = "dirt-20";
@@ -134,6 +135,8 @@ public class LevelCreator {
             int y = (int) (Math.random() * 15);
             objects[x][y] = "rock-" + temp;
         }
+        
+        objects[14][14] = "campfire-0";
 
         // Save level 2
         scene = 1; // cave
