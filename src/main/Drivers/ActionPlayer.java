@@ -6,7 +6,7 @@ import src.main.Scenes.ActionLevel;
 
 /**
  * <h1>ActionPlayer Class</h1>
- * @version 1
+ * @version 1.2
  * @version 6/8/2023
  * @author Victor Sarca
  */
@@ -30,6 +30,14 @@ public class ActionPlayer extends Player {
         y = l.getStartY();
         realx = x;
         realy = y;
+    }
+
+    protected void collide(Window w) {
+        int tempx = x + directions[direction][0];
+        int tempy = y + directions[direction][1];
+        super.collide(w);
+        if (parent.hasWolf(tempx, tempy))
+            walking = false;
     }
 
     /**
