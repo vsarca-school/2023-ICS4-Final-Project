@@ -56,7 +56,7 @@ public class Test {
             "Orion",
             "Haedus"
         };
-        Question q = new Question("Which star is near the Big Dipper?", answers, 3);
+        Question q = Question.fromFile("src/main/Questions/Question-Navigation-1.qsn");
 
         ScreenElement currentScene = q; // TODO: change back to menu when done debugging
 
