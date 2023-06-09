@@ -77,7 +77,7 @@ public class Wolf extends ScreenElement {
     private void orient() {
         // Try to walk
         walking = false;
-        if (Math.random() < 0.1 && playerWalking) {
+        if (Math.random() < 0.1 && (playerWalking || Math.random() < 0.3)) {
             walking = true;
         }
         int dir = Math.random() < 0.5 ? 0 : 1; // Which way to go, vertical or sideways
