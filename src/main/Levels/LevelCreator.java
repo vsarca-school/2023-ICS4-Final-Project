@@ -128,7 +128,7 @@ public class LevelCreator {
 
         // Save level 2
         scene = 1; // cave
-        wolves = new int[][]{{10,10},{12,10},{10,1},{14,12},{15,15},{10,10},{10,10},{10,10},{10,10},{10,10}};
+        wolves = new int[][]{{10,1}};
         l = new Level(ground, objects, px, py, next, scene, wolves);
         out = new ObjectOutputStream(new FileOutputStream("src/main/Levels/Level-2.lvl"));
         out.writeObject(l);

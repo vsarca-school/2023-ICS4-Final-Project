@@ -17,7 +17,7 @@ public class Player extends ScreenElement {
     protected double realx, realy;
     protected boolean walking = false;
     protected int interpolation = 0;
-    String[][] animations = { { "player-12", "player-13", "player-14", "player-15" },
+    protected static final String[][] animations = { { "player-12", "player-13", "player-14", "player-15" },
             { "player-4", "player-5", "player-6", "player-7" },
             { "player-0", "player-1", "player-2", "player-3" },
             { "player-8", "player-9", "player-10", "player-11" } };
