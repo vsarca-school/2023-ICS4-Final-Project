@@ -6,7 +6,11 @@ import java.awt.Image;
 import src.main.Main;
 
 /**
- * Handles all player movement, plus rendering
+ * <h1>Player Class</h1>
+ * Time spent: 4 hours
+ * @version 1.7
+ * @version 6/7/2023
+ * @author Victor Sarca, Felix Zhao, Radin Ahari
  */
 public class Player extends ScreenElement {
     protected Level l;
@@ -25,9 +29,8 @@ public class Player extends ScreenElement {
     protected static final int[][] directions = { { 0, -1 }, { -1, 0 }, { 0, 1 }, { 1, 0 } };
 
     /**
-     * - Victor
-     * 
-     * @param lv
+     * Victor Sarca - Joins the level
+     * @param lv level to join
      */
     public void joinLevel(Level lv) {
         l = lv;
@@ -37,13 +40,15 @@ public class Player extends ScreenElement {
         realy = y;
     }
 
+    /**
+     * Victor Sarca - ends the question sequence
+     */
     public void endQuestion() {
         askingQuestion = false;
     }
 
     /**
-     * - Victor
-     * - Radin (contribution to subfunctions - Victor)
+     * Victor Sarca, Radin Ahari (subfunctions) - main update loop, implements all player actions
      */
     public void update(Window w, Graphics g) {
         if (!isPaused() && !askingQuestion) {
@@ -70,6 +75,10 @@ public class Player extends ScreenElement {
         render(w, g);
     }
 
+    /**
+     * Victor Sarca, Felix Zhao - gets the player input to move the player
+     * @param w window object
+     */
     protected void getInput(Window w) {
         // Do keyboard input
         int[] moves = { 0, 0, 0, 0 };
@@ -91,6 +100,10 @@ public class Player extends ScreenElement {
         }
     }
 
+    /**
+     * Victor Sarca - checks if the player is colliding with any obstacles
+     * @param w
+     */
     protected void collide(Window w) {
         // Check for collision
         int tempx = x + directions[direction][0];
@@ -111,6 +124,9 @@ public class Player extends ScreenElement {
         walking = false;
     }
 
+    /**
+     * Victor Sarca - lets the player walk in a direction
+     */
     protected void walk() {
         // Walk
         x += directions[direction][0];
@@ -119,6 +135,11 @@ public class Player extends ScreenElement {
         realy = y;
     }
 
+    /**
+     * Victor Sarca - renders the player in the middle and redraws tiles to compensate for movement
+     * @param w window object
+     * @param g graphics window
+     */
     protected void render(Window w, Graphics g) {
         // Calculate scaling and centering
         double hww = w.getWidth() / 2.0;
