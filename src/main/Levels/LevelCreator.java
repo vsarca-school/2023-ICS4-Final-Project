@@ -129,9 +129,10 @@ public class LevelCreator {
             for (int j=0; j<10; j++)
             {
                 int temp = (int)(Math.random()*4);
-                ground[i][j] = "dirt-"+temp;
+                ground[i][j] = "grass-"+temp;
             }
         }
+        objects[0][3] = "sign-0";
         px = 5;
         py = 5;
         next = "Maze-2.lvl";
