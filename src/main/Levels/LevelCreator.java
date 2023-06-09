@@ -157,7 +157,7 @@ public class LevelCreator {
         }
 
         // rocks
-        for (int i = 0; i < 25; i++) {
+        for (int i = 0; i < 5; i++) {
             int temp = (int) (Math.random() * 4);
             int x = (int) (Math.random() * 20);
             int y = (int) (Math.random() * 3);
@@ -168,8 +168,8 @@ public class LevelCreator {
 
         // Save level 2
         scene = 0; // cave
-        wolves = new int[0][0];
-        l = new Level(ground, objects, px, py, next, scene, wolves, null);
+        wolves = new int[][]{{2,0}, {5,2}, {9, 1}, {15, 0}};
+        l = new Level(ground, objects, 0, 1, next, scene, wolves, null);
         out = new ObjectOutputStream(new FileOutputStream("src/main/Levels/Level-3.lvl"));
         out.writeObject(l);
         out.close();
