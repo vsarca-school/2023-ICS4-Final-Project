@@ -110,10 +110,14 @@ public class Main {
      */
     public static void pause() {
         w.pauseAll();
-        if (currentScene.isPaused())
+        if (currentScene.isPaused()) {
+            System.out.println("Adding pause menu");
             o.addToWindow(w);
-        else
+        }
+        else {
             o.removeFromWindow(w);
+            System.out.println("Removing pause menu");
+        }
     }
 
     /**
