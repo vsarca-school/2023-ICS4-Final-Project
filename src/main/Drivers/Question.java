@@ -11,19 +11,6 @@ public class Question extends ScreenElement implements Serializable {
     private String[] answers;
     private int correct;
 
-    private String title;
-    private String[] texts;
-    private int[] positions;
-    private String background;
-    private String[] images;
-    private String nextLesson;
-
-    private int currentIndex = 0;
-    private int currentStringIndex = -1;
-    private int posIndex = 0;
-    private int timer = 0;
-    private int animTimer = 0;
-    private static final int DELAY = 3;
     private double scale;
     private Font font;
 
@@ -185,16 +172,36 @@ public class Question extends ScreenElement implements Serializable {
             letter++;
         }
 
-        centerImage(g, Sprite.getScaledImage("a"), (int)(hww / 5), (int)(hwh*7 / 5));
-        centerImage(g, Sprite.getScaledImage("b"), (int)(hww*4 / 5), (int)(hwh*7 / 5));
-        centerImage(g, Sprite.getScaledImage("c"), (int)(hww*3 / 5), (int)(hwh*7 / 5));
-        centerImage(g, Sprite.getScaledImage("d"), (int)(hww*4 / 5), (int)(hwh*7 / 5));
-        
+        centerImage(g, Sprite.getScaledImage("A"), (int) (hww * 2 / 5), (int) (hwh * 7 / 5));
+        centerImage(g, Sprite.getScaledImage("B"), (int) (hww * 4 / 5), (int) (hwh * 7 / 5));
+        centerImage(g, Sprite.getScaledImage("C"), (int) (hww * 6 / 5), (int) (hwh * 7 / 5));
+        centerImage(g, Sprite.getScaledImage("D"), (int) (hww * 8 / 5), (int) (hwh * 7 / 5));
+
         int[] mouse;
         while ((mouse = w.nextMouse()) != null) {
-            if (isClicked(Sprite.getScaledImage("next"), (int) hww,
-                    (int) hwh, mouse)) {
-                Main.changeScene(3);
+            if (isClicked(Sprite.getScaledImage("A"), (int) (hww * 2 / 5), (int) (hwh * 7 / 5), mouse)) {
+                if (correct == 1) {
+                    // answer
+                    System.out.println("correct");
+                }
+            }
+            if (isClicked(Sprite.getScaledImage("B"), (int) (hww * 4 / 5), (int) (hwh * 7 / 5), mouse)) {
+                if (correct == 2) {
+                    // answer
+                    System.out.println("correct");
+                }
+            }
+            if (isClicked(Sprite.getScaledImage("C"), (int) (hww * 6 / 5), (int) (hwh * 7 / 5), mouse)) {
+                if (correct == 3) {
+                    // answer
+                    System.out.println("correct");
+                }
+            }
+            if (isClicked(Sprite.getScaledImage("D"), (int) (hww * 8 / 5), (int) (hwh * 7 / 5), mouse)) {
+                if (correct == 4) {
+                    // answer
+                    System.out.println("correct");
+                }
             }
         }
     }
