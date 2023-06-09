@@ -45,11 +45,18 @@ public abstract class ScreenElement {
         w.removeElement(this);
     }
 
+    /**
+     * Toggles if the element is paused
+     */
     public final void pause() {
         // Final behaviour: toggle pause
         paused = !paused;
     }
 
+    /**
+     * Checks if the element is paused
+     * @return if the element is paused
+     */
     public final boolean isPaused() {
         // Final behaviour: return paused
         return paused;
