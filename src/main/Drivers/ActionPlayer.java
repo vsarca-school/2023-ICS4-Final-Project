@@ -23,7 +23,6 @@ public class ActionPlayer extends Player {
 
     /**
      * Adds player to an action level
-     * 
      * @param l  level being added to
      * @param lv action level being added
      */
@@ -36,11 +35,19 @@ public class ActionPlayer extends Player {
         realy = y;
     }
 
+    /**
+     * Calculates damage
+     * @param damage taken
+     */
     public void damage(int damage) {
         health -= damage;
         if (health <= 0) Main.changeScene(2);
     }
 
+    /**
+     * Checks player collision
+     * @param w 
+     */
     protected void collide(Window w) {
         super.collide(w);
         int tempx = x + directions[direction][0];
@@ -48,6 +55,10 @@ public class ActionPlayer extends Player {
         if (parent.hasWolf(tempx, tempy)) walking = false;
     }
 
+    /**
+     * Checks player collision while moving
+     * @param w
+     */
     private void collideMoving(Window w) {
         int tempx = x + directions[direction][0];
         int tempy = y + directions[direction][1];
@@ -63,7 +74,6 @@ public class ActionPlayer extends Player {
 
     /**
      * Updates window
-     * 
      * @param w window
      * @param g graphics
      */
