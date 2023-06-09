@@ -8,7 +8,7 @@ import src.main.Drivers.*;
  * This class extends the Level class in order to access all of its protected
  * fields and modify them. This class will be used to create level objects with
  * specifc setups
- *      - Victor
+ * - Victor
  */
 
 public class LevelCreator {
@@ -23,16 +23,14 @@ public class LevelCreator {
         // Grass tiles
         ground = new String[40][40];
         objects = new String[40][40];
-        for (int i=0; i<40; i++)
-        {
-            for (int j=0; j<40; j++)
-            {
-                int temp = (int)(Math.random()*4);
-                ground[i][j] = "grass-"+temp;
+        for (int i = 0; i < 40; i++) {
+            for (int j = 0; j < 40; j++) {
+                int temp = (int) (Math.random() * 4);
+                ground[i][j] = "grass-" + temp;
             }
         }
-                
-        //campsite
+
+        // campsite
         objects[7][5] = "tent-0";
         objects[10][7] = "tent-0";
         objects[4][6] = "tent-0";
@@ -45,71 +43,60 @@ public class LevelCreator {
         ground[6][10] = "dirt-28";
         ground[7][10] = "dirt-12";
         ground[8][10] = "dirt-24";
-        
 
-        
-
-        //trees
-        for(int i=0; i<200; i++){
-            int temp = (int)(Math.random()*7);
-            int x = (int)(Math.random()*40);
-            int y = (int)(Math.random()*40);
-            while(x>=20 && x<=26 && y>=30 && y<=34){
-                x = (int)(Math.random()*40);
-                y = (int)(Math.random()*40);
+        // trees
+        for (int i = 0; i < 200; i++) {
+            int temp = (int) (Math.random() * 7);
+            int x = (int) (Math.random() * 40);
+            int y = (int) (Math.random() * 40);
+            while (x >= 20 && x <= 26 && y >= 30 && y <= 34) {
+                x = (int) (Math.random() * 40);
+                y = (int) (Math.random() * 40);
             }
-            while(x>=4 && x <= 10 && y>=5 && y <= 10){
-                x = (int)(Math.random()*40);
-                y = (int)(Math.random()*40);
+            while (x >= 4 && x <= 10 && y >= 5 && y <= 10) {
+                x = (int) (Math.random() * 40);
+                y = (int) (Math.random() * 40);
             }
-            objects[x][y] = "tree-"+temp;
+            objects[x][y] = "tree-" + temp;
         }
 
-
-
-        //water tiles
-        for (int i=21; i<26; i++)
-        {
-            for (int j=31; j<34; j++)
-            {
+        // water tiles
+        for (int i = 21; i < 26; i++) {
+            for (int j = 31; j < 34; j++) {
                 objects[i][j] = "water-0";
             }
         }
-        
-        //Top Dirt Tiles (no corners)
-        for (int i=21; i<26; i++)
-        {
-            int temp = (int)(Math.random()*3+4);
-            ground[i][30] = "dirt-"+temp;
+
+        // Top Dirt Tiles (no corners)
+        for (int i = 21; i < 26; i++) {
+            int temp = (int) (Math.random() * 3 + 4);
+            ground[i][30] = "dirt-" + temp;
         }
 
-        //Corners
+        // Corners
         ground[20][30] = "dirt-32";
         ground[26][30] = "dirt-20";
         ground[20][34] = "dirt-28";
         ground[26][34] = "dirt-24";
-        
-        //Bottom Dirt Tiles (no corners)
-        for (int i=21; i<26; i++)
-        {
-            int temp = (int)(Math.random()*3+12);
-            ground[i][34] = "dirt-"+temp;
+
+        // Bottom Dirt Tiles (no corners)
+        for (int i = 21; i < 26; i++) {
+            int temp = (int) (Math.random() * 3 + 12);
+            ground[i][34] = "dirt-" + temp;
         }
 
-        //Right Dirt Tiles (no corners)
-        for (int j=31; j<34; j++)
-        {
-            int temp = (int)(Math.random()*3+8);
-            ground[26][j] = "dirt-"+temp;
+        // Right Dirt Tiles (no corners)
+        for (int j = 31; j < 34; j++) {
+            int temp = (int) (Math.random() * 3 + 8);
+            ground[26][j] = "dirt-" + temp;
         }
 
-        //Left Dirt Tiles (no corners)
-        for (int j=31; j<34; j++)
-        {
-            int temp = (int)(Math.random()*3+16);
-            ground[20][j] = "dirt-"+temp;
+        // Left Dirt Tiles (no corners)
+        for (int j = 31; j < 34; j++) {
+            int temp = (int) (Math.random() * 3 + 16);
+            ground[20][j] = "dirt-" + temp;
         }
-        
+
         px = 5;
         py = 5;
         next = "Level-2.lvl";
@@ -124,27 +111,25 @@ public class LevelCreator {
         // Create Cave
         ground = new String[15][15];
         objects = new String[15][15];
-        for (int i=0; i<15; i++)
-        {
-            for (int j=0; j<15; j++)
-            {
-                int temp = (int)(Math.random()*4);
-                ground[i][j] = "wall-"+temp;
+        for (int i = 0; i < 15; i++) {
+            for (int j = 0; j < 15; j++) {
+                int temp = (int) (Math.random() * 4);
+                ground[i][j] = "wall-" + temp;
             }
         }
 
-        //rocks
-        for(int i=0; i<25; i++){
-            int temp = (int)(Math.random()*4);
-            int x = (int)(Math.random()*15);
-            int y = (int)(Math.random()*15);
-            objects[x][y] = "rock"+temp;
+        // rocks
+        for (int i = 0; i < 25; i++) {
+            int temp = (int) (Math.random() * 4);
+            int x = (int) (Math.random() * 15);
+            int y = (int) (Math.random() * 15);
+            objects[x][y] = "rock" + temp;
         }
-        
+
         // Save level 2
         scene = 1; // cave
-        l = new Level(ground, objects, px, py, next, scene, new int[0][0]);
-        l = new Level(ground, objects, px, py, next, scene, new int[0][0]);
+        wolves = new int[][]{{10,10},{12,10},{10,1},{14,12},{15,15},{10,10},{10,10},{10,10},{10,10},{10,10}};
+        l = new Level(ground, objects, px, py, next, scene, wolves);
         out = new ObjectOutputStream(new FileOutputStream("src/main/Levels/Level-2.lvl"));
         out.writeObject(l);
         out.close();
@@ -152,12 +137,10 @@ public class LevelCreator {
         // Create maze 1
         ground = new String[10][10];
         objects = new String[10][10];
-        for (int i=0; i<10; i++)
-        {
-            for (int j=0; j<10; j++)
-            {
-                int temp = (int)(Math.random()*4);
-                ground[i][j] = "grass-"+temp;
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                int temp = (int) (Math.random() * 4);
+                ground[i][j] = "grass-" + temp;
             }
         }
         objects[0][3] = "sign-0";
