@@ -1,8 +1,5 @@
 package src.main.Scenes;
 
-import java.awt.Graphics;
-import java.util.Random;
-
 import src.main.Main;
 import src.main.Drivers.*;
 
@@ -37,6 +34,7 @@ public class ActionLevel extends ScreenElement {
         l.addToWindow(w);
         p.joinLevel(l, this);
         p.addToWindow(w);
+        for (Wolf wf : wolves) wf.addToWindow(w);
         w.addElement(this);
     }
 
