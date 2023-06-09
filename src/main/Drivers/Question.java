@@ -1,7 +1,7 @@
 package src.main.Drivers;
 
-// TODO makes a ui that asks a question just like sotyrboard
+import java.io.Serializable;
 
-public class Question extends ScreenElement {
+public class Question extends ScreenElement implements Serializable {
     
 }
