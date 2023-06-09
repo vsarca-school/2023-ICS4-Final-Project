@@ -141,10 +141,16 @@ public class Lesson extends ScreenElement implements Serializable {
     }
 
     public void update(Window w, Graphics g) {
+        boolean paused = isPaused();
+
         centerImage(g, Sprite.getScaledBackground(background), w.getWidth() / 2, w.getHeight() / 2);
 
         if (currentStringIndex < 0) {
             heading(g, w, Color.BLACK, font);
+
+            if (paused)
+                return;
+
             timer++;
             if (timer > 120) {
                 timer = 0;
@@ -158,16 +164,16 @@ public class Lesson extends ScreenElement implements Serializable {
             if (posIndex < positions.length && positions[posIndex] > currentStringIndex) {
                 if (images[posIndex].equals("droplet")) {
                     if (animTimer <= 40) {
-                        centerImage(g, Sprite.getScaledTile("droplet-0"), (int)hww, (int)hwh*6/5);
+                        centerImage(g, Sprite.getScaledTile("droplet-0"), (int) hww, (int) hwh * 6 / 5);
                     } else if (animTimer > 40 && animTimer <= 80) {
-                        centerImage(g, Sprite.getScaledTile("droplet-1"), (int)hww, (int)hwh*6/5);
+                        centerImage(g, Sprite.getScaledTile("droplet-1"), (int) hww, (int) hwh * 6 / 5);
                     } else {
-                        centerImage(g, Sprite.getScaledTile("droplet-2"), (int)hww, (int)hwh*6/5);
+                        centerImage(g, Sprite.getScaledTile("droplet-2"), (int) hww, (int) hwh * 6 / 5);
                     }
                 } else {
-                    centerImage(g, Sprite.getScaledImage(images[posIndex]), (int)hww, (int)hwh*4/5);
+                    centerImage(g, Sprite.getScaledImage(images[posIndex]), (int) hww, (int) hwh * 4 / 5);
                 }
-            } else {
+            } else if (!paused) {
                 posIndex++;
             }
 
@@ -184,19 +190,19 @@ public class Lesson extends ScreenElement implements Serializable {
                         w.getWidth() / 2, w.getHeight() * 31 / 40, (int) scale * 128 + 1, size, temp);
             }
 
-            timer++;
-
-            if (timer % DELAY == 0) {
-                if (currentIndex < texts[currentStringIndex].length() + 50) {
-                    currentIndex++;
-                } else {
-                    currentIndex = 0;
-                    currentStringIndex++;
+            if (!paused) {
+                timer++;
+                if (timer % DELAY == 0) {
+                    if (currentIndex < texts[currentStringIndex].length() + 50) {
+                        currentIndex++;
+                    } else {
+                        currentIndex = 0;
+                        currentStringIndex++;
+                    }
+                    timer = 0;
                 }
-                timer = 0;
+                animTimer++;
             }
-
-            animTimer++;
 
             int anim = 0;
             if (animTimer <= 60) {
@@ -209,6 +215,8 @@ public class Lesson extends ScreenElement implements Serializable {
             int[] yPoints = { anim, anim + (int) scale * 2, anim };
             g.setColor(Color.WHITE);
             g.fillPolygon(xPoints, yPoints, 3);
+
+            if (paused) return;
 
             if (animTimer % 120 == 0) {
                 animTimer = 0;
@@ -223,12 +231,14 @@ public class Lesson extends ScreenElement implements Serializable {
         } else {
             double hww = w.getWidth() / 2.0;
             double hwh = w.getHeight() / 2.0;
-            centerImage(g, Sprite.getScaledImage("next"), (int)hww, (int)hwh);
+            centerImage(g, Sprite.getScaledImage("next"), (int) hww, (int) hwh);
+
+            if (paused) return;
+
             int[] mouse;
             while ((mouse = w.nextMouse()) != null) {
-                g.drawOval(mouse[0]-1, mouse[1]-1, 3, 3);
-                if (isClicked(Sprite.getScaledImage("next"), (int)hww,
-                        (int)hwh, mouse)) {
+                if (isClicked(Sprite.getScaledImage("next"), (int) hww,
+                        (int) hwh, mouse)) {
                     Main.changeScene(3);
                 }
             }
