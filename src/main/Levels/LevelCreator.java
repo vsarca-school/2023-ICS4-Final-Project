@@ -132,6 +132,15 @@ public class LevelCreator {
                 ground[i][j] = "wall-"+temp;
             }
         }
+
+        //rocks
+        for(int i=0; i<25; i++){
+            int temp = (int)(Math.random()*4);
+            int x = (int)(Math.random()*15);
+            int y = (int)(Math.random()*15);
+            objects[x][y] = "rock"+temp;
+        }
+        
         // Save level 2
         scene = 1; // cave
         l = new Level(ground, objects, px, py, next, scene, new int[0][0]);
