@@ -12,21 +12,23 @@ public class Question extends ScreenElement implements Serializable {
 
     private String title;
     private String[] texts;
-    private int[] positions;
-    private String nextQuestion;
+    private int[] location;
+    //private int[] positions;
+    //private String nextQuestion;
 
     private int currentIndex = 0;
     private int currentStringIndex = -1;
-    private int posIndex = 0;
+    //private int posIndex = 0;
     private int timer = 0;
     private int animTimer = 0;
     private static final int DELAY = 3;
     private double scale;
     private Font font;
 
-    public Question(String title, String[] texts) {
+    public Question(String title, String[] texts, int x, int y) {
         this.title = title;
         this.texts = texts;
+        location = new int[]{x,y};
         try {
             font = Font.createFont(Font.TRUETYPE_FONT, new File("src/main/Fonts/VCR_OSD_MONO_1.001.ttf"));
         } catch (Exception e) {
