@@ -78,6 +78,7 @@ public class ActionPlayer extends Player {
             }
             // Clear input and update level
             l.updatePlayerPos(realx, realy);
+            //System.out.println("Player at " + x + ", " + y + ", " + (x+directions[direction][0]) + ", " + (y+directions[direction][1]));
             parent.updatePlayerPos(realx, realy, x, y, x + directions[direction][0], y + directions[direction][1], walking);
             animation = (animation + 1) % 32;
         }

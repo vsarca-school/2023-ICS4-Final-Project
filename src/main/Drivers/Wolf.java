@@ -48,12 +48,14 @@ public class Wolf extends ScreenElement {
                 orient();
                 collide();
             }
+            //System.out.println("Wolf at " + x + ", " + y + ", " + (x+directions[direction][0]) + ", " + (y+directions[direction][1]));
         }
 
         render(w, g);
     }
 
     public int[] getCoords() {
+        if (!walking) return new int[] {x, y, x, y};
         return new int[] { x, y, x + directions[direction][0], y + directions[direction][1] };
     }
 
@@ -99,7 +101,7 @@ public class Wolf extends ScreenElement {
         int tempx = x + directions[direction][0];
         int tempy = y + directions[direction][1];
         String block = l.getBlock(tempx, tempy);
-        if (block == null && (tempx != apx || tempy != apy) && (tempx != apx || tempy != apy))
+        if (block == null && (tempx != apx || tempy != apy) && (tempx != npx || tempy != npy))
             return;
         walking = false;
     }
