@@ -48,7 +48,7 @@ public class ActionPlayer extends Player {
      */
     public void damage(int damage, Window w) {
         health -= damage;
-        System.out.println(health);
+        //System.out.println(health);
         if (health <= 0) {
             parent.refreshWolves(w);
             parent.addWolves(w);

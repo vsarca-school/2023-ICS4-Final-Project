@@ -65,7 +65,7 @@ public class Main {
      * @param newScene The number that the scene is defined as.
      */
     public static void changeScene(int newScene) {
-        System.out.println("DEBUG: Change to scene " + newScene);
+        //System.out.println("DEBUG: Change to scene " + newScene);
         switch (newScene) {
             case -1:
                 running = false;
@@ -105,7 +105,7 @@ public class Main {
             default:
                 // Oops?
                 running = false;
-                System.out.println("Error: invalid scene index " + newScene);
+                //System.out.println("Error: invalid scene index " + newScene);
         }
     }
 
@@ -121,12 +121,12 @@ public class Main {
     public static void pause() {
         w.pauseAll();
         if (currentScene.isPaused()) {
-            System.out.println("Adding pause menu");
+            //System.out.println("Adding pause menu");
             o.addToWindow(w);
         }
         else {
             o.removeFromWindow(w);
-            System.out.println("Removing pause menu");
+            //System.out.println("Removing pause menu");
         }
     }
 
