@@ -179,5 +179,32 @@ public class MazeCreator {
         out = new ObjectOutputStream(new FileOutputStream("src/main/Levels/Maze-3.lvl"));
         out.writeObject(l);
         out.close();
+
+        // Create maze 4
+        ground = new String[5][5];
+        objects = new String[5][5];
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                int temp = (int) (Math.random() * 4);
+                ground[i][j] = "grass-" + temp;
+            }
+        }
+        objects[1][0] = tree();
+        objects[1][1] = "sign-0";
+        objects[3][1] = "campfire-0";
+        objects[3][2] = rock();
+        objects[4][3] = rock();
+        objects[2][4] = tree();
+        px = 4;
+        py = 4;
+        next = "src/main/Levels/Maze-5.lvl";
+        scene = 0;
+        questions = new Question[1];
+        questions[0] = new Question("Which of the following is not a criterion for shelter?", new String[]{"Protection against nature","Protection against wild animals","Not in grassy areas","Inside a ravine"}, 3, 1, 1);
+        // Save level 1
+        l = new Level(ground, objects, px, py, next, scene, new int[0][0], questions);
+        out = new ObjectOutputStream(new FileOutputStream("src/main/Levels/Maze-4.lvl"));
+        out.writeObject(l);
+        out.close();
     }
 }
