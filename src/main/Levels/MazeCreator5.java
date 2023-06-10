@@ -4,14 +4,13 @@ import java.io.*;
 
 import src.main.Drivers.*;
 
-
 public class MazeCreator5 {
     public static String tree() {
-        return "tree-" + (int)(Math.random()*8);
+        return "tree-" + (int) (Math.random() * 8);
     }
 
     public static String rock() {
-        return "rock-" + (int)(Math.random()*2+1);
+        return "rock-" + (int) (Math.random() * 2 + 1);
     }
 
     public static void main(String[] args) throws FileNotFoundException, IOException {
@@ -20,9 +19,9 @@ public class MazeCreator5 {
         int px, py, scene; // scene is 0=forest, 1=cave
         String next;
         Level l;
-        //int[][] wolves;
+        // int[][] wolves;
         Question[] questions;
-        
+
         // Create maze 3
         ground = new String[25][25];
         objects = new String[25][25];
@@ -85,37 +84,37 @@ public class MazeCreator5 {
         objects[16][16] = rock();
 
         objects[22][17] = rock();
-        
+
         objects[4][18] = rock();
         objects[8][18] = rock();
         objects[14][18] = rock();
         objects[18][18] = rock();
-        
+
         objects[10][20] = rock();
-        
+
         objects[0][21] = rock();
         objects[3][21] = rock();
         objects[7][21] = rock();
-        
+
         objects[13][22] = rock();
         objects[16][22] = rock();
         objects[21][22] = rock();
         objects[24][22] = rock();
-        
+
         objects[8][23] = rock();
-        
+
         objects[14][24] = rock();
 
-        px = 10;
-        py = 0;
-        next = "src/main/Levels/Maze-4.lvl";
+        px = 12;
+        py = 12;
+        next = null;
         scene = 1;
-        questions = new Question[2];
-        questions[0] = new Question("Which of the following is not a food source?", new String[]{"Insects","Fish","Plants","Leaves"}, 3, 16, 1);
-        questions[1] = new Question("Which of the following is high in nutrients?", new String[]{"Maggots","Cockroaches","Spiders","Butterfly"}, 0, 5, 12);
-        // Save level 1
+        questions = new Question[1];
+        questions[0] = new Question("What kind of wood keeps a fire alive?",
+                new String[] { "Large logs", "Small sticks", "Kindling", "Twigs" }, 0, 10, 11);
+        // Save maze 5
         l = new Level(ground, objects, px, py, next, scene, new int[0][0], questions);
-        out = new ObjectOutputStream(new FileOutputStream("src/main/Levels/Maze-3.lvl"));
+        out = new ObjectOutputStream(new FileOutputStream("src/main/Levels/Maze-5.lvl"));
         out.writeObject(l);
         out.close();
     }
