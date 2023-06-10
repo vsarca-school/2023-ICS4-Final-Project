@@ -57,9 +57,8 @@ public class Test {
             "Haedus"
         };
         //Question q = Question.fromFile("src/main/Questions/Question-Navigation-1.qsn");
-
-        //ScreenElement currentScene = q; // TODO: change back to menu when done debugging
-
+        z = new Maze();
+        ScreenElement currentScene = z; // TODO: change back to menu when done debuggin
         currentScene.addToWindow(w);
 
         while (true) {
