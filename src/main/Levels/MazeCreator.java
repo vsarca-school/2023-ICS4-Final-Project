@@ -62,7 +62,7 @@ public class MazeCreator {
         next = "src/main/Levels/Maze-2.lvl";
         scene = 0;
         questions = new Question[1];
-        questions[0] = new Question("Which star is near the Big Dipper?", new String[]{"The North Star","Sirius","Orion","Haedus"}, 3, 3, 2);
+        questions[0] = new Question("Which star is near the Big Dipper?", new String[]{"The North Star","Sirius","Orion","Haedus"}, 0, 3, 2);
         // Save level 1
         l = new Level(ground, objects, px, py, next, scene, new int[0][0], questions);
         out = new ObjectOutputStream(new FileOutputStream("src/main/Levels/Maze-1.lvl"));
@@ -97,7 +97,7 @@ public class MazeCreator {
         next = "src/main/Levels/Maze-3.lvl";
         scene = 0;
         questions = new Question[1];
-        questions[0] = new Question("What is a good source of water?", new String[]{"Lakes", "Rain", "Oceans", "Runoff water"}, 2, 8, 8);
+        questions[0] = new Question("What is a good source of water?", new String[]{"Lakes", "Rain", "Oceans", "Runoff water"}, 1, 8, 8);
         // Save level 1
         l = new Level(ground, objects, px, py, next, scene, new int[0][0], questions);
         out = new ObjectOutputStream(new FileOutputStream("src/main/Levels/Maze-2.lvl"));
