@@ -119,7 +119,7 @@ public class Wolf extends ScreenElement {
         String block = l.getBlock(nextx, nexty);
         boolean player = (nextx != apx || nexty != apy) && (nextx != npx || nexty != npy);
         boolean wolf = !parent.hasWolf(x, y, this);
-        System.out.print(wolf + " " + nextx + " " + nexty);
+        System.out.print(wolf + " " + nextx + " " + nexty + " ");
         boolean other = block == null && wolf;
         if (player && other)
             return;
