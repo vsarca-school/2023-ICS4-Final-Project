@@ -18,7 +18,6 @@ public class Wolf extends ScreenElement {
     private int interpolation = 0;
     private int damagepolation = 0;
     private boolean playerWalking = false;
-    private boolean 
     private static final String[][] animations = { { "wolf-0", "wolf-1", "wolf-2", "wolf-3" },
             { "wolf-7", "wolf-6", "wolf-5", "wolf-4" } };
     private Level l;
