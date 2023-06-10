@@ -35,6 +35,9 @@ public class ActionPlayer extends Player {
         y = l.getStartY();
         realx = x;
         realy = y;
+        walking = false;
+        interpolation = 0;
+        hasWon = false;
         this.health = maxHealth;
     }
 
@@ -48,6 +51,7 @@ public class ActionPlayer extends Player {
         System.out.println(health);
         if (health <= 0) {
             parent.refreshWolves(w);
+            parent.addWolves(w);
             joinLevel(l, parent);
         }
     }
