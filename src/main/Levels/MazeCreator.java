@@ -104,7 +104,6 @@ public class MazeCreator {
         out.writeObject(l);
         out.close();
 
-
         // Create maze 3
         ground = new String[20][20];
         objects = new String[20][20];
