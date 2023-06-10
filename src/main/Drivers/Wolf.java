@@ -136,8 +136,8 @@ public class Wolf extends ScreenElement {
             try {
                 p.damage((int) (5 + Math.random() * 10), w);
                 paw = true;
-                pawx = realx;
-                pawy = realy;
+                pawx = nextx;
+                pawy = nexty;
                 pawpolation = 0;
                 if (Math.random() < 0.5)
                     whichpaw = 0;
