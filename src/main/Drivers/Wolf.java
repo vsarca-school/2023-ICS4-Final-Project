@@ -129,7 +129,7 @@ public class Wolf extends ScreenElement {
             return;
         if (paw)
             ; // Pass
-        else if (damagepolation < 60) {
+        else if (damagepolation < 30) {
             damagepolation++;
         } else {
             damagepolation = 0;
