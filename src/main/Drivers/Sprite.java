@@ -13,7 +13,7 @@ import javax.imageio.ImageIO;
  * 
  * @version 1.3
  * @version 6/7/2023
- * @author Victor Sarca, Radin Ahari, Felix Zhao
+ * @author Victor Sarca
  */
 public class Sprite {
     private static Map<String, BufferedImage> tiles = new HashMap<>();
