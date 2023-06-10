@@ -22,7 +22,7 @@ public class ActionLevel extends ScreenElement {
      */
     public ActionLevel() {
         p = new ActionPlayer(100);
-        l = Level.fromFile("src/main/Levels/Level-1.lvl");
+        l = Level.fromFile("src/main/Levels/Level-2.lvl");
         loadWolves();
     }
 
@@ -66,9 +66,14 @@ public class ActionLevel extends ScreenElement {
             if (wl == me)
                 continue;
             int[] temp = wl.getCoords();
-            if ((x == temp[0] && y == temp[1]) || (x == temp[2] && y == temp[3]))
+            if ((x == temp[0] && y == temp[1]) || (x == temp[2] && y == temp[3])) {
+                //if (me != null)
+                //    System.out.println(true);
                 return true;
+            }
         }
+        //if (me != null)
+        //    System.out.println(false);
         return false;
     }
 

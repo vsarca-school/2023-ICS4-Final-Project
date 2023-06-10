@@ -54,7 +54,8 @@ public class Main {
 
         while (running) {
             w.update();
-            w.tick(60);
+            w.tick(20);
+            System.out.println();
         }
         w.close();
     }
