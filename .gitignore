@@ -1,4 +1,4 @@
-**/*.lvl
-**/*.lsn
+#**/*.lvl
+#**/*.lsn
 Test.java
 .fake
