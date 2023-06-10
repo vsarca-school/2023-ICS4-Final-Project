@@ -18,6 +18,10 @@ public class Wolf extends ScreenElement {
     private int interpolation = 0;
     private int damagepolation = 0;
     private boolean playerWalking = false;
+    private boolean paw = false;
+    private int whichpaw = 0;
+    private int pawpolation = 0;
+    private double pawx, pawy;
     private static final String[][] animations = { { "wolf-0", "wolf-1", "wolf-2", "wolf-3" },
             { "wolf-7", "wolf-6", "wolf-5", "wolf-4" } };
     private Level l;
@@ -113,7 +117,6 @@ public class Wolf extends ScreenElement {
         nexty = y + directions[direction][1];
     }
 
-    
     private void collide(Window w) {
         // Check for collision
         String block = l.getBlock(nextx, nexty);
@@ -124,12 +127,22 @@ public class Wolf extends ScreenElement {
         walking = false;
         if (player)
             return;
-        if (damagepolation < 60) {
+        if (paw)
+            ; // Pass
+        else if (damagepolation < 60) {
             damagepolation++;
         } else {
             damagepolation = 0;
             try {
                 p.damage((int) (5 + Math.random() * 10), w);
+                paw = true;
+                pawx = realx + directions[direction][0]*0.5;
+                pawy = realy + directions[direction][1]*0.5;
+                pawpolation = 0;
+                if (Math.random() < 0.5)
+                    whichpaw = 0;
+                else
+                    whichpaw = 1;
             } catch (NullPointerException e) {
                 // Do nothing, normal when changing scenes
             }
@@ -158,6 +171,8 @@ public class Wolf extends ScreenElement {
 
         if (!isPaused()) {
             animation = (animation + 1) % 32;
+            if (paw)
+                pawpolation++;
         }
 
         String cur;
@@ -181,12 +196,27 @@ public class Wolf extends ScreenElement {
                 else
                     cur = animations[px < x ? 1 : 0][0];
                 break;
+            default:
+                cur = animations[0][0];
         }
-        if (walking)
-            cur = animations[px < x ? 1 : 0][animation / 8];
-        else
-            cur = animations[px < x ? 1 : 0][0];
+        /*
+         * if (walking)
+         * cur = animations[px < x ? 1 : 0][animation / 8];
+         * else
+         * cur = animations[px < x ? 1 : 0][0];
+         */
         g.drawImage(Sprite.getScaledTile(cur), (int) (hww + (realx - px) * scale), (int) (hwh + (realy - py) * scale),
                 null);
+
+        if (paw) {
+            if (pawpolation >= 16)
+                paw = false;
+            else {
+                cur = "paw-" + (4 * whichpaw + pawpolation / 4);
+                g.drawImage(Sprite.getScaledTile(cur), (int) (hww + (pawx - px) * scale),
+                        (int) (hwh + (pawy - py) * scale),
+                        null);
+            }
+        }
     }
 }
