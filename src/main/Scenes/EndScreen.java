@@ -164,11 +164,11 @@ public class EndScreen extends ScreenElement {
     public void update(Window w, Graphics g) {
         double scale = Sprite.getImageScale();
         centerImage(g, Sprite.getScaledBackground("TitleScreen"), w.getWidth() / 2, w.getHeight() / 2);
+        centerImage(g, Sprite.getScaledImage("logo"), (int) (w.getWidth() - scale * 16), (int) (w.getHeight() - scale * 16));
         heading(g, w, "Thanks for Playing!", Color.WHITE, font);
         int size = maxFontSize(g, "Made by Grob Studios.", w.getWidth() / 2, w.getHeight() / 2, font);
         Font temp = font.deriveFont(Font.PLAIN, size);
         centerString(g, Color.WHITE, "Made by Grob Studios.", (int) (w.getWidth() / 2 - scale * 8),
                 w.getHeight() * 2 / 3, w.getWidth(), size, temp);
-        centerImage(g, Sprite.getScaledImage("logo"), w.getWidth() * 3 / 4, w.getHeight() * 2 / 3);
     }
 }
