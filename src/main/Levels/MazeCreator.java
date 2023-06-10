@@ -104,40 +104,6 @@ public class MazeCreator {
         out.writeObject(l);
         out.close();
 
-        // Create maze 2
-        ground = new String[10][10];
-        objects = new String[10][10];
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
-                int temp = (int) (Math.random() * 4);
-                ground[i][j] = "grass-" + temp;
-            }
-        }
-        objects[3][0] = tree();
-        objects[5][1] = tree();
-        objects[0][2] = tree();
-        objects[8][2] = tree();
-        objects[1][3] = tree();
-        objects[5][4] = tree();
-        objects[7][5] = tree();
-        objects[1][6] = tree();
-        objects[3][7] = tree();
-        objects[9][7] = tree();
-        objects[6][8] = tree();
-        objects[8][8] = "sign-0";
-        objects[8][9] = tree();
-        objects[9][9] = "campfire-0";
-        px = 3;
-        py = 2;
-        next = "src/main/Levels/Maze-3.lvl";
-        scene = 0;
-        questions = new Question[1];
-        questions[0] = new Question("What is a good source of water?", new String[]{"Lakes", "Rain", "Oceans", "Runoff water"}, 1, 8, 8);
-        // Save level 1
-        l = new Level(ground, objects, px, py, next, scene, new int[0][0], questions);
-        out = new ObjectOutputStream(new FileOutputStream("src/main/Levels/Maze-2.lvl"));
-        out.writeObject(l);
-        out.close();
 
         // Create maze 3
         ground = new String[20][20];
