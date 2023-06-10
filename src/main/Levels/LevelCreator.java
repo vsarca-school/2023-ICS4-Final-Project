@@ -118,63 +118,93 @@ public class LevelCreator {
         // out.writeObject(l);
         // out.close();
 
-        // Create Cave
-        ground = new String[15][15];
-        objects = new String[15][15];
-        for (int i = 0; i < 15; i++) {
-            for (int j = 0; j < 15; j++) {
+
+        // // Create Cave
+        // ground = new String[15][15];
+        // objects = new String[15][15];
+        // for (int i = 0; i < 15; i++) {
+        //     for (int j = 0; j < 15; j++) {
+        //         int temp = (int) (Math.random() * 4);
+        //         ground[i][j] = "wall-" + temp;
+        //     }
+        // }
+
+        // // rocks
+        // for (int i = 0; i < 25; i++) {
+        //     int temp = (int) (Math.random() * 4);
+        //     int x = (int) (Math.random() * 15);
+        //     int y = (int) (Math.random() * 15);
+        //     objects[x][y] = "rock-" + temp;
+        // }
+        
+        // objects[14][14] = "campfire-0";
+        // px = 5;
+        // py = 5;
+        // next = "src/main/Levels/Level-3.lvl";
+
+        // // Save level 2
+        // scene = 1; // cave
+        // wolves = new int[][]{{8,1}, {7,2}, {0, 0}};
+        // l = new Level(ground, objects, px, py, next, scene, wolves, null);
+        // out = new ObjectOutputStream(new FileOutputStream("src/main/Levels/Level-2.lvl"));
+        // out.writeObject(l);
+        // out.close();
+
+        // // Level 3
+        // ground = new String[20][4];
+        // objects = new String[20][4];
+        // for (int i = 0; i < 20; i++) {
+        //     for (int j = 0; j < 4; j++) {
+        //         int temp = (int) (Math.random() * 4);
+        //         ground[i][j] = "grass-" + temp;
+        //     }
+        // }
+
+        // // rocks
+        // for (int i = 0; i < 10; i++) {
+        //     int temp = (int) (Math.random() * 4);
+        //     int x = (int) (Math.random() * 20);
+        //     int y = (int) (Math.random() * 4);
+        //     objects[x][y] = "rock-" + temp;
+        // }
+        
+        // objects[18][1] = "campfire-0";
+
+        // next = "src/main/Levels/Level-4.lvl";
+        // // Save level 2
+        // scene = 0; // cave
+        // wolves = new int[][]{{2,0}, {5,2}, {9, 1}, {15, 0}};
+        // l = new Level(ground, objects, 0, 0, next, scene, wolves, null);
+        // out = new ObjectOutputStream(new FileOutputStream("src/main/Levels/Level-3.lvl"));
+        // out.writeObject(l);
+        // out.close();
+
+        // Level 4
+        ground = new String[30][30];
+        objects = new String[30][30];
+        for (int i = 0; i < 30; i++) {
+            for (int j = 0; j < 30; j++) {
                 int temp = (int) (Math.random() * 4);
-                ground[i][j] = "wall-" + temp;
+                ground[i][j] = "dirt-" + temp;
             }
         }
 
         // rocks
-        for (int i = 0; i < 25; i++) {
-            int temp = (int) (Math.random() * 4);
-            int x = (int) (Math.random() * 15);
-            int y = (int) (Math.random() * 15);
-            objects[x][y] = "rock-" + temp;
+        for (int i = 0; i < 300; i++) {
+            int temp = (int) (Math.random() * 8);
+            int x = (int) (Math.random() * 30);
+            int y = (int) (Math.random() * 30);
+            objects[x][y] = "tree-" + temp;
         }
         
-        objects[14][14] = "campfire-0";
-        px = 5;
-        py = 5;
-        next = "src/main/Levels/Level-3.lvl";
+        objects[15][15] = "campfire-0";
 
+        next = "src/main/Levels/Level-5.lvl";
         // Save level 2
         scene = 1; // cave
-        wolves = new int[][]{{8,1}, {7,2}, {0, 0}};
-        l = new Level(ground, objects, px, py, next, scene, wolves, null);
-        out = new ObjectOutputStream(new FileOutputStream("src/main/Levels/Level-2.lvl"));
-        out.writeObject(l);
-        out.close();
-
-        // Level 3
-        ground = new String[20][4];
-        objects = new String[20][4];
-        for (int i = 0; i < 20; i++) {
-            for (int j = 0; j < 4; j++) {
-                int temp = (int) (Math.random() * 4);
-                ground[i][j] = "grass-" + temp;
-            }
-        }
-
-        // rocks
-        for (int i = 0; i < 10; i++) {
-            int temp = (int) (Math.random() * 4);
-            int x = (int) (Math.random() * 20);
-            int y = (int) (Math.random() * 4);
-            objects[x][y] = "rock-" + temp;
-        }
-        
-        objects[18][1] = "campfire-0";
-
-        next = "src/main/Levels/Level-4.lvl";
-        // Save level 2
-        scene = 0; // cave
-        wolves = new int[][]{{2,0}, {5,2}, {9, 1}, {15, 0}};
+        wolves = new int[][]{{2,0}, {14, 15}, {16, 15}, {15, 14}, {15, 16}};
         l = new Level(ground, objects, 0, 0, next, scene, wolves, null);
-        out = new ObjectOutputStream(new FileOutputStream("src/main/Levels/Level-3.lvl"));
+        out = new ObjectOutputStream(new FileOutputStream("src/main/Levels/Level-4.lvl"));
         out.writeObject(l);
         out.close();
 
