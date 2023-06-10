@@ -276,10 +276,10 @@ public class Question extends ScreenElement implements Serializable {
             letter++;
         }
 
-        centerImage(g, Sprite.getScaledImage("A"), (int) (hww * 2 / 5), (int) (hwh * 7 / 5));
-        centerImage(g, Sprite.getScaledImage("B"), (int) (hww * 4 / 5), (int) (hwh * 7 / 5));
-        centerImage(g, Sprite.getScaledImage("C"), (int) (hww * 6 / 5), (int) (hwh * 7 / 5));
-        centerImage(g, Sprite.getScaledImage("D"), (int) (hww * 8 / 5), (int) (hwh * 7 / 5));
+        centerImage(g, Sprite.getScaledImage("a"), (int) (hww * 2 / 5), (int) (hwh * 7 / 5));
+        centerImage(g, Sprite.getScaledImage("b"), (int) (hww * 4 / 5), (int) (hwh * 7 / 5));
+        centerImage(g, Sprite.getScaledImage("c"), (int) (hww * 6 / 5), (int) (hwh * 7 / 5));
+        centerImage(g, Sprite.getScaledImage("d"), (int) (hww * 8 / 5), (int) (hwh * 7 / 5));
 
         int[] mouse;
         while ((mouse = w.nextMouse()) != null) {
