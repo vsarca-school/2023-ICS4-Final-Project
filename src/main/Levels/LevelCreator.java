@@ -232,7 +232,7 @@ public class LevelCreator {
 
         next = "src/main/Levels/Level-5.lvl";
         // Save level 2
-        scene = 1; // cave
+        scene = 0; // grass
         wolves = new int[][]{{22, 20}, {19, 0}, {21, 0}, {20, 1}, {0, 38}, {1, 39}, {39, 38}, {38, 39}};
         l = new Level(ground, objects, 20, 20, next, scene, wolves, null);
         out = new ObjectOutputStream(new FileOutputStream("src/main/Levels/Level-5.lvl"));
