@@ -72,8 +72,8 @@ public class Wolf extends ScreenElement {
         // Walk
         x = nextx;
         y = nexty;
-        realx = x + directions[direction][0];
-        realy = y + directions[direction][1];
+        realx = x;
+        realy = y;
         if (Math.random() < 0.1)
             walking = false; // Stop walking
     }
