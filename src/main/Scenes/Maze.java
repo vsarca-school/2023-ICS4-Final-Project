@@ -41,6 +41,10 @@ public class Maze extends ScreenElement {
         p.endQuestion();
     }
 
+    public void restart() {
+        p.joinLevel(l);
+    }
+
     /**
      * Adds to window
      * 

@@ -304,6 +304,9 @@ public class Window implements KeyListener, MouseListener {
             case KeyEvent.VK_RIGHT:
                 keysdown[3] = false;
                 break;
+            case KeyEvent.VK_R:
+                Main.restartMaze();
+                break;
             case KeyEvent.VK_ESCAPE:
                 escaped = false;
                 break;

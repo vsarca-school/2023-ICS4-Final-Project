@@ -109,6 +109,12 @@ public class Main {
         }
     }
 
+    public static void restartMaze() {
+        if (currentScene == z) {
+            z.restart();
+        }
+    }
+
     /**
      * Pauses the screen elements
      */
