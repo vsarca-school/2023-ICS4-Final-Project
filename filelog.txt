@@ -53,3 +53,7 @@ filelog.txt
  Added Sprite.java
  Moved aseprite to new images folder
  - Victor
+ 
+After this we really didn't bother completing thsi filelog, but there have been hundreds of changes
+See the github perhaps
+ - Victor
