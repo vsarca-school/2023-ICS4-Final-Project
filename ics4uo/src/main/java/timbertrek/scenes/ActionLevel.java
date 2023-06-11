@@ -8,12 +8,12 @@ import timbertrek.drivers.Window;
 import timbertrek.drivers.Wolf;
 
 /**
- * <h1>ActionLevel Class</h1>
+ * ActionLevel Class
  * Time spent: 1.8 hours
  * 
  * @version 1.2
  * @version 6/8/2023
- * @author Radin Ahari(comment)/Victor Sarca(code)
+ * @author Radin Ahari(comment), Victor Sarca(code), Felix Zhao (comment)
  */
 
 public class ActionLevel extends ScreenElement {
@@ -45,6 +45,11 @@ public class ActionLevel extends ScreenElement {
         // System.out.println("Loading wolves");
     }
 
+    /**
+     * Handles wolf refresh
+     *
+     * @param w Window object
+     */
     public void refreshWolves(Window w) {
         // Delete old wolves
         for (Wolf wf : wolves)
@@ -53,6 +58,11 @@ public class ActionLevel extends ScreenElement {
         loadWolves();
     }
 
+    /**
+     * Adds wolves to window
+     *
+     * @param w Window object
+     */
     public void addWolves(Window w) {
         for (Wolf wf : wolves)
             wf.addToWindow(w);
@@ -63,6 +73,7 @@ public class ActionLevel extends ScreenElement {
      * 
      * @param x x coordinate
      * @param y y coordinate
+     * @param me wolf
      * @return returns whether there is a wolf at x,y
      */
     public boolean hasWolf(int x, int y, Wolf me) {
@@ -86,6 +97,11 @@ public class ActionLevel extends ScreenElement {
      * 
      * @param x x coordinate
      * @param y y coordinate
+     * @param ax current x
+     * @param ay current y
+     * @param nx next x
+     * @param ny next y
+     * @param walking if the wolfe is walking
      */
     public void updatePlayerPos(double x, double y, int ax, int ay, int nx, int ny, boolean walking) {
         for (Wolf w : wolves) {

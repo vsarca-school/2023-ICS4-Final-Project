@@ -10,12 +10,12 @@ import java.awt.Image;
 
 
 /**
- * <h1>MainMenu Class</h1>
+ * MainMenu Class
  * Time spent: 2.3 hours
  * 
  * @version 1.2
  * @version 6/8/2023
- * @author Radin Ahari (comment)/Victor Sarca/Radin Ahari/Felix Zhao (code)
+ * @author Victor Sarca, Radin Ahari, Felix Zhao (code)
  */
 public class MainMenu extends ScreenElement {
     /**

@@ -12,7 +12,7 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * <h1>Sound Class</h1>
+ * Sound Class
  * Time spent: 4.5 hours
  * 
  * @version 1.2

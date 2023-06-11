@@ -4,7 +4,7 @@ package timbertrek.drivers;
 import java.awt.Graphics;
 
 /**
- * <h1>ScreenElement Abstract Class</h1>
+ * ScreenElement Abstract Class
  * Time spent: 2.5 hours
  * 
  * @version 1.1

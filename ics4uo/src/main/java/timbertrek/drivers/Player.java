@@ -4,7 +4,7 @@ import java.awt.Graphics;
 import timbertrek.Main;
 
 /**
- * <h1>Player Class</h1>
+ * Player Class
  * Time spent: 4 hours
  * 
  * @version 1.7
@@ -110,7 +110,7 @@ public class Player extends ScreenElement {
     /**
      * Victor Sarca - checks if the player is colliding with any obstacles
      * 
-     * @param w
+     * @param w Window object
      */
     protected void collide(Window w) {
         // Check for collision

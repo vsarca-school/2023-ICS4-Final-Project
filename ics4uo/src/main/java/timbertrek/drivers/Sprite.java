@@ -16,10 +16,10 @@ import java.util.stream.Collectors;
 import javax.imageio.ImageIO;
 
 /**
- * <h1>Sprite Class</h1>
+ * Sprite Class
  * Time spent: 3.2 hours
  *
- * @author Victor Sarca
+ * @author Victor Sarca, Felix Zhao (changed file loading)
  * @version 6/7/2023
  */
 public class Sprite {

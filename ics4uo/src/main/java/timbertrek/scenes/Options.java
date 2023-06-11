@@ -10,12 +10,12 @@ import java.awt.Image;
 
 
 /**
- * <h1>Options Class</h1>
+ * Options Class
  * Time spent: 2.1 hours
  * 
  * @version 1.2
  * @version 6/8/2023
- * @author Radin Ahari (comment)/Felix Zhao (code)
+ * @author Radin Ahari (comment), Felix Zhao (code)
  */
 public class Options extends ScreenElement {
 

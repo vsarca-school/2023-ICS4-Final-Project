@@ -12,12 +12,12 @@ import java.io.Serializable;
 
 
 /**
- * <h1>Question Class</h1>
+ * Question Class
  * Time spent: 2 hours
  * 
  * @version 1.1
  * @version 6/8/2023
- * @author Victor Sarca, Radin Ahari, Felix Zhao
+ * @author Felix Zhao, Victor Sarca, Radin Ahari
  */
 public class Question extends ScreenElement implements Serializable {
 

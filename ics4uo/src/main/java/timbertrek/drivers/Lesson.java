@@ -15,12 +15,12 @@ import java.io.Serializable;
 
 
 /**
- * <h1>Lesson Class</h1>
+ * Lesson Class
  * Time spent: 6.5 hours
  * 
  * @version 1.3
  * @version 6/8/2023
- * @author Victor Sarca, Felix Zhao
+ * @author Felix Zhao, Victor Sarca
  */
 public class Lesson extends ScreenElement implements Serializable {
     private String title;
@@ -200,8 +200,8 @@ public class Lesson extends ScreenElement implements Serializable {
      * 
      * @param g         graphics window
      * @param text      text used to test
-     * @param maxWidth
-     * @param maxHeight
+     * @param maxWidth  maximum width
+     * @param maxHeight maximum height
      * @param font      font used to check
      * @return the maximum font size
      */

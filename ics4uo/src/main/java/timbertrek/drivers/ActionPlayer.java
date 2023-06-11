@@ -7,17 +7,22 @@ import java.awt.Graphics;
 
 
 /**
- * <h1>ActionPlayer Class</h1>
+ * ActionPlayer Class
  * Time spent: 3.5 hours
  * 
  * @version 1.2
  * @version 6/8/2023
- * @author Victor Sarca (code)/Radin Ahari(comments)
+ * @author Victor Sarca (code), Radin Ahari(comments)
  */
 public class ActionPlayer extends Player {
     private int health, maxHealth;
     private ActionLevel parent;
 
+    /**
+     * Action Player constructor
+     *
+     * @param health player max health
+     */
     public ActionPlayer(int health) {
         maxHealth = health;
         this.health = maxHealth;

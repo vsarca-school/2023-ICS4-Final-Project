@@ -7,12 +7,12 @@ import timbertrek.drivers.ScreenElement;
 import timbertrek.drivers.Window;
 
 /**
- * <h1>Maze Class</h1>
+ * Maze Class
  * Time spent: 2.1 hours
  * 
  * @version 1.2
  * @version 6/8/2023
- * @author Radin Ahari (comment)/Victor Sarca (code)
+ * @author Radin Ahari (comment), Victor Sarca (code), Felix Zhao (code)
  */
 public class Maze extends ScreenElement {
     private Player p;
@@ -42,6 +42,9 @@ public class Maze extends ScreenElement {
         p.endQuestion();
     }
 
+    /**
+     * Handles restart
+     */
     public void restart() {
         p.joinLevel(l);
     }

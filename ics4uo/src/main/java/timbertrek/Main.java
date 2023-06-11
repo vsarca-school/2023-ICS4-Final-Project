@@ -14,7 +14,7 @@ import timbertrek.scenes.Options;
 import java.net.URISyntaxException;
 
 /**
- * <h1>Main Class</h1>
+ * Main Class
  * Time spent: 1.2 hours
  * 
  * @version 1.1
@@ -120,6 +120,9 @@ public class Main {
         }
     }
 
+    /**
+     * restarts current maze
+     */
     public static void restartMaze() {
         if (currentScene == z) {
             z.restart();

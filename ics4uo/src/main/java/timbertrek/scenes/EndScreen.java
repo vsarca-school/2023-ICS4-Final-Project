@@ -13,12 +13,12 @@ import java.io.InputStream;
 
 
 /**
- * <h1>EndScreen Class</h1>
+ * EndScreen Class
  * Time spent: 1 hour
  * 
  * @version 1.2
  * @version 6/8/2023
- * @author Radin Ahari(comment)/Felix Zhao(code)
+ * @author Radin Ahari(comment), Felix Zhao(code)
  */
 
 public class EndScreen extends ScreenElement {

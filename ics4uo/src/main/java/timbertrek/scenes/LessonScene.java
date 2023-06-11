@@ -6,12 +6,12 @@ import timbertrek.drivers.ScreenElement;
 import timbertrek.drivers.Window;
 
 /**
- * <h1>LessonScene Class</h1>
+ * LessonScene Class
  * Time spent: 1.7 hours
  * 
  * @version 1.2
  * @version 6/8/2023
- * @author Radin Ahari (comment)/Victor Sarca (code)
+ * @author Radin Ahari (comment), Victor Sarca (code)
  */
 public class LessonScene extends ScreenElement {
     private Lesson l;

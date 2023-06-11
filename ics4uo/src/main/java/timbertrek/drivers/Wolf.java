@@ -4,6 +4,14 @@ import timbertrek.scenes.ActionLevel;
 
 import java.awt.Graphics;
 
+/**
+ * Wolf Class
+ * Time spent: 3.7 hours
+ *
+ * @version 1.3
+ * @version 6/8/2023
+ * @author Victor Sarca, Felix Zhao (comment)
+ */
 public class Wolf extends ScreenElement {
     private ActionPlayer p;
     private ActionLevel parent;
@@ -27,6 +35,14 @@ public class Wolf extends ScreenElement {
     private Level l;
     private static final int[][] directions = { { 0, -1 }, { -1, 0 }, { 0, 1 }, { 1, 0 } };
 
+    /**
+     * Wolf Constructor
+     *
+     * @param x x coordinate
+     * @param y y coordinate
+     * @param l current level
+     * @param p action level object
+     */
     public Wolf(int x, int y, Level l, ActionLevel p) {
         this.x = x;
         this.y = y;
@@ -41,7 +57,6 @@ public class Wolf extends ScreenElement {
      * 
      * @param w The parent window
      * @param g The java graphics interface
-     *          - Victor
      */
     public void update(Window w, Graphics g) {
         if (!isPaused()) {
@@ -66,12 +81,20 @@ public class Wolf extends ScreenElement {
         render(w, g);
     }
 
+    /**
+     * Gets the coordinate of the wolf
+     *
+     * @return an array of coordinates indicating the wolf's movement
+     */
     public int[] getCoords() {
         if (!walking)
             return new int[] { x, y, x, y };
         return new int[] { x, y, nextx, nexty };
     }
 
+    /**
+     * Handles walking for the wolf
+     */
     private void walk() {
         // Walk
         x = nextx;
@@ -82,6 +105,9 @@ public class Wolf extends ScreenElement {
             walking = false; // Stop walking
     }
 
+    /**
+     * Handles wolf orientation of the wolf, where the wolf is trying to walk next
+     */
     private void orient() {
         // Try to walk
         walking = false;
@@ -117,6 +143,11 @@ public class Wolf extends ScreenElement {
         nexty = y + directions[direction][1];
     }
 
+    /**
+     * Handles all collision with the wolves
+     *
+     * @param w Window object
+     */
     private void collide(Window w) {
         // Check for collision
         String block = l.getBlock(nextx, nexty);
@@ -149,6 +180,18 @@ public class Wolf extends ScreenElement {
         }
     }
 
+    /**
+     * Updates player position
+     *
+     * @param x player x
+     * @param y player y
+     * @param ax wwolf x
+     * @param ay wolf y
+     * @param nx wolf next x
+     * @param ny wolf next y
+     * @param walking walking
+     * @param p ActionPlayer object
+     */
     public void updatePlayerPos(double x, double y, int ax, int ay, int nx, int ny, boolean walking, ActionPlayer p) {
         px = x;
         py = y;
@@ -161,6 +204,12 @@ public class Wolf extends ScreenElement {
         // System.out.println("Updated " + px + " " + py + " " + this.x + " " + this.y);
     }
 
+    /**
+     * Renders to the window
+     *
+     * @param w window object
+     * @param g graphics object
+     */
     private void render(Window w, Graphics g) {
         // Calculate scaling and centering
         double hww = w.getWidth() / 2.0;

@@ -20,12 +20,12 @@ import javax.swing.JFrame;
 
 
 /**
- * <h1>Window Class</h1>
+ * Window Class
  * Time spent: 5 hours
  * 
  * @version 1.2
  * @version 6/8/2023
- * @author Victor Sarca/Radin Ahari/Felix Zhao (code)/Radin Ahari(comments)
+ * @author Victor Sarca, Radin Ahari (comment)
  */
 public class Window implements KeyListener, MouseListener {
     /** Jframe */
