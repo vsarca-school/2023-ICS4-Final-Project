@@ -52,7 +52,7 @@ public class Sprite {
                 int height = spritemap.getHeight();
                 for (int i = 0; i < height; i += 16) {
                     for (int j = 0; j < width; j += 16) {
-                        tiles.put(f.getName().replaceFirst("[.][^.]+$", "") + "-" + frame,
+                        tiles.put(f.getName().replaceFirst(".*[/\\]", "").replaceFirst("[.][^.]+$", "") + "-" + frame,
                                 spritemap.getSubimage(j, i, 16, 16));
                         frame++;
                     }
