@@ -42,7 +42,7 @@ public class Main {
     public static void main(String[] args) {
         // Loads resources
         Sprite.init();
-        Sprite.print(); // DEBUG
+        // Sprite.print(); // DEBUG
 
         // Create all objects necessary
         w = new Window("Timber Trek", 800, 600);
