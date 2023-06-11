@@ -141,6 +141,7 @@ public class Main {
      * Pauses the screen elements
      */
     public static void pause() {
+        if (currentScene == e) return;
         w.pauseAll();
         if (currentScene.isPaused()) {
             // System.out.println("Adding pause menu");
