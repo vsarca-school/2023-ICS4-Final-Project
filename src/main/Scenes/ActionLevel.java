@@ -1,5 +1,8 @@
 package src.main.Scenes;
 
+import java.awt.Color;
+import java.awt.Graphics;
+
 import src.main.Main;
 import src.main.Drivers.*;
 
@@ -16,6 +19,7 @@ public class ActionLevel extends ScreenElement {
     private ActionPlayer p;
     private Level l;
     private Wolf[] wolves;
+    private int restart = 0;
 
     /**
      * Action level constructor
@@ -24,6 +28,18 @@ public class ActionLevel extends ScreenElement {
         p = new ActionPlayer(100);
         l = Level.fromFile("src/main/Levels/Level-1.lvl");
         loadWolves();
+    }
+
+    public void update(Window w, Graphics g) {
+        if (restart > 0) {
+            restart--;
+            g.setColor(Color.WHITE);
+            g.fillRect(0, 0, w.getWidth(), w.getHeight());
+        }
+    }
+
+    public void restart() {
+        restart = 10;
     }
 
     /**

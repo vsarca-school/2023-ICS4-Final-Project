@@ -37,6 +37,7 @@ public class Player extends ScreenElement {
      */
     public void joinLevel(Level lv) {
         hasWon = false;
+        walking = false;
         l = lv;
         x = l.getStartX();
         y = l.getStartY();

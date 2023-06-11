@@ -52,6 +52,7 @@ public class ActionPlayer extends Player {
         if (health <= 0) {
             parent.refreshWolves(w);
             parent.addWolves(w);
+            parent.restart();
             joinLevel(l, parent);
         }
     }

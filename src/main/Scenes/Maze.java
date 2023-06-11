@@ -1,5 +1,6 @@
 package src.main.Scenes;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import src.main.Main;
@@ -16,6 +17,7 @@ import src.main.Drivers.*;
 public class Maze extends ScreenElement {
     private Player p;
     private Level l;
+    private int restart = 0;
 
     /**
      * Maze constructor
@@ -23,6 +25,14 @@ public class Maze extends ScreenElement {
     public Maze() {
         p = new Player();
         l = Level.fromFile("src/main/Levels/Maze-1.lvl");
+    }
+
+    public void update(Window w, Graphics g) {
+        if (restart > 0) {
+            restart--;
+            g.setColor(Color.WHITE);
+            g.fillRect(0, 0, w.getWidth(), w.getHeight());
+        }
     }
 
     /**
@@ -43,6 +53,7 @@ public class Maze extends ScreenElement {
 
     public void restart() {
         p.joinLevel(l);
+        restart = 10;
     }
 
     /**
