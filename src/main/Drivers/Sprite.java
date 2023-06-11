@@ -38,7 +38,7 @@ public class Sprite {
     public static void init() {
         BufferedImage spritemap;
         try {
-            ObjectInputStream in = new ObjectInputStream(Main.loadStream("src/main/Textures/.lst"));
+            ObjectInputStream in = new ObjectInputStream(Main.loadStream("src/main/Textures/.man"));
             Manifest m = (Manifest) in.readObject();
             in.close();
             // Load tilemaps

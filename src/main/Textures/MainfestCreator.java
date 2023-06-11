@@ -13,7 +13,7 @@ public class MainfestCreator {
             m.images = folder.list();
             folder = new File("src/main/Textures/Backgrounds");
             m.backgrounds = folder.list();
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/main/Textures/.lst"));
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/main/Textures/.man"));
             out.writeObject(m);
             out.close();
         } catch (IOException e) {

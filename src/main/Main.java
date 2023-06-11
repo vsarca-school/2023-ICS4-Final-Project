@@ -118,7 +118,10 @@ public class Main {
     }
 
     public static InputStream loadStream(String path) {
-        return Main.class.getResourceAsStream("../../"+path);
+        //InputStream i = Main.class.getResourceAsStream(path.substring(9));
+        InputStream i = Main.class.getClassLoader().getResourceAsStream(path);
+        //System.out.println(i == null);
+        return i;
     }
 
     public static File loadFile(String path) {
