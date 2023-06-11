@@ -42,28 +42,31 @@ public class Sprite {
             Manifest m = (Manifest) in.readObject();
             in.close();
             // Load tilemaps
-            //File folder = new File("src/main/Textures/Tilemaps");
-            //for (File file : folder.listFiles()) {
+            // File folder = new File("src/main/Textures/Tilemaps");
+            // for (File file : folder.listFiles()) {
             for (String s : m.tilemaps) {
-                File f = Main.loadFile("src/main/Textures/Tilemaps/"+s);
+                File f = Main.loadFile("src/main/Textures/Tilemaps/" + s);
                 spritemap = ImageIO.read(f);
                 int frame = 0;
                 int width = spritemap.getWidth();
                 int height = spritemap.getHeight();
                 for (int i = 0; i < height; i += 16) {
                     for (int j = 0; j < width; j += 16) {
-                        tiles.put(f.getName().replaceFirst(".*[/\\]", "").replaceFirst("[.][^.]+$", "") + "-" + frame,
+                        // tiles.put(f.getName().replaceFirst("[.][^.]+$", "") + "-" + frame,
+                        // spritemap.getSubimage(j, i, 16, 16));
+                        tiles.put(s.replaceFirst(".*[\\/]", "").replaceFirst("[.][^.]+$", "") + "-" + frame,
                                 spritemap.getSubimage(j, i, 16, 16));
                         frame++;
                     }
                 }
             }
             // Load individual images
-            //folder = new File("src/main/Textures/Images");
-            //for (File file : folder.listFiles()) {
+            // folder = new File("src/main/Textures/Images");
+            // for (File file : folder.listFiles()) {
             for (String s : m.images) {
-                File f = Main.loadFile("src/main/Textures/Images/"+s);
-                images.put(f.getName().replaceFirst("[.][^.]+$", ""), ImageIO.read(f));
+                File f = Main.loadFile("src/main/Textures/Images/" + s);
+                // images.put(f.getName().replaceFirst("[.][^.]+$", ""), ImageIO.read(f));
+                images.put(s.replaceFirst(".*[\\/]", "").replaceFirst("[.][^.]+$", ""), ImageIO.read(f));
             }
             /*
              * / Load individual lesson images
@@ -74,11 +77,12 @@ public class Sprite {
              * }
              */
             // Load individual backgrounds
-            //folder = new File("src/main/Textures/Backgrounds");
-            //for (File file : folder.listFiles()) {
+            // folder = new File("src/main/Textures/Backgrounds");
+            // for (File file : folder.listFiles()) {
             for (String s : m.backgrounds) {
-                File f = Main.loadFile("src/main/Textures/Backgrounds/"+s);
-                backgrounds.put(f.getName().replaceFirst("[.][^.]+$", ""), ImageIO.read(f));
+                File f = Main.loadFile("src/main/Textures/Backgrounds/" + s);
+                // backgrounds.put(f.getName().replaceFirst("[.][^.]+$", ""), ImageIO.read(f));
+                backgrounds.put(s.replaceFirst(".*[\\/]", "").replaceFirst("[.][^.]+$", ""), ImageIO.read(f));
             }
         } catch (Exception e) {
             e.printStackTrace();
