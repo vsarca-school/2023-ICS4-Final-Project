@@ -1,5 +1,11 @@
 package src.main;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
+
 import src.main.Drivers.*;
 import src.main.Scenes.*;
 
@@ -65,7 +71,7 @@ public class Main {
      * @param newScene The number that the scene is defined as.
      */
     public static void changeScene(int newScene) {
-        //System.out.println("DEBUG: Change to scene " + newScene);
+        // System.out.println("DEBUG: Change to scene " + newScene);
         switch (newScene) {
             case -1:
                 running = false;
@@ -76,12 +82,14 @@ public class Main {
                 reset();
                 currentScene.addToWindow(w);
                 break;
-            /*case 1:
-                // currentScene.removeFromWindow(w); See through?
-                // o.previousScene(currentSceneNum);
-                currentScene = o;
-                currentScene.addToWindow(w);
-                break;*/
+            /*
+             * case 1:
+             * // currentScene.removeFromWindow(w); See through?
+             * // o.previousScene(currentSceneNum);
+             * currentScene = o;
+             * currentScene.addToWindow(w);
+             * break;
+             */
             case 2:
                 currentScene.removeFromWindow(w);
                 currentScene = l;
@@ -105,7 +113,21 @@ public class Main {
             default:
                 // Oops?
                 running = false;
-                //System.out.println("Error: invalid scene index " + newScene);
+                // System.out.println("Error: invalid scene index " + newScene);
+        }
+    }
+
+    public static InputStream loadStream(String path) {
+        return Main.class.getResourceAsStream(path);
+    }
+
+    public static File loadFile(String path) {
+        try {
+            File tempFile = File.createTempFile("temp", ".tempfile");
+            Files.copy(loadStream(path), tempFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            return tempFile;
+        } catch (IOException e) {
+            return null;
         }
     }
 
@@ -121,12 +143,11 @@ public class Main {
     public static void pause() {
         w.pauseAll();
         if (currentScene.isPaused()) {
-            //System.out.println("Adding pause menu");
+            // System.out.println("Adding pause menu");
             o.addToWindow(w);
-        }
-        else {
+        } else {
             o.removeFromWindow(w);
-            //System.out.println("Removing pause menu");
+            // System.out.println("Removing pause menu");
         }
     }
 
