@@ -8,12 +8,12 @@ import src.main.Drivers.*;
 import src.main.Drivers.Window;
 
 /**
- * <h1>Options Class</h1>
+ * Options Class
  * Time spent: 2.1 hours
  * 
  * @version 1.2
  * @version 6/8/2023
- * @author Radin Ahari (comment)/Felix Zhao (code)
+ * @author Radin Ahari (comment)/Felix Zhao, Victor Sarca (code)
  */
 public class Options extends ScreenElement {
 

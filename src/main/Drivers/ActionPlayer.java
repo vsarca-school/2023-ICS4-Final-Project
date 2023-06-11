@@ -6,7 +6,7 @@ import src.main.Main;
 import src.main.Scenes.ActionLevel;
 
 /**
- * <h1>ActionPlayer Class</h1>
+ * ActionPlayer Class
  * Time spent: 3.5 hours
  * 
  * @version 1.2
@@ -17,6 +17,10 @@ public class ActionPlayer extends Player {
     private int health, maxHealth;
     private ActionLevel parent;
 
+    /**
+     * Creates a new ActionPlayer with the desired health attributes
+     * @param health
+     */
     public ActionPlayer(int health) {
         maxHealth = health;
         this.health = maxHealth;
@@ -45,6 +49,7 @@ public class ActionPlayer extends Player {
      * Calculates damage
      * 
      * @param damage taken
+     * @param w The window
      */
     public void damage(int damage, Window w) {
         health -= damage;

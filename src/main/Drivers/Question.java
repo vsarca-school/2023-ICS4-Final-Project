@@ -6,7 +6,7 @@ import java.io.*;
 import src.main.Main;
 
 /**
- * <h1>Question Class</h1>
+ * Question Class
  * Time spent: 2 hours
  * 
  * @version 1.1

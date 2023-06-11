@@ -10,7 +10,7 @@ import javax.swing.*;
 import src.main.Main;
 
 /**
- * <h1>Window Class</h1>
+ * Window Class
  * Time spent: 5 hours
  * 
  * @version 1.2

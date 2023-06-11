@@ -7,7 +7,7 @@ import java.io.*;
 import src.main.Main;
 
 /**
- * <h1>Level Class</h1>
+ * Level Class
  * Time spent: 3.6 hours
  * 
  * @version 1.2
@@ -95,7 +95,8 @@ public class Level extends ScreenElement implements Serializable {
      * Returns null if there is an error; after the final level, a null string will
      * be passed as a parameter and as such null will be returned
      * 
-     * @param fromFile the file containing the level info
+     * @param file The file containing the level info
+     * @return The Level object
      *                 - Victor
      */
     public static Level fromFile(String file) {
@@ -116,7 +117,7 @@ public class Level extends ScreenElement implements Serializable {
     /**
      * Victor Sarca - gets the next level
      * 
-     * @return
+     * @return The next Level object
      */
     public Level nextLevel() {
         if (nextLevel != null)
@@ -127,8 +128,8 @@ public class Level extends ScreenElement implements Serializable {
     /**
      * Victor Sarca - updates the player position
      * 
-     * @param x
-     * @param y
+     * @param x New player x
+     * @param y New player y
      */
     public void updatePlayerPos(double x, double y) {
         px = x;

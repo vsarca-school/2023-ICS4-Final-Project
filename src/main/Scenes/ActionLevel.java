@@ -7,7 +7,7 @@ import src.main.Main;
 import src.main.Drivers.*;
 
 /**
- * <h1>ActionLevel Class</h1>
+ * ActionLevel Class
  * Time spent: 1.8 hours
  * 
  * @version 1.2
@@ -38,6 +38,9 @@ public class ActionLevel extends ScreenElement {
         }
     }
 
+    /**
+     * Controls cutscene for restart
+     */
     public void restart() {
         restart = 10;
     }
@@ -57,6 +60,11 @@ public class ActionLevel extends ScreenElement {
         // System.out.println("Loading wolves");
     }
 
+    /**
+     * Deletes all wolves and loads them from level again
+     * 
+     * @param w The window
+     */
     public void refreshWolves(Window w) {
         // Delete old wolves
         for (Wolf wf : wolves)
@@ -65,6 +73,11 @@ public class ActionLevel extends ScreenElement {
         loadWolves();
     }
 
+    /**
+     * Adds all wolves to the window
+     * 
+     * @param w The window
+     */
     public void addWolves(Window w) {
         for (Wolf wf : wolves)
             wf.addToWindow(w);
@@ -75,6 +88,7 @@ public class ActionLevel extends ScreenElement {
      * 
      * @param x x coordinate
      * @param y y coordinate
+     * @param me A wolf to exclude from calculations
      * @return returns whether there is a wolf at x,y
      */
     public boolean hasWolf(int x, int y, Wolf me) {
@@ -96,8 +110,13 @@ public class ActionLevel extends ScreenElement {
     /**
      * Tells wolves where the player is
      * 
-     * @param x x coordinate
-     * @param y y coordinate
+     * @param x Player x coordinate
+     * @param y Player y coordinate
+     * @param ax Actual player x
+     * @param ay Actual player y
+     * @param nx Next player x
+     * @param ny Next player y
+     * @param walking Whether the player is walking
      */
     public void updatePlayerPos(double x, double y, int ax, int ay, int nx, int ny, boolean walking) {
         for (Wolf w : wolves) {

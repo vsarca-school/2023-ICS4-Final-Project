@@ -3,7 +3,7 @@ package src.main.Drivers;
 import java.awt.*;
 
 /**
- * <h1>ScreenElement Abstract Class</h1>
+ * ScreenElement Abstract Class
  * Time spent: 2.5 hours
  * 
  * @version 1.1
@@ -28,7 +28,7 @@ public abstract class ScreenElement {
     /**
      * Add this element and child ScreenElements to window w
      * 
-     * @param l The window to render to
+     * @param w The window to render to
      */
     public void addToWindow(Window w) {
         // Default behaviour: add only this

@@ -8,7 +8,7 @@ import src.main.Drivers.*;
 import src.main.Drivers.Window;
 
 /**
- * <h1>EndScreen Class</h1>
+ * EndScreen Class
  * Time spent: 1 hour
  * 
  * @version 1.2

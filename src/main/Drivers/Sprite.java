@@ -13,7 +13,7 @@ import src.main.Main;
 import src.main.Textures.Manifest;
 
 /**
- * <h1>Sprite Class</h1>
+ * Sprite Class
  * Time spent: 3.2 hours
  * 
  * @version 1.3

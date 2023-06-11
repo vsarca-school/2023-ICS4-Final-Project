@@ -7,7 +7,7 @@ import src.main.Main;
 import src.main.Drivers.*;
 
 /**
- * <h1>MainMenu Class</h1>
+ * MainMenu Class
  * Time spent: 2.3 hours
  * 
  * @version 1.2

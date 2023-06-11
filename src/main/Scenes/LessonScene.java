@@ -6,7 +6,7 @@ import src.main.Main;
 import src.main.Drivers.*;
 
 /**
- * <h1>LessonScene Class</h1>
+ * LessonScene Class
  * Time spent: 1.7 hours
  * 
  * @version 1.2

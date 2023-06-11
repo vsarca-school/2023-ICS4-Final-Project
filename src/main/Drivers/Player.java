@@ -6,7 +6,7 @@ import java.awt.Image;
 import src.main.Main;
 
 /**
- * <h1>Player Class</h1>
+ * Player Class
  * Time spent: 4 hours
  * 
  * @version 1.7

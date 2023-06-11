@@ -6,7 +6,7 @@ import java.io.*;
 import src.main.Main;
 
 /**
- * <h1>Lesson Class</h1>
+ * Lesson Class
  * Time spent: 6.5 hours
  * 
  * @version 1.3
@@ -192,8 +192,8 @@ public class Lesson extends ScreenElement implements Serializable {
      * 
      * @param g         graphics window
      * @param text      text used to test
-     * @param maxWidth
-     * @param maxHeight
+     * @param maxWidth The maximum width of the string
+     * @param maxHeight The maximum height of the string
      * @param font      font used to check
      * @return the maximum font size
      */

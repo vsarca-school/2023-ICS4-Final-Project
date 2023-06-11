@@ -4,6 +4,11 @@ import java.awt.Graphics;
 
 import src.main.Scenes.ActionLevel;
 
+/**
+ * Wolf Class
+ * 
+ * @author Victor Sarca
+ */
 public class Wolf extends ScreenElement {
     private ActionPlayer p;
     private ActionLevel parent;
@@ -27,13 +32,20 @@ public class Wolf extends ScreenElement {
     private Level l;
     private static final int[][] directions = { { 0, -1 }, { -1, 0 }, { 0, 1 }, { 1, 0 } };
 
-    public Wolf(int x, int y, Level l, ActionLevel p) {
+    /**
+     * Creates a new wolf
+     * @param x X coordinate
+     * @param y Y coordinate
+     * @param l The level to join
+     * @param a The scene to join
+     */
+    public Wolf(int x, int y, Level l, ActionLevel a) {
         this.x = x;
         this.y = y;
         this.l = l;
         realx = x;
         realy = y;
-        parent = p;
+        parent = a;
     }
 
     /**
@@ -66,12 +78,19 @@ public class Wolf extends ScreenElement {
         render(w, g);
     }
 
+    /**
+     * Returns the coords of the wolf
+     * @return The coords of the wolf
+     */
     public int[] getCoords() {
         if (!walking)
             return new int[] { x, y, x, y };
         return new int[] { x, y, nextx, nexty };
     }
 
+    /**
+     * Move the wolf forward one square
+     */
     private void walk() {
         // Walk
         x = nextx;
@@ -82,6 +101,9 @@ public class Wolf extends ScreenElement {
             walking = false; // Stop walking
     }
 
+    /**
+     * Decides which direction the wolf should go
+     */
     private void orient() {
         // Try to walk
         walking = false;
@@ -117,6 +139,10 @@ public class Wolf extends ScreenElement {
         nexty = y + directions[direction][1];
     }
 
+    /**
+     * Checks for collisions
+     * @param w The window
+     */
     private void collide(Window w) {
         // Check for collision
         String block = l.getBlock(nextx, nexty);
@@ -149,6 +175,17 @@ public class Wolf extends ScreenElement {
         }
     }
 
+    /**
+     * Receives player metrics from the player
+     * @param x A player metric
+     * @param y A player metric
+     * @param ax A player metric
+     * @param ay A player metric
+     * @param nx A player metric
+     * @param ny A player metric
+     * @param walking A player metric
+     * @param p The player
+     */
     public void updatePlayerPos(double x, double y, int ax, int ay, int nx, int ny, boolean walking, ActionPlayer p) {
         px = x;
         py = y;
@@ -161,6 +198,11 @@ public class Wolf extends ScreenElement {
         // System.out.println("Updated " + px + " " + py + " " + this.x + " " + this.y);
     }
 
+    /**
+     * Renders the wolf
+     * @param w The window
+     * @param g The graphics object
+     */
     private void render(Window w, Graphics g) {
         // Calculate scaling and centering
         double hww = w.getWidth() / 2.0;

@@ -7,7 +7,7 @@ import src.main.Main;
 import src.main.Drivers.*;
 
 /**
- * <h1>Maze Class</h1>
+ * Maze Class
  * Time spent: 2.1 hours
  * 
  * @version 1.2
@@ -51,6 +51,9 @@ public class Maze extends ScreenElement {
         p.endQuestion();
     }
 
+    /**
+     * Restarts the maze
+     */
     public void restart() {
         p.joinLevel(l);
         restart = 10;

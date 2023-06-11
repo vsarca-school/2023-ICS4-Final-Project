@@ -10,7 +10,7 @@ import src.main.Drivers.*;
 import src.main.Scenes.*;
 
 /**
- * <h1>Main Class</h1>
+ * Main Class
  * Time spent: 1.2 hours
  * 
  * @version 1.1
@@ -117,6 +117,12 @@ public class Main {
         }
     }
 
+    /**
+     * Loads an InputStream from a path inside the .jar
+     * 
+     * @param path The path
+     * @return The InputStream
+     */
     public static InputStream loadStream(String path) {
         //InputStream i = Main.class.getResourceAsStream(path.substring(9));
         InputStream i = Main.class.getClassLoader().getResourceAsStream(path);
@@ -124,6 +130,12 @@ public class Main {
         return i;
     }
 
+    /**
+     * Loads a file from a path inside the .jar
+     * 
+     * @param path The path
+     * @return The file
+     */
     public static File loadFile(String path) {
         try {
             File tempFile = File.createTempFile("temp", ".tempfile");
@@ -134,6 +146,9 @@ public class Main {
         }
     }
 
+    /**
+     * Restarts the maze
+     */
     public static void restartMaze() {
         if (currentScene == z) {
             z.restart();
@@ -167,9 +182,7 @@ public class Main {
     }
 
     /**
-     * Changes the scene based on the number the scene is defined as
-     * 
-     * @param newScene The number that the scene is defined as.
+     * Resets all scenes
      */
     public static void reset() {
         l = new LessonScene();
