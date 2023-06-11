@@ -118,7 +118,7 @@ public class Main {
     }
 
     public static InputStream loadStream(String path) {
-        return Main.class.getResourceAsStream(path);
+        return Main.class.getResourceAsStream("../../"+path);
     }
 
     public static File loadFile(String path) {

@@ -4,6 +4,8 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.io.*;
 
+import src.main.Main;
+
 /**
  * <h1>Level Class</h1>
  * Time spent: 3.6 hours
@@ -99,7 +101,8 @@ public class Level extends ScreenElement implements Serializable {
     public static Level fromFile(String file) {
         Level level = null;
         try {
-            ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
+            //ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
+            ObjectInputStream in = new ObjectInputStream(Main.loadStream(file));
             level = (Level) in.readObject();
             in.close();
         } catch (NullPointerException e) {

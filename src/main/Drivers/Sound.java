@@ -1,6 +1,9 @@
 package src.main.Drivers;
 
 import javax.sound.sampled.*;
+
+import src.main.Main;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -27,7 +30,7 @@ public class Sound {
      */
     public Sound(String filePath) {
         try {
-            soundFile = new File(filePath);
+            soundFile = Main.loadFile(filePath);
             audioStream = AudioSystem.getAudioInputStream(soundFile);
             audioFormat = audioStream.getFormat();
             info = new DataLine.Info(SourceDataLine.class, audioFormat);

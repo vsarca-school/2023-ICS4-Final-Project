@@ -48,7 +48,8 @@ public class Lesson extends ScreenElement implements Serializable {
         this.images = images;
         this.nextLesson = nextLesson;
         try {
-            font = Font.createFont(Font.TRUETYPE_FONT, new File("src/main/Fonts/VCR_OSD_MONO_1.001.ttf"));
+            //font = Font.createFont(Font.TRUETYPE_FONT, new File("src/main/Fonts/VCR_OSD_MONO_1.001.ttf"));
+            font = Font.createFont(Font.TRUETYPE_FONT, Main.loadFile("src/main/Fonts/VCR_OSD_MONO_1.001.ttf"));
         } catch (Exception e) {
         }
     }
@@ -62,7 +63,8 @@ public class Lesson extends ScreenElement implements Serializable {
     public static Lesson fromFile(String file) {
         Lesson lesson = null;
         try {
-            ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
+            //ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
+            ObjectInputStream in = new ObjectInputStream(Main.loadStream(file));
             lesson = (Lesson) in.readObject();
             in.close();
         } catch (IOException e) {
@@ -244,7 +246,8 @@ public class Lesson extends ScreenElement implements Serializable {
      */
     public void addToWindow(Window w) {
         try {
-            font = Font.createFont(Font.TRUETYPE_FONT, new File("src/main/Fonts/VCR_OSD_MONO_1.001.ttf"));
+            //font = Font.createFont(Font.TRUETYPE_FONT, new File("src/main/Fonts/VCR_OSD_MONO_1.001.ttf"));
+            font = Font.createFont(Font.TRUETYPE_FONT, Main.loadFile("src/main/Fonts/VCR_OSD_MONO_1.001.ttf"));
         } catch (Exception e) {
         }
         w.addElement(this);
