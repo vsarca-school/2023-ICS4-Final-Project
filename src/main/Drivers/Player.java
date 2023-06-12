@@ -167,8 +167,8 @@ public class Player extends ScreenElement {
         if (walking)
             cur = animations[direction][animation / 8];
         else
-            //cur = animations[direction][0];
-            cur = animations[2][0]; // Make it more clear how the movement works
+            cur = animations[direction][0];
+            // cur = animations[2][0]; // Make it more clear how the movement works
 
         g.drawImage(Sprite.getScaledTile(cur), (int) hww, (int) hwh, null);
     }
