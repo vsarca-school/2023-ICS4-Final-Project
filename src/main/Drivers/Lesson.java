@@ -275,6 +275,8 @@ public class Lesson extends ScreenElement implements Serializable {
                 timer = 0;
                 currentStringIndex++;
             }
+
+            while (w.nextMouse() != null);
         } else if (currentStringIndex >= 0 && currentStringIndex < texts.length) {
             double hww = w.getWidth() / 2.0;
             double hwh = w.getHeight() / 2.0;
