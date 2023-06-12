@@ -137,7 +137,7 @@ public class Player extends ScreenElement {
     }
 
     /**
-     * Victor Sarca - lets the player walk in a direction
+     * Victor Sarca - moves the player one square in a direction
      */
     protected void walk() {
         // Walk

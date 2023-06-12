@@ -94,6 +94,14 @@ public class ActionPlayer extends Player {
     }
 
     /**
+     * Victor Sarca - moves teh player one square in a direction
+     */
+    protected void walk() {
+        super.walk();
+        walking = false;
+    }
+
+    /**
      * Updates window
      * 
      * @param w window
