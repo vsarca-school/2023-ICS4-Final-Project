@@ -75,7 +75,6 @@ public class Player extends ScreenElement {
             }
             // Clear input and update level
             l.updatePlayerPos(realx, realy);
-            animation = (animation + 1) % 32;
             // Check if won
             if (hasWon)
                 Main.changeScene(4);
@@ -129,6 +128,7 @@ public class Player extends ScreenElement {
             // Give the user a question
             l.getQuestion(tempx, tempy).addToWindow(w);
             askingQuestion = true;
+            return; // Keep walking
         } else if (block.equals("campfire-0") || block.equals("tent-0")) {
             // Won
             hasWon = true;
@@ -164,8 +164,10 @@ public class Player extends ScreenElement {
 
         // Render player
         String cur;
-        if (walking)
+        if (walking) {
+            animation = (animation + 1) % 32;
             cur = animations[direction][animation / 8];
+        }
         else
             cur = animations[direction][0];
             // cur = animations[2][0]; // Make it more clear how the movement works
