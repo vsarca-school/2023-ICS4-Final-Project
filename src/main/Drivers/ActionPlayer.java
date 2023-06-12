@@ -99,6 +99,7 @@ public class ActionPlayer extends Player {
     protected void walk() {
         super.walk();
         walking = false;
+        lastWalk = 5;
     }
 
     /**

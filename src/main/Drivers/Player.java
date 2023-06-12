@@ -29,6 +29,7 @@ public class Player extends ScreenElement {
             { "player-0", "player-1", "player-2", "player-3" },
             { "player-8", "player-9", "player-10", "player-11" } };
     protected static final int[][] directions = { { 0, -1 }, { -1, 0 }, { 0, 1 }, { 1, 0 } };
+    protected int lastWalk = 0;
 
     /**
      * Victor Sarca - Joins the level
@@ -163,11 +164,11 @@ public class Player extends ScreenElement {
         hwh -= scale / 2;
 
         // Render player
-        String cur;
-        if (walking) {
+        String cur = animations[direction][animation / 8];
+        if (walking)
             animation = (animation + 1) % 32;
-            cur = animations[direction][animation / 8];
-        }
+        else if (lastWalk > 0)
+            lastWalk--;
         else
             cur = animations[direction][0];
             // cur = animations[2][0]; // Make it more clear how the movement works
