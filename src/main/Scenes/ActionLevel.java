@@ -91,7 +91,7 @@ public class ActionLevel extends ScreenElement {
      * @param me A wolf to exclude from calculations
      * @return returns whether there is a wolf at x,y
      */
-    public boolean hasWolf(int x, int y, Wolf me) {
+    public Wolf wolfAt(int x, int y, Wolf me) {
         for (Wolf wl : wolves) {
             if (wl == me)
                 continue;
@@ -99,12 +99,12 @@ public class ActionLevel extends ScreenElement {
             if ((x == temp[0] && y == temp[1]) || (x == temp[2] && y == temp[3])) {
                 //if (me != null)
                 //    System.out.println(true);
-                return true;
+                return wl;
             }
         }
         //if (me != null)
         //    System.out.println(false);
-        return false;
+        return null;
     }
 
     /**

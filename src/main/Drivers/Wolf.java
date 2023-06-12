@@ -27,6 +27,9 @@ public class Wolf extends ScreenElement {
     private int whichpaw = 0;
     private int pawpolation = 0;
     private double pawx, pawy;
+    private boolean dead = false;
+    private int deathpolation = 0;
+    private int health;
     private static final String[][] animations = { { "wolf-0", "wolf-1", "wolf-2", "wolf-3" },
             { "wolf-7", "wolf-6", "wolf-5", "wolf-4" } };
     private Level l;
@@ -46,6 +49,17 @@ public class Wolf extends ScreenElement {
         realx = x;
         realy = y;
         parent = a;
+        health = 50;
+        dead = false;
+    }
+
+    public void damage(int damage)
+    {
+        health -= damage;
+        if (health <= 0) {
+            dead = true;
+            deathpolation = 5;
+        }
     }
 
     /**
@@ -56,6 +70,14 @@ public class Wolf extends ScreenElement {
      *          - Victor
      */
     public void update(Window w, Graphics g) {
+        if (dead) {
+            if (deathpolation > 0) {
+                deathpolation --;
+                // Render death animation
+            }
+            return;
+        }
+
         if (!isPaused()) {
             if (!walking) {
                 orient();
@@ -83,6 +105,7 @@ public class Wolf extends ScreenElement {
      * @return The coords of the wolf
      */
     public int[] getCoords() {
+        if (dead) return new int[] {-2, -2, -2, -2};
         if (!walking)
             return new int[] { x, y, x, y };
         return new int[] { x, y, nextx, nexty };
@@ -147,7 +170,7 @@ public class Wolf extends ScreenElement {
         // Check for collision
         String block = l.getBlock(nextx, nexty);
         boolean player = (nextx != apx || nexty != apy) && (nextx != npx || nexty != npy || !playerWalking);
-        boolean other = block == null && !parent.hasWolf(nextx, nexty, this);
+        boolean other = block == null && parent.wolfAt(nextx, nexty, this) == null;
         if (player && other)
             return;
         walking = false;
