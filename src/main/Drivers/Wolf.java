@@ -146,7 +146,7 @@ public class Wolf extends ScreenElement {
     private void collide(Window w) {
         // Check for collision
         String block = l.getBlock(nextx, nexty);
-        boolean player = (nextx != apx || nexty != apy) && (nextx != npx || nexty != npy);
+        boolean player = (nextx != apx || nexty != apy) && (nextx != npx || nexty != npy || !playerWalking);
         boolean other = block == null && !parent.hasWolf(nextx, nexty, this);
         if (player && other)
             return;
