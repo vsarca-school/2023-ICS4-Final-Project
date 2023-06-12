@@ -80,6 +80,9 @@ public class Player extends ScreenElement {
             if (hasWon)
                 Main.changeScene(4);
         }
+        if (!askingQuestion) {
+            while (w.nextMouse() != null); // Remove all mouse events
+        }
 
         render(w, g);
     }
