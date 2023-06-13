@@ -15,7 +15,6 @@ public class Test {
     static MainMenu m;
     static Options o;
     static Lesson l;
-    static Maze z;
     static ActionLevel a;
 
     static ScreenElement currentScene;
@@ -57,7 +56,7 @@ public class Test {
             "Haedus"
         };
         //Question q = Question.fromFile("src/main/Questions/Question-Navigation-1.qsn");
-        z = new Maze();
+        InstructionMaze z = new InstructionMaze();
         ScreenElement currentScene = z; // TODO: change back to menu when done debuggin
         currentScene.addToWindow(w);
 
