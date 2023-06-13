@@ -131,7 +131,7 @@ public class ActionLevel extends ScreenElement {
      * @param w window
      */
     public void addToWindow(Window w) {
-        s.loop(-1,0);
+        s.loop(-1,-5);
         if (l == null) {
             Main.changeScene(5);
             return;

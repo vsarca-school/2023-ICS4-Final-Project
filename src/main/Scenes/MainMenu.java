@@ -94,7 +94,7 @@ public class MainMenu extends ScreenElement {
      * @param w The window to stop rendering to
      */
     public void addToWindow(Window w) {
-        s.loop(-1, 5);
+        s.loop(-1, 0);
         super.addToWindow(w);
     }
 
