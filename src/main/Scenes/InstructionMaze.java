@@ -1,18 +1,16 @@
 package src.main.Scenes;
 
 import java.awt.*;
-import java.io.*;
 
 import src.main.Main;
 import src.main.Drivers.ScreenElement;
 import src.main.Drivers.Sprite;
 import src.main.Drivers.Window;
 
-public class Instructions extends ScreenElement {
+public class InstructionMaze extends ScreenElement {
 
     private double scale;
     private Font font;
-    private int screen = 0;
 
     /**
      * Centers image
@@ -81,49 +79,6 @@ public class Instructions extends ScreenElement {
             g.drawString(line, lineX, lineY);
             lineY += lineHeight;
         }
-    }
-
-    /**
-     * Max font size for all questions
-     * 
-     * @param g         graphics
-     * @param maxWidth  maximum width
-     * @param maxHeight maximum height
-     * @param font      font
-     * @return returns either the optimal size or the minimum size depending on
-     *         which is smaller.
-     */
-    public int maxFontSizeAll(Graphics g, int maxWidth, int maxHeight, Font font) {
-        char letter = 65;
-        int min = Integer.MAX_VALUE;
-        for (String str : answers) {
-            String tmp = (char) (letter) + ": " + str;
-            String[] lines = tmp.split("\n");
-            int optimalSize = Integer.MAX_VALUE;
-
-            for (String line : lines) {
-                int minSize = 1;
-                int maxSize = maxHeight;
-                int size = 0;
-
-                while (minSize <= maxSize) {
-                    int midSize = (minSize + maxSize) / 2;
-                    Font testFont = font.deriveFont(Font.PLAIN, midSize);
-                    FontMetrics metrics = g.getFontMetrics(testFont);
-                    int textWidth = metrics.stringWidth(line);
-
-                    if (textWidth <= maxWidth) {
-                        size = midSize;
-                        minSize = midSize + 1;
-                    } else {
-                        maxSize = midSize - 1;
-                    }
-                }
-                optimalSize = Math.min(optimalSize, size);
-            }
-            min = Math.min(min, optimalSize);
-        }
-        return min;
     }
 
     /**
