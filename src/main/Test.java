@@ -56,7 +56,7 @@ public class Test {
             "Haedus"
         };
         //Question q = Question.fromFile("src/main/Questions/Question-Navigation-1.qsn");
-        InstructionAction z = new InstructionAction(new ActionLevel());
+        Justification z = new Justification();
         ScreenElement currentScene = z; // TODO: change back to menu when done debuggin
         currentScene.addToWindow(w);
 
