@@ -285,11 +285,11 @@ public class Lesson extends ScreenElement implements Serializable {
             if (posIndex < positions.length && positions[posIndex] > currentStringIndex) {
                 if (images[posIndex].equals("droplet")) {
                     if (animTimer <= 40) {
-                        centerImage(g, Sprite.getScaledTile("droplet-0"), (int) hww, (int) hwh * 6 / 5);
+                        centerImage(g, Sprite.getScaledTile("droplet-0"), (int) hww, (int) hwh);
                     } else if (animTimer > 40 && animTimer <= 80) {
-                        centerImage(g, Sprite.getScaledTile("droplet-1"), (int) hww, (int) hwh * 6 / 5);
+                        centerImage(g, Sprite.getScaledTile("droplet-1"), (int) hww, (int) hwh);
                     } else {
-                        centerImage(g, Sprite.getScaledTile("droplet-2"), (int) hww, (int) hwh * 6 / 5);
+                        centerImage(g, Sprite.getScaledTile("droplet-2"), (int) hww, (int) hwh);
                     }
                 } else {
                     centerImage(g, Sprite.getScaledImage(images[posIndex]), (int) hww, (int) hwh * 4 / 5);
