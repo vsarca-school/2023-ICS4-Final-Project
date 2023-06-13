@@ -46,6 +46,7 @@ public class Main {
 
         // Create all objects necessary
         w = new Window("Timber Trek", 800, 600);
+        w.update();
 
         m = new MainMenu();
         o = new Options();
