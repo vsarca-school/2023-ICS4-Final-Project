@@ -1,7 +1,6 @@
 package src.main.Drivers;
 
 import java.awt.Graphics;
-import java.awt.Image;
 
 import src.main.Main;
 
