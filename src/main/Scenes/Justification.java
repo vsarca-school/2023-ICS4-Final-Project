@@ -11,7 +11,7 @@ import src.main.Main;
 import src.main.Drivers.*;
 
 public class Justification extends ScreenElement {
-
+    Sound s = new Sound("src/main/Sounds/MainMenu.wav");
     private double scale;
     private Font font;
 
@@ -142,12 +142,23 @@ public class Justification extends ScreenElement {
      * @param w window
      */
     public void addToWindow(Window w) {
+        s.loop(-1,0);
         try {
             //font = Font.createFont(Font.TRUETYPE_FONT, new File("src/main/Fonts/VCR_OSD_MONO_1.001.ttf"));
             font = Font.createFont(Font.TRUETYPE_FONT, Main.loadFile("src/main/Fonts/VCR_OSD_MONO_1.001.ttf"));
         } catch (Exception e) {
         }
         w.addElement(this);
+    }
+
+    /**
+     * Removes from window
+     * 
+     * @param w window
+     */
+    public void removeFromWindow(Window w) {
+        s.stopAll();
+        super.removeFromWindow(w);
     }
 
     /**
