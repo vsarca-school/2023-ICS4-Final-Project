@@ -15,6 +15,8 @@ import src.main.Drivers.*;
  * @author Radin Ahari (comment)/Victor Sarca/Radin Ahari/Felix Zhao (code)
  */
 public class MainMenu extends ScreenElement {
+    Sound s = new Sound("src/main/Sounds/MainMenu.wav");
+
     /**
      * Updates the window
      * 
@@ -84,5 +86,25 @@ public class MainMenu extends ScreenElement {
         int height = image.getHeight(null) / 2;
         return (mouse[0] > x - width && mouse[0] < x + width && mouse[1] > y - height
                 && mouse[1] < y + height);
+    }
+
+    /**
+     * Adds this element and child ScreenElements from window w
+     * 
+     * @param w The window to stop rendering to
+     */
+    public void addToWindow(Window w) {
+        s.loop(-1, 5);
+        super.addToWindow(w);
+    }
+
+    /**
+     * Remove this element and child ScreenElements from window w
+     * 
+     * @param w The window to stop rendering to
+     */
+    public void removeFromWindow(Window w) {
+        s.stopAll();
+        super.removeFromWindow(w);
     }
 }

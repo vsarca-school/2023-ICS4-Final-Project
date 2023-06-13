@@ -14,6 +14,7 @@ import src.main.Drivers.*;
  * @author Radin Ahari (comment)/Victor Sarca (code)
  */
 public class LessonScene extends ScreenElement {
+    Sound s = new Sound("src/main/Sounds/Lesson.wav");
     private Lesson l;
 
     /**
@@ -29,6 +30,8 @@ public class LessonScene extends ScreenElement {
      * @param w window being added to
      */
     public void addToWindow(Window w) {
+        s.loop(-1, -20);
+
         if (l == null) {
             Main.changeScene(5);
             return;
@@ -44,6 +47,8 @@ public class LessonScene extends ScreenElement {
      * @param w window being removed from
      */
     public void removeFromWindow(Window w) {
+        s.stopAll();
+
         if (l == null)
             return;
         l.removeFromWindow(w);

@@ -15,6 +15,7 @@ import src.main.Drivers.*;
  * @author Radin Ahari (comment)/Victor Sarca (code)
  */
 public class Maze extends ScreenElement {
+    Sound s = new Sound("src/main/Sounds/Maze.wav");
     private Player p;
     private Level l;
     private int restart = 0;
@@ -65,6 +66,7 @@ public class Maze extends ScreenElement {
      * @param w window being added to
      */
     public void addToWindow(Window w) {
+        s.loop(-1, -20);
         if (l == null) {
             Main.changeScene(5);
             return;
@@ -82,6 +84,7 @@ public class Maze extends ScreenElement {
      * @param w window being removed from
      */
     public void removeFromWindow(Window w) {
+        s.stopAll();
         if (l == null)
             return;
         l.removeFromWindow(w);

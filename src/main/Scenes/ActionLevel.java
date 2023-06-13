@@ -16,6 +16,7 @@ import src.main.Drivers.*;
  */
 
 public class ActionLevel extends ScreenElement {
+    Sound s = new Sound("src/main/Sounds/ActionLevel.wav");
     private ActionPlayer p;
     private Level l;
     private Wolf[] wolves;
@@ -130,15 +131,16 @@ public class ActionLevel extends ScreenElement {
      * @param w window
      */
     public void addToWindow(Window w) {
+        s.loop(-1,0);
         if (l == null) {
             Main.changeScene(5);
             return;
         }
 
         l.addToWindow(w);
+        addWolves(w);
         p.joinLevel(l, this);
         p.addToWindow(w);
-        addWolves(w);
         w.addElement(this);
         // System.out.println(wolves.length);
     }
@@ -149,13 +151,14 @@ public class ActionLevel extends ScreenElement {
      * @param w window
      */
     public void removeFromWindow(Window w) {
+        s.stopAll();
         if (l == null)
             return;
         l.removeFromWindow(w);
         l = l.nextLevel();
+        p.removeFromWindow(w);
         if (l != null)
             refreshWolves(w);
-        p.removeFromWindow(w);
         w.removeElement(this);
     }
 }

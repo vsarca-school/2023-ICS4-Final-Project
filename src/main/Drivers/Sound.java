@@ -6,6 +6,7 @@ import src.main.Main;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Sound Class
@@ -21,6 +22,7 @@ public class Sound {
     private AudioFormat audioFormat;
     private DataLine.Info info;
     private SourceDataLine sourceDataLine;
+    private ArrayList<Thread> threads;
     private static final int BUFFER_SIZE = 12288;
 
     /**
@@ -34,10 +36,12 @@ public class Sound {
             audioStream = AudioSystem.getAudioInputStream(soundFile);
             audioFormat = audioStream.getFormat();
             info = new DataLine.Info(SourceDataLine.class, audioFormat);
+            // System.out.println(info.toString());
             sourceDataLine = (SourceDataLine) AudioSystem.getLine(info);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        this.threads = new ArrayList<>();
     }
 
     /*
@@ -78,7 +82,7 @@ public class Sound {
     /**
      * Felix Zhao - loops the sound a specified number of times
      * 
-     * @param times  number of times
+     * @param times  number of times, -1 for infinite
      * @param volume specified volume
      */
     public void loop(int times, float volume) {
@@ -97,7 +101,7 @@ public class Sound {
                 byte[] buffer = new byte[BUFFER_SIZE];
                 int bytesRead;
 
-                for (int i = 0; i < times; i++) {
+                for (int i = 0; i != times; i++) {
                     audioStream = AudioSystem.getAudioInputStream(soundFile);
 
                     while ((bytesRead = audioStream.read(buffer, 0, buffer.length)) != -1) {
@@ -115,8 +119,17 @@ public class Sound {
             } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
                 e.printStackTrace();
             }
+            threads.remove(this);
         });
 
         soundThread.start();
+        threads.add(soundThread);
+    }
+
+    public void stopAll() {
+        for (Thread t : threads) {
+            t.stop();
+        }
+        threads.clear();
     }
 }
