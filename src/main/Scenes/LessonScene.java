@@ -30,7 +30,7 @@ public class LessonScene extends ScreenElement {
      * @param w window being added to
      */
     public void addToWindow(Window w) {
-        s.loop(-1, -20);
+        s.loop(-1, -10);
 
         if (l == null) {
             Main.changeScene(5);
