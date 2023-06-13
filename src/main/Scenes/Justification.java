@@ -174,18 +174,18 @@ public class Justification extends ScreenElement {
         centerBox(g, c, (int) hww, (int) hwh, (int) (hww * 8 / 5), (int) (hwh * 8 / 5));
 
         String str = 
-                "According to David Paulides of the North America\n" + //
-                "Bigfoot Search, more than 1600 people go missing\n" + //
-                "in US national wildlands every year. This number\n" + //
-                "doesn't even account for forests that are not\n" + //
-                "provincial and national parks, so the number could\n" + //
-                "be a lot higher. This evidence shows a need for people\n" + //
-                "to learn how to survive in the forest if one were to\n" + //
-                "ever get lost. Hiking and going into the wilderness\n" + //
-                "is a very common activity, so accidents while in nature\n" + //
-                "can happen. Knowing what to do in these emergency\n" + //
-                "situations like getting lost is crucial to survival\n" + //
-                "and being rescued. This is why GROB Studios chose\n" + //
+                "According to David Paulides of the North America\n" + 
+                "Bigfoot Search, more than 1600 people go missing\n" + 
+                "in US national wildlands every year. This number\n" + 
+                "doesn't even account for forests that are not\n" + 
+                "provincial and national parks, so the number could\n" + 
+                "be a lot higher. This evidence shows a need for people\n" + 
+                "to learn how to survive in the forest if one were to\n" + 
+                "ever get lost. Hiking and going into the wilderness\n" + 
+                "is a very common activity, so accidents while in nature\n" + 
+                "can happen. Knowing what to do in these emergency\n" + 
+                "situations like getting lost is crucial to survival\n" + 
+                "and being rescued. This is why GROB Studios chose\n" + 
                 "to make this game.\n";
 
         int size = maxFontSize(g, str, (int) (hww * 8 / 5 - scale*6), (int) (hwh * 8 / 5 - scale*6), font);
