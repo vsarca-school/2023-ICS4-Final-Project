@@ -26,6 +26,7 @@ public class Main {
     static Maze z;
     static ActionLevel a;
     static EndScreen e;
+    static Justification j;
 
     static ScreenElement currentScene;
 
@@ -54,10 +55,11 @@ public class Main {
         z = new Maze();
         a = new ActionLevel();
         e = new EndScreen();
+        j = new Justification();
 
-        currentScene = new Justification(); // TODO: change back to menu when done debugging
-
+        currentScene = m; // TODO: change back to menu when done debugging
         currentScene.addToWindow(w);
+        j.addToWindow(w);
 
         while (running) {
             w.update();
@@ -116,6 +118,13 @@ public class Main {
                 running = false;
                 // System.out.println("Error: invalid scene index " + newScene);
         }
+    }
+
+    /**
+     * Helps the MainMenu remove the Justification
+     */
+    public static void removeJustification() {
+        m.removeJustification();
     }
 
     /**

@@ -15,7 +15,15 @@ import src.main.Drivers.*;
  * @author Radin Ahari (comment)/Victor Sarca/Radin Ahari/Felix Zhao (code)
  */
 public class MainMenu extends ScreenElement {
-    Sound s = new Sound("src/main/Sounds/MainMenu.wav");
+    private Sound s = new Sound("src/main/Sounds/MainMenu.wav");
+    private boolean justification = true;
+
+    /**
+     * Lets the MainMenu know that the Justification has been removed
+     */
+    public void removeJustification() {
+        justification = false;
+    }
 
     /**
      * Updates the window
@@ -34,7 +42,7 @@ public class MainMenu extends ScreenElement {
         drawImage(g, Sprite.getScaledImage("logo"), (int) (2 * hww - scale * 16), (int) (2 * hwh - scale * 16));
 
         // Leave if paused
-        if (isPaused())
+        if (isPaused() || justification)
             return;
 
         // Draw screen

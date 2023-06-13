@@ -19,7 +19,6 @@ import src.main.Drivers.*;
  * @author Felix Zhao, Victor Sarca
  */
 public class Justification extends ScreenElement {
-    Sound s = new Sound("src/main/Sounds/MainMenu.wav");
     private double scale;
     private Font font;
 
@@ -150,23 +149,12 @@ public class Justification extends ScreenElement {
      * @param w window
      */
     public void addToWindow(Window w) {
-        s.loop(-1,0);
         try {
             //font = Font.createFont(Font.TRUETYPE_FONT, new File("src/main/Fonts/VCR_OSD_MONO_1.001.ttf"));
             font = Font.createFont(Font.TRUETYPE_FONT, Main.loadFile("src/main/Fonts/VCR_OSD_MONO_1.001.ttf"));
         } catch (Exception e) {
         }
         w.addElement(this);
-    }
-
-    /**
-     * Removes from window
-     * 
-     * @param w window
-     */
-    public void removeFromWindow(Window w) {
-        s.stopAll();
-        super.removeFromWindow(w);
     }
 
     /**
@@ -180,7 +168,7 @@ public class Justification extends ScreenElement {
         double hwh = w.getHeight() / 2.0;
         scale = Sprite.getTileScale();
 
-        centerImage(g, Sprite.getScaledBackground("TitleScreen"), (int) hww, (int) hwh);
+        //centerImage(g, Sprite.getScaledBackground("TitleScreen"), (int) hww, (int) hwh);
 
         Color c = new Color(53, 45, 82, 255);
         centerBox(g, c, (int) hww, (int) hwh, (int) (hww * 8 / 5), (int) (hwh * 8 / 5));
@@ -209,7 +197,8 @@ public class Justification extends ScreenElement {
         centerString(g, Color.WHITE, "[click to continue]", (int) hww, (int) (hwh * 5 / 3), (int) (hww * 3 / 2), size, temp);
         if (isPaused()) return;
         if (w.nextMouse() != null) {
-            Main.changeScene(0);
+            removeFromWindow(w);
+            Main.removeJustification();
         }
     }
 }
