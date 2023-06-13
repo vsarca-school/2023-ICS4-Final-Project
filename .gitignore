@@ -3,3 +3,5 @@
 Test.java
 .fake
 *.class
+/Drivers/*.class
+/Scenes/*.class
