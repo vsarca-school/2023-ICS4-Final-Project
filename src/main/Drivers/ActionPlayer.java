@@ -136,7 +136,7 @@ public class ActionPlayer extends Player {
      * @param g graphics
      */
     public void update(Window w, Graphics g) {
-        if (!isPaused()) {
+        if (!isPaused() && !instructions) {
             if (!walking) {
                 getInput(w);
                 if (nextDirection == -1)

@@ -1,16 +1,28 @@
 package src.main.Scenes;
 
-import java.awt.*;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Image;
 
 import src.main.Main;
-import src.main.Drivers.ScreenElement;
-import src.main.Drivers.Sprite;
-import src.main.Drivers.Window;
+import src.main.Drivers.*;
 
 public class InstructionMaze extends ScreenElement {
 
     private double scale;
     private Font font;
+    private Maze parent;
+
+    /**
+     * Creates a new InstructionMaze object
+     * @param z
+     */
+    public InstructionMaze(Maze z) {
+        parent = z;
+    }
 
     /**
      * Centers image
@@ -126,12 +138,12 @@ public class InstructionMaze extends ScreenElement {
      * @param y     y coordinate
      * @param mouse mouse positions
      * @return returns whether its been clicked
-     */
+     /
     public boolean isClicked(Image image, int x, int y, int[] mouse) {
         int width = image.getWidth(null) / 2;
         int height = image.getHeight(null) / 2;
         return (mouse[0] > x - width && mouse[0] < x + width && mouse[1] > y - height && mouse[1] < y + height);
-    }
+    }*/
 
     /**
      * adds to window
@@ -160,7 +172,7 @@ public class InstructionMaze extends ScreenElement {
         double hwh = w.getHeight() / 2.0;
         scale = Sprite.getTileScale();
 
-        centerImage(g, Sprite.getScaledBackground("TitleScreen"), (int) hww, (int) hwh);
+        //centerImage(g, Sprite.getScaledBackground("TitleScreen"), (int) hww, (int) hwh);
 
         Color c = new Color(53, 45, 82, 255);
         centerBox(g, c, (int) hww, (int) hwh, (int) (hww * 8 / 5), (int) (hwh * 8 / 5));
@@ -177,7 +189,7 @@ public class InstructionMaze extends ScreenElement {
                 "The goal of the maze is to find the campfire\n" + //
                 "or tent and signs you come across are essential\n" + //
                 "to solving the maze. If you answer the question\n" + //
-                "corretly the sign will dissapear, helping you\n" + //
+                "corretly the sign will disappear, helping you\n" + //
                 "reach the end. Otherwise, the level will be\n" + //
                 "restarted.";
 
@@ -190,9 +202,10 @@ public class InstructionMaze extends ScreenElement {
         size = maxFontSize(g, "[click to continue]", (int) (hww * 8 / 15), (int) hwh*2, font);
         temp = font.deriveFont(Font.PLAIN, size);
         centerString(g, Color.WHITE, "[click to continue]", (int) hww, (int) (hwh * 5 / 3), (int) (hww * 3 / 2), size, temp);
-        int[] mouse;
-        while ((mouse = w.nextMouse()) != null) {
-            //click
+        if (isPaused()) return;
+        if (w.nextMouse() != null) {
+            parent.removeInstructions();
+            removeFromWindow(w);
         }
     }
 }

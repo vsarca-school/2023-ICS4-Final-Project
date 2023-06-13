@@ -56,7 +56,7 @@ public class Test {
             "Haedus"
         };
         //Question q = Question.fromFile("src/main/Questions/Question-Navigation-1.qsn");
-        InstructionAction z = new InstructionAction();
+        InstructionAction z = new InstructionAction(new ActionLevel());
         ScreenElement currentScene = z; // TODO: change back to menu when done debuggin
         currentScene.addToWindow(w);
 
@@ -82,7 +82,7 @@ public class Test {
                 currentScene.addToWindow(w);
             case 3:
                 currentScene.removeFromWindow(w);
-                currentScene = z;
+                //currentScene = z;
                 currentScene.addToWindow(w);
             case 4:
                 currentScene.removeFromWindow(w);

@@ -19,6 +19,8 @@ public class Maze extends ScreenElement {
     private Player p;
     private Level l;
     private int restart = 0;
+    private boolean instructions = true;
+    private InstructionMaze instruction;
 
     /**
      * Maze constructor
@@ -26,8 +28,24 @@ public class Maze extends ScreenElement {
     public Maze() {
         p = new Player();
         l = Level.fromFile("src/main/Levels/Maze-1.lvl");
+        instruction = new InstructionMaze(this);
+        instructions = true;
+        p.freeze();
     }
 
+    /**
+     * Notified when instructions are removed
+     */
+    public void removeInstructions() {
+        p.unfreeze();
+        instructions = false;
+    }
+
+    /**
+     * Updates and draws the maze scene
+     * @param w the window
+     * @param g the Graphics object
+     */
     public void update(Window w, Graphics g) {
         if (restart > 0) {
             restart--;
@@ -56,6 +74,7 @@ public class Maze extends ScreenElement {
      * Restarts the maze
      */
     public void restart() {
+        if (isPaused()) return;
         p.joinLevel(l);
         restart = 10;
     }
@@ -76,6 +95,7 @@ public class Maze extends ScreenElement {
         p.addToWindow(w);
         p.joinLevel(l);
         w.addElement(this);
+        if (instructions) instruction.addToWindow(w);
     }
 
     /**

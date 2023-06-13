@@ -23,6 +23,7 @@ public class Player extends ScreenElement {
     protected boolean askingQuestion = false;
     protected int interpolation = 0;
     protected boolean hasWon = false;
+    protected boolean instructions = true;
     protected static final String[][] animations = { { "player-12", "player-13", "player-14", "player-15" },
             { "player-4", "player-5", "player-6", "player-7" },
             { "player-0", "player-1", "player-2", "player-3" },
@@ -46,6 +47,20 @@ public class Player extends ScreenElement {
     }
 
     /**
+     * Freezes the player while instructions are onscreen
+     */
+    public void freeze() {
+        instructions = true;
+    }
+
+    /**
+     * Unfreezes the player while instructions are onscreen
+     */
+    public void unfreeze() {
+        instructions = false;
+    }
+
+    /**
      * Victor Sarca - ends the question sequence
      */
     public void endQuestion() {
@@ -57,7 +72,7 @@ public class Player extends ScreenElement {
      * player actions
      */
     public void update(Window w, Graphics g) {
-        if (!isPaused() && !askingQuestion) {
+        if (!isPaused() && !askingQuestion && !instructions) {
             if (!walking) {
                 getInput(w);
                 direction = nextDirection;
@@ -78,8 +93,6 @@ public class Player extends ScreenElement {
             // Check if won
             if (hasWon)
                 Main.changeScene(4);
-        }
-        if (!askingQuestion) {
             while (w.nextMouse() != null); // Remove all mouse events
         }
 

@@ -21,6 +21,8 @@ public class ActionLevel extends ScreenElement {
     private Level l;
     private Wolf[] wolves;
     private int restart = 0;
+    private boolean instructions = true;
+    private InstructionAction instruction;
 
     /**
      * Action level constructor
@@ -29,6 +31,9 @@ public class ActionLevel extends ScreenElement {
         p = new ActionPlayer(100);
         l = Level.fromFile("src/main/Levels/Level-1.lvl");
         loadWolves();
+        instructions = true;
+        instruction = new InstructionAction(this);
+        p.freeze();
     }
 
     public void update(Window w, Graphics g) {
@@ -37,6 +42,14 @@ public class ActionLevel extends ScreenElement {
             g.setColor(Color.WHITE);
             g.fillRect(0, 0, w.getWidth(), w.getHeight());
         }
+    }
+
+    /**
+     * Notified when instructions are removed
+     */
+    public void removeInstructions() {
+        p.unfreeze();
+        instructions = false;
     }
 
     /**
@@ -87,8 +100,8 @@ public class ActionLevel extends ScreenElement {
     /**
      * Checks if a wolf is already at a position x,y
      * 
-     * @param x x coordinate
-     * @param y y coordinate
+     * @param x  x coordinate
+     * @param y  y coordinate
      * @param me A wolf to exclude from calculations
      * @return returns whether there is a wolf at x,y
      */
@@ -98,25 +111,25 @@ public class ActionLevel extends ScreenElement {
                 continue;
             int[] temp = wl.getCoords();
             if ((x == temp[0] && y == temp[1]) || (x == temp[2] && y == temp[3])) {
-                //if (me != null)
-                //    System.out.println(true);
+                // if (me != null)
+                // System.out.println(true);
                 return wl;
             }
         }
-        //if (me != null)
-        //    System.out.println(false);
+        // if (me != null)
+        // System.out.println(false);
         return null;
     }
 
     /**
      * Tells wolves where the player is
      * 
-     * @param x Player x coordinate
-     * @param y Player y coordinate
-     * @param ax Actual player x
-     * @param ay Actual player y
-     * @param nx Next player x
-     * @param ny Next player y
+     * @param x       Player x coordinate
+     * @param y       Player y coordinate
+     * @param ax      Actual player x
+     * @param ay      Actual player y
+     * @param nx      Next player x
+     * @param ny      Next player y
      * @param walking Whether the player is walking
      */
     public void updatePlayerPos(double x, double y, int ax, int ay, int nx, int ny, boolean walking) {
@@ -131,7 +144,7 @@ public class ActionLevel extends ScreenElement {
      * @param w window
      */
     public void addToWindow(Window w) {
-        s.loop(-1,-5);
+        s.loop(-1, -5);
         if (l == null) {
             Main.changeScene(5);
             return;
@@ -142,7 +155,7 @@ public class ActionLevel extends ScreenElement {
         p.joinLevel(l, this);
         p.addToWindow(w);
         w.addElement(this);
-        // System.out.println(wolves.length);
+        if (instructions) instruction.addToWindow(w);
     }
 
     /**
