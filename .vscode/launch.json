@@ -1,0 +1,91 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "src.main.Main"
+        },
+        {
+            "type": "java",
+            "name": "LessonCreator1",
+            "request": "launch",
+            "mainClass": "src.main.Lessons.LessonCreator1",
+            "projectName": "2023-ICS4-Final-Project_614f7d28"
+        },
+        {
+            "type": "java",
+            "name": "LessonCreator2",
+            "request": "launch",
+            "mainClass": "src.main.Lessons.LessonCreator2",
+            "projectName": "2023-ICS4-Final-Project_614f7d28"
+        },
+        {
+            "type": "java",
+            "name": "LessonCreator3",
+            "request": "launch",
+            "mainClass": "src.main.Lessons.LessonCreator3",
+            "projectName": "2023-ICS4-Final-Project_614f7d28"
+        },
+        {
+            "type": "java",
+            "name": "LessonCreator4",
+            "request": "launch",
+            "mainClass": "src.main.Lessons.LessonCreator4",
+            "projectName": "2023-ICS4-Final-Project_614f7d28"
+        },
+        {
+            "type": "java",
+            "name": "LessonCreator5",
+            "request": "launch",
+            "mainClass": "src.main.Lessons.LessonCreator5",
+            "projectName": "2023-ICS4-Final-Project_614f7d28"
+        },
+        {
+            "type": "java",
+            "name": "LevelCreator",
+            "request": "launch",
+            "mainClass": "src.main.Levels.LevelCreator",
+            "projectName": "2023-ICS4-Final-Project_614f7d28"
+        },
+        {
+            "type": "java",
+            "name": "MazeCreator",
+            "request": "launch",
+            "mainClass": "src.main.Levels.MazeCreator",
+            "projectName": "2023-ICS4-Final-Project_614f7d28"
+        },
+        {
+            "type": "java",
+            "name": "MazeCreator5",
+            "request": "launch",
+            "mainClass": "src.main.Levels.MazeCreator5",
+            "projectName": "2023-ICS4-Final-Project_614f7d28"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "src.main.Main",
+            "projectName": "2023-ICS4-Final-Project_614f7d28"
+        },
+        {
+            "type": "java",
+            "name": "Test",
+            "request": "launch",
+            "mainClass": "src.main.Test",
+            "projectName": "2023-ICS4-Final-Project_614f7d28"
+        },
+        {
+            "type": "java",
+            "name": "MainfestCreator",
+            "request": "launch",
+            "mainClass": "src.main.Textures.MainfestCreator",
+            "projectName": "2023-ICS4-Final-Project_614f7d28"
+        }
+    ]
+}
