@@ -2,3 +2,4 @@
 #**/*.lsn
 Test.java
 .fake
+*.class
