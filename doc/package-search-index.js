@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"src.main.Drivers"},{"l":"src.main.Scenes"}];updateSearchResults();
