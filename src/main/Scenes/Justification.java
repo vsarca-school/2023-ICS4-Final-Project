@@ -157,13 +157,11 @@ public class Justification extends ScreenElement {
      * @param g graphics
      */
     public void update(Window w, Graphics g) {
-        boolean paused = isPaused();
-
         double hww = w.getWidth() / 2.0;
         double hwh = w.getHeight() / 2.0;
         scale = Sprite.getTileScale();
 
-        //centerImage(g, Sprite.getScaledBackground("TitleScreen"), (int) hww, (int) hwh);
+        centerImage(g, Sprite.getScaledBackground("TitleScreen"), (int) hww, (int) hwh);
 
         Color c = new Color(53, 45, 82, 255);
         centerBox(g, c, (int) hww, (int) hwh, (int) (hww * 8 / 5), (int) (hwh * 8 / 5));
@@ -192,8 +190,7 @@ public class Justification extends ScreenElement {
         centerString(g, Color.WHITE, "[click to continue]", (int) hww, (int) (hwh * 5 / 3), (int) (hww * 3 / 2), size, temp);
         if (isPaused()) return;
         if (w.nextMouse() != null) {
-            // parent.removeInstructions();
-            // removeFromWindow(w);
+            Main.changeScene(0);
         }
     }
 }

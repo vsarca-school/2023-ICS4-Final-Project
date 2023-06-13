@@ -39,15 +39,9 @@ public class ActionPlayer extends Player {
      * @param lv action level being added
      */
     public void joinLevel(Level l, ActionLevel lv) {
-        this.l = l;
+        super.joinLevel(l);
         parent = lv;
-        x = l.getStartX();
-        y = l.getStartY();
-        realx = x;
-        realy = y;
-        walking = false;
         interpolation = 0;
-        hasWon = false;
         this.health = maxHealth;
     }
 

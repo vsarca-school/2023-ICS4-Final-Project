@@ -42,6 +42,7 @@ public class Player extends ScreenElement {
         l = lv;
         x = l.getStartX();
         y = l.getStartY();
+        l.updatePlayerPos(x, y);
         realx = x;
         realy = y;
     }
