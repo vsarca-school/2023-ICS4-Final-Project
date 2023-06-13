@@ -10,6 +10,14 @@ import java.awt.Image;
 import src.main.Main;
 import src.main.Drivers.*;
 
+/**
+ * Justification Class
+ * Time spent: 1 hour
+ * 
+ * @version 1.1
+ * @version 6/10/2023
+ * @author Felix Zhao, Victor Sarca
+ */
 public class Justification extends ScreenElement {
     Sound s = new Sound("src/main/Sounds/MainMenu.wav");
     private double scale;

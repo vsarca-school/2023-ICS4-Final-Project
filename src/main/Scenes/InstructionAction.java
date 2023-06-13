@@ -7,6 +7,14 @@ import src.main.Drivers.ScreenElement;
 import src.main.Drivers.Sprite;
 import src.main.Drivers.Window;
 
+/**
+ * InstructionAction Class
+ * Time spent: 1 hour
+ * 
+ * @version 1.1
+ * @version 6/10/2023
+ * @author Felix Zhao, Victor Sarca
+ */
 public class InstructionAction extends ScreenElement {
 
     private double scale;

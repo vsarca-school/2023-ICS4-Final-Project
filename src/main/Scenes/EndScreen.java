@@ -15,7 +15,6 @@ import src.main.Drivers.Window;
  * @version 6/8/2023
  * @author Radin Ahari(comment)/Felix Zhao(code)
  */
-
 public class EndScreen extends ScreenElement {
     Sound s = new Sound("src/main/Sounds/MainMenu.wav");
     private double scale;
