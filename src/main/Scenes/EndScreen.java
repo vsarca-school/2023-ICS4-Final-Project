@@ -17,7 +17,7 @@ import src.main.Drivers.Window;
  */
 
 public class EndScreen extends ScreenElement {
-
+    Sound s = new Sound("src/main/Sounds/MainMenu.wav");
     private double scale;
     private Font font;
 
@@ -148,12 +148,23 @@ public class EndScreen extends ScreenElement {
      * @param w the window being added to
      */
     public void addToWindow(Window w) {
+        s.loop(-1,0);
         try {
             //font = Font.createFont(Font.TRUETYPE_FONT, new File("src/main/Fonts/VCR_OSD_MONO_1.001.ttf"));
             font = Font.createFont(Font.TRUETYPE_FONT, Main.loadFile("src/main/Fonts/VCR_OSD_MONO_1.001.ttf"));
         } catch (Exception e) {
         }
         w.addElement(this);
+    }
+
+    /**
+     * Remove this element and child ScreenElements from window w
+     * 
+     * @param w The window to stop rendering to
+     */
+    public void removeFromWindow(Window w) {
+        s.stopAll();
+        super.removeFromWindow(w);
     }
 
     /**

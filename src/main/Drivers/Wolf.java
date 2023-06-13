@@ -37,6 +37,7 @@ public class Wolf extends ScreenElement {
 
     /**
      * Creates a new wolf
+     * 
      * @param x X coordinate
      * @param y Y coordinate
      * @param l The level to join
@@ -53,12 +54,11 @@ public class Wolf extends ScreenElement {
         dead = false;
     }
 
-    public void damage(int damage)
-    {
+    public void damage(int damage) {
         health -= damage;
         if (health <= 0) {
             dead = true;
-            deathpolation = 5;
+            deathpolation = 30;
         }
     }
 
@@ -70,15 +70,7 @@ public class Wolf extends ScreenElement {
      *          - Victor
      */
     public void update(Window w, Graphics g) {
-        if (dead) {
-            if (deathpolation > 0) {
-                deathpolation --;
-                // Render death animation
-            }
-            return;
-        }
-
-        if (!isPaused()) {
+        if (!isPaused() && !dead) {
             if (!walking) {
                 orient();
                 collide(w);
@@ -102,10 +94,12 @@ public class Wolf extends ScreenElement {
 
     /**
      * Returns the coords of the wolf
+     * 
      * @return The coords of the wolf
      */
     public int[] getCoords() {
-        if (dead) return new int[] {-2, -2, -2, -2};
+        if (dead)
+            return new int[] { -2, -2, -2, -2 };
         if (!walking)
             return new int[] { x, y, x, y };
         return new int[] { x, y, nextx, nexty };
@@ -164,6 +158,7 @@ public class Wolf extends ScreenElement {
 
     /**
      * Checks for collisions
+     * 
      * @param w The window
      */
     private void collide(Window w) {
@@ -185,8 +180,8 @@ public class Wolf extends ScreenElement {
             try {
                 p.damage((int) (5 + Math.random() * 10), w);
                 paw = true;
-                pawx = realx + directions[direction][0]*0.5;
-                pawy = realy + directions[direction][1]*0.5;
+                pawx = realx + directions[direction][0] * 0.5;
+                pawy = realy + directions[direction][1] * 0.5;
                 pawpolation = 0;
                 if (Math.random() < 0.5)
                     whichpaw = 0;
@@ -200,14 +195,15 @@ public class Wolf extends ScreenElement {
 
     /**
      * Receives player metrics from the player
-     * @param x A player metric
-     * @param y A player metric
-     * @param ax A player metric
-     * @param ay A player metric
-     * @param nx A player metric
-     * @param ny A player metric
+     * 
+     * @param x       A player metric
+     * @param y       A player metric
+     * @param ax      A player metric
+     * @param ay      A player metric
+     * @param nx      A player metric
+     * @param ny      A player metric
      * @param walking A player metric
-     * @param p The player
+     * @param p       The player
      */
     public void updatePlayerPos(double x, double y, int ax, int ay, int nx, int ny, boolean walking, ActionPlayer p) {
         px = x;
@@ -223,6 +219,7 @@ public class Wolf extends ScreenElement {
 
     /**
      * Renders the wolf
+     * 
      * @param w The window
      * @param g The graphics object
      */
@@ -238,6 +235,17 @@ public class Wolf extends ScreenElement {
             animation = (animation + 1) % 32;
             if (paw)
                 pawpolation++;
+        }
+
+        if (dead) {
+            if (deathpolation > 0) {
+                deathpolation--;
+                // Render death animation
+                g.drawImage(Sprite.getScaledTile("wolf-" + (px < x ? 9 : 8)), (int) (hww + (realx - px) * scale),
+                        (int) (hwh + (realy - py) * scale),
+                        null);
+            }
+            return;
         }
 
         String cur;
