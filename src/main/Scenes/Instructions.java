@@ -4,14 +4,16 @@ import java.awt.*;
 import java.io.*;
 
 import src.main.Main;
+import src.main.Drivers.ScreenElement;
 import src.main.Drivers.Sprite;
 import src.main.Drivers.Window;
 
-public class Instructions {
+public class Instructions extends ScreenElement {
 
     private double scale;
     private Font font;
-    
+    private int screen = 0;
+
     /**
      * Centers image
      * 
@@ -203,60 +205,39 @@ public class Instructions {
         double hwh = w.getHeight() / 2.0;
         scale = Sprite.getTileScale();
 
+        centerImage(g, Sprite.getScaledBackground("TitleScreen"), (int) hww, (int) hwh);
+
         Color c = new Color(53, 45, 82, 255);
         centerBox(g, c, (int) hww, (int) hwh, (int) (hww * 8 / 5), (int) (hwh * 8 / 5));
 
-        int size = maxFontSize(g, question, (int) (hww * 7 / 5), (int) hwh, font);
+        int size = maxFontSize(g, "Instructions", (int) hww, (int) hwh, font);
         Font temp = font.deriveFont(Font.PLAIN, size);
-        centerString(g, Color.WHITE, question, (int) hww, (int) (hwh * 2 / 5), (int) hww * 2, size, temp);
+        centerString(g, Color.WHITE, "Instructions", (int) hww, (int) (hwh * 2 / 5), (int) hww * 2, size, temp);
 
-        char letter = 65;
-        int i = 0;
+        String str = "To solve the maze level, navigate the maze\n" + //
+                "with w,a,s,d or arrow keys. When you\r\n" + //
+                "start moving, you cannot stop moving until\n" + //
+                "you hit an obstacle. You can press \"r\"\n" + //
+                "to restart or \"esc\" to pause.\n\n" + //
+                "The goal of the maze is to find the campfire\n" + //
+                "or tent and signs you come across are essential\n" + //
+                "to solving the maze. If you answer the question\n" + //
+                "corretly the sign will dissapear, helping you\n" + //
+                "reach the end. Otherwise, the level will be\n" + //
+                "restarted.";
 
-        for (String str : answers) {
-            String tmp = (char) (letter) + ": " + str;
-            size = maxFontSizeAll(g, (int) (hww * 6 / 5), (int) (hwh / 10), font);
-            temp = font.deriveFont(Font.PLAIN, size);
-            centerString(g, Color.WHITE, tmp, (int) hww, (int) (hwh * 7 / 10 + i), (int) hww * 2, size, temp);
-            i += size * 1.25;
-            letter++;
-        }
+        size = maxFontSize(g, str, (int) (hww * 7 / 5), (int) hwh*2, font);
+        temp = font.deriveFont(Font.PLAIN, size);
+        centerString(g, Color.WHITE, str, (int) hww, (int) hwh, (int) (hww * 8 / 5), size, temp);
+        centerImage(g, Sprite.getScaledTile("campfire-0"), (int)hww*11/15, (int)hwh*3/2);
+        centerImage(g, Sprite.getScaledTile("sign-0"), (int)hww*19/15, (int)hwh*3/2);
 
-        centerImage(g, Sprite.getScaledImage("a"), (int) (hww * 2 / 5), (int) (hwh * 7 / 5));
-        centerImage(g, Sprite.getScaledImage("b"), (int) (hww * 4 / 5), (int) (hwh * 7 / 5));
-        centerImage(g, Sprite.getScaledImage("c"), (int) (hww * 6 / 5), (int) (hwh * 7 / 5));
-        centerImage(g, Sprite.getScaledImage("d"), (int) (hww * 8 / 5), (int) (hwh * 7 / 5));
-
+        size = maxFontSize(g, "[click to continue]", (int) (hww * 8 / 15), (int) hwh*2, font);
+        temp = font.deriveFont(Font.PLAIN, size);
+        centerString(g, Color.WHITE, "[click to continue]", (int) hww, (int) (hwh * 5 / 3), (int) (hww * 3 / 2), size, temp);
         int[] mouse;
         while ((mouse = w.nextMouse()) != null) {
-            if (isClicked(Sprite.getScaledImage("a"), (int) (hww * 2 / 5), (int) (hwh * 7 / 5), mouse)) {
-                if (correct == 0)
-                    Main.questionCorrect(true, sx, sy);
-                else
-                    Main.questionCorrect(false, sx, sy);
-                removeFromWindow(w);
-            }
-            if (isClicked(Sprite.getScaledImage("b"), (int) (hww * 4 / 5), (int) (hwh * 7 / 5), mouse)) {
-                if (correct == 1)
-                    Main.questionCorrect(true, sx, sy);
-                else
-                    Main.questionCorrect(false, sx, sy);
-                removeFromWindow(w);
-            }
-            if (isClicked(Sprite.getScaledImage("c"), (int) (hww * 6 / 5), (int) (hwh * 7 / 5), mouse)) {
-                if (correct == 2)
-                    Main.questionCorrect(true, sx, sy);
-                else
-                    Main.questionCorrect(false, sx, sy);
-                removeFromWindow(w);
-            }
-            if (isClicked(Sprite.getScaledImage("d"), (int) (hww * 8 / 5), (int) (hwh * 7 / 5), mouse)) {
-                if (correct == 3)
-                    Main.questionCorrect(true, sx, sy);
-                else
-                    Main.questionCorrect(false, sx, sy);
-                removeFromWindow(w);
-            }
+            //click
         }
     }
 }
