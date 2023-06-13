@@ -299,16 +299,15 @@ public class Lesson extends ScreenElement implements Serializable {
             }
 
             Color c = new Color(53, 45, 82, 255);
-            centerBox(g, c, w.getWidth() / 2, w.getHeight() * 4 / 5, (int) scale * 128 + 1, (int) scale * 48 / 2 + 1);
+            centerBox(g, c, w.getWidth() / 2, w.getHeight() * 4 / 5, (int) scale * 176 + 1, (int) scale * 80 / 2 + 1);
 
             if (timer % DELAY < DELAY) {
-                // TODO fix scaling of font, not efficient but works
                 String currentText = texts[currentStringIndex];
-                int size = maxFontSize(g, currentText, (int) scale * 128 + 1 - (int) scale * 6 - 5,
+                int size = maxFontSize(g, currentText, (int) scale * 176 + 1 - (int) scale * 6 - 5,
                         (int) scale * 24 + 1 - (int) scale * 6 - 5, font);
                 Font temp = font.deriveFont(Font.PLAIN, size);
                 centerString(g, Color.WHITE, currentText.substring(0, Math.min(currentIndex, currentText.length())),
-                        w.getWidth() / 2, w.getHeight() * 31 / 40, (int) scale * 128 + 1, size, temp);
+                        w.getWidth() / 2, w.getHeight() * 31 / 40, (int) scale * 176 + 1, size, temp);
             }
 
             if (!paused) {
@@ -327,9 +326,9 @@ public class Lesson extends ScreenElement implements Serializable {
 
             int anim = 0;
             if (animTimer <= 60) {
-                anim = w.getHeight() * 33 / 40;
+                anim = w.getHeight() * 139 / 160;
             } else {
-                anim = w.getHeight() * 133 / 160;
+                anim = w.getHeight() * 7 / 8;
             }
             int[] xPoints = { w.getWidth() / 2 - (int) scale * 2, w.getWidth() / 2,
                     w.getWidth() / 2 + (int) scale * 2 };
